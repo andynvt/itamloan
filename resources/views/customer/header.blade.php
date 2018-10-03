@@ -52,7 +52,7 @@
     <nav class="navbar navbar-expand-lg  navbar-light">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="img/element/logo.png" alt="">
+                <img src="source/img/element/logo.png" alt="">
             </a>
             <a href="#home-search-form">
                 <div class="nav-item-ct" data-toggle="tooltip" title="Tìm kiếm">
@@ -90,14 +90,14 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone x</h6>
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 8 plus</h6>
                                         <div class="p-1"></div>
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 8</h6>
                                         <div class="p-1"></div>
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 7 plus</h6>
                                         <div class="p-1"></div>
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 7</h6>
                                         <div class="p-1"></div>
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6s plus</h6>
                                         <div class="p-1"></div>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6s</h6>
                                         <div class="p-1"></div>
@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone se</h6>
                                         <div class="p-1"></div>
@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6 plus</h6>
                                         <div class="p-1"></div>
@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6</h6>
                                         <div class="p-1"></div>
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 5s</h6>
                                         <div class="p-1"></div>
@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 5c/5/4</h6>
                                         <div class="p-1"></div>
@@ -194,14 +194,14 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/ipad2018.jpg">
+                                        <img src="source/img/element/ipad2018.jpg">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">ipad 2018</h6>
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/ipad2018.jpg">
+                                        <img src="source/img/element/ipad2018.jpg">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">ipad pro 12.9"</h6>
                                         <div class="p-1"></div>
@@ -209,7 +209,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/ipad2018.jpg">
+                                        <img src="source/img/element/ipad2018.jpg">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">ipad pro 10.5"</h6>
                                         <div class="p-1"></div>
@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/ipad2018.jpg">
+                                        <img src="source/img/element/ipad2018.jpg">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">ipad pro 9.7"</h6>
                                         <div class="p-1"></div>
@@ -225,7 +225,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/ipad2018.jpg">
+                                        <img src="source/img/element/ipad2018.jpg">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">ipad gen 5</h6>
                                         <div class="p-1"></div>
@@ -233,7 +233,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/ipad2018.jpg">
+                                        <img src="source/img/element/ipad2018.jpg">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone mini 4</h6>
                                         <div class="p-1"></div>
@@ -241,7 +241,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/ipad2018.jpg">
+                                        <img src="source/img/element/ipad2018.jpg">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">ipad mini 3</h6>
                                         <div class="p-1"></div>
@@ -259,14 +259,14 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone x</h6>
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 8 plus</h6>
                                         <div class="p-1"></div>
@@ -274,7 +274,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 8</h6>
                                         <div class="p-1"></div>
@@ -282,7 +282,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 7 plus</h6>
                                         <div class="p-1"></div>
@@ -290,7 +290,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 7</h6>
                                         <div class="p-1"></div>
@@ -298,7 +298,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6s plus</h6>
                                         <div class="p-1"></div>
@@ -306,7 +306,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6s</h6>
                                         <div class="p-1"></div>
@@ -314,7 +314,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone se</h6>
                                         <div class="p-1"></div>
@@ -322,7 +322,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6 plus</h6>
                                         <div class="p-1"></div>
@@ -330,7 +330,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6</h6>
                                         <div class="p-1"></div>
@@ -338,7 +338,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 5s</h6>
                                         <div class="p-1"></div>
@@ -346,7 +346,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 5c/5/4</h6>
                                         <div class="p-1"></div>
@@ -363,14 +363,14 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone x</h6>
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 8 plus</h6>
                                         <div class="p-1"></div>
@@ -378,7 +378,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 8</h6>
                                         <div class="p-1"></div>
@@ -386,7 +386,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 7 plus</h6>
                                         <div class="p-1"></div>
@@ -394,7 +394,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 7</h6>
                                         <div class="p-1"></div>
@@ -402,7 +402,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6s plus</h6>
                                         <div class="p-1"></div>
@@ -410,7 +410,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6s</h6>
                                         <div class="p-1"></div>
@@ -418,7 +418,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone se</h6>
                                         <div class="p-1"></div>
@@ -426,7 +426,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6 plus</h6>
                                         <div class="p-1"></div>
@@ -434,7 +434,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 6</h6>
                                         <div class="p-1"></div>
@@ -442,7 +442,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 5s</h6>
                                         <div class="p-1"></div>
@@ -450,7 +450,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <a class="dropdown-item text-center" href="#">
-                                        <img src="img/element/iphone%20x.png">
+                                        <img src="source/img/element/iphone%20x.png">
                                         <div class="p-1"></div>
                                         <h6 class="text-center">iphone 5c/5/4</h6>
                                         <div class="p-1"></div>

@@ -1,7 +1,8 @@
-@extends('master')
+@extends('customer.master')
 @section('content')
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
+
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
             <div class="col-first">
@@ -162,7 +163,7 @@
                         <div class="content">
                             <div class="content-overlay"></div>
                             <span class="sp-discount">-50%</span>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/element/iphone%20x.png" alt="iphone x 256gb">
+                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -181,7 +182,7 @@
                         <div class="content">
                             <div class="content-overlay"></div>
                             <span class="sp-discount">-50%</span>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/element/iphone%20x.png" alt="iphone x 256gb">
+                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -199,7 +200,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
                         <div class="content">
                             <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/element/iphone%20x.png" alt="iphone x 256gb">
+                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -218,7 +219,7 @@
                         <div class="content">
                             <div class="content-overlay"></div>
                             <span class="sp-discount">-50%</span>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/element/iphone%20x.png" alt="iphone x 256gb">
+                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -236,7 +237,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
                         <div class="content">
                             <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/element/iphone%20x.png" alt="iphone x 256gb">
+                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -254,7 +255,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
                         <div class="content">
                             <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/element/iphone%20x.png" alt="iphone x 256gb">
+                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -272,7 +273,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
                         <div class="content">
                             <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/element/iphone%20x.png" alt="iphone x 256gb">
+                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -335,7 +336,7 @@
         <div class="row mt-30">
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="single-search-product d-flex">
-                    <a href="#"><img src="img/r9.jpg" alt=""></a>
+                    <a href="#"><img src="source/img/r9.jpg" alt=""></a>
                     <div class="desc">
                         <a href="#" class="">Pixelstore fresh Strawberry</a>
                         <div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
@@ -344,7 +345,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="single-search-product d-flex">
-                    <a href="#"><img src="img/r10.jpg" alt=""></a>
+                    <a href="#"><img src="source/img/r10.jpg" alt=""></a>
                     <div class="desc">
                         <a href="#" class="">Prixma MG2 Light Inkjet</a>
                         <div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
@@ -353,7 +354,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="single-search-product d-flex">
-                    <a href="#"><img src="img/r11.jpg" alt=""></a>
+                    <a href="#"><img src="source/img/r11.jpg" alt=""></a>
                     <div class="desc">
                         <a href="#" class="">Pixelstore fresh Cherry</a>
                         <div class="price"><span class="lnr lnr-tag"></span> $240.00
@@ -364,7 +365,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="single-search-product d-flex">
-                    <a href="#"><img src="img/r12.jpg" alt=""></a>
+                    <a href="#"><img src="source/img/r12.jpg" alt=""></a>
                     <div class="desc">
                         <a href="#" class="">Pixelstore fresh Beans</a>
                         <div class="price"><span class="lnr lnr-tag"></span> $240.00

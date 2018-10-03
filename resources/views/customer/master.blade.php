@@ -33,12 +33,12 @@
 </head>
 
 <body>
-@include('header')
+@include('customer.header')
 
 @yield('content')
 
 <!-- start footer Area -->
-@include('footer')
+@include('customer.footer')
 
 <!-- End footer Area -->
 
