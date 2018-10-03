@@ -51,7 +51,7 @@
     </div>
     <nav class="navbar navbar-expand-lg  navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="#">
                 <img src="source/img/element/logo.png" alt="">
             </a>
             <a href="#home-search-form">
