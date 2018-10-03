@@ -20,6 +20,7 @@ class Products extends Migration
             $table->integer('id_promo')->unsigned();
             $table->foreign('id_promo')->references('id')->on('promotions')->onDelete('CASCADE');
             $table->text('name');
+            $table->text('slogan');
             $table->integer('price');
             $table->text('specs');
             $table->text('warranty');

@@ -154,7 +154,7 @@
     <div class="container">
         <div class="countdown-content">
             <div class="title text-center">
-                <h1 class="mb-10">Khuyến mãi chờ iPhone XS</h1>
+                <h1 class="mb-10">iPhone XS / XS MAX Giá cạnh tranh</h1>
                 <p>Tổng hợp khuyến mãi</p>
             </div>
         </div>
@@ -193,7 +193,7 @@
 
                         <div class="countdown-label text" id="second-countdown">Giây</div>
                     </div>
-                    <a href="advertise.html" class="view-btn primary-btn2"><span>Xem chi tiết</span></a>
+                    <a href="{{route('ad')}}" class="view-btn primary-btn2"><span>Xem chi tiết</span></a>
                     <img src="source/img/cd.png" class="img-fluid cd-img" alt="">
                 </div>
             </div>
@@ -303,6 +303,7 @@
                     <h3 class="text-center">iPhone 8</h3>
                 </a>
             </div>
+            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
 
 
 
@@ -717,10 +718,12 @@
     });
     // end search form
 </script>
+
+{{--dem nguoc khuyen mai--}}
 <script>
     if (document.getElementById("js-countdown")) {
 
-        var countdown = new Date("August 10 2018");
+        var countdown = new Date("October 10 2018");
 
         function getRemainingTime(endtime) {
             var milliseconds = Date.parse(endtime) - Date.parse(new Date());

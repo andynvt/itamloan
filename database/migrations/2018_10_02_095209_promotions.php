@@ -15,6 +15,7 @@ class Promotions extends Migration
     {
         Schema::create('promotions', function ($table) {
             $table->increments('id');
+            $table->text('promo_name');
             $table->text('promo_info');
             $table->text('promo_image');
             $table->integer('percent');
