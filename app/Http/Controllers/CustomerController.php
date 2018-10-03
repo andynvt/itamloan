@@ -13,4 +13,8 @@ class CustomerController extends Controller
     public  function getType(){
         return view('customer.page.type');
     }
+
+    public  function getSingle(){
+        return view('customer.page.single');
+    }
 }
