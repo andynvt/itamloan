@@ -20,7 +20,7 @@ Route::get('index',[
     'uses' => 'CustomerController@getIndex'
 ]);
 
-Route::get('loai',[
+Route::get('loai/{type}',[
     'as' => 'loai',
     'uses' => 'CustomerController@getType'
 ]);

@@ -32,4 +32,7 @@ class Product extends Model
         return $this->belongsTo('App\BillDetail','id_product','id');
     }
 
+    public function product_image(){
+        return $this->hasManyThrough('App\ProductImage','App\ProductColor','id_product','id_color','id','id');
+    }
 }

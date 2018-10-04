@@ -155,7 +155,8 @@
         <div class="countdown-content">
             <div class="title text-center">
                 <h1 class="mb-10">iPhone XS / XS MAX Giá cạnh tranh</h1>
-                <p>Tổng hợp khuyến mãi</p>
+                <div class="p-3"></div>
+                {{--<p>Tổng hợp khuyến mãi</p>--}}
             </div>
         </div>
         <div class="row">
@@ -304,9 +305,6 @@
                 </a>
             </div>
             <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
-
-
-
         </div>
     </div>
 </section>
@@ -385,6 +383,7 @@
                     <h3 class="text-center text-white">iPad 2018</h3>
                 </a>
             </div>
+            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
 
             <!--<div class="col-lg-3 col-md-6 single-product">-->
             <!--<div class="content">-->
@@ -510,6 +509,8 @@
                     <h3 class="text-center">Macbook</h3>
                 </a>
             </div>
+            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
+
         </div>
     </div>
 </section>
@@ -614,6 +615,7 @@
                     <h3 class="text-center">Apple Watch Series 3</h3>
                 </a>
             </div>
+            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
 
         </div>
 </section>

@@ -2,16 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\ProductType;
+use App\Promotion;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
     public  function getIndex(){
-        return view('customer.page.home');
+////        $today = new \DateTime('day');
+//        $mytime = Carbon::now();
+////        echo $mytime->toDateString();
+////        dd($mytime);
+//        $promo = Promotion::all();
+////        dd($promo);
+//        foreach ($promo as $p){
+//            echo($p->end_date);
+//        }
+////        dd($today);
+//        exit();
+
+        $iphone = Product::where('id_type',1)->take(1)->get();
+//        dd($iphone);
+        return view('customer.page.home', compact('iphone'));
     }
 
-    public  function getType(){
-        return view('customer.page.type');
+    public  function getType($type){
+
+        $tenloai = ProductType::where('id', $type)->get();
+//        dd($tenloai);
+        $sp_theoloai = Product::where('id_type',$type)->get();
+
+        return view('customer.page.type',compact('tenloai'));
     }
 
     public  function getSingle(){

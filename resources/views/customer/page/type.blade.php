@@ -1,6 +1,11 @@
+<head>
+    <title>{{$tenloai[0]->type}} | i Tâm Loan</title>
+</head>
 @extends('customer.master')
 @section('content')
-<!-- Start Banner Area -->
+    <title>Shop</title>
+
+    <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
 
     <div class="container">
@@ -8,8 +13,8 @@
             <div class="col-first">
                 <h1>iPhone</h1>
                 <nav class="d-flex align-items-center justify-content-start">
-                    <a href="#">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                    <a href="#">iPhone</a>
+                    <a href="{{route('index')}}">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                    <a href="{{route('loai',$tenloai[0]->id)}}">{{$tenloai[0]->type}}</a>
                 </nav>
             </div>
         </div>
