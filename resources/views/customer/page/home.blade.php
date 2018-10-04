@@ -60,7 +60,7 @@
                         </li>
                     </a>
 
-                    <a href="#">
+                    <a href="{{route('wishlist')}}">
                         <li class="nav-item">
                             <span class="lnr lnr-heart lnr-custom"></span>
                             <div class="num-cart">
@@ -68,7 +68,7 @@
                             </div>
                         </li>
                     </a>
-                    <a href="#">
+                    <a href="{{route('cart')}}">
                         <li>
                             <span class="lnr lnr-cart lnr-custom"></span>
                             <div class="num-cart">
@@ -76,7 +76,7 @@
                             </div>
                         </li>
                     </a>
-                    <a href="#">
+                    <a href="{{route('user')}}">
                         <li>
                             <span class="lnr lnr-user lnr-custom"></span>
                         </li>
@@ -87,7 +87,7 @@
     </div>
     <nav class="navbar navbar-expand-lg  navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{route('index')}}">
                 <img src="source/img/element/logo.png">
             </a>
             <a href="#home-search-form">
@@ -95,7 +95,7 @@
                     <i class="lnr lnr-magnifier lnr-custom"></i>
                 </div>
             </a>
-            <a href="#">
+            <a href="{{route('wishlist')}}">
                 <div class="nav-item-ct">
                     <span class="lnr lnr-heart lnr-custom"></span>
                     <div class="num-cart-ct">
@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#">
+            <a href="{{route('cart')}}">
                 <div class="nav-item-ct">
                     <span class="lnr lnr-cart lnr-custom"></span>
                     <div class="num-cart-ct">
