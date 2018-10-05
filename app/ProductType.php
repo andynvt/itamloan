@@ -9,8 +9,8 @@ class ProductType extends Model
     protected $table = "product_type";
     public $timestamps = false;
 
-    public function products(){
-        return $this->hasMany('App\Product','id_type','id');
+    public function catalogs(){
+        return $this->hasMany('App\Catalog','id_type','id');
     }
 
 }

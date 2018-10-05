@@ -561,6 +561,9 @@ label {
     color: #ddd;
     float: right;
 }
+.category-area .ovl-spc {
+    margin: 0 0;
+}
 
 /***** CSS Magic to Highlight Stars on Hover *****/
 

@@ -209,102 +209,29 @@
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-10">
                 <div class="title text-center">
-                    <h1 class="mb-50">iPhone</h1>
+                    <a href="{{route('loai',$ls_type[0]->id)}}"><h1 class="mb-50">iPhone</h1></a>
                 </div>
             </div>
         </div>
         <div class="row">
+            @foreach($ls_ip as $ip)
             <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
                 <a href="#" target="_blank">
                     <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iPhone X">
+                        <div class="content-overlay ovl-spc"></div>
+                        <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}" alt="{{$ip->catalog}}">
                         <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title">iPhone X</h3>
+                            <h3 class="content-title">{{$ip->catalog}}</h3>
                             <h3 class="p-2"></h3>
-                            <h3 class="content-title">Say hello to the future.</h3>
+                            <h3 class="content-title">{{$ip->slogan}}</h3>
                         </div>
                     </div>
                     <div class="p-2"></div>
-                    <h3 class="text-center">iPhone X</h3>
+                    <h3 class="text-center">{{$ip->catalog}}</h3>
                 </a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-30">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208%20plus.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title">iPhone 8 Plus</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title">A beautiful mind.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">iPhone 8 Plus</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-30">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208.png" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title">iPhone 8</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title">A beautiful mind.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">iPhone 8</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title">iPhone X</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">iPhone X</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-30">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208%20plus.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title">iPhone 8 Plus</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title">A beautiful mind.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">iPhone 8 Plus</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-30">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208.png" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title">iPhone 8</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title">A beautiful mind.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">iPhone 8</h3>
-                </a>
-            </div>
-            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
+            @endforeach
+            <a class="view-btn color-2 mt-20 w-100" href="{{route('loai',$ls_type[0]->id)}}" style="font-size: 20px"><span>Xem thêm</span></a>
         </div>
     </div>
 </section>
