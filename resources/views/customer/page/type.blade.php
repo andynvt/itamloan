@@ -11,7 +11,7 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
             <div class="col-first">
-                <h1>iPhone</h1>
+                <h1>{{$tenloai[0]->type}}</h1>
                 <nav class="d-flex align-items-center justify-content-start">
                     <a href="{{route('index')}}">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
                     <a href="{{route('loai',$tenloai[0]->id)}}">{{$tenloai[0]->type}}</a>
@@ -27,11 +27,15 @@
             <div class="sidebar-categories">
                 <div class="head">Loại sản phẩm</div>
                 <ul class="main-categories">
-                    <li class="main-nav-list"><a data-toggle="collapse" href="#iphone" aria-expanded="false" aria-controls="iphone"><span class="lnr lnr-arrow-right"></span>iPhone<span class="number">(53)</span></a>
-                        <ul class="collapse" id="iphone" data-toggle="collapse" aria-expanded="false" aria-controls="iphone">
+                    <li class="main-nav-list"><a data-toggle="collapse" href="#iphone" aria-expanded="false"
+                                                 aria-controls="iphone"><span
+                                    class="lnr lnr-arrow-right"></span>iPhone<span class="number">(53)</span></a>
+                        <ul class="collapse" id="iphone" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="iphone">
                             <li class="main-nav-list child"><a href="#">iPhone X<span class="number">(13)</span></a>
                             </li>
-                            <li class="main-nav-list child"><a href="#">iPhone 8 Plus<span class="number">(09)</span></a>
+                            <li class="main-nav-list child"><a href="#">iPhone 8 Plus<span
+                                            class="number">(09)</span></a>
                             </li>
                         </ul>
                     </li>

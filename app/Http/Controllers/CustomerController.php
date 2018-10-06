@@ -14,14 +14,19 @@ class CustomerController extends Controller
     public  function getIndex(){
         $ls_type = ProductType::all();
         $ls_ip = Catalog::where('id_type',1)->get();
-//        dd($ls_ip);
-        return view('customer.page.home', compact('ls_type','ls_ip'));
+        $ls_ipad = Catalog::where('id_type',2)->get();
+        $ls_mac = Catalog::where('id_type',3)->get();
+        $ls_watch = Catalog::where('id_type',4)->get();
+//        dd($ls_type);
+        return view('customer.page.home', compact('ls_type','ls_ip','ls_ipad','ls_mac','ls_watch'));
     }
 
     public  function getType($type){
 
         $tenloai = ProductType::where('id', $type)->get();
-//        dd($tenloai);
+        $ls_sp = ProductType::join('catalogs','catalogs.id_type','=','product_type.id')
+            ->get();
+        dd($ls_sp);
 //        $sp_theoloai = Product::where('id_type',$type)->get();
 
         return view('customer.page.type',compact('tenloai'));

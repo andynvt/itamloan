@@ -205,33 +205,41 @@
 
 <!-- Start category Area -->
 <section class="category-area section-gap" id="iphone">
+    <div class="overlay overlay-bg"></div>
+
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-10">
                 <div class="title text-center">
-                    <a href="{{route('loai',$ls_type[0]->id)}}"><h1 class="mb-50">iPhone</h1></a>
+                    <a href="{{route('loai',$ls_type[0]->id)}}">
+                        <h1 class="mb-50">{{$ls_type[0]->type}}</h1>
+                    </a>
+{{--                    <a href="{{route('loai',$ls_type[0]->id)}}"><h1 class="text-white mb-10">{{$ls_type[0]->type}}</h1></a>--}}
+
                 </div>
             </div>
         </div>
         <div class="row">
             @foreach($ls_ip as $ip)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay ovl-spc"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}" alt="{{$ip->catalog}}">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title">{{$ip->catalog}}</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title">{{$ip->slogan}}</h3>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
+                    <a href="#" target="_blank">
+                        <div class="content">
+                            <div class="content-overlay ovl-spc"></div>
+                            <img class="content-image img-fluid d-block mx-auto"
+                                 src="storage/product/{{$ip->catalog_image}}" alt="{{$ip->catalog}}">
+                            <div class="content-details fadeIn-bottom">
+                                <h3 class="content-title">{{$ip->catalog}}</h3>
+                                <h3 class="p-2"></h3>
+                                <h3 class="content-title">{{$ip->slogan}}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">{{$ip->catalog}}</h3>
-                </a>
-            </div>
+                        <div class="p-2"></div>
+                        <h3 class="text-center">{{$ip->catalog}}</h3>
+                    </a>
+                </div>
             @endforeach
-            <a class="view-btn color-2 mt-20 w-100" href="{{route('loai',$ls_type[0]->id)}}" style="font-size: 20px"><span>Xem thêm</span></a>
+            <a class="view-btn color-2 mt-20 w-100" href="{{route('loai',$ls_type[0]->id)}}"
+               style="font-size: 20px"><span>Xem thêm</span></a>
         </div>
     </div>
 </section>
@@ -242,96 +250,32 @@
     <div class="overlay overlay-bg"></div>
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-40">
+            <div class="menu-content pb-10">
                 <div class="title text-center">
-                    <h1 class="text-white mb-10">iPad</h1>
+                    <a href="{{route('loai',$ls_type[1]->id)}}"><h1 class="text-white mb-10">{{$ls_type[1]->type}}</h1></a>
                 </div>
             </div>
         </div>
         <div class="row">
-
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/ipad2018.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">iPad 2018</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
+            @foreach($ls_ipad as $ip)
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
+                    <a href="#" target="_blank">
+                        <div class="content">
+                            <div class="content-overlay"></div>
+                            <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}"
+                                 alt="{{$ip->catalog}}">
+                            <div class="content-details fadeIn-bottom">
+                                <h3 class="content-title text-white">{{$ip->catalog}}</h3>
+                                <h3 class="p-2"></h3>
+                                <h3 class="content-title text-white">{{$ip->slogan}}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center text-white">iPad 2018</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/ipad2018.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">iPad 2018</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center text-white">iPad 2018</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/ipad2018.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">iPad 2018</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center text-white">iPad 2018</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/ipad2018.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">iPad 2018</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center text-white">iPad 2018</h3>
-                </a>
-            </div>
-            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
-
-            <!--<div class="col-lg-3 col-md-6 single-product">-->
-            <!--<div class="content">-->
-            <!--<div class="content-overlay"></div>-->
-            <!--<img class="content-image img-fluid d-block mx-auto" src="source/img/l1.jpg" alt="">-->
-            <!--<div class="content-details fadeIn-bottom">-->
-            <!--<div class="bottom d-flex align-items-center justify-content-center">-->
-            <!--<a href="#"><span class="lnr lnr-heart"></span></a>-->
-            <!--<a href="#"><span class="lnr lnr-layers"></span></a>-->
-            <!--<a href="#"><span class="lnr lnr-cart"></span></a>-->
-            <!--<a href="#" data-toggle="modal" data-target="#exampleModal"><span-->
-            <!--class="lnr lnr-frame-expand"></span></a>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="price">-->
-            <!--<h5 class="text-white">Long Sleeve shirt</h5>-->
-            <!--<h3 class="text-white">$150.00</h3>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
+                        <div class="p-2"></div>
+                        <h3 class="text-center text-white">{{$ip->catalog}}</h3>
+                    </a>
+                </div>
+            @endforeach
+            <a class="view-btn color-2 mt-20 w-100" href="{{route('loai',$ls_type[1]->id)}}" style="font-size: 20px"><span>Xem thêm</span></a>
         </div>
     </div>
 </section>
@@ -342,101 +286,31 @@
     <div class="container">
         <div class="countdown-content pb-40">
             <div class="title text-center">
-                <h1 class="mb-10">Mac</h1>
+                <a href="{{route('loai',$ls_type[2]->id)}}"><h1 class="text-white mb-10">{{$ls_type[2]->type}}</h1></a>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/macbook.jpeg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Macbook 12"</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
+            @foreach($ls_mac as $ip)
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
+                    <a href="#" target="_blank">
+                        <div class="content">
+                            <div class="content-overlay"></div>
+                            <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}"
+                                 alt="{{$ip->catalog}}">
+                            <div class="content-details fadeIn-bottom">
+                                <h3 class="content-title text-white">{{$ip->catalog}}</h3>
+                                <h3 class="p-2"></h3>
+                                <h3 class="content-title text-white">{{$ip->slogan}}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Macbook</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/macbook.jpeg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Macbook 12"</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Macbook</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/macbook.jpeg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Macbook 12"</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Macbook</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/macbook.jpeg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Macbook 12"</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Macbook</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/macbook.jpeg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Macbook 12"</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Macbook</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/macbook.jpeg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Macbook 12"</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Macbook</h3>
-                </a>
-            </div>
-            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
+                        <div class="p-2"></div>
+                        <h3 class="text-center">{{$ip->catalog}}</h3>
+                    </a>
+                </div>
+
+            @endforeach
+
+            <a class="view-btn color-2 mt-20 w-100" href="{{route('loai',$ls_type[2]->id)}}" style="font-size: 20px"><span>Xem thêm</span></a>
 
         </div>
     </div>
@@ -444,107 +318,38 @@
 <!-- End women-product Area -->
 
 <!-- Start related-product Area -->
-<section class="related-product-area section-gap" id="watch">
+<section class="men-product-area section-gap relative" id="watch">
+    <div class="overlay overlay-bg"></div>
     <div class="container">
-        <div class="related-content">
-            <div class="title text-center">
-                <h1 class="mb-10">Apple Watch</h1>
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-40">
+                <div class="title text-center">
+                    <a href="{{route('loai',$ls_type[3]->id)}}"><h1 class="text-white mb-10">{{$ls_type[3]->type}}</h1></a>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/aw.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Apple Watch Series 3</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
+            @foreach($ls_watch as $ip)
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
+                    <a href="#" target="_blank">
+                        <div class="content">
+                            <div class="content-overlay"></div>
+                            <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}"
+                                 alt="{{$ip->catalog}}">
+                            <div class="content-details fadeIn-bottom">
+                                <h3 class="content-title text-white">{{$ip->catalog}}</h3>
+                                <h3 class="p-2"></h3>
+                                <h3 class="content-title text-white">{{$ip->slogan}}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Apple Watch Series 3</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/aw.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Apple Watch Series 3</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Apple Watch Series 3</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/aw.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Apple Watch Series 3</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Apple Watch Series 3</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/aw.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Apple Watch Series 3</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Apple Watch Series 3</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/aw.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Apple Watch Series 3</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Apple Watch Series 3</h3>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                <a href="#" target="_blank">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/aw.jpg" alt="iPhone X">
-                        <div class="content-details fadeIn-bottom">
-                            <h3 class="content-title text-white">Apple Watch Series 3</h3>
-                            <h3 class="p-2"></h3>
-                            <h3 class="content-title text-white">Say hello to the future.</h3>
-                        </div>
-                    </div>
-                    <div class="p-2"></div>
-                    <h3 class="text-center">Apple Watch Series 3</h3>
-                </a>
-            </div>
-            <a class="view-btn color-2 mt-20 w-100" style="font-size: 20px"><span>Xem thêm</span></a>
-
+                        <div class="p-2"></div>
+                        <h3 class="text-center text-white">{{$ip->catalog}}</h3>
+                    </a>
+                </div>
+            @endforeach
+            <a class="view-btn color-2 mt-20 w-100" href="{{route('loai',$ls_type[3]->id)}}" style="font-size: 20px"><span>Xem thêm</span></a>
         </div>
+    </div>
 </section>
 <!-- End related-product Area -->
 
