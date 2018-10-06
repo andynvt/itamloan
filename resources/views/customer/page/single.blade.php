@@ -1,3 +1,7 @@
+<head>
+    <title>{{$s_product->id}}| i Tâm Loan</title>
+</head>
+
 @extends('customer.master')
 
 @section('content')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Catalog;
 use App\Product;
+use App\ProductColor;
 use App\ProductType;
 use App\Promotion;
 use Carbon\Carbon;
@@ -22,18 +23,33 @@ class CustomerController extends Controller
     }
 
     public  function getType($type){
-
         $tenloai = ProductType::where('id', $type)->get();
         $ls_sp = ProductType::join('catalogs','catalogs.id_type','=','product_type.id')
             ->get();
-        dd($ls_sp);
+        $gr_lssp = $ls_sp->groupBy('id_type');
+
+        $color = ProductColor::all()->unique('color');
+
+        $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent')
+            ->where('pt.id',$type)
+            ->get();
+
+//        dd($product);
+
 //        $sp_theoloai = Product::where('id_type',$type)->get();
 
-        return view('customer.page.type',compact('tenloai'));
+        return view('customer.page.type',compact('tenloai','gr_lssp','color','product'));
     }
 
-    public  function getSingle(){
-        return view('customer.page.single');
+    public  function getSingle($id){
+        $s_product = Product::where('id','=',$id)->get();
+        dd($s_product);
+        return view('customer.page.single',compact('s_product'));
     }
 
     public  function getAd(){

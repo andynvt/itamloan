@@ -25,7 +25,7 @@ Route::get('loai/{type}',[
     'uses' => 'CustomerController@getType'
 ]);
 
-Route::get('chi-tiet',[
+Route::get('chi-tiet/{id}',[
     'as' => 'single',
     'uses' => 'CustomerController@getSingle'
 ]);

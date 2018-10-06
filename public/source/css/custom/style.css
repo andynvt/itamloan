@@ -5,6 +5,9 @@ u,
 del {
     color: #48AAF8 !important;
 }
+body{
+    color:black;
+}
 
 /*back to top*/
 #scroll {
@@ -563,6 +566,36 @@ label {
 }
 .category-area .ovl-spc {
     margin: 0 0;
+}
+.bottom a span {
+    /*color: #fff;*/
+    font-size: 20px;
+    font-weight: 600;
+}
+.bottom a {
+    /*width: 50%;*/
+    padding: 15px 5px 15px 5px;
+}
+.bottom a:hover {
+    background: #fff;
+    padding: 15px 5px 15px 5px;
+    box-shadow: 2.828px 2.828px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.li-text-loai{
+    padding: 10px 0 0 20px;
+}
+.text-loai{
+    font-weight: 600;
+    color: black;
+}
+.gia-ban{
+    background: -moz-linear-gradient(45deg, #f6463d 0%, #f6398d 45%, #f52cdc 100%);
+    background: -webkit-linear-gradient(45deg, #f6463d 0%, #f6398d 45%, #f52cdc 100%);
+    background: -ms-linear-gradient(45deg, #f6463d 0%, #f6398d 45%, #f52cdc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/

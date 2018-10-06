@@ -27,50 +27,19 @@
             <div class="sidebar-categories">
                 <div class="head">Loại sản phẩm</div>
                 <ul class="main-categories">
-                    <li class="main-nav-list"><a data-toggle="collapse" href="#iphone" aria-expanded="false"
-                                                 aria-controls="iphone"><span
-                                    class="lnr lnr-arrow-right"></span>iPhone<span class="number">(53)</span></a>
-                        <ul class="collapse" id="iphone" data-toggle="collapse" aria-expanded="false"
-                            aria-controls="iphone">
-                            <li class="main-nav-list child"><a href="#">iPhone X<span class="number">(13)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">iPhone 8 Plus<span
-                                            class="number">(09)</span></a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="main-nav-list"><a data-toggle="collapse" href="#ipad" aria-expanded="false" aria-controls="ipad"><span class="lnr lnr-arrow-right"></span>iPad<span class="number">(53)</span></a>
-                        <ul class="collapse" id="ipad" data-toggle="collapse" aria-expanded="false" aria-controls="ipad">
-                            <li class="main-nav-list child"><a href="#">iPad 2018<span class="number">(13)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">iPad Pro 10.7"<span class="number">(09)</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main-nav-list"><a data-toggle="collapse" href="#mac" aria-expanded="false" aria-controls="mac"><span class="lnr lnr-arrow-right"></span>Mac<span class="number">(53)</span></a>
-                        <ul class="collapse" id="mac" data-toggle="collapse" aria-expanded="false" aria-controls="mac">
-                            <li class="main-nav-list child"><a href="#">Macbook Pro<span class="number">(13)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">The New Macbook 12"<span class="number">(09)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">Macbook Air<span class="number">(17)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">iMac<span class="number">(01)</span></a></li>
-                            <li class="main-nav-list child"><a href="#">Mac Mini<span class="number">(11)</span></a></li>
-                        </ul>
-                    </li>
-                    <li class="main-nav-list"><a data-toggle="collapse" href="#watch" aria-expanded="false" aria-controls="beverages"><span class="lnr lnr-arrow-right"></span>Watch<span class="number">(24)</span></a>
-                        <ul class="collapse" id="watch" data-toggle="collapse" aria-expanded="false" aria-controls="watch">
-                            <li class="main-nav-list child"><a href="#">Apple Watch Series 3<span class="number">(13)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">Apple Watch Series 3<span class="number">(09)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">Apple Watch Series 3<span class="number">(17)</span></a>
-                            </li>
-                        </ul>
-                    </li>
-
+                    @foreach($gr_lssp as $gr)
+                        <li class="main-nav-list" ><a data-toggle="collapse" style="font-weight: 600" href="#loai-{{$gr[0]->id_type}}" aria-expanded="false"
+                                                     aria-controls="iphone"><span
+                                        class="lnr lnr-arrow-right"></span>{{$gr[0]->type}}</a>
+                            <ul class="collapse" id="loai-{{$gr[0]->id_type}}" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="{{$gr[0]->type}}">
+                                @foreach($gr as $value)
+                                <li class="main-nav-list child"><a href="#catalog-ipx">{{$value->catalog}}</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="sidebar-filter mt-50">
@@ -86,12 +55,33 @@
                     <div class="head">Loại</div>
                     <form action="#">
                         <ul>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="type-iphone" name="type"><label for="type-ipad">iPhone<span></span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="type-ipad" name="type"><label for="type-ipad">iPad<span></span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="type-mac" name="type"><label for="type-mac">Mac<span></span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="type-watch" name="type"><label for="type-watch">Watch<span></span></label>
-                            </li>
+                            {{--@foreach($gr_lssp as $key => $value)--}}
+                                {{--<li class="filter-list"><input class="pixel-radio" type="radio"--}}
+                                                               {{--id="type-{{$value[0]->id_type}}" name="type"><label--}}
+                                            {{--for="type-{{$value[0]->id_type}}">{{$value[0]->type}}<span></span></label></li>--}}
+                            {{--@endforeach--}}
+
+
+                            @foreach($gr_lssp as $gr)
+                                <li class="main-nav-list li-text-loai">
+                                    <a data-toggle="collapse" class="text-loai" href="#{{$gr[0]->id_type}}"
+                                                             aria-expanded="false"
+                                                             aria-controls="{{$gr[0]->type}}"><span
+                                                class="lnr lnr-arrow-right "></span>{{$gr[0]->type}}</a>
+                                    <ul class="collapse " id="{{$gr[0]->id_type}}" data-toggle="collapse"
+                                        aria-expanded="false"
+                                        aria-controls="{{$gr[0]->type}}">
+                                        @foreach($gr as $value)
+                                            <li class="filter-list">
+                                                <input class="pixel-radio" type="radio"
+                                                                           id="{{$value->catalog}}" name="type">
+                                                <label for="{{$value->id_tcatalogype}}">{{$value->catalog}}
+                                                </label>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach
                         </ul>
                     </form>
                 </div>
@@ -99,29 +89,20 @@
                     <div class="head">Màu</div>
                     <form action="#">
                         <ul>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span></span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="silver" name="color"><label for="silver">Silver<span></span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="rosegold" name="color"><label for="rosegold">Rose Gold<span></span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="matteblack" name="color"><label for="matteblack">Matte Black<span></span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="jetblack" name="color"><label for="jetblack">Jet Black<span></span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Space Gray<span></span></label></li>
-                        </ul>
+                            @foreach($color as $cl)
+                            <li class="filter-list"><input class="pixel-radio" type="radio" id="{{$cl->color}}" name="color"><label for="{{$cl->color}}">{{$cl->color}}</label></li>
+                            @endforeach
+                            </ul>
                     </form>
                 </div>
                 <div class="common-filter">
                     <div class="head">Giá</div>
                     <div class="price-range-area">
                         <div id="price-range"></div>
-                        <div class="value-wrapper d-flex">
+                        <div class="value-wrapper d-flex" style="color: black">
                             <div id="lower-value"></div>
-                            <!--<span>₫</span>-->
                             <div class="to">-</div>
                             <div id="upper-value"></div>
-                            <!--<span>₫</span>-->
-
                         </div>
                     </div>
                 </div>
@@ -134,10 +115,6 @@
         <div class="col-xl-9 col-lg-9 col-md-8">
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
-                <!--
-<a href="#" class="grid-btn active"><i class="fa fa-th" aria-hidden="true"></i></a>
-<a href="#" class="list-btn"><i class="fa fa-th-list" aria-hidden="true"></i></a>
--->
                 <div class="sorting">
                     <select>
                         <option value="1">Sắp xếp</option>
@@ -168,11 +145,17 @@
             <!-- Start Best Seller -->
             <section class="lattest-product-area pb-40 category-list">
                 <div class="row">
+                    @foreach($product as $p)
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                        <div class="content">
+
+                        <div class="content" >
+                            <a href="{{route('single',$p->id)}}">
                             <div class="content-overlay"></div>
-                            <span class="sp-discount">-50%</span>
-                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
+                            </a>
+                            @if($p->percent != null)
+                            <span class="sp-discount">-{{$p->percent}}%</span>
+                            @endif
+                            <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$p->image}}" alt="{{$p->name}}">
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -181,122 +164,129 @@
                             </div>
                         </div>
                         <div class="price text-center">
-                            <div class="p-1"></div>
-                            <h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>
-                            <span class="de-text">30.000.000 ₫</span>
-                            <h3>25.000.000 ₫</h3>
+                            <a href="{{route('single',$p->id)}}">
+                                <div class="p-1"></div>
+                                <h5>{{$p->name}}</h5>
+                                @if($p->percent != null)
+                                    <span class="de-text">{{number_format($p->price)}} ₫</span>
+                                @endif
+                                <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}}
+                                    ₫</h3>
+                            </a>
                         </div>
+
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                        <div class="content">
-                            <div class="content-overlay"></div>
-                            <span class="sp-discount">-50%</span>
-                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
-                            <div class="content-details fadeIn-bottom">
-                                <div class="bottom d-flex align-items-center justify-content-center">
-                                    <a href="#"><span class="lnr lnr-heart"></span></a>
-                                    <a href="#"><span class="lnr lnr-cart"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price text-center">
-                            <div class="p-1"></div>
-                            <h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>
-                            <span class="de-text">30.000.000 ₫</span>
-                            <h3>25.000.000 ₫</h3>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                        <div class="content">
-                            <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
-                            <div class="content-details fadeIn-bottom">
-                                <div class="bottom d-flex align-items-center justify-content-center">
-                                    <a href="#"><span class="lnr lnr-heart"></span></a>
-                                    <a href="#"><span class="lnr lnr-cart"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price text-center">
-                            <div class="p-1"></div>
-                            <h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>
-                            <span class="de-text">30.000.000 ₫</span>
-                            <h3>25.000.000 ₫</h3>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                        <div class="content">
-                            <div class="content-overlay"></div>
-                            <span class="sp-discount">-50%</span>
-                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
-                            <div class="content-details fadeIn-bottom">
-                                <div class="bottom d-flex align-items-center justify-content-center">
-                                    <a href="#"><span class="lnr lnr-heart"></span></a>
-                                    <a href="#"><span class="lnr lnr-cart"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price text-center">
-                            <div class="p-1"></div>
-                            <h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>
-                            <span class="de-text">30.000.000 ₫</span>
-                            <h3>25.000.000 ₫</h3>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                        <div class="content">
-                            <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
-                            <div class="content-details fadeIn-bottom">
-                                <div class="bottom d-flex align-items-center justify-content-center">
-                                    <a href="#"><span class="lnr lnr-heart"></span></a>
-                                    <a href="#"><span class="lnr lnr-cart"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price text-center">
-                            <div class="p-1"></div>
-                            <h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>
-                            <span class="de-text">30.000.000 ₫</span>
-                            <h3>25.000.000 ₫</h3>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                        <div class="content">
-                            <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
-                            <div class="content-details fadeIn-bottom">
-                                <div class="bottom d-flex align-items-center justify-content-center">
-                                    <a href="#"><span class="lnr lnr-heart"></span></a>
-                                    <a href="#"><span class="lnr lnr-cart"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price text-center">
-                            <div class="p-1"></div>
-                            <h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>
-                            <span class="de-text">30.000.000 ₫</span>
-                            <h3>25.000.000 ₫</h3>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                        <div class="content">
-                            <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">
-                            <div class="content-details fadeIn-bottom">
-                                <div class="bottom d-flex align-items-center justify-content-center">
-                                    <a href="#"><span class="lnr lnr-heart"></span></a>
-                                    <a href="#"><span class="lnr lnr-cart"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price text-center">
-                            <div class="p-1"></div>
-                            <h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>
-                            <span class="de-text">30.000.000 ₫</span>
-                            <h3>25.000.000 ₫</h3>
-                        </div>
-                    </div>
+                    @endforeach
+                    {{--<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">--}}
+                        {{--<div class="content">--}}
+                            {{--<div class="content-overlay"></div>--}}
+                            {{--<span class="sp-discount">-50%</span>--}}
+                            {{--<img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">--}}
+                            {{--<div class="content-details fadeIn-bottom">--}}
+                                {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                    {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                    {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="price text-center">--}}
+                            {{--<div class="p-1"></div>--}}
+                            {{--<h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>--}}
+                            {{--<span class="de-text">30.000.000 ₫</span>--}}
+                            {{--<h3>25.000.000 ₫</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">--}}
+                        {{--<div class="content">--}}
+                            {{--<div class="content-overlay"></div>--}}
+                            {{--<img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">--}}
+                            {{--<div class="content-details fadeIn-bottom">--}}
+                                {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                    {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                    {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="price text-center">--}}
+                            {{--<div class="p-1"></div>--}}
+                            {{--<h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>--}}
+                            {{--<span class="de-text">30.000.000 ₫</span>--}}
+                            {{--<h3>25.000.000 ₫</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">--}}
+                        {{--<div class="content">--}}
+                            {{--<div class="content-overlay"></div>--}}
+                            {{--<span class="sp-discount">-50%</span>--}}
+                            {{--<img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">--}}
+                            {{--<div class="content-details fadeIn-bottom">--}}
+                                {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                    {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                    {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="price text-center">--}}
+                            {{--<div class="p-1"></div>--}}
+                            {{--<h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>--}}
+                            {{--<span class="de-text">30.000.000 ₫</span>--}}
+                            {{--<h3>25.000.000 ₫</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">--}}
+                        {{--<div class="content">--}}
+                            {{--<div class="content-overlay"></div>--}}
+                            {{--<img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">--}}
+                            {{--<div class="content-details fadeIn-bottom">--}}
+                                {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                    {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                    {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="price text-center">--}}
+                            {{--<div class="p-1"></div>--}}
+                            {{--<h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>--}}
+                            {{--<span class="de-text">30.000.000 ₫</span>--}}
+                            {{--<h3>25.000.000 ₫</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">--}}
+                        {{--<div class="content">--}}
+                            {{--<div class="content-overlay"></div>--}}
+                            {{--<img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">--}}
+                            {{--<div class="content-details fadeIn-bottom">--}}
+                                {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                    {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                    {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="price text-center">--}}
+                            {{--<div class="p-1"></div>--}}
+                            {{--<h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>--}}
+                            {{--<span class="de-text">30.000.000 ₫</span>--}}
+                            {{--<h3>25.000.000 ₫</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">--}}
+                        {{--<div class="content">--}}
+                            {{--<div class="content-overlay"></div>--}}
+                            {{--<img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%20x.png" alt="iphone x 256gb">--}}
+                            {{--<div class="content-details fadeIn-bottom">--}}
+                                {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                    {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                    {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="price text-center">--}}
+                            {{--<div class="p-1"></div>--}}
+                            {{--<h5>iPhone X iPhone XiPhone XiPhone XiPhone XiPhone XiPhone X</h5>--}}
+                            {{--<span class="de-text">30.000.000 ₫</span>--}}
+                            {{--<h3>25.000.000 ₫</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
 
                 </div>
