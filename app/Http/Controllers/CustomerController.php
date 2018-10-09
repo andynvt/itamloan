@@ -135,9 +135,48 @@ class CustomerController extends Controller
         $no_of_fb = Feedback::where('id_product', $id)->count();
         $avg_of_fb = Feedback::where('id_product', $id)->avg('stars');
         $avg_fb = number_format((float)$avg_of_fb, 1, '.', '');
-//        dd($avg_fb);
 
-        return view('customer.page.single',compact('pd','product_video','spec','value','promo_product','same_product','img','arr_color','arr_img'));
+        $feedback = Feedback::leftjoin('customers as c','c.id','=','feedbacks.id_customer')
+            ->where('id_product',$id)
+            ->orderBy('stars','desc')
+            ->get();
+
+        $fb_5 = Feedback::where('id_product',$id)
+            ->where('stars',5)
+            ->count();
+        $fb_4 = Feedback::where('id_product',$id)
+            ->where('stars',4)
+            ->count();
+        $fb_3 = Feedback::where('id_product',$id)
+            ->where('stars',3)
+            ->count();
+        $fb_2 = Feedback::where('id_product',$id)
+            ->where('stars',2)
+            ->count();
+        $fb_1 = Feedback::where('id_product',$id)
+            ->where('stars',1)
+            ->count();
+
+//        dd($feedback);
+
+        return view('customer.page.single', compact('pd', 'product_video', 'spec', 'value',
+            'promo_product', 'same_product', 'img', 'arr_color', 'arr_img','no_of_fb','avg_fb','feedback','fb_1','fb_2',
+            'fb_3','fb_4','fb_5'));
+    }
+    public static function noToText($no){
+        $text = "";
+        if($no == 5){
+            $text = "five";
+        }else if($no == 4){
+            $text = "four";
+        }else if($no == 3){
+            $text = "three";
+        }else if($no == 2){
+            $text = "two";
+        }else if($no == 1){
+            $text = "one";
+        }
+        return $text;
     }
 
     public  function getAd(){

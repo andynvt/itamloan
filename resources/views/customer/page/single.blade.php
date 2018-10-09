@@ -161,11 +161,11 @@
                         <div class="review-stat d-flex align-items-center flex-wrap">
                             <div class="review-overall">
                                 <h3>Trung bình</h3>
-                                <div class="main-review">4.0</div>
-                                <span>(03 Đánh giá)</span>
+                                <div class="main-review">{{$avg_fb}}</div>
+                                <span>( {{$no_of_fb}} Đánh giá )</span>
                             </div>
                             <div class="review-count">
-                                <h4>Có 03 đánh giá</h4>
+                                <h4>Có {{$no_of_fb}} đánh giá</h4>
                                 <div class="single-review-count d-flex align-items-center">
                                     <span>5 Sao</span>
                                     <div class="total-star five-star d-flex align-items-center">
@@ -175,7 +175,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
-                                    <span>01</span>
+                                    <span>{{$fb_5}}</span>
                                 </div>
                                 <div class="single-review-count d-flex align-items-center">
                                     <span>4 Sao</span>
@@ -186,7 +186,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
-                                    <span>01</span>
+                                    <span>{{$fb_4}}</span>
                                 </div>
                                 <div class="single-review-count d-flex align-items-center">
                                     <span>3 Sao</span>
@@ -197,7 +197,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
-                                    <span>01</span>
+                                    <span>{{$fb_3}}</span>
                                 </div>
                                 <div class="single-review-count d-flex align-items-center">
                                     <span>2 Sao</span>
@@ -208,7 +208,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
-                                    <span>00</span>
+                                    <span>{{$fb_2}}</span>
                                 </div>
                                 <div class="single-review-count d-flex align-items-center">
                                     <span>1 Sao&nbsp; </span>
@@ -219,125 +219,58 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
-                                    <span>00</span>
+                                    <span>{{$fb_1}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="total-comment">
+                            @foreach($feedback as $f)
                             <div class="single-comment">
                                 <div class="user-details d-flex align-items-center">
-                                    <img src="source/img/organic-food/u1.png" class="img-fluid" alt="">
-                                    <div class="user-name">
-                                        <h5>Blake Ruiz</h5>
-                                        <div class="total-star five-star d-flex align-items-center">
+                                    <img src="storage/user/{{$f->avatar}}" class="img-fluid" alt="">
+                                    <div class="user-name" style="    padding-top: 15px;">
+                                        <h5>{{$f->c_name}}</h5>
+                                        <div class="total-star {{\App\Http\Controllers\CustomerController::noToText($f->stars)}}-star d-flex align-items-center">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
+                                        <p>{{ date('H:i - d/m/Y', strtotime($f->created_at) )}}</p>
                                     </div>
                                 </div>
                                 <p class="user-comment">
-                                    Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer hears tales of diamonds and begins dreaming of vast riches. He sells his farm and hikes off over the horizon, never to be heard from again.
+                                    {{$f->review}}
                                 </p>
+                                <hr>
                             </div>
-                            <div class="single-comment">
-                                <div class="user-details d-flex align-items-center">
-                                    <img src="source/img/organic-food/u2.png" class="img-fluid" alt="">
-                                    <div class="user-name">
-                                        <h5>Logan May</h5>
-                                        <div class="total-star four-star d-flex align-items-center">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="user-comment">
-                                    Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer hears tales of diamonds and begins dreaming of vast riches. He sells his farm and hikes off over the horizon, never to be heard from again.
-                                </p>
-                            </div>
-                            <div class="single-comment">
-                                <div class="user-details d-flex align-items-center">
-                                    <img src="source/img/organic-food/u3.png" class="img-fluid" alt="">
-                                    <div class="user-name">
-                                        <h5>Aaron Anderson</h5>
-                                        <div class="total-star three-star d-flex align-items-center">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="user-comment">
-                                    Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer hears tales of diamonds and begins dreaming of vast riches. He sells his farm and hikes off over the horizon, never to be heard from again.
-                                </p>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="add-review">
                             <h3>Gửi đánh giá</h3>
                             <div class="single-review-count mb-15 d-flex align-items-center">
-                                <!--                                    <span>Số sao: &nbsp;</span>-->
-                                <!--
-                                <div class="total-star five-star d-flex align-items-center">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
--->
                                 <div class="star-place">
                                     <fieldset class="rating ">
-                                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
-                                        <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
-                                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Tốt - 4 sao"></label>
-                                        <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
-                                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Ổn - 3 sao"></label>
-                                        <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
-                                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
-                                        <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
-                                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
-                                        <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
+                                        <input type="radio" id="star5" name="rating" value="5" />
+                                        <label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" />
+                                        <label class="full" for="star4" title="Tốt - 4 sao"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" />
+                                        <label class="full" for="star3" title="Ổn - 3 sao"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" />
+                                        <label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" />
+                                        <label class="full" for="star1" title="Quá tệ - 1 sao"></label>
                                     </fieldset>
                                 </div>
-                                <!--<span>Outstanding</span>-->
                                 <script>
-                                    $('.rating').on('change', function () {
-                                        var star = $('.rating input:checked').val();
-{{--//                        var id = '{{$places[0]->id}}';--}}
-                                        $('.rating input').attr('disabled', 'disabled');
-
-                                        // alert(star);
-//                        $.ajax({
-// type: 'GET',
-// url: 'dg',
-// dataType: "json",
-// data: {id:id, star: star},
-// success: function (data) {
-// $('.rating input').attr('disabled', 'disabled');
-// $('#cc').text(data[1] + "/5");
-// $('#cc').next('b').text(data[0]);
-// }
-// });
-                                    });
-                                    //
-                                    {{--// var mod = {{$avg_fb}} % {{$floor_fb}};--}}
-                                    {{--// var fl = {{$floor_fb}};--}}
-                                    // var flhalf = fl+0.5;
-                                    // if(mod == 0){
-                                    // $('.rating input[value="'+fl+'"]').attr('checked','checked');
-                                    // }
-                                    // else{
-                                    // $('.rating input[value="'+flhalf+'"]').attr('checked','checked');
-                                    // }
+                                    // $('.rating').on('change', function () {
+                                    //     var star = $('.rating input:checked').val();
+                                    //     $('.rating input').attr('disabled', 'disabled');
+                                    // });
                                 </script>
                             </div>
                             <form action="#" class="main-form">
@@ -377,6 +310,7 @@
             @endforeach
         </div>
     </div>
+
 </section>
 <!-- End Most Search Product Area -->
 
