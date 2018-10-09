@@ -248,6 +248,8 @@ body{
 
 .de-text {
     text-decoration: line-through;
+    color:black !important;
+    font-weight: 500;
 }
 
 .bottom a {
@@ -596,6 +598,11 @@ label {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
+}
+.text-km{
+    font-weight: 600;
+    font-size: 15px;
+    color:black;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/

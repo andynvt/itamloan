@@ -18,6 +18,8 @@
     <title>Shop</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!--
     CSS
     ============================================= -->
@@ -29,7 +31,11 @@
     <link rel="stylesheet" href="source/css/bootstrap.css">
     <link rel="stylesheet" href="source/css/main.css">
     <link rel="stylesheet" href="source/css/custom/style.css">
-    <script src="source/js/vendor/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="source/css/custom/flashy.min.css">
+
+    {{--<script src="source/js/vendor/jquery-2.2.4.min.js"></script>--}}
+
+    <script src="source/js/jquery.flashy.min.js"></script>
 
 </head>
 
@@ -75,6 +81,29 @@
         });
     });
     // end search form
+</script>
+<script>
+
+    $('.gallery ').flashy({
+
+        // Applied when a new item is shown
+        showClass: 'fx-fadeIn',
+
+        // Applied when a new item is hidden
+        hideClass: 'fx-fadeOut',
+
+        // Applied when a new item is shown on prev event
+        prevShowClass: 'fx-bounceInLeft',
+
+        // Applied when a new item is shown on next event
+        nextShowClass: 'fx-bounceInRight',
+
+        // Applied when the current item is hidden on prev event
+        prevHideClass: 'fx-bounceOutRight',
+
+        // Applied when the current item is hidden on next event
+        nextHideClass: 'fx-bounceOutLeft',
+    });
 </script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Catalog;
+use App\Feedback;
 use App\Product;
 use App\ProductColor;
 use App\ProductType;
@@ -37,19 +38,106 @@ class CustomerController extends Controller
             ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent')
             ->where('pt.id',$type)
+            ->groupBy('products.id')
             ->get();
 
-//        dd($product);
+        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('products.*','pi.image','promo.percent')
+            ->where('id_promo','<>','null')->get();
+
+//        dd($promo_product);
 
 //        $sp_theoloai = Product::where('id_type',$type)->get();
 
-        return view('customer.page.type',compact('tenloai','gr_lssp','color','product'));
+        return view('customer.page.type',compact('tenloai','gr_lssp','color','product','promo_product'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public  function getSingle($id){
-        $s_product = Product::where('id','=',$id)->get();
-        dd($s_product);
-        return view('customer.page.single',compact('s_product'));
+
+        $pd = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_type as pt', 'pt.id', '=', 'ctl.id_type')
+            ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->select('products.*', 'pt.id as ptid','pt.type','promo.percent','promo_name','promo_info')
+            ->where('products.id',$id)
+            ->get();
+
+        $product_video = Product::leftjoin('product_video as pv','pv.id_product','=','products.id')
+            ->select('v_name','v_link')
+            ->where('products.id',$id)
+            ->get();
+
+        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('products.*','pi.image','promo.percent','pc.id_product','pc.id as idcl')
+            ->where('id_promo','<>','null')
+            ->groupBy('products.id')
+            ->get();
+
+        $arr_id_type = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
+            ->select('pt.id')
+            ->where('products.id',$id)
+            ->get();
+
+        $arr_id_catalog = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->select('ctl.id')
+            ->where('products.id',$id)
+            ->get();
+
+        $id_type = $arr_id_type[0]->id;
+        $id_catalog = $arr_id_catalog[0]->id;
+
+        $arr_color = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->select('pc.id','pc.color')
+            ->where('ctl.id',$id_catalog)
+            ->get();
+
+        $arr_img = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('pi.id','pi.id_color','pi.image')
+            ->where('products.id',$id)
+            ->get();
+
+        $same_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_type as pt', 'pt.id', '=', 'ctl.id_type')
+            ->select('products.*','pi.image','promo.percent')
+            ->where([
+                ['pt.id',$id_type],
+                ['products.id','<>',$id]
+            ])
+            ->groupBy('products.id')
+            ->get();
+
+        $img = Product::leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->where('products.id',$id)
+            ->select('products.id','pi.image')
+            ->get();
+
+        $str_spec = ProductType::where('id',$id_type)->value('type_detail');
+        $str_value = Product::where('id',$id)->value('specs');
+
+        $spec = explode(',', $str_spec);
+        $value = explode(',', $str_value);
+
+        $no_of_fb = Feedback::where('id_product', $id)->count();
+        $avg_of_fb = Feedback::where('id_product', $id)->avg('stars');
+        $avg_fb = number_format((float)$avg_of_fb, 1, '.', '');
+//        dd($avg_fb);
+
+        return view('customer.page.single',compact('pd','product_video','spec','value','promo_product','same_product','img','arr_color','arr_img'));
     }
 
     public  function getAd(){
