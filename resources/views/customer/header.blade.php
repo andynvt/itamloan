@@ -83,26 +83,27 @@
                     <li><a href="{{route('index')}}">TRANG CHỦ</a></li>
                     <li><a href="{{route('ad')}}">KHUYẾN MÃI</a></li>
 
-@foreach($full_type as $f)
-                    <li class="dropdown" style="position: unset">
-                        <a class="dropdown-toggle" href="#" id="dr_iphone" data-toggle="dropdown">
-                            {{$f->type}}
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-6">
-                                    <a class="dropdown-item text-center" href="#">
-                                        <img src="source/img/element/iphone%20x.png">
-                                        <div class="p-1"></div>
-                                        <h6 class="text-center">iphone x</h6>
-                                    </a>
+                    @foreach($full_type as $f => $value)
+                        <li class="dropdown" style="position: unset">
+                            <a class="dropdown-toggle" href="#" id="dr_iphone" data-toggle="dropdown">
+                                {{$f}}
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="row">
+                                    @foreach($value as $v)
+                                        <div class="col-lg-3 col-md-3 col-6">
+                                            <a class="dropdown-item text-center" href="{{route('catalog',$v->id)}}">
+                                                <img src="storage/product/{{$v->image}}">
+                                                <div class="p-1"></div>
+                                                <h6 class="text-center">{{$v->catalog}}</h6>
+                                            </a>
+                                        </div>
+                                    @endforeach
                                 </div>
-
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach
 
-@endforeach
                     <li><a href="{{route('login')}}" id="dn-index">ĐĂNG NHẬP</a></li>
 
                 </ul>

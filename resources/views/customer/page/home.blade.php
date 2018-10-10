@@ -222,7 +222,7 @@
         <div class="row">
             @foreach($ls_ip as $ip)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                    <a href="#" target="_blank">
+                    <a href="{{route('catalog',$ip->id)}}">
                         <div class="content">
                             <div class="content-overlay ovl-spc"></div>
                             <img class="content-image img-fluid d-block mx-auto"
@@ -259,7 +259,7 @@
         <div class="row">
             @foreach($ls_ipad as $ip)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                    <a href="#" target="_blank">
+                        <a href="{{route('catalog',$ip->id)}}">
                         <div class="content">
                             <div class="content-overlay"></div>
                             <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}"
@@ -292,7 +292,7 @@
         <div class="row">
             @foreach($ls_mac as $ip)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                    <a href="#" target="_blank">
+                    <a href="{{route('catalog',$ip->id)}}">
                         <div class="content">
                             <div class="content-overlay"></div>
                             <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}"
@@ -331,7 +331,7 @@
         <div class="row">
             @foreach($ls_watch as $ip)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
-                    <a href="#" target="_blank">
+                    <a href="{{route('catalog',$ip->id)}}">
                         <div class="content">
                             <div class="content-overlay"></div>
                             <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$ip->catalog_image}}"
@@ -457,7 +457,7 @@
 <script>
     if (document.getElementById("js-countdown")) {
 
-        var countdown = new Date("October 10 2018");
+        var countdown = new Date("October 22 2018");
 
         function getRemainingTime(endtime) {
             var milliseconds = Date.parse(endtime) - Date.parse(new Date());

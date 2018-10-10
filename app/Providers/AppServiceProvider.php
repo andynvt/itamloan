@@ -23,15 +23,14 @@ class AppServiceProvider extends ServiceProvider
                 ->leftjoin('products as p','p.id_catalog','=','ctl.id')
                 ->leftjoin('product_color as pc','pc.id_product','=','p.id')
                 ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
-                ->select('type','catalog','image')
+                ->select('ctl.id','type','catalog','image')
                 ->groupBy('ctl.id')
                 ->get();
-            $full_type = $arr_ctl->groupBy('product_type.id');
+            $full_type = $arr_ctl->groupBy('type');
 //dd($full_type);
-            $view->with([
-                'full_type',$full_type,
-
-            ]);
+            $view->with(
+                'full_type',$full_type
+            );
         });
 
     }
