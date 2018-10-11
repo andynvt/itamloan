@@ -23,33 +23,33 @@
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-4">
                 {{--<div class="sidebar-categories">--}}
-                    {{--<div class="head">Loại sản phẩm</div>--}}
-                    {{--<ul class="main-categories">--}}
-                        {{--@foreach($gr_lssp as $gr => $value)--}}
-                            {{--<li class="main-nav-list" ><a data-toggle="collapse" style="font-weight: 600" href="#loai-{{$value[0]->id}}" aria-expanded="false"--}}
-                                                          {{--aria-controls="{{$gr}}"><span--}}
-                                            {{--class="lnr lnr-arrow-right"></span>{{$gr}}</a>--}}
-                                {{--<ul class="collapse" id="loai-{{$value[0]->id}}" data-toggle="collapse" aria-expanded="false"--}}
-                                    {{--aria-controls="{{$gr}}">--}}
-                                    {{--@foreach($value as $v)--}}
-                                        {{--<li class="main-nav-list child">--}}
-                                            {{--<a href="{{route('catalog',$v->ctlid)}}">{{$v->catalog}}</a>--}}
-                                        {{--</li>--}}
-                                    {{--@endforeach--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                        {{--@endforeach--}}
-                    {{--</ul>--}}
+                {{--<div class="head">Loại sản phẩm</div>--}}
+                {{--<ul class="main-categories">--}}
+                {{--@foreach($gr_lssp as $gr => $value)--}}
+                {{--<li class="main-nav-list" ><a data-toggle="collapse" style="font-weight: 600" href="#loai-{{$value[0]->id}}" aria-expanded="false"--}}
+                {{--aria-controls="{{$gr}}"><span--}}
+                {{--class="lnr lnr-arrow-right"></span>{{$gr}}</a>--}}
+                {{--<ul class="collapse" id="loai-{{$value[0]->id}}" data-toggle="collapse" aria-expanded="false"--}}
+                {{--aria-controls="{{$gr}}">--}}
+                {{--@foreach($value as $v)--}}
+                {{--<li class="main-nav-list child">--}}
+                {{--<a href="{{route('catalog',$v->ctlid)}}">{{$v->catalog}}</a>--}}
+                {{--</li>--}}
+                {{--@endforeach--}}
+                {{--</ul>--}}
+                {{--</li>--}}
+                {{--@endforeach--}}
+                {{--</ul>--}}
                 {{--</div>--}}
                 <div class="sidebar-filter mt-0">
                     <div class="top-filter-head">Lọc sản phẩm</div>
-                    <div class="common-filter">
-                        <div class="head">Đã chọn</div>
-                        <ul>
-                            <li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>iPhone</li>
-                            <li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>Đen nhám</li>
-                        </ul>
-                    </div>
+                    {{--<div class="common-filter">--}}
+                    {{--<div class="head">Đã chọn</div>--}}
+                    {{--<ul>--}}
+                    {{--<li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>iPhone</li>--}}
+                    {{--<li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>Đen nhám</li>--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
                     <div class="common-filter">
                         <div class="head">Loại</div>
                         <form action="#">

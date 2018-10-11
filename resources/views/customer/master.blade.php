@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
+
+
     <base href="{{asset('')}}">
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,6 +34,7 @@
     <link rel="stylesheet" href="source/css/main.css">
     <link rel="stylesheet" href="source/css/custom/style.css">
     <link rel="stylesheet" href="source/css/custom/flashy.min.css">
+    <link rel="stylesheet" href="source/css/custom/iziToast.min.css">
 
     {{--<script src="source/js/vendor/jquery-2.2.4.min.js"></script>--}}
 
@@ -63,6 +66,8 @@
 <script src="source/js/owl.carousel.min.js"></script>
 <script src="source/js/main.js"></script>
 <script src="source/js/wNumb.js"></script>
+<script src="source/js/datacontry.js"></script>
+<script src="source/js/iziToast.min.js"></script>
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 
 <script>
@@ -105,5 +110,35 @@
         nextHideClass: 'fx-bounceOutLeft',
     });
 </script>
+@if(Session::has('flag'))
+    <button class="form-control"  id="test" onclick="myAlertTop_warning()" style="display: none;">{{Session::get('message')}}</button>
+
+    <script>
+        var test1 = '{{Session::get('message')}}';
+        if (test1 != '') {
+            setTimeout(function() {
+                document.getElementById('test').click();
+            }, 100);
+        }
+    </script>
+    <script>
+        iziToast.settings({
+            timeout: 3000,
+            resetOnHover: true,
+            transitionIn: 'flipInX',
+            transitionOut: 'flipOutX',
+            position: 'topRight',
+            theme: 'light',
+        });
+    </script>
+    <script>
+        function myAlertTop_warning() {
+            iziToast.{{Session::get('flag')}} ({
+                title: '{{Session::get('title')}}',
+                message: '{{Session::get('message')}}',
+            });
+        }
+    </script>
+@endif  
 </body>
 </html>

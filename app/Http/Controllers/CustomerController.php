@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Catalog;
+use App\Customer;
 use App\Feedback;
 use App\Product;
 use App\ProductColor;
 use App\ProductType;
 use App\Promotion;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -48,11 +51,7 @@ class CustomerController extends Controller
             ->select('products.*','pi.image','promo.percent')
             ->where('id_promo','<>','null')->get();
 
-//        dd($gr_lssp);
-
-//        $sp_theoloai = Product::where('id_type',$type)->get();
-
-        return view('customer.page.type',compact('tenloai','gr_lssp','color','product','promo_product'));
+        return view('customer.page.ptype',compact('tenloai','gr_lssp','color','product','promo_product'));
     }
 
     public function getCatalog($catalog){
@@ -234,6 +233,23 @@ class CustomerController extends Controller
 
     public  function getLogin(){
         return view('customer.page.login');
+    }
+
+    public  function postReg(Request $req){
+        $user = new User();
+        $user->email = $req->email;
+        $user->password = Hash::make($req->password);
+//        $user->save();
+
+        $cus = new Customer();
+        $cus->id_user = $user->id;
+        $cus->c_name = $req->name;
+        $cus->address = $req->town. ', '.$req->address;
+        $cus->shipping_address = $req->town. ', '.$req->address;
+        $cus->phone = $req->phone;
+//        $cus->save();
+
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thành công' ,'message'=>'Đăng ký thành công']);
     }
 
     public  function getSearch(){

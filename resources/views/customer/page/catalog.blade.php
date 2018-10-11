@@ -26,13 +26,6 @@
             <div class="sidebar-filter mt-0">
                 <div class="top-filter-head head">Lọc sản phẩm</div>
                 <div class="common-filter">
-                    <div class="head">Đã chọn</div>
-                    <ul>
-                        <li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>iPhone</li>
-                        <li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>Đen nhám</li>
-                    </ul>
-                </div>
-                <div class="common-filter">
                     <div class="head">Loại</div>
                     <form action="#">
                         <ul>

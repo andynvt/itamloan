@@ -2,8 +2,9 @@
 <div id="home-search-form" style="display: hide">
     <button type="button" class="close">×</button>
     <form>
-        <input type="search" value="" placeholder="Nhập từ khoá..." />
-        <button type="submit" class="btn-sr view-btn color-2"><span>Tìm kiếm</span> <span class="lnr lnr-arrow-right"></span></button>
+        <input type="search" value="" placeholder="Nhập từ khoá..."/>
+        <button type="submit" class="btn-sr view-btn color-2"><span>Tìm kiếm</span> <span
+                    class="lnr lnr-arrow-right"></span></button>
     </form>
 </div>
 <a href="#" id="scroll" style="display: none;"><span></span></a>
@@ -40,7 +41,7 @@
                             </div>
                         </li>
                     </a>
-                    <a href="{{route('user')}}">
+                    <a href="{{route('login')}}">
                         <li>
                             <span class="lnr lnr-user lnr-custom"></span>
                         </li>
@@ -75,7 +76,8 @@
                     </div>
                 </div>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">

@@ -65,6 +65,11 @@ Route::get('dang-nhap',[
     'uses' => 'CustomerController@getLogin'
 ]);
 
+Route::post('dang-ky',[
+    'as' => 'reg',
+    'uses' => 'CustomerController@postReg'
+]);
+
 Route::get('tim-kiem',[
     'as' => 'search',
     'uses' => 'CustomerController@getSearch'

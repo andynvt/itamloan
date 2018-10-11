@@ -530,7 +530,7 @@ a.custom:hover {
 }
 /*Danh gia so sao*/
 
-url( //netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 fieldset,
 label {
@@ -597,14 +597,12 @@ label {
     background: -ms-linear-gradient(45deg, #f6463d 0%, #f6398d 45%, #f52cdc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
 }
 .text-km{
     font-weight: 600;
     font-size: 15px;
     color:black;
 }
-
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label,
