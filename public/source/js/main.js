@@ -34,23 +34,23 @@ $(document).ready(function () {
     });
 
 
-    //------- Active Nice Select --------//
-
-    $('select').niceSelect();
-
-
-    $('.navbar-nav li.dropdown').hover(function () {
-        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-    }, function () {
-        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-    });
-
-    $('.img-pop-up').magnificPopup({
-        type: 'image',
-        gallery: {
-            enabled: true
-        }
-    });
+    // //------- Active Nice Select --------//
+    //
+    // $('select').niceSelect();
+    //
+    //
+    // $('.navbar-nav li.dropdown').hover(function () {
+    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    // }, function () {
+    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+    // });
+    //
+    // $('.img-pop-up').magnificPopup({
+    //     type: 'image',
+    //     gallery: {
+    //         enabled: true
+    //     }
+    // });
 
     // -------   Active Mobile Menu-----//
 
@@ -179,7 +179,7 @@ $(document).ready(function () {
         if (document.getElementById("price-range")) {
 
             var nonLinearSlider = document.getElementById('price-range');
-
+console.log(nonLinearSlider);
             noUiSlider.create(nonLinearSlider, {
                 connect: true,
                 behaviour: 'tap',
@@ -289,16 +289,18 @@ $(document).ready(function () {
 
 
 });
-var password = document.getElementById("password")
-    , confirm_password = document.getElementById("re-password");
 
-function validatePassword(){
-    if(password.value != confirm_password.value) {
-        confirm_password.setCustomValidity("Passwords Don't Match");
-    } else {
-        confirm_password.setCustomValidity('');
-    }
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+//
+// var password = document.getElementById("password")
+//     , confirm_password = document.getElementById("re-password");
+//
+// function validatePassword(){
+//     if(password.value != confirm_password.value) {
+//         confirm_password.setCustomValidity("Passwords Don't Match");
+//     } else {
+//         confirm_password.setCustomValidity('');
+//     }
+// }
+//
+// password.onchange = validatePassword;
+// confirm_password.onkeyup = validatePassword;

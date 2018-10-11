@@ -1,7 +1,8 @@
 @extends('customer.master')
+@section('head')
+    <title>Thanh toán | i Tâm loan</title>
+@endsection
 @section('content')
-
-
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
         <div class="container">

@@ -1,5 +1,8 @@
 
 @extends('customer.master')
+@section('head')
+    <title>Câu hỏi thường gặp | i Tâm loan</title>
+@endsection
 @section('content')
 
 <!-- Start Banner Area -->

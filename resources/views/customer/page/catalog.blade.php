@@ -1,7 +1,7 @@
-<head>
-    <title>{{$tenloai[0]->catalog}} | i Tâm Loan</title>
-</head>
 @extends('customer.master')
+@section('head')
+    <title>{{$tenloai[0]->catalog}} | i Tâm Loan</title>
+@endsection
 @section('content')
     <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -62,17 +62,17 @@
                             </ul>
                     </form>
                 </div>
-                <div class="common-filter">
-                    <div class="head">Giá</div>
-                    <div class="price-range-area">
-                        <div id="price-range"></div>
-                        <div class="value-wrapper d-flex" style="color: black">
-                            <div id="lower-value"></div>
-                            <div class="to">-</div>
-                            <div id="upper-value"></div>
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="common-filter">--}}
+                    {{--<div class="head">Giá</div>--}}
+                    {{--<div class="price-range-area">--}}
+                        {{--<div id="price-range"></div>--}}
+                        {{--<div class="value-wrapper d-flex" style="color: black">--}}
+                            {{--<div id="lower-value"></div>--}}
+                            {{--<div class="to">-</div>--}}
+                            {{--<div id="upper-value"></div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="text-center">
                     <div class="p-2"></div>
                     <a href="#" class="view-btn color-2"><span>LỌC</span> <span class="lnr lnr-arrow-right"></span></a>

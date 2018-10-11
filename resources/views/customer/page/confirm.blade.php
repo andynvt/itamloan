@@ -1,4 +1,7 @@
 @extends('customer.master')
+@section('head')
+    <title>Xác nhận đơn hàng | i Tâm loan</title>
+@endsection
 @section('content')
 
 

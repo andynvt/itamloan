@@ -603,6 +603,10 @@ label {
     font-size: 15px;
     color:black;
 }
+
+.pagination .prev-arrow, .pagination .dot-dot, .pagination .next-arrow{
+    padding-top: 12px;
+}
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label,

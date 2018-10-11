@@ -12,7 +12,9 @@ use App\Promotion;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use function PHPSTORM_META\elementType;
 
 class CustomerController extends Controller
 {
@@ -235,6 +237,16 @@ class CustomerController extends Controller
         return view('customer.page.login');
     }
 
+    public function postLogin(Request $req){
+        $cre = array('email'=>$req->email,'password'=>$req->password);
+        if(Auth::attempt($cre)){
+            return redirect()->route('user')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+        }
+        else{
+            return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Đăng nhập thất bại']);
+        }
+    }
+
     public  function postReg(Request $req){
         $user = new User();
         $user->email = $req->email;
@@ -249,7 +261,7 @@ class CustomerController extends Controller
         $cus->phone = $req->phone;
 //        $cus->save();
 
-        return redirect()->back()->with(['flag'=>'success','title'=>'Thành công' ,'message'=>'Đăng ký thành công']);
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
     }
 
     public  function getSearch(){

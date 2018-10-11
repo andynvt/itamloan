@@ -1,4 +1,7 @@
 @extends('customer.master')
+@section('head')
+    <title>Tìm kiếm | i Tâm Loan</title>
+@endsection
 @section('content')
 
 

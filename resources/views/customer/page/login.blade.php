@@ -1,7 +1,9 @@
-<head>
-    <title>Đăng nhập | i Tâm Loan</title>
-</head>
+
+
 @extends('customer.master')
+@section('head')
+    <title>Đăng nhập | i Tâm loan</title>
+@endsection
 @section('content')
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
@@ -33,13 +35,17 @@
 
                     <!--<div id="status">-->
                     <!--</div>-->
-                    <form action="#">
-                        <input type="text" name="email" placeholder="Email " onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required class="common-input mt-20">
-                        <input type="password" name="password" placeholder="Mật khẩu " onfocus="this.placeholder=''" onblur="this.placeholder = 'Mật khẩu '" required class="common-input mt-20">
-                        <button class="view-btn color-2 mt-20 w-100"><span>Đăng nhập</span></button>
+                    <form action="{{route('postlogin')}}" method="post">
+
+                        <input type="text" name="email" placeholder="Email " onfocus="this.placeholder=''"
+                               onblur="this.placeholder = 'Email '" required class="common-input mt-20">
+                        <input type="password" name="password" placeholder="Mật khẩu " onfocus="this.placeholder=''"
+                               onblur="this.placeholder = 'Mật khẩu '" required class="common-input mt-20">
+                        <button type="submit" class="view-btn color-2 mt-20 w-100"><span>Đăng nhập</span></button>
                         {{--<div class="mt-20 d-flex align-items-center justify-content-between">--}}
-                            {{--<a href="#">Quên mật khẩu?</a>--}}
+                        {{--<a href="#">Quên mật khẩu?</a>--}}
                         {{--</div>--}}
+                        {{ csrf_field() }}
                     </form>
                 </div>
             </div>
@@ -48,7 +54,6 @@
                     <h3 class="billing-title text-center">Đăng ký</h3>
                     <p class="text-center mt-15 mb-20">Tạo tài khoản mới </p>
                     <form action="{{route('reg')}}" method="post">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="text" name="name" placeholder="Họ và tên " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Họ và tên'" required class="common-input mt-20">
                         <input type="email" name="email" placeholder="Email " onfocus="this.placeholder=''"
@@ -75,6 +80,7 @@
                         </select>
                         <input type="text" name="address" placeholder="Địa chỉ " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Địa chỉ '" required minlength="6" maxlength="100" class="common-input mt-20">
+                        {{ csrf_field() }}
                         <button type="submit" class="view-btn color-2 mt-20 w-100"><span>Đăng ký</span></button>
                     </form>
                 </div>

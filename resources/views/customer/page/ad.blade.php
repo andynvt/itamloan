@@ -1,4 +1,7 @@
 @extends('customer.master')
+@section('head')
+    <title>Quảng cáo | i Tâm loan</title>
+@endsection
 @section('content')
 
     <div class="section-top-border">

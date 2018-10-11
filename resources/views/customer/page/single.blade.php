@@ -1,10 +1,7 @@
-<head>
-    <title>{{$pd[0]->name}} | i Tâm Loan</title>
-
-</head>
-
 @extends('customer.master')
-
+@section('head')
+    <title>{{$pd[0]->name}} | i Tâm Loan</title>
+@endsection
 @section('content')
 
 <!-- Start Banner Area -->

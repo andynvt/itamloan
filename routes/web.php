@@ -65,6 +65,11 @@ Route::get('dang-nhap',[
     'uses' => 'CustomerController@getLogin'
 ]);
 
+Route::post('login',[
+    'as' => 'postlogin',
+    'uses' => 'CustomerController@postLogin'
+]);
+
 Route::post('dang-ky',[
     'as' => 'reg',
     'uses' => 'CustomerController@postReg'

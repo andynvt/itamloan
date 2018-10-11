@@ -1,4 +1,7 @@
 @extends('customer.master')
+@section('head')
+    <title>Danh sách yêu thích | i Tâm Loan</title>
+@endsection
 @section('content')
 
 <div class="main-wrapper">

@@ -1,7 +1,7 @@
-<head>
-    <title>{{$tenloai[0]->type}} | i Tâm Loan</title>
-</head>
 @extends('customer.master')
+@section('head')
+    <title>{{$tenloai[0]->type}} | i Tâm Loan</title>
+@endsection
 @section('content')
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
@@ -108,14 +108,14 @@
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <div class="sorting">
-                        <select>
+                        <select class="nice-select">
                             <option value="1">Sắp xếp</option>
                             <option value="1">Giá tăng dần</option>
                             <option value="1">Giá giảm dần</option>
                         </select>
                     </div>
                     <div class="sorting mr-auto">
-                        <select>
+                        <select class="nice-select">
                             <option value="1">Hiển thị</option>
                             <option value="1">12</option>
                             <option value="1">24</option>
@@ -174,15 +174,15 @@
 
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
-                    <div class="sorting">
-                        <select>
+                    <div class="sorting ">
+                        <select class="nice-select">
                             <option value="1">Sắp xếp</option>
                             <option value="1">Giá tăng dần</option>
                             <option value="1">Giá giảm dần</option>
                         </select>
                     </div>
                     <div class="sorting mr-auto">
-                        <select>
+                        <select class="nice-select">
                             <option value="1">Hiển thị</option>
                             <option value="1">12</option>
                             <option value="1">24</option>
@@ -200,8 +200,6 @@
                 </div>
                 <!-- End Filter Bar -->
             </div>
-
-
         </div>
     </div>
 
