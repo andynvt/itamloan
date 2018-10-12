@@ -289,18 +289,33 @@ console.log(nonLinearSlider);
 
 
 });
-
 //
-// var password = document.getElementById("password")
-//     , confirm_password = document.getElementById("re-password");
+// function readURL(input) {
+//     if (input.files && input.files[0]) {
+//         var reader = new FileReader();
 //
-// function validatePassword(){
-//     if(password.value != confirm_password.value) {
-//         confirm_password.setCustomValidity("Passwords Don't Match");
-//     } else {
-//         confirm_password.setCustomValidity('');
+//         reader.onload = function (e) {
+//             $('#blah').attr('src', e.target.result);
+//         }
+//
+//         reader.readAsDataURL(input.files[0]);
 //     }
 // }
 //
-// password.onchange = validatePassword;
-// confirm_password.onkeyup = validatePassword;
+// $("#imgInp").change(function(){
+//     readURL(this);
+// });
+
+var password = document.getElementById("password")
+    , confirm_password = document.getElementById("re-password");
+
+function validatePassword(){
+    if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+        confirm_password.setCustomValidity('');
+    }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;

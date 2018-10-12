@@ -303,12 +303,46 @@ class CustomerController extends Controller
             ->leftjoin('payments as p','p.id','=','bills.id_payment')
             ->select('bills.*','status','payment')
             ->where('c.id',$id_customer)->get();
-//dd($bill);
         return view('customer.page.user',compact('cus','bill'));
     }
 
     public function postEditUser(Request $req){
+        $id = Auth::user()->id;
+        $id_customer = Customer::where('id_user',$id)->value('id');
+        $cus = Customer::find($id_customer);
+        $img = $req->avatar;
 
+        if($req->hasfile('avatar')){
+            $name=date('Y-m-d-H-i-s')."-".$img->getClientOriginalName();
+            $img->move('storage/user', $name);
+
+            Customer::where('id',$id_customer)->update([
+                'c_name' => $req->name,
+                'gender' => $req->gender,
+                'dob' => $req->dob,
+                'phone' => $req->phone,
+                'address' => $req->address,
+                'shipping_address' => $req->shipping_address,
+                'avatar' => $name,
+            ]);
+        }
+        else{
+            Customer::where('id',$id_customer)->update([
+                'c_name' => $req->name,
+                'gender' => $req->gender,
+                'dob' => $req->dob,
+                'phone' => $req->phone,
+                'address' => $req->address,
+                'shipping_address' => $req->shipping_address,
+            ]);
+        }
+        $cus->save();
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đổi thông tin thành công']);
+    }
+
+    public function postChangePass(Request $req){
+
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đổi mật khẩu thành công']);
     }
 
     public  function getWishlist(){

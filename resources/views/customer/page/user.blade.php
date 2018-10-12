@@ -42,7 +42,7 @@
     <div class="tab-content mt-30" id="myTabContent">
         <div class="tab-pane fade show active" id="bill" role="tabpanel">
             <div class="specification-table ">
-                <table class="table table-bordered align-content-center">
+                <table class="table table-bordered align-content-center table-responsive">
                     <thead>
                     <tr class="font-weight-bold">
                         <td class="text-center">STT</td>
@@ -73,10 +73,48 @@
             </div>
         </div>
         <div class="tab-pane fade" id="info" role="tabpanel">
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6 justify-content-center">
-                    <form action="#">
+            <form action="{{route('edituser')}}" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-12 col-12 justify-content-center">
+                        <h4 class="text-center">Avatar</h4>
+                        <hr class="pb-3">
+                        <div class="user-details d-flex align-items-center">
+                            <img id="blah" src="storage/user/{{$cus[0]->avatar}}" class="img-fluid" alt="your image"/>
+                        </div>
+                        <input type='file' name="avatar" id="imgInp" hidden accept="image/png, image/jpg, image/jpeg"/>
+                        <div class="align-items-center">
+                            <label for="imgInp" style="width: 100%;">
+                                <div class="view-btn color-2 mt-20 w-100 mb-20"><span>Chọn ảnh</span></div>
+                            </label>
+                        </div>
+                        <div class="mt-1 text-center">.JPG, .PNG - Tối đa: 1MB</div>
+                        <script>
+                            function readURL(input) {
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        $('#blah').attr('src', e.target.result);
+                                    }
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                            $("#imgInp").change(function () {
+                                readURL(this);
+                            });
+                        </script>
+                    </div>
+                    <div class="col-lg-5 col-md-4 col-sm-12 col-12 justify-content-center">
+                        <h4 class="text-center">Hồ sơ</h4>
+                        <hr class="pb-3">
+                        {!! csrf_field() !!}
+                        <div class="input-group mt-10 mb-10 justify-content-center">
+                            <input class="pixel-radio" {{($cus[0]->gender == 'Nam') ? 'checked' : ''}} type="radio" id="Nam" name="gender" value="Nam" ><label for="Nam"
+                                                                                                              class="pr-3">Nam</label>
+                            <input class="pixel-radio" {{($cus[0]->gender == 'Nữ') ? 'checked' : ''}} type="radio" id="Nữ" name="gender" value="Nữ"><label for="Nữ"
+                                                                                                            class="pr-3">Nữ</label>
+                            <input class="pixel-radio" {{($cus[0]->gender == 'Khác') ? 'checked' : ''}} type="radio" id="other" name="gender"
+                                   value="Khác"><label for="other" class="pr-3">Khác</label>
+                        </div>
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
                             <input type="text" name="name" value="{{$cus[0]->c_name}}" placeholder="Họ và tên"
@@ -101,49 +139,34 @@
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ngày sinh'"
                                    required class="single-input">
                         </div>
-                        {{--<div class="input-group-icon mt-10">--}}
-                            {{--<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>--}}
-                            {{--<div class="form-select" id="default-select">--}}
-                                {{--<select name="city" class="nice-select">--}}
-                                    {{--<option value="1">Tỉnh / Thành Phố</option>--}}
-                                    {{--<option value="1">Cần Thơ</option>--}}
-                                    {{--<option value="1">Sóc</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="input-group-icon mt-10">--}}
-                            {{--<div class="icon"><i class="fa fa-location-arrow" aria-hidden="true"></i>--}}
-                            {{--</div>--}}
-                            {{--<div class="form-select" id="default-selected">--}}
-                                {{--<select name="district" class="nice-select">--}}
-                                    {{--<option value="1">Quận / Huyện</option>--}}
-                                    {{--<option value="1">Cần Thơ</option>--}}
-                                    {{--<option value="1">Sóc</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        <div class="input-group-icon mt-10">
+                    </div>
+                    <div class="col-lg-5 col-md-4 col-sm-12 col-12 justify-content-center">
+                        <h4 class="text-center">Địa chỉ</h4>
+                        <hr class="pb-3">
+                        <h5 >Địa chỉ nhà</h5>
+                        <div class="input-group-icon mt-10 mb-30">
                             <div class="icon"><i class="fa fa-map-marker " aria-hidden="true"></i></div>
                             <input type="text" name="address" value="{{$cus[0]->address}}" placeholder="Địa chỉ"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Địa chỉ'"
                                    required class="single-input">
                         </div>
+                        <h5 >Địa chỉ giao hàng</h5>
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
-                            <input type="text" name="address" value="{{$cus[0]->shipping_address}}" placeholder="Địa chỉ giao hàng"
+                            <input type="text" name="shipping_address" value="{{$cus[0]->shipping_address}}"
+                                   placeholder="Địa chỉ giao hàng"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Địa chỉ giao hàng'"
                                    required class="single-input">
                         </div>
-                        <button type="submit" class="view-btn color-2 mt-20 w-100 mb-20"><span>Cập nhật</span></button>
-                    </form>
+                    </div>
                 </div>
-                <div class="col-3"></div>
-            </div>
+                <button type="submit" class="view-btn color-2 mt-20 w-100 mb-20 head"><span>Cập nhật</span></button>
+            </form>
         </div>
-        <div class="tab-pane fade active" id="pass" role="tabpanel">
+        <div class="tab-pane fade " id="pass" role="tabpanel">
             <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
+                <div class="col-lg-3 col-md-3 col-sm-1 col-1"></div>
+                <div class="col-lg-6 col-md-6 col-sm-10 col-10">
                     <div class="mt-10">
                         <form action="#">
                             <div class="mt-10">
@@ -180,7 +203,7 @@
 
                     </div>
                 </div>
-                <div class="col-3"></div>
+                <div class="col-lg-3 col-md-3 col-sm-1 col-1"></div>
             </div>
 
         </div>

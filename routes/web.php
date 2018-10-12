@@ -95,9 +95,14 @@ Route::get('ca-nhan',[
     'uses' => 'CustomerController@getUser'
 ]);
 
-Route::get('sua-thong-tin',[
+Route::post('sua-thong-tin',[
     'as' => 'edituser',
     'uses' => 'CustomerController@postEditUser'
+]);
+
+Route::post('doi-mat-khau',[
+    'as' => 'changpass',
+    'uses' => 'CustomerController@postChangePass'
 ]);
 
 Route::get('yeu-thich',[
