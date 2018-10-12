@@ -252,6 +252,11 @@
                     <div class="col-lg-6">
                         <div class="add-review">
                             <h3>Gửi đánh giá</h3>
+                            <form action="{{route('postfeedback')}}" method="post" class="main-form">
+
+                            @if(!Auth::check())
+                                <h5 class="pb-3"><a href="{{route('login')}}">Đăng nhập</a> để gửi đánh giá</h5>
+                            @endif
                             <div class="single-review-count mb-15 d-flex align-items-center">
                                 <div class="star-place">
                                     <fieldset class="rating ">
@@ -274,15 +279,27 @@
                                     // });
                                 </script>
                             </div>
-                            <form action="{{route('postfeedback')}}" method="post" class="main-form">
-                                <input type="text" placeholder="Tên" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder = 'Tên'" required class="common-input">
-                                <input type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                       placeholder="Email" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder = 'Email'" class="common-input">
-                                <input type="text" placeholder="Số điện thoại" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder = 'Số điện thoại'" required class="common-input">
-                                <textarea placeholder="Nội dung đánh giá" onfocus="this.placeholder=''"
+                                {!! csrf_field() !!}
+                                @if(Auth::check())
+                                    <input type="text" value="{{$cus[0]->c_name}}" placeholder="Tên" onfocus="this.placeholder=''"
+                                           onblur="this.placeholder = 'Tên'" required class="common-input">
+                                    <input type="email" value="{{$cus[0]->email}}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                                           placeholder="Email" onfocus="this.placeholder=''"
+                                           onblur="this.placeholder = 'Email'"  readonly class="common-input">
+                                    <input type="text" value="{{$cus[0]->phone}}" readonly placeholder="Số điện thoại" onfocus="this.placeholder=''"
+                                           onblur="this.placeholder = 'Số điện thoại'" required class="common-input">
+                                @else
+
+                                    <input type="text" placeholder="Tên" onfocus="this.placeholder=''"
+                                           onblur="this.placeholder = 'Tên'" required class="common-input">
+                                    <input type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                                           placeholder="Email" onfocus="this.placeholder=''"
+                                           onblur="this.placeholder = 'Email'" class="common-input">
+                                    <input type="text" placeholder="Số điện thoại" onfocus="this.placeholder=''"
+                                           onblur="this.placeholder = 'Số điện thoại'" required class="common-input">
+                                @endif
+                                <input type="hidden" value="{{$pd[0]->id}}" name="id_product">
+                                <textarea placeholder="Nội dung đánh giá" name="review" onfocus="this.placeholder=''"
                                           onblur="this.placeholder = 'Nội dung đánh giá'" required
                                           class="common-textarea"></textarea>
                                 <button type="submit" class="view-btn color-2"><span>Gửi</span></button>

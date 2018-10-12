@@ -193,11 +193,17 @@ class CustomerController extends Controller
             ->where('stars',1)
             ->count();
 
-//        dd($feedback);
+        if(Auth::check()){
+            $id = Auth::user()->id;
+            $cus = Customer::join('users as u','u.id','=','customers.id_user')
+                ->where('id_user',$id)->get();
+
+//            dd($cus);
+        }
 
         return view('customer.page.single', compact('pd', 'product_video', 'spec', 'value',
             'promo_product', 'same_product', 'img', 'arr_color', 'arr_img','no_of_fb','avg_fb','feedback','fb_1','fb_2',
-            'fb_3','fb_4','fb_5'));
+            'fb_3','fb_4','fb_5','cus'));
     }
     public static function noToText($no){
         $text = "";
@@ -216,7 +222,15 @@ class CustomerController extends Controller
     }
 
     public function postFeedback(Request $req){
+        $id_customer = Customer::where('id_user',Auth::user()->id)->value('id');
 
+        $fb = new Feedback();
+        $fb->id_product = $req->id_product;
+        $fb->id_customer = $id_customer;
+        $fb->stars = $req->rating;
+        $fb->review = $req->review;
+        $fb->save();
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đánh giá sản phẩm thành công']);
     }
 
     public  function getAd(){
