@@ -7,17 +7,12 @@
 
 <body>
 @include('customer.header')
-
 @yield('content')
 
 <!-- start footer Area -->
 @include('customer.footer')
 
 <!-- End footer Area -->
-
-
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="source/js/vendor/bootstrap.min.js"></script>
@@ -87,7 +82,7 @@
     </script>
     <script>
         iziToast.settings({
-            timeout: 300000,
+            timeout: 3000,
             resetOnHover: true,
             transitionIn: 'flipInX',
             transitionOut: 'flipOutX',

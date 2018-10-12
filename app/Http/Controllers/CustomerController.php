@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bill;
 use App\Catalog;
 use App\Customer;
 use App\Feedback;
@@ -134,6 +135,7 @@ class CustomerController extends Controller
             ->where('ctl.id',$id_catalog)
             ->get();
 
+//        dd($arr_color);
         $arr_img = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
@@ -213,6 +215,10 @@ class CustomerController extends Controller
         return $text;
     }
 
+    public function postFeedback(Request $req){
+
+    }
+
     public  function getAd(){
         return view('customer.page.ad');
     }
@@ -251,17 +257,22 @@ class CustomerController extends Controller
         $user = new User();
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
-//        $user->save();
+        $user->save();
 
         $cus = new Customer();
         $cus->id_user = $user->id;
         $cus->c_name = $req->name;
-        $cus->address = $req->town. ', '.$req->address;
+        $cus->address = $req->address.', '.$req->town;
         $cus->shipping_address = $req->town. ', '.$req->address;
         $cus->phone = $req->phone;
-//        $cus->save();
+        $cus->save();
 
         return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
+    }
+
+    public function postLogout(){
+        Auth::logout();
+        return redirect()->route('index')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng xuất thành công']);
     }
 
     public  function getSearch(){
@@ -269,7 +280,21 @@ class CustomerController extends Controller
     }
 
     public  function getUser(){
-        return view('customer.page.user');
+        $id = Auth::user()->id;
+        $id_customer = Customer::where('id_user',$id)->value('id');
+        $cus = Customer::join('users as u','u.id','=','customers.id_user')
+            ->where('id_user',$id)->get();
+        $bill = Bill::leftjoin('customers as c','c.id','=','bills.id_customer')
+            ->leftjoin('bill_status as bs','bs.id','=','bills.id_status')
+            ->leftjoin('payments as p','p.id','=','bills.id_payment')
+            ->select('bills.*','status','payment')
+            ->where('c.id',$id_customer)->get();
+//dd($bill);
+        return view('customer.page.user',compact('cus','bill'));
+    }
+
+    public function postEditUser(Request $req){
+
     }
 
     public  function getWishlist(){

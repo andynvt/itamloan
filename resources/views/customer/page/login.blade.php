@@ -1,5 +1,3 @@
-
-
 @extends('customer.master')
 @section('head')
     <title>Đăng nhập | i Tâm loan</title>
@@ -56,7 +54,7 @@
                     <form action="{{route('reg')}}" method="post">
                         <input type="text" name="name" placeholder="Họ và tên " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Họ và tên'" required class="common-input mt-20">
-                        <input type="email" name="email" placeholder="Email " onfocus="this.placeholder=''"
+                        <input type="email" name="email" placeholder="Email " pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Email '" required class="common-input mt-20">
                         <input type="text" name="phone" placeholder="Số điện thoại " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Số điện thoại '" required class="common-input mt-20">

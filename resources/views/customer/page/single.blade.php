@@ -52,7 +52,7 @@
                         <div class="p-1"></div>
                         <h4>Khuyến mãi:</h4>
                         <a href="#khuyenmai">
-                            <h5 class="pt-3">{{$pd[0]->promo_name}}</h5>
+                            <h5 class="pt-3">Giảm {{$pd[0]->percent}}% - {{$pd[0]->promo_name}}</h5>
                         </a>
                         <p class="content">{{$pd[0]->promo_info}}</p>
                     </div>
@@ -61,10 +61,10 @@
                         <form action="#">
                             <div class=" d-flex align-items-center mt-15">
                                 Chọn màu: &nbsp;&nbsp;
-                                <div class="default-select" id="default-select">
-                                    <select style="display: none;">
-                                        @foreach($arr_color as $c)
-                                        <option value="{{$c->color}}">{{$c->color}}</option>
+                                <div class="default-select " id="default-select">
+                                    <select class="nice-select">
+                                        @foreach($arr_color as $c => $value)
+                                        <option value="{{$value->color}}">{{$value->color}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -78,7 +78,7 @@
                                     <button class="decrease arrow" type="button" title="Decrease Quantity">
                                         <span class="lnr lnr-chevron-down"></span></button>
                                 </div>
-
+                                <span class="pl-3">{{$pd[0]->inventory}} sản phẩm có sẵn</span>
                             </div>
                             <div class="d-flex mt-20">
                                 <a href="#" type="submit" class="view-btn color-2"><span>Thêm vào giỏ</span></a>
@@ -224,7 +224,11 @@
                             @foreach($feedback as $f)
                             <div class="single-comment">
                                 <div class="user-details d-flex align-items-center">
+                                    @if($f->avatar == null)
+                                        <img src="storage/user/default.png" class="img-fluid">
+                                    @else
                                     <img src="storage/user/{{$f->avatar}}" class="img-fluid" alt="">
+                                    @endif
                                     <div class="user-name" style="    padding-top: 15px;">
                                         <h5>{{$f->c_name}}</h5>
                                         <div class="total-star {{\App\Http\Controllers\CustomerController::noToText($f->stars)}}-star d-flex align-items-center">
@@ -270,12 +274,18 @@
                                     // });
                                 </script>
                             </div>
-                            <form action="#" class="main-form">
-                                <input type="text" placeholder="Tên" onfocus="this.placeholder=''" onblur="this.placeholder = 'Tên'" required class="common-input">
-                                <input type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder = 'Email'" class="common-input">
-                                <input type="text" placeholder="Số điện thoại" onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại'" required class="common-input">
-                                <textarea placeholder="Nội dung đánh giá" onfocus="this.placeholder=''" onblur="this.placeholder = 'Nội dung đánh giá'" required class="common-textarea"></textarea>
-                                <button class="view-btn color-2"><span>Gửi</span></button>
+                            <form action="{{route('postfeedback')}}" method="post" class="main-form">
+                                <input type="text" placeholder="Tên" onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Tên'" required class="common-input">
+                                <input type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                                       placeholder="Email" onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Email'" class="common-input">
+                                <input type="text" placeholder="Số điện thoại" onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Số điện thoại'" required class="common-input">
+                                <textarea placeholder="Nội dung đánh giá" onfocus="this.placeholder=''"
+                                          onblur="this.placeholder = 'Nội dung đánh giá'" required
+                                          class="common-textarea"></textarea>
+                                <button type="submit" class="view-btn color-2"><span>Gửi</span></button>
                             </form>
                         </div>
                     </div>

@@ -576,11 +576,11 @@ label {
 }
 .bottom a {
     /*width: 50%;*/
-    padding: 15px 5px 15px 5px;
+    padding: 10px 5px 10px 5px;
 }
 .bottom a:hover {
     background: #fff;
-    padding: 15px 5px 15px 5px;
+    padding: 10px 5px 10px 5px;
     box-shadow: 2.828px 2.828px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -605,7 +605,7 @@ label {
 }
 
 .pagination .prev-arrow, .pagination .dot-dot, .pagination .next-arrow{
-    padding-top: 12px;
+    /*padding-top: 12px;*/
 }
 /***** CSS Magic to Highlight Stars on Hover *****/
 

@@ -35,6 +35,11 @@ Route::get('chi-tiet/{id}',[
     'uses' => 'CustomerController@getSingle'
 ]);
 
+Route::post('feedback',[
+    'as' => 'postfeedback',
+    'uses' => 'CustomerController@postFeedback'
+]);
+
 Route::get('khuyen-mai',[
     'as' => 'ad',
     'uses' => 'CustomerController@getAd'
@@ -75,6 +80,11 @@ Route::post('dang-ky',[
     'uses' => 'CustomerController@postReg'
 ]);
 
+Route::post('dang-xuat',[
+    'as' => 'logout',
+    'uses' => 'CustomerController@postLogout'
+]);
+
 Route::get('tim-kiem',[
     'as' => 'search',
     'uses' => 'CustomerController@getSearch'
@@ -83,6 +93,11 @@ Route::get('tim-kiem',[
 Route::get('ca-nhan',[
     'as' => 'user',
     'uses' => 'CustomerController@getUser'
+]);
+
+Route::get('sua-thong-tin',[
+    'as' => 'edituser',
+    'uses' => 'CustomerController@postEditUser'
 ]);
 
 Route::get('yeu-thich',[

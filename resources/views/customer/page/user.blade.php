@@ -49,19 +49,25 @@
                         <td class="text-center">Mã đơn hàng</td>
                         <td class="text-center">Số lượng</td>
                         <td class="text-center">Tổng tiền</td>
-                        <td class="text-center">Ghi chú</td>
+                        <td class="text-center">Thanh toán</td>
                         <td class="text-center">Trạng thái</td>
+                        <td class="text-center">Ghi chú</td>
                     </tr>
                     </thead>
                     <tbody>
+                    <span style="display: none">{{$i=0}}</span>
+                    @foreach($bill as $b => $value)
+                        <span style="display: none">{{$i++}}</span>
                     <tr>
-                        <td class="text-center">1</td>
-                        <td class="text-center">001</td>
-                        <td class="text-center">2</td>
-                        <td class="text-center">50.000.000 ₫</td>
-                        <td>nội dung ghi chú</td>
-                        <td class="text-center">Đang gửi hàng</td>
+                        <td class="text-center">{{$i}}</td>
+                        <td class="text-center">{{$value->id}}</td>
+                        <td class="text-center">{{$value->total_product}}</td>
+                        <td class="text-center">{{$value->total_price}}</td>
+                        <td class="text-center">{{$value->payment}}</td>
+                        <td class="text-center">{{$value->status}}</td>
+                        <td class="text-center">{{$value->note}}</td>
                     </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -73,58 +79,58 @@
                     <form action="#">
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
-                            <input type="text" name="name" value="Nguyễn Văn Tài" placeholder="Họ và tên"
+                            <input type="text" name="name" value="{{$cus[0]->c_name}}" placeholder="Họ và tên"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Họ và tên'"
                                    required class="single-input">
                         </div>
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-envelope " aria-hidden="true"></i></div>
-                            <input type="text" name="email" value="me.ngvantai@gmail.com" required
+                            <input type="text" name="email" value="{{$cus[0]->email}}" required
                                    readonly class="single-input">
                         </div>
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-                            <input type="text" name="phone" value="01666 988 779" placeholder="Số điện thoại"
+                            <input type="text" name="phone" value="{{$cus[0]->phone}}" placeholder="Số điện thoại"
                                    onfocus="this.placeholder = ''"
                                    onblur="this.placeholder = 'Số điện thoại'"
                                    required class="single-input">
                         </div>
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                            <input type="date" name="dob" value="1995-10-22" placeholder="Ngày sinh"
+                            <input type="date" name="dob" value="{{$cus[0]->dob}}" placeholder="Ngày sinh"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ngày sinh'"
                                    required class="single-input">
                         </div>
-                        <div class="input-group-icon mt-10">
-                            <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
-                            <div class="form-select" id="default-select">
-                                <select name="city">
-                                    <option value="1">Tỉnh / Thành Phố</option>
-                                    <option value="1">Cần Thơ</option>
-                                    <option value="1">Sóc</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-group-icon mt-10">
-                            <div class="icon"><i class="fa fa-location-arrow" aria-hidden="true"></i>
-                            </div>
-                            <div class="form-select" id="default-selected">
-                                <select name="district">
-                                    <option value="1">Quận / Huyện</option>
-                                    <option value="1">Cần Thơ</option>
-                                    <option value="1">Sóc</option>
-                                </select>
-                            </div>
-                        </div>
+                        {{--<div class="input-group-icon mt-10">--}}
+                            {{--<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>--}}
+                            {{--<div class="form-select" id="default-select">--}}
+                                {{--<select name="city" class="nice-select">--}}
+                                    {{--<option value="1">Tỉnh / Thành Phố</option>--}}
+                                    {{--<option value="1">Cần Thơ</option>--}}
+                                    {{--<option value="1">Sóc</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-group-icon mt-10">--}}
+                            {{--<div class="icon"><i class="fa fa-location-arrow" aria-hidden="true"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-select" id="default-selected">--}}
+                                {{--<select name="district" class="nice-select">--}}
+                                    {{--<option value="1">Quận / Huyện</option>--}}
+                                    {{--<option value="1">Cần Thơ</option>--}}
+                                    {{--<option value="1">Sóc</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-map-marker " aria-hidden="true"></i></div>
-                            <input type="text" name="address" value="46-48 Trần Văn Khéo" placeholder="Địa chỉ"
+                            <input type="text" name="address" value="{{$cus[0]->address}}" placeholder="Địa chỉ"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Địa chỉ'"
                                    required class="single-input">
                         </div>
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
-                            <input type="text" name="address" value="46-48 Trần Văn Khéo" placeholder="Địa chỉ giao hàng"
+                            <input type="text" name="address" value="{{$cus[0]->shipping_address}}" placeholder="Địa chỉ giao hàng"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Địa chỉ giao hàng'"
                                    required class="single-input">
                         </div>

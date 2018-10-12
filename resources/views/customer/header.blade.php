@@ -41,11 +41,19 @@
                             </div>
                         </li>
                     </a>
-                    <a href="{{route('login')}}">
-                        <li>
-                            <span class="lnr lnr-user lnr-custom"></span>
-                        </li>
-                    </a>
+                    @if(Auth::check())
+                        <a href="{{route('user')}}">
+                            <li>
+                                <span class="lnr lnr-user lnr-custom"></span>
+                            </li>
+                        </a>
+                    @else
+                        <a href="{{route('login')}}">
+                            <li>
+                                <span class="lnr lnr-user lnr-custom"></span>
+                            </li>
+                        </a>
+                    @endif
                 </ul>
             </div>
         </div>

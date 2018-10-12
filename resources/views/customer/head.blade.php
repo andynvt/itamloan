@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="source/img/element/favicon.png">
 
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -5,8 +6,6 @@
 <base href="{{asset('')}}">
 <!-- Mobile Specific Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Favicon-->
-<link rel="shortcut icon" href="source/img/element/favicon.png">
 <!-- Author Meta -->
 <meta name="author" content="CodePixar">
 <!-- Meta Description -->
