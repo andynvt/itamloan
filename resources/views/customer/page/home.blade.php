@@ -76,11 +76,24 @@
                             </div>
                         </li>
                     </a>
-                    <a href="{{route('user')}}">
-                        <li>
-                            <span class="lnr lnr-user lnr-custom"></span>
-                        </li>
-                    </a>
+                    @if(Auth::check())
+                        <a href="{{route('user')}}">
+                            <li>
+                                <span class="lnr lnr-user lnr-custom"></span>
+                            </li>
+                        </a>
+                        <a href="{{route('logout')}}" onclick="return confirm('Bạn có muốn đăng xuất?')">
+                            <li>
+                                <span class="lnr lnr-exit lnr-custom"></span>
+                            </li>
+                        </a>
+                    @else
+                        <a href="{{route('login')}}">
+                            <li>
+                                <span class="lnr lnr-user lnr-custom"></span>
+                            </li>
+                        </a>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -122,7 +135,12 @@
                     <li><a href="#ipad">IPAD</a></li>
                     <li><a href="#mac">MAC</a></li>
                     <li><a href="#watch">WATCH</a></li>
-                    <li><a href="#" id="dn-index">ĐĂNG NHẬP</a></li>
+                    @if(Auth::check())
+                        <li><a href="{{route('user')}}" id="dn-index">CÁ NHÂN</a></li>
+                        <li><a href="{{route('logout')}}" onclick="return confirm('Bạn có muốn đăng xuất?')" id="dn-index">ĐĂNG XUẤT</a></li>
+                    @else
+                        <li><a href="{{route('login')}}" id="dn-index">ĐĂNG NHẬP</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -354,72 +372,7 @@
 <!-- End related-product Area -->
 
 <!-- start footer Area -->
-<footer class="footer-area section-gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Thông Tin</h6>
-                    <ul style="font-family: Helvetica,Arial, sans-serif;">
-                        <li>Giới thiệu</li>
-                        <li>Hướng dẫn thanh toán</li>
-                        <li>Điều khoản sử dụng</li>
-                        <li>Chính sách bảo mật</li>
-                        <li>Tuyển dụng</li>
-                        <li>Liên hệ</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Hỗ Trợ</h6>
-                    <ul style="font-family: Helvetica,Arial, sans-serif;">
-                        <li>Chính sách bảo hành</li>
-                        <li>Chính sách đổi trả</li>
-                        <li>Chính sách thu đổi máy</li>
-                        <li>Chính sách vận chuyển</li>
-                    </ul>
-
-                </div>
-            </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget mail-chimp">
-                    <h6 class="mb-20">Dịch Vụ</h6>
-                    <ul style="font-family: Helvetica,Arial, sans-serif;">
-                        <li>Sửa chữa iPhone, iPad, Macbook</li>
-                        <li>Mở mạng - unlock</li>
-                        <li>Ép kính</li>
-                        <li>Cài đặt iPhone, iPad, Macbook</li>
-                    </ul>
-
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Giới thiệu</h6>
-                    <b>Showroom i-Tâm Loan</b><br>
-                    <a style="color: #616E76 " href="https://www.google.com/maps/place/Showroom+i-T%C3%A2m+Loan/@10.0449458,105.7826973,17z/data=!3m1!4b1!4m5!3m4!1s0x31a0881d822023af:0x97c7f979608ccdf2!8m2!3d10.0449458!4d105.784886">46-48
-                        Trần Văn Khéo, P.Cái khế, Q. Ninh Kiều, TP. Cần Thơ</a>
-                    <div class="p-1"></div>
-                    <div class="footer-social d-flex align-items-center">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        <a href="#"><i class="fa fa-youtube"></i></a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-
-            <p class="footer-text m-0">Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-                All rights reserved | Template by Colorlib</a></p>
-        </div>
-    </div>
-</footer>
+@include('customer.footer')
 <!-- End footer Area -->
 
 <script src="source/js/vendor/jquery-2.2.4.min.js"></script>

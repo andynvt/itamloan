@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Cart;
 use App\Product;
+use App\ProductColor;
 use App\ProductType;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +33,22 @@ class AppServiceProvider extends ServiceProvider
             $view->with(
                 'full_type',$full_type
             );
+        });
+
+        view()->composer('customer.header',function($view){
+            if(Session('cart')){
+                $oldCart = Session::get('cart');
+                $cart = new Cart($oldCart);
+                $color = ProductColor::all();
+//                 dd($cart);
+                $view->with([
+                    'cart'=>Session::get('cart'),
+                    'product_cart'=>$cart->items,
+                    'totalPrice'=>$cart->totalPrice,
+                    'totalQty'=>$cart->totalQty,
+                    'color'=>$color,
+                ]);
+            }
         });
 
     }

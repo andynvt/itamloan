@@ -37,6 +37,10 @@
                 <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#pass" role="tab"
                    aria-controls="specification">Đổi mật khẩu</a>
             </li>
+            <li>
+                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#review" role="tab"
+                   aria-controls="specification">Đánh giá</a>
+            </li>
         </ul>
     </div>
     <div class="tab-content mt-30" id="myTabContent">
@@ -178,7 +182,7 @@
                                        autofocus>
                             </div>
                             <div class="mt-10">
-                                <input type="password" name="newpass"
+                                <input type="password" name="password"
                                        placeholder="Mật khẩu mới"
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'Mật khẩu mới'" required
@@ -186,7 +190,7 @@
 
                             </div>
                             <div class="mt-10">
-                                <input type="password" name="renewpass"
+                                <input type="password" name="re-password"
                                        placeholder="Nhập lại Mật khẩu mới"
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'Nhập lại Mật khẩu mới'"
@@ -207,7 +211,53 @@
             </div>
 
         </div>
+        <div class="tab-pane fade " id="review" role="tabpanel">
+            <div class="tab-pane fade show active" id="bill" role="tabpanel">
+                <div class="specification-table ">
+                    <table class="table table-bordered align-content-center table-responsive">
+                        <thead>
+                        <tr class="font-weight-bold">
+                            <td class="text-center">STT</td>
+                            <td class="text-center">Hình ảnh</td>
+                            <td class="text-center">Sản phẩm</td>
+                            <td class="text-center">Số sao</td>
+                            <td class="text-center">Nội dung</td>
+                            <td class="text-center">Thao tác</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <span style="display: none">{{$i=0}}</span>
+                        @foreach($fb as $b => $value)
+                            <span style="display: none">{{$i++}}</span>
+                            <tr>
+                                <td class="text-center">{{$i}}</td>
+                                <td class="text-center">
+                                    <a href="{{route('single',$value->pid)}}">
+                                        <img src="storage/product/{{$value->image}}" style="max-height: 50px;">
+                                    </a>
+                                </td>
+                                <td class="text-center"><a href="{{route('single',$value->pid)}}">{{$value->name}}</a></td>
+                                <td class="text-center">
+                                    <div class="justify-content-center total-star {{\App\Http\Controllers\CustomerController::noToText($value->stars)}}-star d-flex align-items-center">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </td>
+                                <td class="text-left">{{$value->review}}</td>
+                                <td class="text-center">
+                                    <a href="{{route('delfb',$value->id)}}" onclick="return confirm('Bạn có chắc chưa?')" class="view-btn color-2" style="min-width: 50px; padding: 0"><span class="lnr lnr-cross"></span></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+        </div>
     </div>
+</div>
 </div>
 <!-- End Cart Area -->
 @endsection

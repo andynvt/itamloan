@@ -47,6 +47,11 @@
                                 <span class="lnr lnr-user lnr-custom"></span>
                             </li>
                         </a>
+                        <a href="{{route('logout')}}" onclick="return confirm('Bạn có muốn đăng xuất?')">
+                            <li>
+                                <span class="lnr lnr-exit lnr-custom"></span>
+                            </li>
+                        </a>
                     @else
                         <a href="{{route('login')}}">
                             <li>
@@ -113,9 +118,12 @@
                             </div>
                         </li>
                     @endforeach
-
-                    <li><a href="{{route('login')}}" id="dn-index">ĐĂNG NHẬP</a></li>
-
+                    @if(Auth::check())
+                        <li><a href="{{route('user')}}" id="dn-index">CÁ NHÂN</a></li>
+                        <li><a href="{{route('logout')}}" onclick="return confirm('Bạn có muốn đăng xuất?')" id="dn-index">ĐĂNG XUẤT</a></li>
+                    @else
+                        <li><a href="{{route('login')}}" id="dn-index">ĐĂNG NHẬP</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

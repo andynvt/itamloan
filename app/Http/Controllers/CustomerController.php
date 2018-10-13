@@ -286,6 +286,7 @@ class CustomerController extends Controller
 
     public function postLogout(){
         Auth::logout();
+
         return redirect()->route('index')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng xuất thành công']);
     }
 
@@ -303,7 +304,15 @@ class CustomerController extends Controller
             ->leftjoin('payments as p','p.id','=','bills.id_payment')
             ->select('bills.*','status','payment')
             ->where('c.id',$id_customer)->get();
-        return view('customer.page.user',compact('cus','bill'));
+        $fb = Feedback::leftjoin('customers as c','c.id','=','feedbacks.id_customer')
+            ->leftjoin('products as p','p.id','=','feedbacks.id_product')
+            ->leftjoin('product_color as pc','pc.id_product','=','p.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('feedbacks.id','image','p.name','p.id as pid','stars','review')
+            ->groupBy('feedbacks.id')
+            ->where('c.id',$id_customer)->get();
+//        dd($fb);
+        return view('customer.page.user',compact('cus','bill','fb'));
     }
 
     public function postEditUser(Request $req){
@@ -343,6 +352,11 @@ class CustomerController extends Controller
     public function postChangePass(Request $req){
 
         return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đổi mật khẩu thành công']);
+    }
+
+    public function postDelfb($id,Request $req){
+        Feedback::find($id)->delete();
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Xoá đánh giá thành công']);
     }
 
     public  function getWishlist(){

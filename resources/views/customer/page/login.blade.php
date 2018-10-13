@@ -51,17 +51,17 @@
                 <div class="register-form" id="reg" style="padding: 30px;">
                     <h3 class="billing-title text-center">Đăng ký</h3>
                     <p class="text-center mt-15 mb-20">Tạo tài khoản mới </p>
-                    <form action="{{route('reg')}}" method="post">
+                    <form action="{{route('reg')}}" method="post" class="validatedForm">
                         <input type="text" name="name" placeholder="Họ và tên " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Họ và tên'" required class="common-input mt-20">
                         <input type="email" name="email" placeholder="Email " pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Email '" required class="common-input mt-20">
                         <input type="text" name="phone" placeholder="Số điện thoại " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Số điện thoại '" required class="common-input mt-20">
-                        <input type="password" name="password" placeholder="Mật khẩu " onfocus="this.placeholder=''"
+                        <input type="password" name="password" id="password" placeholder="Mật khẩu " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Mật khẩu '" required minlength="6" maxlength="20"
                                class="common-input mt-20">
-                        <input type="password" name="re-password" placeholder="Nhập lại mật khẩu" onfocus="this.placeholder=''"
+                        <input type="password" name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Nhập lại mật khẩu '" required minlength="6" maxlength="20"
                                class="common-input mt-20">
                         {{--<input type="date" name="dob" placeholder="Ngày sinh" onfocus="this.placeholder = ''"--}}
@@ -79,7 +79,7 @@
                         <input type="text" name="address" placeholder="Địa chỉ " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Địa chỉ '" required minlength="6" maxlength="100" class="common-input mt-20">
                         {{ csrf_field() }}
-                        <button type="submit" class="view-btn color-2 mt-20 w-100"><span>Đăng ký</span></button>
+                        <button id="smbtn" type="submit"  class="view-btn color-2 mt-20 w-100"><span>Đăng ký</span></button>
                     </form>
                 </div>
             </div>
@@ -88,5 +88,20 @@
     <div class="mb-10"></div>
 
     <!-- End My Account -->
-
+    <script>
+        jQuery('.validatedForm').validate({
+            rules: {
+                "password": {
+                    minlength: 3
+                },
+                "re-password": {
+                    minlength: 3,
+                    equalTo : "#password"
+                }
+            }
+        });
+        $('#smbtn').click(function () {
+            console.log($('.validatedForm').valid());
+        });
+    </script>
 @endsection

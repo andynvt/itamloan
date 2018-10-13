@@ -80,7 +80,7 @@ Route::post('dang-ky',[
     'uses' => 'CustomerController@postReg'
 ]);
 
-Route::post('dang-xuat',[
+Route::get('dang-xuat',[
     'as' => 'logout',
     'uses' => 'CustomerController@postLogout'
 ]);
@@ -104,6 +104,12 @@ Route::post('doi-mat-khau',[
     'as' => 'changpass',
     'uses' => 'CustomerController@postChangePass'
 ]);
+
+Route::get('xoa-danh-gia/{id}',[
+    'as' => 'delfb',
+    'uses' => 'CustomerController@postDelfb'
+]);
+
 
 Route::get('yeu-thich',[
     'as' => 'wishlist',

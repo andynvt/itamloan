@@ -3,12 +3,18 @@ sup,
 sub,
 u,
 del {
-    color: #48AAF8 !important;
-}
+                   color: #48AAF8 !important;
+               }
 body{
     color:black;
 }
-
+footer{
+    color:white;
+}
+.table-responsive td {
+    text-align: center;
+    vertical-align: middle;
+}
 /*back to top*/
 #scroll {
     position: fixed;
