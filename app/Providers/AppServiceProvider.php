@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        view()->composer('customer.header',function($view){
+        view()->composer('customer.page.cart',function($view){
             if(Session('cart')){
                 $oldCart = Session::get('cart');
                 $cart = new Cart($oldCart);

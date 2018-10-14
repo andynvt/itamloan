@@ -50,6 +50,11 @@ Route::get('gio-hang',[
     'uses' => 'CustomerController@getCart'
 ]);
 
+Route::get('them-vao-gio/{id}',[
+    'as' => 'addcart',
+    'uses' => 'CustomerController@getAddCart'
+]);
+
 Route::get('thanh-toan',[
     'as' => 'checkout',
     'uses' => 'CustomerController@getCheckOut'

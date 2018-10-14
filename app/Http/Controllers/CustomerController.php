@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bill;
+use App\Cart;
 use App\Catalog;
 use App\Customer;
 use App\Feedback;
@@ -15,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use function PHPSTORM_META\elementType;
 
 class CustomerController extends Controller
@@ -238,7 +240,40 @@ class CustomerController extends Controller
     }
 
     public  function getCart(){
+        if (Session('cart')) {
+            $oldCart = Session::get('cart');
+            $cart = new Cart($oldCart);
+            $color = ProductColor::all();
+//                 dd($cart);
+            return view('customer.page.cart')->with([
+                'cart' => Session::get('cart'),
+                'product_cart' => $cart->items,
+                'totalPrice' => $cart->totalPrice,
+                'totalQty' => $cart->totalQty,
+                'color' => $color,
+            ]);
+        }
         return view('customer.page.cart');
+
+    }
+
+    public function getAddCart(Request $req, $id){
+        $product = Product::find($id);
+        $promo = Promotion::where('id',$product->id_promo)->get();
+
+//        dd($promo);
+        if($promo == null){
+            $real_price = $product->price;
+        }
+        else{
+            $real_price = $product->price - $product->price * $promo[0]->percent / 100;
+        }
+
+        $oldCart = Session('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id, $real_price);
+        $req->session()->put('cart',$cart);
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
     }
 
     public  function getCheckOut(){

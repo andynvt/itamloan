@@ -139,20 +139,20 @@
                     <div class="row">
                         @foreach($product as $p)
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-
-                                <div class="content" >
+                                <div class="content item-cart-ct" >
                                     <a href="{{route('single',$p->id)}}">
                                         <div class="content-overlay"></div>
                                     </a>
                                     @if($p->percent != null)
                                         <span class="sp-discount">-{{$p->percent}}%</span>
                                     @endif
-                                    <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$p->image}}" alt="{{$p->name}}">
+                                    <img class="content-image img-fluid d-block mx-auto img-cart" src="storage/product/{{$p->image}}" alt="{{$p->name}}">
                                     <div class="content-details fadeIn-bottom">
                                         <div class="bottom d-flex align-items-center justify-content-center">
                                             <a href="#"><span class="lnr lnr-heart"></span></a>
-                                            <a href="#"><span class="lnr lnr-cart"></span></a>
+                                            <a href="{{route('addcart',$p->id)}}" class="add-to-cart"><span class="lnr lnr-cart"></span></a>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="price text-center">
@@ -170,6 +170,48 @@
                         @endforeach
                     </div>
                 </section>
+                {{--<script>--}}
+                    {{--$('.add-to-cart').on('click', function () {--}}
+                        {{--var cart = $('.shopping-cart');--}}
+                        {{--var imgtodrag = $(this).parents('.item-cart-ct').find("img").eq(0);--}}
+                        {{--console.log(imgtodrag);--}}
+                        {{--alert(imgtodrag);--}}
+                        {{--if (imgtodrag) {--}}
+                            {{--var imgclone = imgtodrag.clone()--}}
+                                {{--.offset({--}}
+                                    {{--top: imgtodrag.offset().top,--}}
+                                    {{--left: imgtodrag.offset().left--}}
+                                {{--})--}}
+                                {{--.css({--}}
+                                    {{--'opacity': '0.5',--}}
+                                    {{--'position': 'absolute',--}}
+                                    {{--'height': '150px',--}}
+                                    {{--'width': '150px',--}}
+                                    {{--'z-index': '100'--}}
+                                {{--})--}}
+                                {{--.appendTo($('body'))--}}
+                                {{--.animate({--}}
+                                    {{--'top': cart.offset().top + 10,--}}
+                                    {{--'left': cart.offset().left + 10,--}}
+                                    {{--'width': 75,--}}
+                                    {{--'height': 75--}}
+                                {{--}, 1000, 'easeInOutExpo');--}}
+
+                            {{--setTimeout(function () {--}}
+                                {{--cart.effect("shake", {--}}
+                                    {{--times: 2--}}
+                                {{--}, 200);--}}
+                            {{--}, 1500);--}}
+
+                            {{--imgclone.animate({--}}
+                                {{--'width': 0,--}}
+                                {{--'height': 0--}}
+                            {{--}, function () {--}}
+                                {{--$(this).detach()--}}
+                            {{--});--}}
+                        {{--}--}}
+                    {{--});--}}
+                {{--</script>--}}
                 <!-- End Best Seller -->
 
                 <!-- Start Filter Bar -->
@@ -225,5 +267,6 @@
         </div>
     </section>
     <!-- End Most Search Product Area -->
+
 @endsection
 

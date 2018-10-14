@@ -11,8 +11,8 @@
             <div class="col-first">
                 <h1>Giỏ hàng</h1>
                 <nav class="d-flex align-items-center justify-content-start">
-                    <a href="#">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                    <a href="#">Giỏ hàng</a>
+                    <a href="{{route('index')}}">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                    <a href="{{route('cart')}}">Giỏ hàng</a>
                 </nav>
             </div>
         </div>
@@ -21,6 +21,7 @@
 <!-- End Banner Area -->
 
 <!-- Start Cart Area -->
+@if(Session::has('cart'))
 <div class="container">
     <div class="cart-title">
         <div class="row">
@@ -154,6 +155,13 @@
         <a href="#" class="view-btn color-2 text-heading"><span>Thanh toán</span></a>
     </div>
 </div>
+@else
+    <div class="container">
+        <div class="text-heading text-center">
+            Giỏ hàng trống
+        </div>
+    </div>
+@endif
 <!-- End Cart Area -->
 
 <!-- Start Most Search Product Area -->

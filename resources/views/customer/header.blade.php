@@ -35,10 +35,12 @@
                     </a>
                     <a href="{{route('cart')}}">
                         <li>
-                            <span class="lnr lnr-cart lnr-custom"></span>
+                            <span class="lnr lnr-cart lnr-custom shopping-cart"></span>
+                            @if(Session::has('cart'))
                             <div class="num-cart">
-                                <span>27</span>
+                                <span>{{Session('cart')->totalQty}}</span>
                             </div>
+                            @endif
                         </li>
                     </a>
                     @if(Auth::check())
