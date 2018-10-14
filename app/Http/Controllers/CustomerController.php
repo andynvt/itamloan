@@ -9,6 +9,7 @@ use App\Customer;
 use App\Feedback;
 use App\Product;
 use App\ProductColor;
+use App\ProductImage;
 use App\ProductType;
 use App\Promotion;
 use App\User;
@@ -244,7 +245,7 @@ class CustomerController extends Controller
             $oldCart = Session::get('cart');
             $cart = new Cart($oldCart);
             $color = ProductColor::all();
-//                 dd($cart);
+                 dd($cart);
             return view('customer.page.cart')->with([
                 'cart' => Session::get('cart'),
                 'product_cart' => $cart->items,
@@ -260,9 +261,12 @@ class CustomerController extends Controller
     public function getAddCart(Request $req, $id){
         $product = Product::find($id);
         $promo = Promotion::where('id',$product->id_promo)->get();
+        $id_color = ProductColor::where('id_product',$product->id)->value('id');
+        $color = ProductColor::where('id_product',$product->id)->value('color');
+        $image = ProductImage::where('id_color',$id_color)->value('image');
 
-//        dd($promo);
-        if($promo == null){
+
+        if($promo->count() == 0){
             $real_price = $product->price;
         }
         else{
@@ -271,8 +275,10 @@ class CustomerController extends Controller
 
         $oldCart = Session('cart')?Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        $cart->add($product, $id, $real_price);
+        $cart->add($product, $id, $real_price, $color, $image);
+//        dd($cart);
         $req->session()->put('cart',$cart);
+
         return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
     }
 

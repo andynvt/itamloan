@@ -126,7 +126,7 @@
                             <div class="content-details fadeIn-bottom">
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="#"><span class="lnr lnr-heart"></span></a>
-                                    <a href="#"><span class="lnr lnr-cart"></span></a>
+                                    <a href="{{route('addcart',$p->id)}}"><span class="lnr lnr-cart"></span></a>
                                 </div>
                             </div>
                         </div>
