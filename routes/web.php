@@ -55,6 +55,21 @@ Route::get('them-vao-gio/{id}',[
     'uses' => 'CustomerController@getAddCart'
 ]);
 
+Route::post('them-vao',[
+    'as' => 'addcartqty',
+    'uses' => 'CustomerController@postAddCartQty'
+]);
+
+Route::get('xoa-sp/{id}',[
+    'as' => 'delcart',
+    'uses' => 'CustomerController@getDelCart'
+]);
+
+Route::post('sua-gio-hang',[
+    'as' => 'updatecart',
+    'uses' => 'CustomerController@getUpdateCart'
+]);
+
 Route::get('thanh-toan',[
     'as' => 'checkout',
     'uses' => 'CustomerController@getCheckOut'

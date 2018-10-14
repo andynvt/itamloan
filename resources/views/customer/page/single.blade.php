@@ -58,20 +58,21 @@
                     </div>
                     @endif
                     <div>
-                        <form action="#">
+                        <form action="{{route('addcartqty')}}" method="post">
+                            {{ csrf_field() }}
                             <div class=" d-flex align-items-center mt-15">
                                 Chọn màu: &nbsp;&nbsp;
                                 <div class="default-select " id="default-select">
-                                    <select class="nice-select">
+                                    <select class="nice-select" name="color">
                                         @foreach($arr_color as $c => $value)
-                                        <option value="{{$value->color}}">{{$value->color}}</option>
+                                        <option value="{{$value->id}}">{{$value->color}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="quantity-container d-flex align-items-center mt-15">
                                 Số lượng:
-                                <input type="text" class="quantity-amount ml-15" value="1" />
+                                <input type="text" name="soluong" class="quantity-amount ml-15" value="1" />
                                 <div class="arrow-btn d-inline-flex flex-column">
                                     <button class="increase arrow" type="button" title="Increase Quantity">
                                         <span class="lnr lnr-chevron-up"></span></button>
@@ -81,7 +82,7 @@
                                 <span class="pl-3">{{$pd[0]->inventory}} sản phẩm có sẵn</span>
                             </div>
                             <div class="d-flex mt-20">
-                                <a href="#" type="submit" class="view-btn color-2"><span>Thêm vào giỏ</span></a>
+                                <button type="submit" class="view-btn color-2"><span>Thêm vào giỏ</span></button>
                                 <a href="#" class="like-btn"><span class="lnr lnr-heart"></span></a>
                             </div>
                         </form>
@@ -255,7 +256,7 @@
                             <form action="{{route('postfeedback')}}" method="post" class="main-form">
 
                             @if(!Auth::check())
-                                <h5 class="pb-3"><a href="{{route('login')}}">Đăng nhập</a> để gửi đánh giá</h5>
+                                <h5 class="text-left pb-3"><a href="{{route('login')}}">Đăng nhập</a> để gửi đánh giá</h5>
                             @endif
                             <div class="single-review-count mb-15 d-flex align-items-center">
                                 <div class="star-place">

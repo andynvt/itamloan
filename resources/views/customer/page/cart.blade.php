@@ -42,117 +42,68 @@
             </div>
         </div>
     </div>
-    <div class="cart-single-item">
-        <div class="row align-items-center">
-            <div class="col-md-5 col-12 mb-10">
-                <div class="product-item d-flex align-items-center">
-                    <img src="source/img/element/iphone%208%20plus.jpg" class="img-fluid-cart" alt="">
-                    <h5 class="pl-2">iPhone 8 Plus 256GB Space Gray</h5>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 pr-0">
-                <div class="price">25.000.000 ₫</div>
-            </div>
-            <div class="col-md-2 col-3 pr-0">
-                <div class="quantity-container d-flex align-items-center">
-                    <input type="text" class="quantity-amount" value="2" />
-                    <div class="arrow-btn d-inline-flex flex-column">
-                        <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
-                        <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
+    <form action="{{route('updatecart')}}" method="post">
+        @foreach($product_cart as $p)
+            {{ csrf_field() }}
+            <input type="hidden" name="ids[]" value="{{$p['item']['id']}}">
+            <div class="cart-single-item">
+                <div class="row align-items-center">
+                    <div class="col-md-5 col-12 mb-10">
+                        <div class="product-item d-flex align-items-center">
+                            <a href="{{route('single',$p['item']['id'])}}">
+                                <img src="storage/product/{{$p['image']}}" class="img-fluid-cart" alt="">
+                            </a>
+                            <a href="{{route('single',$p['item']['id'])}}">
+                                <h5 class="pl-2">{{$p['item']['name']}}</h5>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-4 pr-0">
+                        <div class="price">{{number_format( $p['price'] )}} ₫</div>
+                    </div>
+                    <div class="col-md-2 col-3 pr-0">
+                        <div class="quantity-container d-flex align-items-center">
+                            <input type="number" name="sls[]" class="quantity-amount" value="{{$p['qty']}}"/>
+                            <div class="arrow-btn d-inline-flex flex-column">
+                                <button class="increase arrow" type="button" title="Increase Quantity"><span
+                                            class="lnr lnr-chevron-up"></span></button>
+                                <button class="decrease arrow" type="button" title="Decrease Quantity"><span
+                                            class="lnr lnr-chevron-down"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-4 pr-0">
+                        <div class="total">{{number_format( $p['price'] * $p['qty'] )}} ₫</div>
+                    </div>
+                    <div class="col-md-1 col-1 x-del">
+                        <a href="{{route('delcart',$p['item']['id'])}}"
+                           onclick="return confirm('Xoá {{$p['item']['name']}} ra khỏi giỏ hàng ?')"
+                           class="genric-btn default circle btn-x-cart" style="height: 30px;"><span
+                                    class="lnr lnr-cross"></span></a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 col-4 pr-0">
-                <div class="total">50.000.000 ₫</div>
-            </div>
-            <div class="col-md-1 col-1 x-del">
-                <button class="genric-btn default circle btn-x-cart" style="height: 30px;"><span class="lnr lnr-cross"></span></button>
-            </div>
+        @endforeach
+        <div class="cupon-area d-flex align-items-center justify-content-end flex-wrap">
+            <button type="submit" class="view-btn color-2"><span>cập nhật giỏ hàng</span></button>
         </div>
-    </div>
-    <div class="cart-single-item">
-        <div class="row align-items-center">
-            <div class="col-md-5 col-12 mb-10">
-                <div class="product-item d-flex align-items-center">
-                    <img src="source/img/element/iphone%208%20plus.jpg" class="img-fluid-cart" alt="">
-                    <h5 class="pl-2">iPhone 8 Plus 256GB Space Gray</h5>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 pr-0">
-                <div class="price">25.000.000 ₫</div>
-            </div>
-            <div class="col-md-2 col-3 pr-0">
-                <div class="quantity-container d-flex align-items-center">
-                    <input type="text" class="quantity-amount" value="2" />
-                    <div class="arrow-btn d-inline-flex flex-column">
-                        <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
-                        <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 pr-0">
-                <div class="total">50.000.000 ₫</div>
-            </div>
-            <div class="col-md-1 col-1 x-del">
-                <button class="genric-btn default circle btn-x-cart" style="height: 30px;"><span class="lnr lnr-cross"></span></button>
-            </div>
-        </div>
-    </div>
-    <div class="cart-single-item">
-        <div class="row align-items-center">
-            <div class="col-md-5 col-12 mb-10">
-                <div class="product-item d-flex align-items-center">
-                    <img src="source/img/element/iphone%208%20plus.jpg" class="img-fluid-cart" alt="">
-                    <h5 class="pl-2">iPhone 8 Plus 256GB Space Gray</h5>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 pr-0">
-                <div class="price">25.000.000 ₫</div>
-            </div>
-            <div class="col-md-2 col-3 pr-0">
-                <div class="quantity-container d-flex align-items-center">
-                    <input type="text" class="quantity-amount" value="2" />
-                    <div class="arrow-btn d-inline-flex flex-column">
-                        <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
-                        <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 pr-0">
-                <div class="total">50.000.000 ₫</div>
-            </div>
-            <div class="col-md-1 col-1 x-del">
-                <button class="genric-btn default circle btn-x-cart" style="height: 30px;"><span class="lnr lnr-cross"></span></button>
-            </div>
-        </div>
+    </form>
+
+    <div class="subtotal-area d-flex align-items-center justify-content-end" style="border-bottom: none">
+        <h6 class="title text-uppercase">Phí vận chuyển</h6>
+        <div class="subtotal "><h6>{{number_format( $tax )}} ₫</h6></div>
     </div>
 
-    <div class="cupon-area d-flex align-items-center justify-content-end flex-wrap">
-        <a href="#" class="view-btn color-2"><span>cập nhật giỏ hàng</span></a>
 
-        <!--<div class="cuppon-wrap d-flex align-items-center flex-wrap">-->
-        <!--<div class="cupon-code">-->
-        <!--<input type="text">-->
-        <!--<button class="view-btn color-2"><span>Apply</span></button>-->
-        <!--</div>-->
-        <!--<a href="#" class="view-btn color-2 have-btn"><span>Have a Coupon?</span></a>-->
-        <!--<a href="#" class="view-btn color-2"><span>Update Cart</span></a>-->
-
-        <!--</div>-->
-    </div>
     <div class="subtotal-area d-flex align-items-center justify-content-end">
         <h4 class="title text-uppercase">tạm tính</h4>
-        <div class="subtotal ">100.000.000 ₫</div>
+        <div class="subtotal "><h4>{{number_format( $totalPriceFinal )}} ₫</h4></div>
     </div>
 
 
     <div class="shipping-area d-flex justify-content-end">
-        <!--<form action="#" class="d-inline-flex flex-column align-items-end">-->
-
-        <!--<input type="text" placeholder="Postcode/Zipcode" onfocus="this.placeholder=''" onblur="this.placeholder = 'Postcode/Zipcode'" required class="common-input mt-10">-->
-        <!--<button class="view-btn color-2 mt-10"><span>Update Details</span></button>-->
-        <!--</form>-->
-        <a href="#" class="view-btn color-2 text-heading"><span>Thanh toán</span></a>
+        <a href="{{route('checkout')}}" class="view-btn color-2 text-heading"><span>Thanh toán</span></a>
     </div>
 </div>
 @else
@@ -171,46 +122,17 @@
             <h3>ĐANG KHUYẾN MÃI</h3>
         </div>
         <div class="row mt-30">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r9.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Pixelstore fresh Strawberry</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r10.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Prixma MG2 Light Inkjet</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r11.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Pixelstore fresh Cherry</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00
-                            <del>$340.00</del>
+            @foreach($promo_product as $p)
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-search-product d-flex">
+                        <a href="{{route('single',$p->id)}}"><img src="storage/product/{{$p->image}}" alt="{{$p->name}}"></a>
+                        <div class="desc">
+                            <a href="{{route('single',$p->id)}}" class="text-km">{{$p->name}}</a>
+                            <div class="price gia-ban" style="font-size: 15px;"><span class="lnr lnr-tag"></span>{{ number_format( $p->price - $p->price * $p->percent / 100 )  }} ₫</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r12.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Pixelstore fresh Beans</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00
-                            <del>$340.00</del>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

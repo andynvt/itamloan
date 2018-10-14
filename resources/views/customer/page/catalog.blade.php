@@ -83,14 +83,14 @@
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
                 <div class="sorting">
-                    <select>
+                    <select class="nice-select">
                         <option value="1">Sắp xếp</option>
                         <option value="1">Giá tăng dần</option>
                         <option value="1">Giá giảm dần</option>
                     </select>
                 </div>
                 <div class="sorting mr-auto">
-                    <select>
+                    <select class="nice-select">
                         <option value="1">Hiển thị</option>
                         <option value="1">12</option>
                         <option value="1">24</option>
@@ -150,14 +150,14 @@
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
                 <div class="sorting">
-                    <select>
+                    <select class="nice-select">
                         <option value="1">Sắp xếp</option>
                         <option value="1">Giá tăng dần</option>
                         <option value="1">Giá giảm dần</option>
                     </select>
                 </div>
                 <div class="sorting mr-auto">
-                    <select>
+                    <select class="nice-select">
                         <option value="1">Hiển thị</option>
                         <option value="1">12</option>
                         <option value="1">24</option>

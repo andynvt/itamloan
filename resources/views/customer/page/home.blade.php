@@ -71,9 +71,11 @@
                     <a href="{{route('cart')}}">
                         <li>
                             <span class="lnr lnr-cart lnr-custom"></span>
-                            <div class="num-cart">
-                                <span>27</span>
-                            </div>
+                            @if(Session::has('cart'))
+                                <div class="num-cart">
+                                    <span>{{Session('cart')->totalQty}}</span>
+                                </div>
+                            @endif
                         </li>
                     </a>
                     @if(Auth::check())
@@ -119,9 +121,11 @@
             <a href="{{route('cart')}}">
                 <div class="nav-item-ct">
                     <span class="lnr lnr-cart lnr-custom"></span>
-                    <div class="num-cart-ct">
-                        <span>27</span>
-                    </div>
+                    @if(Session::has('cart'))
+                        <div class="num-cart-ct">
+                            <span>{{Session('cart')->totalQty}}</span>
+                        </div>
+                    @endif
                 </div>
             </a>
 

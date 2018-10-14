@@ -35,21 +35,21 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        view()->composer('customer.page.cart',function($view){
-            if(Session('cart')){
-                $oldCart = Session::get('cart');
-                $cart = new Cart($oldCart);
-                $color = ProductColor::all();
-//                 dd($cart);
-                $view->with([
-                    'cart'=>Session::get('cart'),
-                    'product_cart'=>$cart->items,
-                    'totalPrice'=>$cart->totalPrice,
-                    'totalQty'=>$cart->totalQty,
-                    'color'=>$color,
-                ]);
-            }
-        });
+//        view()->composer('customer.page.cart',function($view){
+//            if(Session('cart')){
+//                $oldCart = Session::get('cart');
+//                $cart = new Cart($oldCart);
+//                $color = ProductColor::all();
+////                 dd($cart);
+//                $view->with([
+//                    'cart'=>Session::get('cart'),
+//                    'product_cart'=>$cart->items,
+//                    'totalPrice'=>$cart->totalPrice,
+//                    'totalQty'=>$cart->totalQty,
+//                    'color'=>$color,
+//                ]);
+//            }
+//        });
 
     }
 

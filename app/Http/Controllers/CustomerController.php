@@ -14,6 +14,7 @@ use App\ProductType;
 use App\Promotion;
 use App\User;
 use Carbon\Carbon;
+use Faker\Provider\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -178,8 +179,9 @@ class CustomerController extends Controller
         $feedback = Feedback::leftjoin('customers as c','c.id','=','feedbacks.id_customer')
             ->where('id_product',$id)
             ->orderBy('stars','desc')
+            ->select('feedbacks.*','c.avatar','c.c_name')
             ->get();
-
+//dd($feedback);
         $fb_5 = Feedback::where('id_product',$id)
             ->where('stars',5)
             ->count();
@@ -241,20 +243,26 @@ class CustomerController extends Controller
     }
 
     public  function getCart(){
+        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('products.*','pi.image','promo.percent')
+            ->where('id_promo','<>','null')->get();
         if (Session('cart')) {
             $oldCart = Session::get('cart');
             $cart = new Cart($oldCart);
-            $color = ProductColor::all();
-                 dd($cart);
+
+            $totalPriceFinal = $cart->totalPrice + $cart->tax;
             return view('customer.page.cart')->with([
                 'cart' => Session::get('cart'),
                 'product_cart' => $cart->items,
-                'totalPrice' => $cart->totalPrice,
+                'tax' => $cart->tax,
+                'totalPriceFinal' => $totalPriceFinal,
                 'totalQty' => $cart->totalQty,
-                'color' => $color,
+                'promo_product' => $promo_product,
             ]);
         }
-        return view('customer.page.cart');
+        return view('customer.page.cart',compact('promo_product'));
 
     }
 
@@ -280,6 +288,58 @@ class CustomerController extends Controller
         $req->session()->put('cart',$cart);
 
         return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
+    }
+
+    public function postAddCartQty(Request $req){
+        $id_color = $req->color;
+        $sl = $req->soluong;
+        $id_product = ProductColor::where('id',$id_color)->value('id_product');
+        $product = Product::find($id_product);
+        $promo = Promotion::where('id',$product->id_promo)->get();
+        $color = ProductColor::where('id_product',$product->id)->value('color');
+        $image = ProductImage::where('id_color',$id_color)->value('image');
+
+        if($promo->count() == 0){
+            $real_price = $product->price;
+        }
+        else{
+            $real_price = $product->price - $product->price * $promo[0]->percent / 100;
+        }
+        $oldCart = Session('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->addCartQty($product, $id_product, $real_price, $sl, $color, $image);
+        $req->session()->put('cart',$cart);
+
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
+    }
+
+    public function getDelCart($id){
+        $product = Product::find($id);
+        $oldCart = Session::has('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+//        dd($cart);
+        $cart->removeItem($id);
+        if(count($cart->items) > 0){
+            Session::put('cart',$cart);
+        }
+        else{
+            Session::forget('cart');
+        }
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Xoá '.$product->name.' thành công!']);
+    }
+
+    public function getUpdateCart(Request $req){
+        $ids = $req->ids;
+        $sls = $req->sls;
+        $oldCart = Session::has('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $product = Product::find($ids);
+
+        $cart->update($product, $ids, $sls);
+        $req->session()->put('cart',$cart);
+
+//        dd($cart);
+        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Cập nhật giỏ hàng thành công!']);
     }
 
     public  function getCheckOut(){
