@@ -31,10 +31,14 @@ CSS
 <link rel="stylesheet" href="source/css/bootstrap.css">
 <link rel="stylesheet" href="source/css/main.css">
 <link rel="stylesheet" href="source/css/custom/style.css">
+
+<link rel="stylesheet" href="source/css/custom/effect.css">
 <link rel="stylesheet" href="source/css/custom/flashy.min.css">
 
 <link rel="stylesheet" href="source/css/custom/iziToast.min.css">
 
 {{--<script src="source/js/vendor/jquery-2.2.4.min.js"></script>--}}
+<script src="source/js/vendor/jquery-2.2.4.min.js"></script>
 
 <script src="source/js/jquery.flashy.min.js"></script>
+

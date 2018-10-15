@@ -10,9 +10,9 @@
                 <div class="col-first">
                     <h1>Thanh toán</h1>
                     <nav class="d-flex align-items-center justify-content-start">
-                        <a href="#">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                        <a href="#">Giỏ hàng<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                        <a href="#">Thanh toán</a>
+                        <a href="{{route('index')}}">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        <a href="{{route('cart')}}">Giỏ hàng<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        <a href="{{route('checkout')}}">Thanh toán</a>
                     </nav>
                 </div>
             </div>
@@ -23,7 +23,7 @@
     <div class="container">
         <div class="checkput-login">
             <div class="top-title">
-                <p>Giỏ hàng chưa chính xác? <a href="cart.html">Bấm vào đây để thay đổi</a></p>
+                <p>Giỏ hàng chưa chính xác? <a href="{{route('cart')}}">Bấm vào đây để thay đổi</a></p>
             </div>
         </div>
 
@@ -37,30 +37,30 @@
                     <h3 class="billing-title mt-20 mb-10">Thông tin giao hàng</h3>
                     <div class="row">
                         <div class="col-lg-12">
-                            <input type="text" placeholder="Họ tên *" onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên *'" required class="common-input">
+                            <input type="text" placeholder="Họ tên " onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên '" required class="common-input">
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" placeholder="Số điện thoại *" onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại *'" required class="common-input">
+                            <input type="text" placeholder="Số điện thoại " onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại '" required class="common-input">
                         </div>
                         <div class="col-lg-6">
-                            <input type="email" placeholder="Email *" onfocus="this.placeholder=''" onblur="this.placeholder = 'Email *'" required class="common-input">
+                            <input type="email" placeholder="Email " onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required class="common-input">
                         </div>
                         <div class="col-lg-12">
-                            <div class="sorting">
-                                <select name="city">
-                                    <option value="">Tỉnh / Thành phố *</option>
+                            <div class="sorting ">
+                                <select name="city" class="nice-select">
+                                    <option value="">Tỉnh / Thành phố </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="sorting">
-                                <select name="district">
-                                    <option value="">Quận / Huyện *</option>
+                                <select name="district" class="nice-select">
+                                    <option value="">Quận / Huyện </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <input type="text" placeholder="Địa chỉ *" onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ *'" required class="common-input">
+                            <input type="text" placeholder="Địa chỉ " onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
                         </div>
 
                         <div class="col-lg-12">

@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 
+
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -33,6 +34,31 @@
                     @endforeach
                 </div>
             </div>
+
+            <script>
+                $('.gallery').flashy({
+
+                    // Applied when a new item is shown
+                    showClass: 'fx-fadeIn',
+
+                    // Applied when a new item is hidden
+                    hideClass: 'fx-fadeOut',
+
+                    // Applied when a new item is shown on prev event
+                    prevShowClass: 'fx-bounceInLeft',
+
+                    // Applied when a new item is shown on next event
+                    nextShowClass: 'fx-bounceInRight',
+
+                    // Applied when the current item is hidden on prev event
+                    prevHideClass: 'fx-bounceOutRight',
+
+                    // Applied when the current item is hidden on next event
+                    nextHideClass: 'fx-bounceOutLeft',
+
+                });
+            </script>
+
             <div class="col-lg-7 col-md-7 col-12">
                 <div class="quick-view-content">
                     <div class="top">
@@ -273,12 +299,6 @@
                                         <label class="full" for="star1" title="Quá tệ - 1 sao"></label>
                                     </fieldset>
                                 </div>
-                                <script>
-                                    // $('.rating').on('change', function () {
-                                    //     var star = $('.rating input:checked').val();
-                                    //     $('.rating input').attr('disabled', 'disabled');
-                                    // });
-                                </script>
                             </div>
                                 {!! csrf_field() !!}
                                 @if(Auth::check())

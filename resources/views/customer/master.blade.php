@@ -29,6 +29,9 @@
 <script src="source/js/main.js"></script>
 
 
+
+
+
 <script>
     // search form
     $(function() {
@@ -46,29 +49,7 @@
     });
     // end search form
 </script>
-<script>
 
-    $('.gallery ').flashy({
-
-        // Applied when a new item is shown
-        showClass: 'fx-fadeIn',
-
-        // Applied when a new item is hidden
-        hideClass: 'fx-fadeOut',
-
-        // Applied when a new item is shown on prev event
-        prevShowClass: 'fx-bounceInLeft',
-
-        // Applied when a new item is shown on next event
-        nextShowClass: 'fx-bounceInRight',
-
-        // Applied when the current item is hidden on prev event
-        prevHideClass: 'fx-bounceOutRight',
-
-        // Applied when the current item is hidden on next event
-        nextHideClass: 'fx-bounceOutLeft',
-    });
-</script>
 @if(Session::has('flag'))
     <button class="form-control"  id="test" onclick="myAlertTop_warning()" style="display: none;">{{Session::get('message')}}</button>
 
