@@ -187,12 +187,27 @@
                                     </div>
                                     <img src="source/img/organic-food/pm.jpg" alt="" class="img-fluid">
                                 </div>
-                                <p class="payment-info collapse" id="paypal-text">Nhấp vào nút Paypal để thanh toán.<br><br>
+                                <p class="payment-info collapse" id="paypal-text">Click vào nút Paypal để thanh
+                                    toán.<br><br>
                                     <span id="paypal-button-container"></span>
+                                <div id="confirm" class="hidden payment-info">
+                                    <h6 class="mb-1">Gửi hàng đến:</h6>
+                                    <div class="mb-1"><span id="recipient"></span>, <span id="line1"></span>, <span
+                                                id="city"></span>
+                                    </div>
+                                    <div class="mb-1"><span id="state"></span>, <span id="zip"></span>, <span
+                                                id="country"></span>
+                                    </div>
+
+                                    <a id="confirmButton" class="view-btn color-2"><span>Hoàn tất thanh toán </span>
+                                        <span class="lnr lnr-checkmark-circle"></span></a>
+
+                                </div>
+                                <div id="thanks" class="hidden payment-info">
+                                    Thanh toán thành công, cảm ơn <span id="thanksname"></span>!
+                                </div>
                                 </p>
                             </div>
-
-
                             <div class="mt-20 d-flex align-items-start">
                                 <input type="checkbox" class="pixel-checkbox" id="cb-confim">
                                 <label for="login-4">Tôi đã đọc rõ và chấp nhận <a href="#" class="terms-link">Điều khoản & điều kiện</a></label>
@@ -207,6 +222,112 @@
                                     } else {
                                         $('#process-checkout').attr('disabled', true); //disable input
                                     }
+                                });
+                            </script>
+                            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+                            <script>
+                                function testAjax(handleData) {
+                                    var result = 0;
+                                    endpoint = 'live'
+                                    access_key = '6893d9fb74f8db1ce72c373e82114aab';
+                                    $.ajax({
+                                        url: 'http://apilayer.net/api/live?access_key=' + access_key + '&currencies=VND&source=USD&format=1',
+                                        dataType: 'jsonp',
+                                        success: function (json) {
+                                            // console.log(json.quotes.USDVND);
+                                            handleData(json.quotes.USDVND);
+                                            // return json.quotes.USDVND;
+                                        },
+
+                                    });
+                                }
+                                testAjax(function(output){
+                                    var amount = ('{{$totalPriceFinal}}' / output).toFixed(2);
+                                    // Render the PayPal button
+                                    paypal.Button.render({
+
+                                        // Set your environment
+
+                                        env: 'sandbox', // sandbox | production
+
+                                        // Specify the style of the button
+
+                                        style: {
+                                            label: 'paypal',
+                                            size: 'medium', // small | medium | large | responsive
+                                            shape: 'pill', // pill | rect
+                                            color: 'blue', // gold | blue | silver | black
+                                            tagline: false
+                                        },
+
+                                        // PayPal Client IDs - replace with your own
+                                        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+                                        client: {
+                                            sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                                            // production: '<insert production client id>'
+                                        },
+
+                                        payment: function(data, actions) {
+                                            return actions.payment.create({
+                                                payment: {
+                                                    transactions: [
+                                                        {
+                                                            amount: { total: amount, currency: 'USD' }
+                                                        }
+                                                    ]
+                                                }
+                                            });
+                                        },
+                                        onAuthorize: function(data, actions) {
+
+                                            // Get the payment details
+
+                                            return actions.payment.get().then(function(data) {
+
+                                                // Display the payment details and a confirmation button
+
+                                                var shipping = data.payer.payer_info.shipping_address;
+
+                                                document.querySelector('#recipient').innerText = shipping.recipient_name;
+                                                document.querySelector('#line1').innerText     = shipping.line1;
+                                                document.querySelector('#city').innerText      = shipping.city;
+                                                document.querySelector('#state').innerText     = shipping.state;
+                                                document.querySelector('#zip').innerText       = shipping.postal_code;
+                                                document.querySelector('#country').innerText   = shipping.country_code;
+
+                                                document.querySelector('#paypal-text').style.display = 'none';
+                                                document.querySelector('#paypal-button-container').style.display = 'none';
+                                                document.querySelector('#confirm').style.display = 'block';
+
+                                                // Listen for click on confirm button
+
+                                                document.querySelector('#confirmButton').addEventListener('click', function() {
+
+                                                    // Disable the button and show a loading message
+
+                                                    document.querySelector('#confirm').innerText = 'Vui lòng đợi...';
+                                                    document.querySelector('#confirm').disabled = true;
+
+                                                    // Execute the payment
+
+                                                    return actions.payment.execute().then(function() {
+
+                                                        // Show a thank-you note
+
+                                                        document.querySelector('#thanksname').innerText = shipping.recipient_name;
+
+                                                        document.querySelector('#confirm').style.display = 'none';
+                                                        document.querySelector('#thanks').style.display = 'block';
+
+                                                        window.onload = setTimeout(function(){
+                                                            window.location = '{{route('confirm')}}';
+                                                        }, 3000);
+                                                    });
+                                                });
+                                            });
+                                        }
+                                    }, '#paypal-button-container');
                                 });
                             </script>
                         </div>
