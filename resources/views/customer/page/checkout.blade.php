@@ -21,52 +21,108 @@
     <!-- End Banner Area -->
     <!-- Start Checkout Area -->
     <div class="container">
-        <div class="checkput-login">
+        <div class="checkput-login mb-2">
             <div class="top-title">
-                <p>Giỏ hàng chưa chính xác? <a href="{{route('cart')}}">Bấm vào đây để thay đổi</a></p>
+                <p>Giỏ hàng chưa chính xác? <a href="{{route('cart')}}">Click vào đây để thay đổi</a></p>
             </div>
         </div>
+        @if(!Auth::check())
+        <div class="checkput-login">
+            <div class="top-title">
+                <p>Bạn đã có tài khoản? <a data-toggle="collapse" href="#checkout-login" aria-expanded="false" aria-controls="checkout-login">Click vào đây để đăng nhập</a></p>
+            </div>
+            <div class="collapse" id="checkout-login">
+                <div class="checkout-login-collapse d-flex flex-column">
+                    <form action="{{route('postlogin')}}" method="post" class="d-block">
+                        {!! csrf_field() !!}
+                        <input type="hidden" value="checkoutpage" name="page">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <input type="email" name="email" placeholder="Email" onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Email'" required
+                                       class="common-input mt-10">
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="password" name="password" placeholder="Mật khẩu" onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Mật khẩu'" required class="common-input mt-10">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center flex-wrap">
+                            <button type="submit" class="view-btn color-2 mt-20 mr-20"><span>Đăng nhập</span></button>
+                            {{--<div class="mt-20">--}}
+                            {{--<input type="checkbox" class="pixel-checkbox" id="login-1">--}}
+                            {{--<label for="login-1">Remember me</label>--}}
+                            {{--</div>--}}
+                        </div>
+                    </form>
+                    {{--<a href="#" class="mt-10">Lost your password?</a>--}}
+                </div>
+            </div>
+        </div>
+        @endif
 
     </div>
     <!-- End Checkout Area -->
     <!-- Start Billing Details Form -->
     <div class="container">
         <form action="#" class="billing-form">
+            {!! csrf_field() !!}
             <div class="row">
                 <div class="col-lg-7 col-md-6">
                     <h3 class="billing-title mt-20 mb-10">Thông tin giao hàng</h3>
+                    @if(Auth::check())
                     <div class="row">
                         <div class="col-lg-12">
-                            <input type="text" placeholder="Họ tên " onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên '" required class="common-input">
+                            <input type="text" value="{{$cus[0]->c_name}}" placeholder="Họ tên " onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên '" required class="common-input">
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" placeholder="Số điện thoại " onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại '" required class="common-input">
+                            <input type="text" value="{{$cus[0]->phone}}" placeholder="Số điện thoại " onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại '" required class="common-input">
                         </div>
                         <div class="col-lg-6">
-                            <input type="email" placeholder="Email " onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required class="common-input">
+                            <input type="email" value="{{$cus[0]->email}}" placeholder="Email " onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required class="common-input">
                         </div>
                         <div class="col-lg-12">
-                            <div class="sorting ">
-                                <select name="city" class="nice-select">
-                                    <option value="">Tỉnh / Thành phố </option>
-                                </select>
-                            </div>
+                            <input type="text" value="{{$cus[0]->address}}" placeholder="Địa chỉ " onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
                         </div>
-                        <div class="col-lg-12">
-                            <div class="sorting">
-                                <select name="district" class="nice-select">
-                                    <option value="">Quận / Huyện </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" placeholder="Địa chỉ " onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
-                        </div>
-
                         <div class="col-lg-12">
                             <textarea placeholder="Ghi chú" onfocus="this.placeholder=''" onblur="this.placeholder = 'Ghi chú'" required class="common-textarea"></textarea>
                         </div>
                     </div>
+                    @else
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="text" placeholder="Họ tên " onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên '" required class="common-input">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Số điện thoại " onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại '" required class="common-input">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="email" placeholder="Email " onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required class="common-input">
+                            </div>
+                            <div class="col-lg-12">
+                                <select class="common-input mt-20 thanhpho nice-select" name="city" id="tinh-thanhpho" required>
+                                    <option value="">Tỉnh / Thành Phố</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <select class="common-input mt-20 mt-20 quan_huyen nice-select" name="district" id="quan-huyen" required>
+                                    <option value="1">Quận / Huyện</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <select class="common-input mt-20 quan_huyen nice-select" name="town" id="xa-phuong" required>
+                                    <option value="1">Xã / Phường</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" placeholder="Địa chỉ " onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea placeholder="Ghi chú" onfocus="this.placeholder=''" onblur="this.placeholder = 'Ghi chú'" required class="common-textarea"></textarea>
+                            </div>
+                        </div>
+                    @endif
+
                     <!--<div class="mt-20">-->
                     <!--<input type="checkbox" class="pixel-checkbox" id="login-3">-->
                     <!--<label for="login-3">Create an account?</label>-->
@@ -77,6 +133,7 @@
                     <!--<label for="login-6">Ship to a different address?</label>-->
                     <!--</div>-->
                 </div>
+                @if(Session::has('cart'))
                 <div class="col-lg-5 col-md-6">
                     <div class="order-wrapper ">
                         <h3 class="billing-title mb-10">Đơn hàng</h3>
@@ -85,18 +142,24 @@
                                 <h6>Sản phẩm</h6>
                                 <h6>Số lượng</h6>
                             </div>
+                            @foreach($product_cart as $p)
                             <div class="list-row d-flex justify-content-between">
-                                <div>iPhone 8 Plus 256GB Space Gray</div>
-                                <div>x 02</div>
+                                <div>{{$p['item']['name']}}</div>
+                                <div>x {{$p['qty']}}</div>
                             </div>
-                            <div class="list-row d-flex justify-content-between">
-                                <div>iPhone 8 Plus 256GB Space Gray</div>
-                                <div>x 02</div>
-                            </div>
+                            @endforeach
 
                             <div class="list-row d-flex justify-content-between">
+                                <h6>Tạm tính</h6>
+                                <div>{{number_format( $totalPrice )}} ₫</div>
+                            </div>
+                            <div class="list-row d-flex justify-content-between">
+                                <h6>Phí vận chuyển</h6>
+                                <div>{{number_format( $tax )}} ₫</div>
+                            </div>
+                            <div class="list-row d-flex justify-content-between">
                                 <h6>Tổng cộng</h6>
-                                <div class="total">100.000.000 ₫</div>
+                                <div class="total">{{number_format( $totalPriceFinal )}} ₫</div>
                             </div>
 
                             <div id="check-out-type">
@@ -131,13 +194,25 @@
 
 
                             <div class="mt-20 d-flex align-items-start">
-                                <input type="checkbox" class="pixel-checkbox" id="login-4">
+                                <input type="checkbox" class="pixel-checkbox" id="cb-confim">
                                 <label for="login-4">Tôi đã đọc rõ và chấp nhận <a href="#" class="terms-link">Điều khoản & điều kiện</a></label>
                             </div>
-                            <button class="view-btn color-2 w-100 mt-20"><span>Thanh toán</span></button>
+                            <button disabled class="view-btn color-2 w-100 mt-20" id="process-checkout"><span>Thanh toán</span></button>
+                            <script>
+                                $('#cb-confim').click(function () {
+                                    if ($(this).is(':checked')) {
+
+                                        $('#process-checkout').removeAttr('disabled'); //enable input
+
+                                    } else {
+                                        $('#process-checkout').attr('disabled', true); //disable input
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </form>
     </div>

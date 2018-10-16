@@ -343,7 +343,45 @@ class CustomerController extends Controller
     }
 
     public  function getCheckOut(){
-        return view('customer.page.checkout');
+        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('products.*','pi.image','promo.percent')
+            ->where('id_promo','<>','null')->get();
+
+        if (Session('cart')) {
+            $oldCart = Session::get('cart');
+            $cart = new Cart($oldCart);
+
+            $totalPriceFinal = $cart->totalPrice + $cart->tax;
+
+            if(Auth::check()){
+                $id = Auth::user()->id;
+                $cus = Customer::join('users as u','u.id','=','customers.id_user')
+                    ->where('id_user',$id)->get();
+//            dd($cus);
+                return view('customer.page.checkout')->with([
+                    'cart' => Session::get('cart'),
+                    'product_cart' => $cart->items,
+                    'tax' => $cart->tax,
+                    'totalPrice' => $cart->totalPrice,
+                    'totalPriceFinal' => $totalPriceFinal,
+                    'totalQty' => $cart->totalQty,
+                    'promo_product' => $promo_product,
+                    'cus' => $cus,
+                ]);
+            }
+            return view('customer.page.checkout')->with([
+                'cart' => Session::get('cart'),
+                'product_cart' => $cart->items,
+                'tax' => $cart->tax,
+                'totalPrice' => $cart->totalPrice,
+                'totalPriceFinal' => $totalPriceFinal,
+                'totalQty' => $cart->totalQty,
+                'promo_product' => $promo_product,
+            ]);
+        }
+        return view('customer.page.checkout',compact('promo_product'));
     }
 
     public  function getConfirm(){
@@ -361,7 +399,12 @@ class CustomerController extends Controller
     public function postLogin(Request $req){
         $cre = array('email'=>$req->email,'password'=>$req->password);
         if(Auth::attempt($cre)){
-            return redirect()->route('user')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+            if($req->page == "loginpage"){
+                return redirect()->route('user')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+            }
+            if($req->page == "checkoutpage"){
+                return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+            }
         }
         else{
             return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Đăng nhập thất bại']);

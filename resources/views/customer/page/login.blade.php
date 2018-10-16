@@ -34,7 +34,7 @@
                     <!--<div id="status">-->
                     <!--</div>-->
                     <form action="{{route('postlogin')}}" method="post">
-
+                        <input type="hidden" value="loginpage" name="page">
                         <input type="email" name="email" placeholder="Email " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Email '" required class="common-input mt-20">
                         <input type="password" name="password" placeholder="Mật khẩu " onfocus="this.placeholder=''"
