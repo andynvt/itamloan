@@ -19,7 +19,7 @@ class Cart
     }
 
     public function addCartQty($item, $id, $price, $qty, $color, $image){
-        $giohang = ['qty'=>$qty, 'price' => $price, 'color' => $color, 'image' => $image ,'item' => $item];
+        $giohang = ['qty'=>0, 'price' => $price, 'color' => $color, 'image' => $image ,'item' => $item];
         if($this->items){
             if(array_key_exists($id, $this->items)){
                 $giohang = $this->items[$id];

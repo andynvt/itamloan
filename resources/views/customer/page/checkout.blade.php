@@ -65,73 +65,82 @@
     <!-- End Checkout Area -->
     <!-- Start Billing Details Form -->
     <div class="container">
-        <form action="#" class="billing-form">
+        <form action="{{route('postcheckout')}}" method="post" id="formcheckout" class="billing-form">
             {!! csrf_field() !!}
             <div class="row">
                 <div class="col-lg-7 col-md-6">
                     <h3 class="billing-title mt-20 mb-10">Thông tin giao hàng</h3>
                     @if(Auth::check())
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <input type="text" value="{{$cus[0]->c_name}}" placeholder="Họ tên " onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên '" required class="common-input">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="text" name="name" value="{{$cus[0]->c_name}}" placeholder="Họ tên "
+                                       onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên '" required
+                                       class="common-input">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" name="phone" value="{{$cus[0]->phone}}" placeholder="Số điện thoại "
+                                       onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại '"
+                                       required class="common-input">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="email" name="email" value="{{$cus[0]->email}}" placeholder="Email "
+                                       onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required readonly
+                                       class="common-input">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" name="address" value="{{$cus[0]->shipping_address}}" placeholder="Địa chỉ "
+                                       onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ '" required
+                                       class="common-input">
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea name="note" placeholder="Ghi chú" onfocus="this.placeholder=''"
+                                          onblur="this.placeholder = 'Ghi chú'"
+                                          class="common-textarea"></textarea>
+                            </div>
                         </div>
-                        <div class="col-lg-6">
-                            <input type="text" value="{{$cus[0]->phone}}" placeholder="Số điện thoại " onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại '" required class="common-input">
-                        </div>
-                        <div class="col-lg-6">
-                            <input type="email" value="{{$cus[0]->email}}" placeholder="Email " onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required class="common-input">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" value="{{$cus[0]->address}}" placeholder="Địa chỉ " onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
-                        </div>
-                        <div class="col-lg-12">
-                            <textarea placeholder="Ghi chú" onfocus="this.placeholder=''" onblur="this.placeholder = 'Ghi chú'" required class="common-textarea"></textarea>
-                        </div>
-                    </div>
                     @else
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="text" placeholder="Họ tên " onfocus="this.placeholder=''" onblur="this.placeholder = 'Họ tên '" required class="common-input">
+                                <input type="text" name="name" placeholder="Họ tên " onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Họ tên '" required class="common-input">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" placeholder="Số điện thoại " onfocus="this.placeholder=''" onblur="this.placeholder = 'Số điện thoại '" required class="common-input">
+                                <input type="text" name="phone" placeholder="Số điện thoại " onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Số điện thoại '" required class="common-input">
                             </div>
                             <div class="col-lg-6">
-                                <input type="email" placeholder="Email " onfocus="this.placeholder=''" onblur="this.placeholder = 'Email '" required class="common-input">
+                                <input type="email" name="email" placeholder="Email " onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Email '" required class="common-input">
                             </div>
                             <div class="col-lg-12">
-                                <select class="common-input mt-20 thanhpho nice-select" name="city" id="tinh-thanhpho" required>
+                                <select class="common-input mt-20 thanhpho nice-select" name="city" id="tinh-thanhpho"
+                                        required>
                                     <option value="">Tỉnh / Thành Phố</option>
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <select class="common-input mt-20 mt-20 quan_huyen nice-select" name="district" id="quan-huyen" required>
+                                <select class="common-input mt-20 mt-20 quan_huyen nice-select" name="district"
+                                        id="quan-huyen" required>
                                     <option value="1">Quận / Huyện</option>
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <select class="common-input mt-20 quan_huyen nice-select" name="town" id="xa-phuong" required>
+                                <select class="common-input mt-20 quan_huyen nice-select" name="town" id="xa-phuong"
+                                        required>
                                     <option value="1">Xã / Phường</option>
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <input type="text" placeholder="Địa chỉ " onfocus="this.placeholder=''" onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
+                                <input type="text" name="address" placeholder="Địa chỉ " onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
                             </div>
                             <div class="col-lg-12">
-                                <textarea placeholder="Ghi chú" onfocus="this.placeholder=''" onblur="this.placeholder = 'Ghi chú'" required class="common-textarea"></textarea>
+                                <textarea placeholder="Ghi chú" onfocus="this.placeholder=''"
+                                          onblur="this.placeholder = 'Ghi chú'"
+                                          class="common-textarea"></textarea>
                             </div>
                         </div>
                     @endif
-
-                    <!--<div class="mt-20">-->
-                    <!--<input type="checkbox" class="pixel-checkbox" id="login-3">-->
-                    <!--<label for="login-3">Create an account?</label>-->
-                    <!--</div>-->
-                    <!--<h3 class="billing-title mt-20 mb-10">Billing Details</h3>-->
-                    <!--<div class="mt-20">-->
-                    <!--<input type="checkbox" class="pixel-checkbox" id="login-6">-->
-                    <!--<label for="login-6">Ship to a different address?</label>-->
-                    <!--</div>-->
                 </div>
                 @if(Session::has('cart'))
                 <div class="col-lg-5 col-md-6">
@@ -164,14 +173,14 @@
 
                             <div id="check-out-type">
                                 <div class="d-flex align-items-center mt-10">
-                                    <input class="pixel-radio" type="radio" id="cod" name="brand" data-parent="#check-out-type" data-toggle="collapse" data-target="#cod-text">
+                                    <input class="pixel-radio" type="radio" id="cod" name="payment" value="1" required checked data-parent="#check-out-type" aria-expanded="true" data-toggle="collapse" data-target="#cod-text">
                                     <label for="cod" class="bold-lable">Thanh toán khi nhận hàng - COD</label>
                                 </div>
-                                <p class="payment-info collapse" id="cod-text" style="">Nhận hàng, kiểm tra và
+                                <p class="payment-info collapse show" id="cod-text">Nhận hàng, kiểm tra và
                                     thanh toán. Không đúng sản phẩm hoặc không thích có thể trả lại.</p>
 
                                 <div class="d-flex align-items-center mt-10">
-                                    <input class="pixel-radio" type="radio" id="transfer" name="brand" data-parent="#check-out-type" data-toggle="collapse" data-target="#transfer-text">
+                                    <input class="pixel-radio" type="radio" id="transfer" name="payment" value="2" data-parent="#check-out-type" data-toggle="collapse" data-target="#transfer-text">
                                     <label for="transfer" class="bold-lable">Chuyển khoản ngân hàng</label>
                                 </div>
                                 <p class="payment-info collapse" id="transfer-text">Thông tin chuyển khoản:<br>
@@ -182,7 +191,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between mt-10">
                                     <div class="d-flex align-items-center">
-                                        <input class="pixel-radio" type="radio" id="paypal" name="brand" data-parent="#check-out-type" data-toggle="collapse" data-target="#paypal-text">
+                                        <input class="pixel-radio" type="radio" id="paypal" name="payment" value="3" data-parent="#check-out-type" data-toggle="collapse" data-target="#paypal-text">
                                         <label for="paypal" class="bold-lable">Thanh toán bằng Paypal</label>
                                     </div>
                                     <img src="source/img/organic-food/pm.jpg" alt="" class="img-fluid">
@@ -199,7 +208,7 @@
                                                 id="country"></span>
                                     </div>
 
-                                    <a id="confirmButton" class="view-btn color-2"><span>Hoàn tất thanh toán </span>
+                                    <a id="confirmButton" class="view-btn color-2"><span>xác nhận thanh toán </span>
                                         <span class="lnr lnr-checkmark-circle"></span></a>
 
                                 </div>
@@ -209,20 +218,33 @@
                                 </p>
                             </div>
                             <div class="mt-20 d-flex align-items-start">
+                                <input type="checkbox" class="hidden" id="cb-paypal">
                                 <input type="checkbox" class="pixel-checkbox" id="cb-confim">
                                 <label for="login-4">Tôi đã đọc rõ và chấp nhận <a href="#" class="terms-link">Điều khoản & điều kiện</a></label>
                             </div>
-                            <button disabled class="view-btn color-2 w-100 mt-20" id="process-checkout"><span>Thanh toán</span></button>
+                            <button disabled="disabled" type="submit" class="view-btn color-2 w-100 mt-20" id="process-checkout"><span>Thanh toán</span></button>
                             <script>
-                                $('#cb-confim').click(function () {
-                                    if ($(this).is(':checked')) {
-
-                                        $('#process-checkout').removeAttr('disabled'); //enable input
-
-                                    } else {
-                                        $('#process-checkout').attr('disabled', true); //disable input
-                                    }
+                                $('#paypal').click(function () {
+                                    $('#process-checkout').attr('disabled', true);
                                 });
+                                if($('#cod').is(':checked')){
+                                    $('#cb-confim').click(function () {
+                                        if ($('#cb-confim').is(':checked')){
+                                            $('#process-checkout').removeAttr('disabled');
+                                        } else{
+                                            $('#process-checkout').attr('disabled', true);
+                                        }
+                                    });
+                                };
+                                if($('#transfer').is(':checked')){
+                                    $('#cb-confim').click(function () {
+                                        if ($('#cb-confim').is(':checked')){
+                                            $('#process-checkout').removeAttr('disabled');
+                                        } else{
+                                            $('#process-checkout').attr('disabled', true);
+                                        }
+                                    });
+                                };
                             </script>
                             <script src="https://www.paypalobjects.com/api/checkout.js"></script>
                             <script>
@@ -234,11 +256,8 @@
                                         url: 'http://apilayer.net/api/live?access_key=' + access_key + '&currencies=VND&source=USD&format=1',
                                         dataType: 'jsonp',
                                         success: function (json) {
-                                            // console.log(json.quotes.USDVND);
                                             handleData(json.quotes.USDVND);
-                                            // return json.quotes.USDVND;
                                         },
-
                                     });
                                 }
                                 testAjax(function(output){
@@ -316,13 +335,33 @@
                                                         // Show a thank-you note
 
                                                         document.querySelector('#thanksname').innerText = shipping.recipient_name;
-
                                                         document.querySelector('#confirm').style.display = 'none';
                                                         document.querySelector('#thanks').style.display = 'block';
 
-                                                        window.onload = setTimeout(function(){
-                                                            window.location = '{{route('confirm')}}';
-                                                        }, 3000);
+                                                        document.querySelector('#cb-paypal').checked = true;
+                                                        // document.querySelector('#process-checkout').disabled = true;
+                                                        document.querySelector('#process-checkout').innerHTML = '<span>hoàn tất</span>';
+
+                                                        $('#cb-confim').click(function () {
+                                                            if ($(this).is(':checked')) {
+
+                                                                $('#process-checkout').removeAttr('disabled'); //enable input
+
+                                                            } else {
+                                                                $('#process-checkout').attr('disabled', true); //disable input
+                                                            }
+                                                        });
+
+                                                        // var submit = false;
+                                                        // $("#formcheckout").submit(function(e) {
+                                                        //     setTimeout(function(){
+                                                        //         submit = true;
+                                                        //         $("#cb-confim").check();
+                                                        //         $("#formcheckout").submit(); // if you want
+                                                        //     }, 1000);
+                                                        //     if(!submit)
+                                                        //         e.preventDefault();
+                                                        // });
                                                     });
                                                 });
                                             });

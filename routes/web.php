@@ -75,6 +75,11 @@ Route::get('thanh-toan',[
     'uses' => 'CustomerController@getCheckOut'
 ]);
 
+Route::post('gui-thanh-toan',[
+    'as' => 'postcheckout',
+    'uses' => 'CustomerController@postCheckout'
+]);
+
 Route::get('xac-nhan',[
     'as' => 'confirm',
     'uses' => 'CustomerController@getConfirm'
