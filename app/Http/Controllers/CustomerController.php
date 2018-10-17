@@ -386,62 +386,75 @@ class CustomerController extends Controller
         return view('customer.page.checkout',compact('promo_product'));
     }
 
-    public function postCheckout(Request $req){
+    public function postCheckout(Request $req)
+    {
         $note = $req->note;
-        if($req->payment == 3){
+        if ($req->payment == 3) {
             $bill_status = 2;
-        }else{
+        } else {
             $bill_status = 1;
         }
-        if(Auth::check()) {
-//            $id = Auth::user()->id;
-//            $id_customer = Customer::where('id_user',$id)->value('id');
-//            $c = Customer::find($id_customer);
-//
-//            $c->c_name = $req->name;
-//            $c->phone = $req->phone;
-//            $c->shipping_address = $req->address;
-//            $c->save();
-//
-//            $oldCart = Session::has('cart')?Session::get('cart'):null;
-//            $cart = new Cart($oldCart);
-//
-////            dd($cart);
-//
-//            $b = new Bill();
-//            $b->id_customer = $id_customer;
-//            $b->id_status = $bill_status;
-//            $b->id_payment =$req->payment;
-//            $b->total_price = $cart->totalPrice;
-//            $b->total_product = $cart->totalQty;
-//            $b->note = $req->note;
-//            $b->tax = $cart->tax;
-////            $b->save();
-//            foreach ($cart->items as $i => $value){
-//                //i: id  - value: từng item
-//                $bd = new BillDetail();
-//                $bd->id_bill = $b->id;
-//                $bd->id_product = $i;
-////                dd()
-//                $bd->p_color = $value['color'];
-//                $bd->quantity = $value['qty'];
-//                $bd->save();
-//            }
-//            $cart->forget
-            return redirect()->route('confirm')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đặt hàng thành công']);
-        }else{
-            //thanh toán chưa đăng nhập
-
-        }
-    }
-
-    public  function getConfirm(){
-        $oldCart = Session('cart')?Session::get('cart'):null;
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-//dd($cart);
 
-//        $qty_down = $cart->items->
-        return view('customer.page.confirm');
+        if (Auth::check()) {
+            //thanh toán có đăng nhập
+            $id = Auth::user()->id;
+            $id_customer = Customer::where('id_user', $id)->value('id');
+            $c = Customer::find($id_customer);
+
+            $c->c_name = $req->name;
+            $c->phone = $req->phone;
+            $c->shipping_address = $req->address;
+            $c->save();
+
+            $b = new Bill();
+            $b->id_customer = $id_customer;
+            $b->id_status = $bill_status;
+            $b->id_payment = $req->payment;
+            $b->total_price = $cart->totalPrice;
+            $b->total_product = $cart->totalQty;
+            $b->note = $note;
+            $b->tax = $cart->tax;
+            $b->save();
+        } else {
+            //thanh toán chưa đăng nhập
+            $u = new User();
+            $u->email = $req->email;
+            $u->password = Hash::make($req->password);
+            $u->save();
+
+            $c = new Customer();
+            $c->id_user = $u->id;
+            $c->c_name = $req->name;
+            $c->phone = $req->phone;
+            $c->shipping_address = $req->address . ' ,' . $req->town;
+            $c->save();
+
+            $b = new Bill();
+            $b->id_customer = $c->id;
+            $b->id_status = $bill_status;
+            $b->id_payment = $req->payment;
+            $b->total_price = $cart->totalPrice;
+            $b->total_product = $cart->totalQty;
+            $b->note = $note;
+            $b->tax = $cart->tax;
+            $b->save();
+        }
+        foreach ($cart->items as $i => $value) {
+            //i: id  - value: từng item
+            $bd = new BillDetail();
+            $bd->id_bill = $b->id;
+            $bd->id_product = $i;
+            $bd->p_color = $value['color'];
+            $bd->quantity = $value['qty'];
+            $bd->save();
+
+            $p = Product::find($i);
+            $p->inventory -= $value['qty'];
+        }
+        Session::forget('cart');
+        return redirect()->route('login')->with(['flag' => 'success', 'title' => 'Thông báo', 'message' => 'Đặt hàng thành công']);
     }
 
     public  function getFaq(){

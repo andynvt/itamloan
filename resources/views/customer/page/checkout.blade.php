@@ -112,6 +112,14 @@
                                 <input type="email" name="email" placeholder="Email " onfocus="this.placeholder=''"
                                        onblur="this.placeholder = 'Email '" required class="common-input">
                             </div>
+                            <div class="col-lg-6">
+                                <input type="password" name="password" id="password" placeholder="Mật khẩu " onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Mật khẩu '" required class="common-input">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="password" name="re-password" id="re-password" placeholder="Nhập lại mật khẩu " onfocus="this.placeholder=''"
+                                       onblur="this.placeholder = 'Nhập lại mật khẩu '" required class="common-input">
+                            </div>
                             <div class="col-lg-12">
                                 <select class="common-input mt-20 thanhpho nice-select" name="city" id="tinh-thanhpho"
                                         required>
@@ -135,11 +143,24 @@
                                        onblur="this.placeholder = 'Địa chỉ '" required class="common-input">
                             </div>
                             <div class="col-lg-12">
-                                <textarea placeholder="Ghi chú" onfocus="this.placeholder=''"
+                                <textarea placeholder="Ghi chú" name="note" onfocus="this.placeholder=''"
                                           onblur="this.placeholder = 'Ghi chú'"
                                           class="common-textarea"></textarea>
                             </div>
                         </div>
+                        <script>
+                            var password = document.getElementById("password");
+                            var confirm_password = document.getElementById("re-password");
+                            function validatePassword(){
+                                if(password.value != confirm_password.value) {
+                                    confirm_password.setCustomValidity("Nhập lại mật khẩu không đúng");
+                                } else {
+                                    confirm_password.setCustomValidity('');
+                                }
+                            }
+                            password.onchange = validatePassword;
+                            confirm_password.onkeyup = validatePassword;
+                        </script>
                     @endif
                 </div>
                 @if(Session::has('cart'))
@@ -173,10 +194,10 @@
 
                             <div id="check-out-type">
                                 <div class="d-flex align-items-center mt-10">
-                                    <input class="pixel-radio" type="radio" id="cod" name="payment" value="1" required checked data-parent="#check-out-type" aria-expanded="true" data-toggle="collapse" data-target="#cod-text">
+                                    <input class="pixel-radio" type="radio" id="cod" name="payment" value="1" required data-parent="#check-out-type" aria-expanded="true" data-toggle="collapse" data-target="#cod-text">
                                     <label for="cod" class="bold-lable">Thanh toán khi nhận hàng - COD</label>
                                 </div>
-                                <p class="payment-info collapse show" id="cod-text">Nhận hàng, kiểm tra và
+                                <p class="payment-info collapse" id="cod-text">Nhận hàng, kiểm tra và
                                     thanh toán. Không đúng sản phẩm hoặc không thích có thể trả lại.</p>
 
                                 <div class="d-flex align-items-center mt-10">
@@ -225,26 +246,23 @@
                             <button disabled="disabled" type="submit" class="view-btn color-2 w-100 mt-20" id="process-checkout"><span>Thanh toán</span></button>
                             <script>
                                 $('#paypal').click(function () {
+                                    $('#cb-confim').attr('disabled', true);
                                     $('#process-checkout').attr('disabled', true);
                                 });
-                                if($('#cod').is(':checked')){
+                                $('input[type="radio"]').click(function () {
+                                    var cked = $(this).attr('id');
                                     $('#cb-confim').click(function () {
-                                        if ($('#cb-confim').is(':checked')){
-                                            $('#process-checkout').removeAttr('disabled');
-                                        } else{
-                                            $('#process-checkout').attr('disabled', true);
+                                        if (cked != 'paypal'){
+                                            if ($('#cb-confim').is(':checked')) {
+                                                $('#process-checkout').removeAttr('disabled');
+                                            } else {
+                                                $('#process-checkout').attr('disabled', true);
+                                            }
+                                        }else{
                                         }
+
                                     });
-                                };
-                                if($('#transfer').is(':checked')){
-                                    $('#cb-confim').click(function () {
-                                        if ($('#cb-confim').is(':checked')){
-                                            $('#process-checkout').removeAttr('disabled');
-                                        } else{
-                                            $('#process-checkout').attr('disabled', true);
-                                        }
-                                    });
-                                };
+                                });
                             </script>
                             <script src="https://www.paypalobjects.com/api/checkout.js"></script>
                             <script>
@@ -341,12 +359,10 @@
                                                         document.querySelector('#cb-paypal').checked = true;
                                                         // document.querySelector('#process-checkout').disabled = true;
                                                         document.querySelector('#process-checkout').innerHTML = '<span>hoàn tất</span>';
-
+                                                        $('#cb-confim').removeAttr('disabled');
                                                         $('#cb-confim').click(function () {
                                                             if ($(this).is(':checked')) {
-
                                                                 $('#process-checkout').removeAttr('disabled'); //enable input
-
                                                             } else {
                                                                 $('#process-checkout').attr('disabled', true); //disable input
                                                             }

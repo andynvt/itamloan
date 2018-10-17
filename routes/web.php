@@ -80,11 +80,6 @@ Route::post('gui-thanh-toan',[
     'uses' => 'CustomerController@postCheckout'
 ]);
 
-Route::get('xac-nhan',[
-    'as' => 'confirm',
-    'uses' => 'CustomerController@getConfirm'
-]);
-
 Route::get('cau-hoi-thuong-gap',[
     'as' => 'faq',
     'uses' => 'CustomerController@getFaq'

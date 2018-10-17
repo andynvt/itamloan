@@ -89,19 +89,17 @@
 
     <!-- End My Account -->
     <script>
-        jQuery('.validatedForm').validate({
-            rules: {
-                "password": {
-                    minlength: 3
-                },
-                "re-password": {
-                    minlength: 3,
-                    equalTo : "#password"
-                }
+        var password = document.getElementById("password");
+        var confirm_password = document.getElementById("re-password");
+
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Nhập lại mật khẩu không đúng");
+            } else {
+                confirm_password.setCustomValidity('');
             }
-        });
-        $('#smbtn').click(function () {
-            console.log($('.validatedForm').valid());
-        });
+        }
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
     </script>
 @endsection
