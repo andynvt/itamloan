@@ -63,9 +63,11 @@
                     <a href="{{route('wishlist')}}">
                         <li class="nav-item">
                             <span class="lnr lnr-heart lnr-custom"></span>
-                            <div class="num-cart">
-                                <span>9</span>
-                            </div>
+                            @if(Session::has('wl'))
+                                <div class="num-cart">
+                                    <span>{{Session('wl')->totalQty}}</span>
+                                </div>
+                            @endif
                         </li>
                     </a>
                     <a href="{{route('cart')}}">

@@ -14,6 +14,7 @@ use App\ProductImage;
 use App\ProductType;
 use App\Promotion;
 use App\User;
+use App\WL;
 use Carbon\Carbon;
 use Faker\Provider\Color;
 use Illuminate\Http\Request;
@@ -30,7 +31,6 @@ class CustomerController extends Controller
         $ls_ipad = Catalog::where('id_type',2)->get();
         $ls_mac = Catalog::where('id_type',3)->get();
         $ls_watch = Catalog::where('id_type',4)->get();
-//        dd($ls_type);
         return view('customer.page.home', compact('ls_type','ls_ip','ls_ipad','ls_mac','ls_watch'));
     }
 
@@ -243,6 +243,64 @@ class CustomerController extends Controller
         return view('customer.page.ad');
     }
 
+    public function getWishlist(){
+        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('products.*','pi.image','promo.percent')
+            ->where('id_promo','<>','null')->get();
+
+        if (Session('wl')) {
+            $oldwl = Session::get('wl');
+            $wl = new WL($oldwl);
+//            dd($wl);
+            return view('customer.page.wishlist')->with([
+                'cart' => Session::get('wl'),
+                'product_cart' => $wl->items,
+                'totalQty' => $wl->totalQty,
+                'promo_product' => $promo_product,
+            ]);
+        }
+        return view('customer.page.wishlist',compact('promo_product'));
+    }
+
+    public function getDelWL($id){
+        $product = Product::find($id);
+        $oldwl = Session::has('wl')?Session::get('wl'):null;
+        $wl = new WL($oldwl);
+//        dd($wl);
+        $wl->removeItem($id);
+        if(count($wl->items) > 0){
+            Session::put('wl',$wl);
+        }
+        else{
+            Session::forget('wl');
+        }
+        return redirect()->back()->with(['flag'=>'warning','title'=>'Thông báo' ,'message'=>'Xoá '.$product->name.' thành công!']);
+    }
+
+    public function getAddWL(Request $req, $id){
+        $product = Product::find($id);
+        $promo = Promotion::where('id',$product->id_promo)->get();
+        $id_color = ProductColor::where('id_product',$product->id)->value('id');
+        $color = ProductColor::where('id_product',$product->id)->value('color');
+        $image = ProductImage::where('id_color',$id_color)->value('image');
+        if($promo->count() == 0){
+            $real_price = $product->price;
+        }
+        else{
+            $real_price = $product->price - $product->price * $promo[0]->percent / 100;
+        }
+
+        $oldwl = Session('wl')?Session::get('wl'):null;
+        $wl = new WL($oldwl);
+        $wl->add($product, $id,$real_price, $color, $image);
+//        dd($wl);
+        $req->session()->put('wl',$wl);
+        return redirect()->back()->with(['flag'=>'info','title'=>'Thông báo' ,'message'=>'Đã thích '.$product->name]);
+
+    }
+
     public  function getCart(){
         $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
@@ -288,7 +346,7 @@ class CustomerController extends Controller
 //        dd($cart);
         $req->session()->put('cart',$cart);
 
-        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
+        return redirect()->back()->with(['flag'=>'info','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
     }
 
     public function postAddCartQty(Request $req){
@@ -312,7 +370,7 @@ class CustomerController extends Controller
 //        dd($cart);
         $req->session()->put('cart',$cart);
 
-        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
+        return redirect()->back()->with(['flag'=>'info','title'=>'Thông báo' ,'message'=>'Thêm '.$product->name.' vào giỏ hàng thành công!']);
     }
 
     public function getDelCart($id){
@@ -327,7 +385,7 @@ class CustomerController extends Controller
         else{
             Session::forget('cart');
         }
-        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Xoá '.$product->name.' thành công!']);
+        return redirect()->back()->with(['flag'=>'warning','title'=>'Thông báo' ,'message'=>'Xoá '.$product->name.' thành công!']);
     }
 
     public function getUpdateCart(Request $req){
@@ -341,7 +399,7 @@ class CustomerController extends Controller
         $req->session()->put('cart',$cart);
 
 //        dd($cart);
-        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Cập nhật giỏ hàng thành công!']);
+        return redirect()->back()->with(['flag'=>'info','title'=>'Thông báo' ,'message'=>'Cập nhật giỏ hàng thành công!']);
     }
 
     public  function getCheckOut(){
@@ -572,7 +630,5 @@ class CustomerController extends Controller
         return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Xoá đánh giá thành công']);
     }
 
-    public  function getWishlist(){
-        return view('customer.page.wishlist');
-    }
+
 }

@@ -10,61 +10,75 @@
     <div class="p-3"></div>
     <section class="women-product-area pt-100" id="women">
         <div class="container">
+            @if(Session::has('wl'))
             <div class="countdown-content pb-40">
                 <div class="title text-center">
                     <h1 class="mb-10">Danh sách yêu thích</h1>
-                    <p>Gợi ý: Bấm dấu X để xoá sản phẩm khỏi danh sách yêu thích</p>
+                    <p>Gợi ý: Click vào <span class="lnr lnr-trash"></span> để xoá sản phẩm khỏi danh sách yêu thích</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208%20plus.jpg" alt="">
-                        <span class="lnr lnr-cross lnr-custom cus-x" onclick="return confirm('Bạn có chắc chắn?');"></span>
+
+                @foreach($product_cart as $p)
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4 single-product">
+                        <div class="content">
+                            <a href="{{route('single',$p['item']['id'])}}">
+                                <div class="content-overlay"></div>
+                            </a>
+                            <img class="content-image img-fluid d-block mx-auto img-cart"
+                                 src="storage/product/{{$p['image']}}" alt="{{$p['item']['name']}}">
+                            <div class="content-details fadeIn-bottom">
+                                <div class="bottom d-flex align-items-center justify-content-center">
+                                    <a href="{{route('delwl',$p['item']['id'])}}" onclick="return confirm('Bạn có chắc chắn?');"><span
+                                                class="lnr lnr-trash"></span></a>
+                                    <a href="{{route('addcart',$p['item']['id'])}}" class="add-to-cart"><span class="lnr lnr-cart"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price text-center mb-3">
+                            <a href="{{route('single',$p['item']['id'])}}">
+                            <h4 class="pt-3 pb-2">{{$p['item']['name']}}</h4>
+                                <h3 class="gia-ban">{{number_format( $p['price'] )}} ₫</h3>
+                            </a>
+                        </div>
                     </div>
-                    <div class="price text-center">
-                        <h4 class="pt-3 pb-2">iPhone 8 Plus 256GB Space Gray</h4>
-                        <h3>25.000.000 ₫</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208%20plus.jpg" alt="">
-                        <span class="lnr lnr-cross lnr-custom cus-x" onclick="return confirm('Bạn có chắc chắn?');"></span>
-                    </div>
-                    <div class="price text-center">
-                        <h4 class="pt-3 pb-2">iPhone 8 Plus 256GB Space Gray</h4>
-                        <h3>25.000.000 ₫</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208%20plus.jpg" alt="">
-                        <span class="lnr lnr-cross lnr-custom cus-x" onclick="return confirm('Bạn có chắc chắn?');"></span>
-                    </div>
-                    <div class="price text-center">
-                        <h4 class="pt-3 pb-2">iPhone 8 Plus 256GB Space Gray</h4>
-                        <h3>25.000.000 ₫</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="source/img/element/iphone%208%20plus.jpg" alt="">
-                        <span class="lnr lnr-cross lnr-custom cus-x" onclick="return confirm('Bạn có chắc chắn?');"></span>
-                    </div>
-                    <div class="price text-center">
-                        <h4 class="pt-3 pb-2">iPhone 8 Plus 256GB Space Gray</h4>
-                        <h3>25.000.000 ₫</h3>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
+            @else
+                <div class="container">
+                    <div class="text-heading text-center">
+                        Danh sách yêu thích trống
+                    </div>
+                </div>
+            @endif
+
         </div>
     </section>
     <div class="p-3"></div>
+
+    <!-- Start Most Search Product Area -->
+    <section class="section-half">
+        <div class="container">
+            <div class="organic-section-title text-center">
+                <h3>ĐANG KHUYẾN MÃI</h3>
+            </div>
+            <div class="row mt-30">
+                @foreach($promo_product as $p)
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-search-product d-flex">
+                            <a href="{{route('single',$p->id)}}"><img src="storage/product/{{$p->image}}" alt="{{$p->name}}"></a>
+                            <div class="desc">
+                                <a href="{{route('single',$p->id)}}" class="text-km">{{$p->name}}</a>
+                                <div class="price gia-ban" style="font-size: 15px;"><span class="lnr lnr-tag"></span>{{ number_format( $p->price - $p->price * $p->percent / 100 )  }} ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- End Most Search Product Area -->
     <!-- End women-product Area -->
 
     <!-- start footer Area -->

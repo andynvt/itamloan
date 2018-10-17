@@ -149,7 +149,7 @@
                                     <img class="content-image img-fluid d-block mx-auto img-cart" src="storage/product/{{$p->image}}" alt="{{$p->name}}">
                                     <div class="content-details fadeIn-bottom">
                                         <div class="bottom d-flex align-items-center justify-content-center">
-                                            <a href="#"><span class="lnr lnr-heart"></span></a>
+                                            <a href="{{route('addwl',$p->id)}}"><span class="lnr lnr-heart"></span></a>
                                             <a href="{{route('addcart',$p->id)}}" class="add-to-cart"><span class="lnr lnr-cart"></span></a>
                                         </div>
 

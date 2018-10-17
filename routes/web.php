@@ -50,6 +50,16 @@ Route::get('gio-hang',[
     'uses' => 'CustomerController@getCart'
 ]);
 
+Route::get('thich/{id}',[
+    'as' => 'addwl',
+    'uses' => 'CustomerController@getAddWL'
+]);
+
+Route::get('bo-thich/{id}',[
+    'as' => 'delwl',
+    'uses' => 'CustomerController@getDelWL'
+]);
+
 Route::get('them-vao-gio/{id}',[
     'as' => 'addcart',
     'uses' => 'CustomerController@getAddCart'

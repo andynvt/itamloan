@@ -368,15 +368,6 @@ input::-webkit-inner-spin-button {
     font-size: 25px;
 }
 
-.cus-x {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: #48AAF8;
-    font-size: 30px;
-    cursor: pointer;
-}
-
 .num-cart {
     display: flex;
     justify-content: center;
