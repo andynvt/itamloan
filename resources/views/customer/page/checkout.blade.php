@@ -194,14 +194,18 @@
 
                             <div id="check-out-type">
                                 <div class="d-flex align-items-center mt-10">
-                                    <input class="pixel-radio" type="radio" id="cod" name="payment" value="1" required data-parent="#check-out-type" aria-expanded="true" data-toggle="collapse" data-target="#cod-text">
+                                    <input class="pixel-radio" type="radio" id="cod" name="payment" value="1" required
+                                           data-parent="#check-out-type" aria-expanded="true" data-toggle="collapse"
+                                           data-target="#cod-text">
                                     <label for="cod" class="bold-lable">Thanh toán khi nhận hàng - COD</label>
                                 </div>
                                 <p class="payment-info collapse" id="cod-text">Nhận hàng, kiểm tra và
                                     thanh toán. Không đúng sản phẩm hoặc không thích có thể trả lại.</p>
 
                                 <div class="d-flex align-items-center mt-10">
-                                    <input class="pixel-radio" type="radio" id="transfer" name="payment" value="2" data-parent="#check-out-type" data-toggle="collapse" data-target="#transfer-text">
+                                    <input class="pixel-radio" type="radio" id="transfer" name="payment" value="2"
+                                           data-parent="#check-out-type" data-toggle="collapse"
+                                           data-target="#transfer-text">
                                     <label for="transfer" class="bold-lable">Chuyển khoản ngân hàng</label>
                                 </div>
                                 <p class="payment-info collapse" id="transfer-text">Thông tin chuyển khoản:<br>
@@ -212,10 +216,12 @@
                                 </p>
                                 <div class="d-flex justify-content-between mt-10">
                                     <div class="d-flex align-items-center">
-                                        <input class="pixel-radio" type="radio" id="paypal" name="payment" value="3" data-parent="#check-out-type" data-toggle="collapse" data-target="#paypal-text">
+                                        <input class="pixel-radio" type="radio" id="paypal" name="payment" value="3"
+                                               data-parent="#check-out-type" data-toggle="collapse"
+                                               data-target="#paypal-text">
                                         <label for="paypal" class="bold-lable">Thanh toán bằng Paypal</label>
                                     </div>
-                                    <img src="source/img/organic-food/pm.jpg" alt="" class="img-fluid">
+                                    {{--<img src="source/img/organic-food/pm.jpg" alt="" class="img-fluid">--}}
                                 </div>
                                 <p class="payment-info collapse" id="paypal-text">Click vào nút Paypal để thanh
                                     toán.<br><br>
@@ -237,7 +243,89 @@
                                     Thanh toán thành công, cảm ơn <span id="thanksname"></span>!
                                 </div>
                                 </p>
+
+                                {{--<div class="d-flex align-items-center mt-0">--}}
+                                    {{--<input class="pixel-radio" type="radio" id="stripe" name="payment" value="4"--}}
+                                           {{--data-parent="#check-out-type" data-toggle="collapse" data-target="#stripe-text">--}}
+                                    {{--<label for="stripe" class="bold-lable">Thẻ thanh toán</label>--}}
+                                {{--</div>--}}
+                                {{--<div class="payment-info collapse " id="stripe-text">--}}
+                                    {{--<form action="#" class="payment-info StripeElement" method="post" id="payment-form">--}}
+                                        {{--<div class="form-row">--}}
+                                            {{--<label for="card-element">--}}
+                                                {{--Credit or debit card--}}
+                                            {{--</label>--}}
+                                            {{--<div id="card-element">--}}
+                                                {{--<!-- A Stripe Element will be inserted here. -->--}}
+                                            {{--</div>--}}
+
+                                            {{--<!-- Used to display form errors. -->--}}
+                                            {{--<div id="card-errors" role="alert"></div>--}}
+                                        {{--</div>--}}
+
+                                        {{--<button>Submit Payment</button>--}}
+                                    {{--</form>--}}
+                                {{--</div>--}}
                             </div>
+                            {{--<script>--}}
+                                {{--// Create a Stripe client.--}}
+                                {{--var stripe = Stripe('pk_test_m1Q5TEAvEAXhTPlpttDUixnx');--}}
+
+                                {{--// Create an instance of Elements.--}}
+                                {{--var elements = stripe.elements();--}}
+
+                                {{--// Custom styling can be passed to options when creating an Element.--}}
+                                {{--// (Note that this demo uses a wider set of styles than the guide below.)--}}
+                                {{--var style = {--}}
+                                    {{--base: {--}}
+                                        {{--color: '#32325d',--}}
+                                        {{--lineHeight: '18px',--}}
+                                        {{--fontFamily: '"Helvetica Neue", Helvetica, sans-serif',--}}
+                                        {{--fontSmoothing: 'antialiased',--}}
+                                        {{--fontSize: '16px',--}}
+                                        {{--'::placeholder': {--}}
+                                            {{--color: '#aab7c4'--}}
+                                        {{--}--}}
+                                    {{--},--}}
+                                    {{--invalid: {--}}
+                                        {{--color: '#fa755a',--}}
+                                        {{--iconColor: '#fa755a'--}}
+                                    {{--}--}}
+                                {{--};--}}
+
+                                {{--// Create an instance of the card Element.--}}
+                                {{--var card = elements.create('card', {style: style});--}}
+
+                                {{--// Add an instance of the card Element into the `card-element` <div>.--}}
+                                {{--card.mount('#card-element');--}}
+
+                                {{--// Handle real-time validation errors from the card Element.--}}
+                                {{--card.addEventListener('change', function(event) {--}}
+                                    {{--var displayError = document.getElementById('card-errors');--}}
+                                    {{--if (event.error) {--}}
+                                        {{--displayError.textContent = event.error.message;--}}
+                                    {{--} else {--}}
+                                        {{--displayError.textContent = '';--}}
+                                    {{--}--}}
+                                {{--});--}}
+
+                                {{--// Handle form submission.--}}
+                                {{--var form = document.getElementById('payment-form');--}}
+                                {{--form.addEventListener('submit', function(event) {--}}
+                                    {{--event.preventDefault();--}}
+
+                                    {{--stripe.createToken(card).then(function(result) {--}}
+                                        {{--if (result.error) {--}}
+                                            {{--// Inform the user if there was an error.--}}
+                                            {{--var errorElement = document.getElementById('card-errors');--}}
+                                            {{--errorElement.textContent = result.error.message;--}}
+                                        {{--} else {--}}
+                                            {{--// Send the token to your server.--}}
+                                            {{--stripeTokenHandler(result.token);--}}
+                                        {{--}--}}
+                                    {{--});--}}
+                                {{--});--}}
+                            {{--</script>--}}
                             <div class="mt-20 d-flex align-items-start">
                                 <input type="checkbox" class="hidden" id="cb-paypal">
                                 <input type="checkbox" class="pixel-checkbox" id="cb-confim">

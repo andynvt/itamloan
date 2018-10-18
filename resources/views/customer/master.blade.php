@@ -25,10 +25,10 @@
 <script src="source/js/wNumb.js"></script>
 <script src="source/js/datacontry.js"></script>
 <script src="source/js/iziToast.min.js"></script>
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+{{--<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>--}}
 <script src="source/js/main.js"></script>
 
-
+<script src="https://js.stripe.com/v3/"></script>
 
 
 

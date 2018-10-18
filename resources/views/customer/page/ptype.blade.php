@@ -22,51 +22,44 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-4">
-                {{--<div class="sidebar-categories">--}}
-                {{--<div class="head">Loại sản phẩm</div>--}}
-                {{--<ul class="main-categories">--}}
-                {{--@foreach($gr_lssp as $gr => $value)--}}
-                {{--<li class="main-nav-list" ><a data-toggle="collapse" style="font-weight: 600" href="#loai-{{$value[0]->id}}" aria-expanded="false"--}}
-                {{--aria-controls="{{$gr}}"><span--}}
-                {{--class="lnr lnr-arrow-right"></span>{{$gr}}</a>--}}
-                {{--<ul class="collapse" id="loai-{{$value[0]->id}}" data-toggle="collapse" aria-expanded="false"--}}
-                {{--aria-controls="{{$gr}}">--}}
-                {{--@foreach($value as $v)--}}
-                {{--<li class="main-nav-list child">--}}
-                {{--<a href="{{route('catalog',$v->ctlid)}}">{{$v->catalog}}</a>--}}
-                {{--</li>--}}
-                {{--@endforeach--}}
-                {{--</ul>--}}
-                {{--</li>--}}
-                {{--@endforeach--}}
-                {{--</ul>--}}
-                {{--</div>--}}
+                <div class="sidebar-categories">
+                    {{--<div class="head">Loại sản phẩm</div>--}}
+                    {{--<ul class="main-categories">--}}
+                    {{--@foreach($gr_lssp as $gr => $value)--}}
+                    {{--<li class="main-nav-list"><a data-toggle="collapse" style="font-weight: 600"--}}
+                    {{--href="#loai-{{$value[0]->id}}" aria-expanded="false"--}}
+                    {{--aria-controls="{{$gr}}"><span--}}
+                    {{--class="lnr lnr-arrow-right"></span>{{$gr}}</a>--}}
+                    {{--<ul class="collapse" id="loai-{{$value[0]->id}}" data-toggle="collapse"--}}
+                    {{--aria-expanded="false"--}}
+                    {{--aria-controls="{{$gr}}">--}}
+                    {{--@foreach($value as $v)--}}
+                    {{--<li class="main-nav-list child">--}}
+                    {{--<a href="{{route('catalog',$v->ctlid)}}" style="z-index: 99999">{{$v->catalog}}</a>--}}
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                </div>
                 <div class="sidebar-filter mt-0">
                     <div class="top-filter-head">Lọc sản phẩm</div>
-                    {{--<div class="common-filter">--}}
-                    {{--<div class="head">Đã chọn</div>--}}
-                    {{--<ul>--}}
-                    {{--<li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>iPhone</li>--}}
-                    {{--<li class="filter-list"><i class="fa fa-window-close" aria-hidden="true"></i>Đen nhám</li>--}}
-                    {{--</ul>--}}
-                    {{--</div>--}}
                     <div class="common-filter">
                         <div class="head">Loại</div>
                         <form action="#">
-                            <ul>
+                            <ul class="">
                                 @foreach($gr_lssp as $gr => $value)
                                     <li class="main-nav-list li-text-loai">
                                         <a data-toggle="collapse" class="text-loai" href="#dong-{{$value[0]->id}}"
                                            aria-expanded="false"
-                                           aria-controls="{{$gr}}"><span
-                                                    class="lnr lnr-arrow-right "></span>{{$gr}}</a>
-                                        <ul class="collapse " id="dong-{{$value[0]->id}}" data-toggle="collapse"
+                                           aria-controls="{{$gr}}"><span class="lnr lnr-arrow-right"></span> {{$gr}}</a>
+                                        <ul class="collapse filters" id="dong-{{$value[0]->id}}" data-toggle="collapse"
                                             aria-expanded="false"
                                             aria-controls="{{$gr}}">
                                             @foreach($value as $v)
                                                 <li class="filter-list">
-                                                    <input class="pixel-radio" type="radio"
-                                                           id="{{$v->ctlid}}" name="type">
+                                                    <input class="pixel-radio" type="radio" value=".ctl-{{$v->ctlid}}" id="{{$v->ctlid}}" name="type">
                                                     <label for="{{$v->ctlid}}">{{$v->catalog}}
                                                     </label>
                                                 </li>
@@ -80,9 +73,10 @@
                     <div class="common-filter">
                         <div class="head">Màu</div>
                         <form action="#">
-                            <ul>
-                                @foreach($color as $cl)
-                                    <li class="filter-list"><input class="pixel-radio" type="radio" id="{{$cl->color}}" name="color"><label for="{{$cl->color}}">{{$cl->color}}</label></li>
+                            <ul class="filters">
+                                <li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-color" name="filter"><label for="all-color">Tất cả</label></li>
+                            @foreach($color as $cl)
+                                    <li class="filter-list"><input class="pixel-radio"  value=".{{$cl->color}}" type="radio" id="{{$cl->color}}" name="filter"><label for="{{$cl->color}}">{{$cl->color}}</label></li>
                                 @endforeach
                             </ul>
                         </form>
@@ -136,83 +130,92 @@
 
                 <!-- Start Best Seller -->
                 <section class="lattest-product-area pb-40 category-list">
-                    <div class="row">
-                        @foreach($product as $p)
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
-                                <div class="content item-cart-ct" >
-                                    <a href="{{route('single',$p->id)}}">
-                                        <div class="content-overlay"></div>
-                                    </a>
-                                    @if($p->percent != null)
-                                        <span class="sp-discount">-{{$p->percent}}%</span>
-                                    @endif
-                                    <img class="content-image img-fluid d-block mx-auto img-cart" src="storage/product/{{$p->image}}" alt="{{$p->name}}">
-                                    <div class="content-details fadeIn-bottom">
-                                        <div class="bottom d-flex align-items-center justify-content-center">
-                                            <a href="{{route('addwl',$p->id)}}"><span class="lnr lnr-heart"></span></a>
-                                            <a href="{{route('addcart',$p->id)}}" class="add-to-cart"><span class="lnr lnr-cart"></span></a>
+                    <div class="">
+                        <div class="grid">
+                            @foreach($product as $p)
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item {{$p->color}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
+                                    <div class="single-product">
+                                        <div class="content item-cart-ct">
+                                            <a href="{{route('single',$p->id)}}">
+                                                <div class="content-overlay"></div>
+                                            </a>
+                                            @if($p->percent != null)
+                                                <span class="sp-discount">-{{$p->percent}}%</span>
+                                            @endif
+                                            <img class="content-image img-fluid d-block mx-auto img-cart"
+                                                 src="storage/product/{{$p->image}}" alt="{{$p->name}}">
+                                            <div class="content-details fadeIn-bottom">
+                                                <div class="bottom d-flex align-items-center justify-content-center">
+                                                    <a href="{{route('addwl',$p->id)}}"><span
+                                                                class="lnr lnr-heart"></span></a>
+                                                    <a href="{{route('addcart',$p->id)}}" class="add-to-cart"><span
+                                                                class="lnr lnr-cart"></span></a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="price text-center">
+                                            <a href="{{route('single',$p->id)}}">
+                                                <div class="p-1"></div>
+                                                <h5>{{$p->name}}</h5>
+                                                @if($p->percent != null)
+                                                    <span class="de-text">{{number_format($p->price)}} ₫</span>
+                                                @endif
+                                                <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}}
+                                                    ₫</h3>
+                                            </a>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div class="price text-center">
-                                    <a href="{{route('single',$p->id)}}">
-                                        <div class="p-1"></div>
-                                        <h5>{{$p->name}}</h5>
-                                        @if($p->percent != null)
-                                            <span class="de-text">{{number_format($p->price)}} ₫</span>
-                                        @endif
-                                        <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}} ₫</h3>
-                                    </a>
-                                </div>
 
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </section>
-                {{--<script>--}}
-                    {{--$('.add-to-cart').on('click', function () {--}}
-                        {{--var cart = $('.shopping-cart');--}}
-                        {{--var imgtodrag = $(this).parents('.item-cart-ct').find("img").eq(0);--}}
-                        {{--console.log(imgtodrag);--}}
-                        {{--alert(imgtodrag);--}}
-                        {{--if (imgtodrag) {--}}
-                            {{--var imgclone = imgtodrag.clone()--}}
-                                {{--.offset({--}}
-                                    {{--top: imgtodrag.offset().top,--}}
-                                    {{--left: imgtodrag.offset().left--}}
-                                {{--})--}}
-                                {{--.css({--}}
-                                    {{--'opacity': '0.5',--}}
-                                    {{--'position': 'absolute',--}}
-                                    {{--'height': '150px',--}}
-                                    {{--'width': '150px',--}}
-                                    {{--'z-index': '100'--}}
-                                {{--})--}}
-                                {{--.appendTo($('body'))--}}
-                                {{--.animate({--}}
-                                    {{--'top': cart.offset().top + 10,--}}
-                                    {{--'left': cart.offset().left + 10,--}}
-                                    {{--'width': 75,--}}
-                                    {{--'height': 75--}}
-                                {{--}, 1000, 'easeInOutExpo');--}}
+            {{--<script>--}}
+            {{--$('.add-to-cart').on('click', function () {--}}
+            {{--var cart = $('.shopping-cart');--}}
+            {{--var imgtodrag = $(this).parents('.item-cart-ct').find("img").eq(0);--}}
+            {{--console.log(imgtodrag);--}}
+            {{--alert(imgtodrag);--}}
+            {{--if (imgtodrag) {--}}
+            {{--var imgclone = imgtodrag.clone()--}}
+            {{--.offset({--}}
+            {{--top: imgtodrag.offset().top,--}}
+            {{--left: imgtodrag.offset().left--}}
+            {{--})--}}
+            {{--.css({--}}
+            {{--'opacity': '0.5',--}}
+            {{--'position': 'absolute',--}}
+            {{--'height': '150px',--}}
+            {{--'width': '150px',--}}
+            {{--'z-index': '100'--}}
+            {{--})--}}
+            {{--.appendTo($('body'))--}}
+            {{--.animate({--}}
+            {{--'top': cart.offset().top + 10,--}}
+            {{--'left': cart.offset().left + 10,--}}
+            {{--'width': 75,--}}
+            {{--'height': 75--}}
+            {{--}, 1000, 'easeInOutExpo');--}}
 
-                            {{--setTimeout(function () {--}}
-                                {{--cart.effect("shake", {--}}
-                                    {{--times: 2--}}
-                                {{--}, 200);--}}
-                            {{--}, 1500);--}}
+            {{--setTimeout(function () {--}}
+            {{--cart.effect("shake", {--}}
+            {{--times: 2--}}
+            {{--}, 200);--}}
+            {{--}, 1500);--}}
 
-                            {{--imgclone.animate({--}}
-                                {{--'width': 0,--}}
-                                {{--'height': 0--}}
-                            {{--}, function () {--}}
-                                {{--$(this).detach()--}}
-                            {{--});--}}
-                        {{--}--}}
-                    {{--});--}}
-                {{--</script>--}}
-                <!-- End Best Seller -->
+            {{--imgclone.animate({--}}
+            {{--'width': 0,--}}
+            {{--'height': 0--}}
+            {{--}, function () {--}}
+            {{--$(this).detach()--}}
+            {{--});--}}
+            {{--}--}}
+            {{--});--}}
+            {{--</script>--}}
+            <!-- End Best Seller -->
 
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
@@ -267,6 +270,6 @@
         </div>
     </section>
     <!-- End Most Search Product Area -->
-
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 @endsection
 

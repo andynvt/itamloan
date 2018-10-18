@@ -48,7 +48,7 @@ class CustomerController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
-            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent')
+            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
             ->where('pt.id',$type)
             ->groupBy('products.id')
             ->get();
