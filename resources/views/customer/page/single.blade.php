@@ -98,7 +98,7 @@
                             </div>
                             <div class="quantity-container d-flex align-items-center mt-15">
                                 Số lượng:
-                                <input type="text" name="soluong" class="quantity-amount ml-15" value="1" />
+                                <input type="number" name="soluong" id="quantity-amount" class="quantity-amount ml-15" min="1" max="{{$pd[0]->inventory}}" value="1" />
                                 <div class="arrow-btn d-inline-flex flex-column">
                                     <button class="increase arrow" type="button" title="Increase Quantity">
                                         <span class="lnr lnr-chevron-up"></span></button>
@@ -108,10 +108,23 @@
                                 <span class="pl-3">{{$pd[0]->inventory}} sản phẩm có sẵn</span>
                             </div>
                             <div class="d-flex mt-20">
-                                <button type="submit" class="view-btn color-2"><span>Thêm vào giỏ</span></button>
-                                <a href="#" class="like-btn"><span class="lnr lnr-heart"></span></a>
+                                <button type="submit" onclick="validateQuantity()" class="view-btn color-2"><span>Thêm vào giỏ</span></button>
+                                <a href="{{route('addwl',$pd[0]->id)}}" class="like-btn"><span class="lnr lnr-heart"></span></a>
                             </div>
                         </form>
+
+                        <script>
+                            function validateQuantity(){
+                                var qty = document.getElementById("quantity-amount");
+                                var maxqty = "{{$pd[0]->inventory}}";
+
+                                if(qty.value > maxqty) {
+                                    qty.setCustomValidity('Kho chỉ còn '+maxqty+' sản phẩm');
+                                } else {
+                                    qty.setCustomValidity('');
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
             </div>

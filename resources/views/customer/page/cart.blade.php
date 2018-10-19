@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md-2 col-3 pr-0">
                         <div class="quantity-container d-flex align-items-center">
-                            <input type="number" name="sls[]" class="quantity-amount" value="{{$p['qty']}}"/>
+                            <input type="number" name="sls[]" id="quantity-amount-{{$p['item']['id']}}" class="quantity-amount" value="{{$p['qty']}}"/>
                             <div class="arrow-btn d-inline-flex flex-column">
                                 <button class="increase arrow" type="button" title="Increase Quantity"><span
                                             class="lnr lnr-chevron-up"></span></button>
@@ -84,11 +84,32 @@
                     </div>
                 </div>
             </div>
+            <script>
+                function validateQuantity{{$p['item']['id']}}(){
+                    var qty = document.getElementById("quantity-amount-{{$p['item']['id']}}");
+                    var maxqty = "{{$p['item']['inventory']}}";
+
+                    if(qty.value > maxqty) {
+                        qty.setCustomValidity('Kho chỉ còn '+maxqty+' sản phẩm');
+                    } else {
+                        qty.setCustomValidity('');
+                    }
+                }
+
+            </script>
         @endforeach
+            <script>
+                function genValidate() {
+                    @foreach($product_cart as $p)
+                    validateQuantity{{$p['item']['id']}}();
+                    @endforeach
+                }
+            </script>
         <div class="cupon-area d-flex align-items-center justify-content-end flex-wrap">
-            <button type="submit" class="view-btn color-2"><span>cập nhật giỏ hàng</span></button>
+            <button type="submit" onclick="genValidate(); " class="view-btn color-2"><span>cập nhật giỏ hàng</span></button>
         </div>
     </form>
+
 
     <div class="subtotal-area d-flex align-items-center justify-content-end" style="border-bottom: none">
         <h6 class="title text-uppercase">Phí vận chuyển</h6>

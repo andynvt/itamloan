@@ -270,6 +270,5 @@
         </div>
     </section>
     <!-- End Most Search Product Area -->
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 @endsection
 

@@ -246,6 +246,7 @@ $(document).ready(function () {
 
     function createBindings(quantityContainer) {
         var quantityAmount = quantityContainer.getElementsByClassName('quantity-amount')[0];
+        // var quantityAmount = quantityContainer.getElementById('#quantity-amount');
         var increase = quantityContainer.getElementsByClassName('increase')[0];
         var decrease = quantityContainer.getElementsByClassName('decrease')[0];
         increase.addEventListener('click', function () {
@@ -265,7 +266,7 @@ $(document).ready(function () {
     function increaseValue(quantityAmount) {
         value = parseInt(quantityAmount.value, 10);
 
-        console.log(quantityAmount, quantityAmount.value);
+        // console.log(quantityAmount, quantityAmount.value);
 
         value = isNaN(value) ? 0 : value;
         value++;

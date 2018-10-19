@@ -390,6 +390,8 @@
 <script src="source/js/ion.rangeSlider.js"></script>
 <script src="source/js/jquery.magnific-popup.min.js"></script>
 <script src="source/js/owl.carousel.min.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
 <script src="source/js/main.js"></script>
 
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
