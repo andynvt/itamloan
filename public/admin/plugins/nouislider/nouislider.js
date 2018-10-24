@@ -1892,9 +1892,9 @@ function closure ( target, options, originalOptions ){
 
 
 	// Throw an error if the slider was already initialized.
-	if ( scope_Target.noUiSlider ) {
-		throw new Error('Slider was already initialized.');
-	}
+//	if ( scope_Target.noUiSlider ) {
+//		throw new Error('Slider was already initialized.');
+//	}
 
 	// Create the base element, initialise HTML and set classes.
 	// Add handles and links.
@@ -1936,9 +1936,9 @@ function closure ( target, options, originalOptions ){
 	// Run the standard initializer
 	function initialize ( target, originalOptions ) {
 
-		if ( !target.nodeName ) {
-			throw new Error('noUiSlider.create requires a single element.');
-		}
+//		if ( !target.nodeName ) {
+//			throw new Error('noUiSlider.create requires a single element.');
+//		}
 
 		// Test the options and create the slider environment;
 		var options = testOptions( originalOptions, target ),
