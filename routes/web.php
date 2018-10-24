@@ -115,7 +115,7 @@ Route::get('dang-xuat',[
     'uses' => 'CustomerController@postLogout'
 ]);
 
-Route::get('tim-kiem',[
+Route::post('tim-kiem',[
     'as' => 'search',
     'uses' => 'CustomerController@getSearch'
 ]);

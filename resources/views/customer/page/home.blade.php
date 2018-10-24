@@ -37,9 +37,11 @@
 <!-- form search -->
 <div id="home-search-form" style="display: hide">
     <button type="button" class="close">×</button>
-    <form>
-        <input type="search" value="" placeholder="Nhập từ khoá..." />
-        <button type="submit" class="btn-sr view-btn color-2"><span>Tìm kiếm</span> <span class="lnr lnr-arrow-right"></span></button>
+    <form action="{{route('search')}}" method="post">
+        {{ csrf_field() }}
+        <input type="search" name="key" placeholder="Nhập từ khoá..."/>
+        <button type="submit" class="btn-sr view-btn color-2"><span>Tìm kiếm</span> <span
+                    class="lnr lnr-arrow-right"></span></button>
     </form>
 </div>
 <a href="#" id="scroll" style="display: none;"><span></span></a>
@@ -245,7 +247,7 @@
         </div>
         <div class="row">
             @foreach($ls_ip as $ip)
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-10 ">
                     <a href="{{route('catalog',$ip->id)}}">
                         <div class="content">
                             <div class="content-overlay ovl-spc"></div>

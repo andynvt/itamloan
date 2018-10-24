@@ -47,7 +47,6 @@
                     <div class="top-filter-head">Lọc sản phẩm</div>
                     <div class="common-filter">
                         <div class="head">Loại</div>
-                        <form action="#">
                             <ul class="">
                                 @foreach($gr_lssp as $gr => $value)
                                     <li class="main-nav-list li-text-loai">
@@ -68,19 +67,16 @@
                                     </li>
                                 @endforeach
                             </ul>
-                        </form>
                     </div>
                     <div class="common-filter">
                         <div class="head">Màu</div>
-                        <form action="#">
                             <ul class="filters">
                                 <li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-color" name="filter"><label for="all-color">Tất cả</label></li>
                             @foreach($color as $cl)
                                     <li class="filter-list"><input class="pixel-radio"  value=".{{$cl->color}}" type="radio" id="{{$cl->color}}" name="filter"><label for="{{$cl->color}}">{{$cl->color}}</label></li>
                                 @endforeach
                             </ul>
-                        </form>
-                    </div>
+                        </div>
                     <div class="common-filter">
                         <div class="head">Giá</div>
                         <div class="price-range-area">
@@ -150,10 +146,24 @@
                                                                 class="lnr lnr-heart"></span></a>
                                                     <a href="{{route('addcart',$p->id)}}" class="add-to-cart"><span
                                                                 class="lnr lnr-cart"></span></a>
+                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{route('single',$p->id)}}" target="_blank">
+                                                        <span class="fa fa-facebook" aria-hidden="true"></span>
+                                                    </a>
                                                 </div>
 
                                             </div>
                                         </div>
+                                        <div ></div>
+                                        <script>
+                                            (function(d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id)) return;
+                                                js = d.createElement(s); js.id = id;
+                                                js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1&appId=1687905644786313&autoLogAppEvents=1';
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));
+                                        </script>
+
                                         <div class="price text-center">
                                             <a href="{{route('single',$p->id)}}">
                                                 <div class="p-1"></div>

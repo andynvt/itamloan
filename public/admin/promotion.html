@@ -1,0 +1,577 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Colored Card | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../../../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!--WaitMe Css-->
+    <link href="../../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../../../css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../../../css/themes/all-themes.css" rel="stylesheet" />
+    <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <link href="../../../css/custom.css" rel="stylesheet" />
+</head>
+
+<section>
+
+    <body class="theme-indigo">
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="preloader">
+                    <div class="spinner-layer pl-red">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Please wait...</p>
+            </div>
+        </div>
+        <!-- #END# Page Loader -->
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <!-- #END# Overlay For Sidebars -->
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <div class="search-icon">
+                <i class="material-icons">search</i>
+            </div>
+            <input type="text" placeholder="Nhập nội dung tìm kiếm...">
+            <div class="close-search">
+                <i class="material-icons">close</i>
+            </div>
+        </div>
+        <!-- #END# Search Bar -->
+        <!-- Top Bar -->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                    <a href="javascript:void(0);" class="bars"></a>
+                    <a class="navbar-brand" href="index.html">ADMIN - ITAMLOAN</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Call Search -->
+                        <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                        <!-- #END# Call Search -->
+                        <!-- Notifications -->
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <i class="material-icons">notifications</i>
+                                <span class="label-count">7</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">THÔNG BÁO</li>
+                                <li class="body">
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <div class="icon-circle bg-light-green">
+                                                    <i class="material-icons">person_add</i>
+                                                </div>
+                                                <div class="menu-info">
+                                                    <h4>12 new members joined</h4>
+                                                    <p>
+                                                        <i class="material-icons">access_time</i> 14 mins ago
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <div class="icon-circle bg-cyan">
+                                                    <i class="material-icons">add_shopping_cart</i>
+                                                </div>
+                                                <div class="menu-info">
+                                                    <h4>4 sales made</h4>
+                                                    <p>
+                                                        <i class="material-icons">access_time</i> 22 mins ago
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <div class="icon-circle bg-red">
+                                                    <i class="material-icons">delete_forever</i>
+                                                </div>
+                                                <div class="menu-info">
+                                                    <h4><b>Nancy Doe</b> deleted account</h4>
+                                                    <p>
+                                                        <i class="material-icons">access_time</i> 3 hours ago
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <div class="icon-circle bg-orange">
+                                                    <i class="material-icons">mode_edit</i>
+                                                </div>
+                                                <div class="menu-info">
+                                                    <h4><b>Nancy</b> changed name</h4>
+                                                    <p>
+                                                        <i class="material-icons">access_time</i> 2 hours ago
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <div class="icon-circle bg-blue-grey">
+                                                    <i class="material-icons">comment</i>
+                                                </div>
+                                                <div class="menu-info">
+                                                    <h4><b>John</b> commented your post</h4>
+                                                    <p>
+                                                        <i class="material-icons">access_time</i> 4 hours ago
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <div class="icon-circle bg-light-green">
+                                                    <i class="material-icons">cached</i>
+                                                </div>
+                                                <div class="menu-info">
+                                                    <h4><b>John</b> updated status</h4>
+                                                    <p>
+                                                        <i class="material-icons">access_time</i> 3 hours ago
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <div class="icon-circle bg-purple">
+                                                    <i class="material-icons">settings</i>
+                                                </div>
+                                                <div class="menu-info">
+                                                    <h4>Settings updated</h4>
+                                                    <p>
+                                                        <i class="material-icons">access_time</i> Yesterday
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="javascript:void(0);">View All Notifications</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- #END# Notifications -->
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- #Top Bar -->
+        <section>
+            <!-- Left Sidebar -->
+            <aside id="leftsidebar" class="sidebar">
+                <!-- User Info -->
+                <div class="user-info">
+                    <div class="image">
+                        <img src="images/admin.png" width="48" height="48" alt="User" />
+                    </div>
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+                        <div class="email">admin@itamloan.vn</div>
+                        <div class="btn-group user-helper-dropdown">
+                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- #User Info -->
+                <!-- Menu -->
+                <div class="menu">
+                    <ul class="list">
+                        <li>
+                            <a href="index.html">
+                                <i class="material-icons">pie_chart</i>
+                                <span>THỐNG KÊ</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="promotion.html">
+                                <i class="material-icons">monetization_on</i>
+                                <span>KHUYẾN MÃI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="product_type.html">
+                                <i class="material-icons">dashboard</i>
+                                <span>LOẠI SẢN PHẨM</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="catalog.html">
+                                <i class="material-icons">layers</i>
+                                <span>DÒNG SẢN PHẨM</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="product.html">
+                                <i class="material-icons">shop</i>
+                                <span>SẢN PHẨM</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="bill.html">
+                                <i class="material-icons">view_list</i>
+                                <span>ĐƠN HÀNG</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customer.html">
+                                <i class="material-icons">people</i>
+                                <span>KHÁCH HÀNG</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="feedback.html">
+                                <i class="material-icons">feedback</i>
+                                <span>ĐÁNH GIÁ</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- #Menu -->
+            </aside>
+            <!-- #END# Left Sidebar -->
+
+            <!-- Right Sidebar -->
+            <aside id="rightsidebar" class="right-sidebar">
+                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                    <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                </ul>
+            </aside>
+            <!-- #END# Right Sidebar -->
+        </section>
+
+
+
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="block-header">
+                    <h2>CHƯƠNG TRÌNH KHUYẾN MÃI</h2>
+                    <div class="m-t-10"></div>
+                    <button type="button" class="btn bg-deep-purple waves-effect" data-toggle="modal" data-target="#them_km">
+                        <i class="material-icons">add</i>
+                        <span>THÊM MỚI</span>
+                    </button>
+                </div>
+                <!-- Basic Example -->
+                <div class="row clearfix">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header bg-deep-purple">
+                                <h2 style="width: 80%">
+                                    Chào đón XS / XS Max
+                                </h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">edit</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="delete-btn">
+                                            <i class="material-icons" data-type="cancel" data-toggle="tooltip" data-placement="top" data-original-title="Xoá">delete</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <div><strong>Bắt đầu:</strong> &nbsp;12/12/2012 </div>
+                                <div><strong>Kết thúc:</strong> 12/12/2012 </div>
+                                <hr>
+                                <p>
+                                    <strong>Mô tả: </strong>Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                                </p>
+                                <hr>
+                                <img src="images/br.jpeg" alt="" style="width: 100%">
+                                <span class="promo-discount bg-deep-orange">-5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header bg-green">
+                                <h2>
+                                    Chào đón XS / XS Max
+                                </h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <div><strong>Bắt đầu:</strong> &nbsp;12/12/2012 </div>
+                                <div><strong>Kết thúc:</strong> 12/12/2012 </div>
+                                <hr>
+                                <p>
+                                    <strong>Mô tả: </strong>Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                                </p>
+                                <hr>
+                                <img src="images/br.jpeg" alt="" style="width: 100%">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header bg-green">
+                                <h2>
+                                    Chào đón XS / XS Max
+                                </h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <div><strong>Bắt đầu:</strong> &nbsp;12/12/2012 </div>
+                                <div><strong>Kết thúc:</strong> 12/12/2012 </div>
+                                <hr>
+                                <p>
+                                    <strong>Mô tả: </strong>Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                                </p>
+                                <hr>
+                                <img src="images/br.jpeg" alt="" style="width: 100%">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header bg-green">
+                                <h2>
+                                    Chào đón XS / XS Max
+                                </h2>
+                                <ul class="header-dropdown m-r-0">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <div><strong>Bắt đầu:</strong> &nbsp;12/12/2012 </div>
+                                <div><strong>Kết thúc:</strong> 12/12/2012 </div>
+                                <hr>
+                                <p>
+                                    <strong>Mô tả: </strong>Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                                </p>
+                                <hr>
+                                <img src="images/br.jpeg" alt="" style="width: 100%">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal thêm khuyến mãi mới -->
+        <div class="modal fade" id="them_km" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">THÊM KHUYẾN MÃI</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="promo_name">Tên</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="promo_name" id="promo_name" class="form-control" placeholder="Tên CTKM">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix m-t-10">
+                                <b>Date</b>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">date_range</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="text" class="form-control date" placeholder="Ex: 30/07/2016">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="promo_info">Mô tả</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="password" name="promo_info" id="promo_info" class="form-control" placeholder="Mô tả về CTKM">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect">THÊM</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">HUỶ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jquery Core Js -->
+        <script src="../../../plugins/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core Js -->
+        <script src="../../../plugins/bootstrap/js/bootstrap.js"></script>
+
+        <!-- Select Plugin Js -->
+        <script src="../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+        <!-- Slimscroll Plugin Js -->
+        <script src="../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script src="../../../plugins/node-waves/waves.js"></script>
+
+        <!-- Wait Me Plugin Js -->
+        <script src="../../../plugins/waitme/waitMe.js"></script>
+
+        <!-- Custom Js -->
+        <script src="../../../js/admin.js"></script>
+        <script src="../../../js/pages/cards/colored.js"></script>
+
+        <!-- Demo Js -->
+        <script src="../../../js/demo.js"></script>
+        <script src="../../js/pages/ui/tooltips-popovers.js"></script>
+        <script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+
+        <script src="../../js/pages/ui/dialogs.js"></script>
+        <script src="../../js/pages/forms/advanced-form-elements.js"></script>
+
+        <script>
+            $(function() {
+                $('.delete-btn i').on('click', function() {
+                    var type = $(this).data('type');
+                    //                    alert(type);
+                    if (type === 'cancel') {
+                        showCancelMessage();
+                    }
+                });
+            });
+
+            function showCancelMessage() {
+                swal({
+                    title: "Bạn có chắn chắn?",
+                    text: "Bạn sẽ không thể khôi phục được khuyến mãi này!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3F51B5",
+                    confirmButtonText: "Xoá",
+                    cancelButtonText: "Huỷ",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function(isConfirm) {
+                    if (isConfirm) {
+                        swal("Đã xoá!", "Khuyến mãi đã được xoá", "success");
+                    } else {
+                        swal("Đã huỷ", "Khuyến mãi vẫn còn", "error");
+                    }
+                });
+            }
+
+
+            $(function() {
+                $('.js-modal-buttons .btn').on('click', function() {
+                    var color = $(this).data('color');
+                    $('#mdModal .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
+                    $('#mdModal').modal('show');
+                });
+            });
+        </script>
+
+    </body>
+
+</html>

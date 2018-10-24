@@ -15,19 +15,19 @@ class WL
     }
 
     public function add($item, $id, $price, $color, $image){
-        $wl = ['qty'=>0, 'price' => $price, 'color' => $color, 'image' => $image ,'item' => $item];
+        $wl = ['price' => $price, 'color' => $color, 'image' => $image ,'item' => $item];
         if($this->items){
             if(array_key_exists($id, $this->items)){
                 $wl = $this->items[$id];
             }
         }
-        $wl['qty']++;
+//        $wl['qty']++;
         $this->items[$id] = $wl;
         $this->totalQty++;
     }
 
     public function removeItem($id){
-        $this->totalQty -= $this->items[$id]['qty'];
+        $this->totalQty --;
         unset($this->items[$id]);
     }
 }

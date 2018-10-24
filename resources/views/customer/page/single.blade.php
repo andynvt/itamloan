@@ -110,6 +110,9 @@
                             <div class="d-flex mt-20">
                                 <button type="submit" onclick="validateQuantity()" class="view-btn color-2"><span>Thêm vào giỏ</span></button>
                                 <a href="{{route('addwl',$pd[0]->id)}}" class="like-btn"><span class="lnr lnr-heart"></span></a>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{route('single',$pd[0]->id)}}" class="like-btn" target="_blank">
+                                    <span class="fa fa-facebook" aria-hidden="true"></span>
+                                </a>
                             </div>
                         </form>
 
@@ -292,51 +295,74 @@
                     <div class="col-lg-6">
                         <div class="add-review">
                             <h3>Gửi đánh giá</h3>
-                            <form action="{{route('postfeedback')}}" method="post" class="main-form">
 
                             @if(!Auth::check())
-                                <h5 class="text-left pb-3"><a href="{{route('login')}}">Đăng nhập</a> để gửi đánh giá</h5>
-                            @endif
-                            <div class="single-review-count mb-15 d-flex align-items-center">
-                                <div class="star-place">
-                                    <fieldset class="rating ">
-                                        <input type="radio" id="star5" name="rating" value="5" />
-                                        <label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
-                                        <input type="radio" id="star4" name="rating" value="4" />
-                                        <label class="full" for="star4" title="Tốt - 4 sao"></label>
-                                        <input type="radio" id="star3" name="rating" value="3" />
-                                        <label class="full" for="star3" title="Ổn - 3 sao"></label>
-                                        <input type="radio" id="star2" name="rating" value="2" />
-                                        <label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
-                                        <input type="radio" id="star1" name="rating" value="1" />
-                                        <label class="full" for="star1" title="Quá tệ - 1 sao"></label>
-                                    </fieldset>
-                                </div>
-                            </div>
-                                {!! csrf_field() !!}
-                                @if(Auth::check())
+                                    <h5 class="text-left pb-3"><a data-toggle="collapse" href="#checkout-login"
+                                                                  aria-expanded="false" aria-controls="checkout-login">Đăng
+                                            nhập</a> để gửi đánh giá</h5>
+                                    <div class="collapse" id="checkout-login">
+                                            <form action="{{route('postlogin')}}" method="post" class="d-block">
+                                                {!! csrf_field() !!}
+                                                <input type="hidden" value="checkoutpage" name="page">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <input type="email" name="email" placeholder="Email"
+                                                               onfocus="this.placeholder=''"
+                                                               onblur="this.placeholder = 'Email'" required
+                                                               class="common-input mt-10">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="password" name="password" placeholder="Mật khẩu"
+                                                               onfocus="this.placeholder=''"
+                                                               onblur="this.placeholder = 'Mật khẩu'" required
+                                                               class="common-input mt-10">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    <button type="submit" class="view-btn color-2 mt-20 mr-20"><span>Đăng nhập</span>
+                                                    </button>
+                                                    {{--<div class="mt-20">--}}
+                                                    {{--<input type="checkbox" class="pixel-checkbox" id="login-1">--}}
+                                                    {{--<label for="login-1">Remember me</label>--}}
+                                                    {{--</div>--}}
+                                                </div>
+                                            </form>
+                                            {{--<a href="#" class="mt-10">Lost your password?</a>--}}
+                                    </div>
+                            @else
+                                <form action="{{route('postfeedback')}}" method="post" class="main-form">
+
+                                <div class="single-review-count mb-15 d-flex align-items-center">
+                                        <div class="star-place">
+                                            <fieldset class="rating ">
+                                                <input type="radio" id="star5" name="rating" value="5" />
+                                                <label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
+                                                <input type="radio" id="star4" name="rating" value="4" />
+                                                <label class="full" for="star4" title="Tốt - 4 sao"></label>
+                                                <input type="radio" id="star3" name="rating" value="3" />
+                                                <label class="full" for="star3" title="Ổn - 3 sao"></label>
+                                                <input type="radio" id="star2" name="rating" value="2" />
+                                                <label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
+                                                <input type="radio" id="star1" name="rating" value="1" />
+                                                <label class="full" for="star1" title="Quá tệ - 1 sao"></label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    {!! csrf_field() !!}
                                     <input type="text" value="{{$cus[0]->c_name}}" placeholder="Tên" onfocus="this.placeholder=''"
                                            onblur="this.placeholder = 'Tên'" required class="common-input">
                                     <input type="email" value="{{$cus[0]->email}}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
                                            placeholder="Email" onfocus="this.placeholder=''"
-                                           onblur="this.placeholder = 'Email'"  readonly class="common-input">
-                                    <input type="text" value="{{$cus[0]->phone}}" readonly placeholder="Số điện thoại" onfocus="this.placeholder=''"
+                                           onblur="this.placeholder = 'Email'"  disabled class="common-input">
+                                    <input type="text" value="{{$cus[0]->phone}}" disabled placeholder="Số điện thoại" onfocus="this.placeholder=''"
                                            onblur="this.placeholder = 'Số điện thoại'" required class="common-input">
-                                @else
+                                    <textarea placeholder="Nội dung đánh giá" name="review" onfocus="this.placeholder=''"
+                                              onblur="this.placeholder = 'Nội dung đánh giá'" required
+                                              class="common-textarea"></textarea>
+                                    <button type="submit" class="view-btn color-2"><span>Gửi</span></button>
 
-                                    <input type="text" placeholder="Tên" onfocus="this.placeholder=''"
-                                           onblur="this.placeholder = 'Tên'" required class="common-input">
-                                    <input type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                           placeholder="Email" onfocus="this.placeholder=''"
-                                           onblur="this.placeholder = 'Email'" class="common-input">
-                                    <input type="text" placeholder="Số điện thoại" onfocus="this.placeholder=''"
-                                           onblur="this.placeholder = 'Số điện thoại'" required class="common-input">
-                                @endif
-                                <input type="hidden" value="{{$pd[0]->id}}" name="id_product">
-                                <textarea placeholder="Nội dung đánh giá" name="review" onfocus="this.placeholder=''"
-                                          onblur="this.placeholder = 'Nội dung đánh giá'" required
-                                          class="common-textarea"></textarea>
-                                <button type="submit" class="view-btn color-2"><span>Gửi</span></button>
+                            @endif
+
                             </form>
                         </div>
                     </div>

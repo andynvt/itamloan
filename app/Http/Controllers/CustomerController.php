@@ -295,7 +295,6 @@ class CustomerController extends Controller
         $oldwl = Session('wl')?Session::get('wl'):null;
         $wl = new WL($oldwl);
         $wl->add($product, $id,$real_price, $color, $image);
-//        dd($wl);
         $req->session()->put('wl',$wl);
         return redirect()->back()->with(['flag'=>'info','title'=>'Thông báo' ,'message'=>'Đã thích '.$product->name]);
 
@@ -557,12 +556,34 @@ class CustomerController extends Controller
 
     public function postLogout(){
         Auth::logout();
-
         return redirect()->route('index')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng xuất thành công']);
     }
 
-    public  function getSearch(){
-        return view('customer.page.search');
+    public  function getSearch(Request $req){
+        $key = $req->key;
+        $ls_sp = ProductType::join('catalogs','catalogs.id_type','=','product_type.id')
+            ->select('product_type.*','catalogs.id as ctlid','catalogs.catalog')
+            ->get();
+        $gr_lssp = $ls_sp->groupBy('type');
+        $color = ProductColor::all()->unique('color');
+
+        $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
+            ->where('products.name','like','%'.$key.'%')
+            ->groupBy('products.id')
+            ->get();
+
+        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('products.*','pi.image','promo.percent')
+            ->where('id_promo','<>','null')->get();
+
+        return view('customer.page.search',compact('ls_sp','gr_lssp','color','promo_product','product','key'));
     }
 
     public  function getUser(){

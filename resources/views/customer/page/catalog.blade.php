@@ -127,6 +127,9 @@
                                 <div class="bottom d-flex align-items-center justify-content-center">
                                     <a href="{{route('addwl',$p->id)}}"><span class="lnr lnr-heart"></span></a>
                                     <a href="{{route('addcart',$p->id)}}"><span class="lnr lnr-cart"></span></a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{route('single',$p->id)}}" target="_blank">
+                                        <span class="fa fa-facebook" aria-hidden="true"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
