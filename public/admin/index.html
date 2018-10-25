@@ -25,6 +25,41 @@
     <!-- Morris Chart Css-->
     <link href="plugins/morrisjs/morris.css" rel="stylesheet" />
 
+    <!--WaitMe Css-->
+    <link href="plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Colorpicker Css -->
+    <link href="plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="plugins/dropzone/dropzone.css" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="plugins/multi-select/css/multi-select.css" rel="stylesheet">
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+    <!-- Bootstrap Select Css -->
+    <link href="plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- noUISlider Css -->
+    <link href="plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
+    <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <link href="css/custom.css" rel="stylesheet" />
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -402,7 +437,6 @@
                             }
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê đơn hàng -->
                 <!-- Thống kê trạng thái đơn hàng -->
@@ -449,7 +483,6 @@
                             },
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê trạng thái đơn hàng -->
                 <!-- Thống kê doanh thu -->
@@ -508,7 +541,6 @@
                             }
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê doanh thu -->
                 <!-- Khách hàng -->
@@ -562,7 +594,6 @@
                             }
                         }
                     });
-
                 </script>
                 <!-- #END# Khách hàng -->
                 <!-- Thống kê Sản phẩm -->
@@ -602,7 +633,6 @@
                             },
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê Sản phẩm-->
                 <!-- Thống kê đánh giá -->
@@ -649,7 +679,6 @@
                             },
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê đánh giá-->
                 <!-- Thống kê iPhone -->
@@ -689,7 +718,6 @@
                             },
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê iphone-->
                 <!-- Thống kê iPad -->
@@ -729,7 +757,6 @@
                             },
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê iPad-->
                 <!-- Thống kê mac -->
@@ -769,7 +796,6 @@
                             },
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê mac-->
                 <!-- Thống kê aw -->
@@ -809,7 +835,6 @@
                             },
                         }
                     });
-
                 </script>
                 <!-- #END# Thống kê aw-->
             </div>
@@ -828,8 +853,33 @@
     <!-- Slimscroll Plugin Js -->
     <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="plugins/dropzone/dropzone.js"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="plugins/multi-select/js/jquery.multi-select.js"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <!--        <script src="plugins/nouislider/nouislider.js"></script>-->
+
+    <!-- Demo Js -->
+
     <!-- Waves Effect Plugin Js -->
     <script src="plugins/node-waves/waves.js"></script>
+
+    <!-- Wait Me Plugin Js -->
+    <script src="plugins/waitme/waitMe.js"></script>
 
     <!-- Jquery CountTo Plugin Js -->
     <script src="plugins/jquery-countto/jquery.countTo.js"></script>
@@ -837,9 +887,99 @@
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
     <script src="js/pages/index.js"></script>
+    <script src="js/pages/cards/colored.js"></script>
 
     <!-- Demo Js -->
     <script src="js/demo.js"></script>
+    <script src="js/pages/ui/tooltips-popovers.js"></script>
+    <script src="plugins/sweetalert/sweetalert.min.js"></script>
+
+
+
+    <script src="js/pages/ui/dialogs.js"></script>
+    <script src="js/pages/forms/advanced-form-elements.js"></script>
+
+    <!-- Autosize Plugin Js -->
+    <script src="plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="js/pages/forms/basic-form-elements.js"></script>
+
+    <script>
+        $(function() {
+            $('.delete-btn i').on('click', function() {
+                var type = $(this).data('type');
+                //                    alert(type);
+                if (type === 'cancel') {
+                    showCancelMessage();
+                }
+            });
+        });
+
+        function showCancelMessage() {
+            swal({
+                title: "Bạn có chắn chắn?",
+                text: "Bạn sẽ không thể khôi phục được khuyến mãi này!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3F51B5",
+                confirmButtonText: "Xoá",
+                cancelButtonText: "Huỷ",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    swal("Đã xoá!", "Khuyến mãi đã được xoá", "success");
+                } else {
+                    swal("Đã huỷ", "Khuyến mãi vẫn còn", "error");
+                }
+            });
+        }
+    </script>
+    <script>
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreview = function(input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function() {
+                $('.gallery').empty();
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreviewEdit = function(input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#gallery-photo-edit').on('change', function() {
+                $('.gallery-edit').empty();
+                imagesPreviewEdit(this, 'div.gallery-edit');
+            });
+        });
+    </script>
 </body>
 
 </html>
