@@ -6,8 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>LOẠI SẢN PHẨM | ITL</title>
     <!-- Favicon-->
-    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-
+    <link rel="icon" href="favicon.png" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -23,12 +22,18 @@
 
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
 
     <!-- Custom Css -->
     <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+
 </head>
 
 <body class="theme-indigo">
@@ -336,11 +341,33 @@
                                     </tfoot>
                                     <tbody>
                                         <tr>
+                                            <td>Airi Satou</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>33</td>
+                                            <td class="align-center pd-5">
+                                                <span data-toggle="modal" data-target="#xem_lsp">
+                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                                        <i class="material-icons">visibility</i>
+                                                    </a>
+                                                </span>
+                                                <span data-toggle="modal" data-target="#sua_lsp">
+                                                    <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
+                                                        <i class="material-icons">build</i>
+                                                    </a>
+                                                </span>
+                                                <a href="javascript:void(0);" class=" btn btn-danger btn-circle waves-effect waves-circle waves-float delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Xoá" data-type="cancel">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
                                             <td>Edinburgh</td>
                                             <td>61</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -357,7 +384,7 @@
                                             <td>Accountant</td>
                                             <td>Tokyo</td>
                                             <td>63</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -374,7 +401,7 @@
                                             <td>Junior Technical Author</td>
                                             <td>San Francisco</td>
                                             <td>66</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -391,7 +418,7 @@
                                             <td>Senior Javascript Developer</td>
                                             <td>Edinburgh</td>
                                             <td>22</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -403,29 +430,13 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td class="align-center">
-                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
-                                                    <i class="material-icons">visibility</i>
-                                                </a>
-                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
-                                                    <i class="material-icons">build</i>
-                                                </a>
-                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
-                                                    <i class="material-icons">delete</i>
-                                                </a>
-                                            </td>
-                                        </tr>
+
                                         <tr>
                                             <td>Brielle Williamson</td>
                                             <td>Integration Specialist</td>
                                             <td>New York</td>
                                             <td>61</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -442,7 +453,7 @@
                                             <td>Sales Assistant</td>
                                             <td>San Francisco</td>
                                             <td>59</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -459,7 +470,7 @@
                                             <td>Integration Specialist</td>
                                             <td>Tokyo</td>
                                             <td>55</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -476,7 +487,7 @@
                                             <td>Javascript Developer</td>
                                             <td>San Francisco</td>
                                             <td>39</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -493,7 +504,7 @@
                                             <td>Software Engineer</td>
                                             <td>Edinburgh</td>
                                             <td>23</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -510,7 +521,7 @@
                                             <td>Office Manager</td>
                                             <td>London</td>
                                             <td>30</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -527,7 +538,7 @@
                                             <td>Support Lead</td>
                                             <td>Edinburgh</td>
                                             <td>22</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -544,7 +555,7 @@
                                             <td>Regional Director</td>
                                             <td>San Francisco</td>
                                             <td>36</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -561,7 +572,7 @@
                                             <td>Senior Marketing Designer</td>
                                             <td>London</td>
                                             <td>43</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -578,7 +589,7 @@
                                             <td>Regional Director</td>
                                             <td>London</td>
                                             <td>19</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -595,7 +606,7 @@
                                             <td>Marketing Designer</td>
                                             <td>London</td>
                                             <td>66</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -612,7 +623,7 @@
                                             <td>Chief Financial Officer (CFO)</td>
                                             <td>New York</td>
                                             <td>64</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -629,7 +640,7 @@
                                             <td>Systems Administrator</td>
                                             <td>New York</td>
                                             <td>59</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -646,7 +657,7 @@
                                             <td>Software Engineer</td>
                                             <td>London</td>
                                             <td>41</td>
-                                            <td class="align-center">
+                                            <td class="align-center pd-5">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
@@ -685,7 +696,7 @@
                                             <b>ID </b>
                                             <div class="input-group">
                                                 <div class="form-line disabled">
-                                                    <input type="text" class="form-control" placeholder="Tự sinh ra" disabled="">
+                                                    <input type="text" name="id" value="" class="form-control" placeholder="Tự sinh ra" disabled="">
                                                 </div>
                                             </div>
                                         </div>
@@ -697,34 +708,142 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <b>Thông tin</b>
-                                            <button type="button" class="addService">Add More</button>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="herre">
+                                            <b>Thuộc tinh</b>
+                                            <span class="m-l-20">(VD: Màn hình, CPU,...)</span>
+                                            <div class="m-t-0">
+                                                <button type="button" onclick="clickMore();" class="btn bg-blue-grey btn-xs waves-effect m-t-20"><i class="material-icons">add</i> <span>THÊM THUỘC TÍNH</span></button>
+                                            </div>
+
                                             <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name='+value+' [] class="form-control m-t-20" placeholder="Thuộc tính 1">
-                                                    <script>var i=0;</script>
+                                                    <input type="text" name="type_detail[]" class="form-control m-t-20" placeholder="Thuộc tính 1">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn bg-indigo waves-effect">
-                                <i data-brackets-id="14157" class="material-icons">check</i>
-                                <span>THÊM</span>
-                            </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-indigo waves-effect">
+                                        <i data-brackets-id="14157" class="material-icons">check</i>
+                                        <span>THÊM</span>
+                                    </button>
 
-                            <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
-                                <i data-brackets-id="14157" class="material-icons">close</i>
-                                <span>HUỶ</span>
-                            </button>
+                                    <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
+                                        <i data-brackets-id="14157" class="material-icons">close</i>
+                                        <span>HUỶ</span>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Modal xem lsp -->
+            <div class="modal fade in" id="xem_lsp" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Thông tin: iPhone</h4>
+                            <hr>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="demo-masked-input">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>ID </b>
+                                            <div class="input-group">
+                                                <div class="form-line disabled">
+                                                    <input type="text" class="form-control" value="1" placeholder="Tự sinh ra" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>Tên loại </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="iPhone" class="form-control " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="herre">
+                                            <b>Thuộc tính</b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="Màn hình" class="form-control m-t-20" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
+                                        <i data-brackets-id="14157" class="material-icons">close</i>
+                                        <span>HUỶ</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal sửa lsp -->
+            <div class="modal fade in" id="sua_lsp" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Sửa loại: iPhone</h4>
+                            <hr>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="demo-masked-input">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>ID </b>
+                                            <div class="input-group">
+                                                <div class="form-line disabled">
+                                                    <input type="text" class="form-control" value="1" placeholder="Tự sinh ra" disabled="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>Tên loại </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="type" value="iPhone" class="form-control " placeholder="Tên loại sản phẩm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="herre">
+                                            <b>Thuộc tính</b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="type_detail[]" value="Màn hình" class="form-control m-t-20" placeholder="Thuộc tính 1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-indigo waves-effect">
+                                        <i data-brackets-id="14157" class="material-icons">check</i>
+                                        <span>THÊM</span>
+                                    </button>
+
+                                    <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
+                                        <i data-brackets-id="14157" class="material-icons">close</i>
+                                        <span>HUỶ</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -754,19 +873,61 @@
     <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
+    <!-- Wait Me Plugin Js -->
+    <script src="plugins/waitme/waitMe.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/pages/cards/colored.js"></script>
+
     <!-- Custom Js -->
     <script src="../../js/admin.js"></script>
     <script src="../../js/pages/tables/jquery-datatable.js"></script>
 
     <!-- Demo Js -->
     <script src="../../js/demo.js"></script>
+    <script src="js/pages/ui/tooltips-popovers.js"></script>
+    <script src="plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="js/pages/ui/dialogs.js"></script>
 
     <script>
-        $(document).on('click', '.addService', function() {
-            var i = i + 1;
-            var html = '<div class="input-group"><div class="form-line"><input type="text" name="myInput" class="form-control" placeholder="Thuộc tính ' + i + '"></div></div>';
-            $(this).parent().append(html);
+        var value = 1;
+
+        function clickMore() {
+            value += 1;
+            var html = '<div class="input-group"><div class="form-line"><input type="text" name="type_detail[]" class="form-control" placeholder="Thuộc tính ' + value + '"></div></div>';
+            $('#herre').append(html);
+        };
+    </script>
+    <script>
+        $(function() {
+            $('.delete-btn').on('click', function() {
+                var type = $(this).data('type');
+                if (type === 'cancel') {
+                    showCancelMessage();
+                }
+            });
         });
+
+        function showCancelMessage() {
+            swal({
+                title: "Bạn có chắn chắn?",
+                text: "Bạn sẽ không thể khôi phục được loại sản phẩm này!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3F51B5",
+                confirmButtonText: "Xoá",
+                cancelButtonText: "Huỷ",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    swal("Đã xoá!", "Loại sản phẩm đã được xoá", "success");
+                } else {
+                    swal("Đã huỷ", "Loại sản phẩm vẫn còn", "error");
+                }
+            });
+        }
     </script>
 </body>
 

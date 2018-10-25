@@ -350,8 +350,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" class="delete-btn">
-                                            <i class="material-icons" data-type="cancel" data-toggle="tooltip" data-placement="top" data-original-title="Xoá">delete</i>
+                                        <a href="javascript:void(0);" class="delete-btn" data-type="cancel" data-toggle="tooltip" data-placement="top" data-original-title="Xoá">
+                                            <i class="material-icons">delete</i>
                                         </a>
                                     </li>
                                 </ul>
@@ -712,8 +712,6 @@
         <script src="js/pages/ui/tooltips-popovers.js"></script>
         <script src="plugins/sweetalert/sweetalert.min.js"></script>
 
-
-
         <script src="js/pages/ui/dialogs.js"></script>
         <script src="js/pages/forms/advanced-form-elements.js"></script>
 
@@ -730,7 +728,7 @@
 
         <script>
             $(function() {
-                $('.delete-btn i').on('click', function() {
+                $('.delete-btn').on('click', function() {
                     var type = $(this).data('type');
                     //                    alert(type);
                     if (type === 'cancel') {
