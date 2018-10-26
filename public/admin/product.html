@@ -686,9 +686,33 @@
                                             <h4>Mô tả </h4>
                                             <textarea id="tinymce"></textarea>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20">
-                                            <b>Hình ảnh</b>
-                                            <span class="m-l-10">(PNG, JPG, JPEG - Tối đa 2MB - Chọn nhiều ảnh)</span>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20" id="herre">
+                                            <h4>Video</h4>
+                                            <span>(ID video: https://www.youtube.com/watch?v=<b class="font-bold col-pink">SYYNCvIyg60</b>)</span>
+                                            <hr>
+                                            <div class="m-t-0">
+                                                <button type="button" onclick="clickMore();" class="btn bg-blue-grey btn-xs waves-effect m-b-20"><i class="material-icons">add</i> <span>THÊM VIDEO</span></button>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_name[]" class="form-control " placeholder="Tên video 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_link[]" class="form-control " placeholder="ID 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h4>Hình ảnh</h4>
+                                            <span>(PNG, JPG, JPEG - Tối đa 2MB - Chọn nhiều ảnh)</span>
                                             <button class="btn dehinh bg-blue-grey waves-effect m-t-10 m-b-10" style="cursor: pointer; width: 100%; height: 50px;">
                                                 <i class="material-icons">touch_app</i>
                                                 <input type="file" id="gallery-photo-add" name="images[]" accept="image/png, image/jpg, image/jpeg" multiple required>
@@ -819,7 +843,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <b>Mô tả </b>
@@ -829,11 +852,33 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img" id="herre">
-                                            <img src="images/iphonex.png" alt="">
-                                            <img src="images/iphonex.png" alt="">
-                                            <img src="images/iphonex.png" alt="">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>Video</b>
+                                            <div class="m-t-10">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <b>Tên video 1</b>
+
+                                                    <iframe width="400" height="230" src="https://www.youtube.com/embed/SYYNCvIyg60" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <b>Tên video 1</b>
+
+                                                    <iframe width="400" height="230" src="https://www.youtube.com/embed/SYYNCvIyg60" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img align-left" id="herre">
+                                            <div style="text-align: left" class="m-t-20 m-b-10"><b>Hình ảnh</b></div>
+                                            <div>
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -977,6 +1022,43 @@
                                             <h4>Mô tả </h4>
                                             <textarea id="tinymce">Nội dung mô tả có sẵn</textarea>
                                         </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20" id="herre">
+                                            <h4>Video</h4>
+                                            <span>(ID video: https://www.youtube.com/watch?v=<b class="font-bold col-pink">SYYNCvIyg60</b>)</span>
+                                            <hr>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_name[]" class="form-control " placeholder="Tên video 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_link[]" class="form-control " placeholder="ID 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_name[]" class="form-control " placeholder="Tên video 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_link[]" class="form-control " placeholder="ID 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img align-left" id="herre">
                                             <div style="text-align: left" class="m-t-20 m-b-10"><b>Ảnh hiện tại</b></div>
                                             <div>
@@ -1002,7 +1084,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn bg-indigo waves-effect">
                                         <i data-brackets-id="14157" class="material-icons">check</i>
-                                        <span>THÊM</span>
+                                        <span>CẬP NHẬT</span>
                                     </button>
 
                                     <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
@@ -1099,7 +1181,15 @@
 
     <!-- TinyMCE -->
     <script src="../../plugins/tinymce/tinymce.js"></script>
+    <script>
+        var value = 1;
 
+        function clickMore() {
+            value += 1;
+            var html = '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="input-group"><div class="form-line"><input type="text" name="v_name[]" class="form-control " placeholder="Tên video ' + value + '"></div></div></div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="input-group"><div class="form-line"><input type="text" name="v_link[]" class="form-control " placeholder="ID ' + value + '"></div></div></div></div>';
+            $('#herre').append(html);
+        };
+    </script>
     <script>
         $(function() {
             $('.delete-btn').on('click', function() {
