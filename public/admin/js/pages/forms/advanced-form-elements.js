@@ -53,6 +53,17 @@ $(function () {
     $demoMaskedInput.find('.percent').inputmask('99 %', {
         placeholder: '__  %'
     });
+    $demoMaskedInput.find('.vn-dong').inputmask({
+        suffix: " ₫",
+        groupSeparator: ".",
+        alias: "numeric",
+        placeholder: "0",
+        autoGroup: !0,
+        digits: 0,
+        digitsOptional: !1,
+        clearMaskOnLostFocus: !1,
+        rightAlign: false,
+    });
 
     //IP Address
     $demoMaskedInput.find('.ip').inputmask('999.999.999.999', {
