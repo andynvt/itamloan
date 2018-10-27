@@ -4024,14 +4024,14 @@ section.content {
 .info-box .content .text {
     font-size: 13px;
     margin-top: 3px;
-    color: #555;
+    color: #fff;
 }
 
 .info-box .content .number {
     font-weight: normal;
     font-size: 26px;
     margin-top: 2px;
-    color: #555;
+    color: #fff;
 }
 
 .info-box.hover-zoom-effect .icon {
