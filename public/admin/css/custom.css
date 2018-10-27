@@ -147,6 +147,10 @@
     height: 100px;
 }
 
+.img-inside-bill img {
+    height: 80px;
+}
+
 .info-img {
     text-align: center;
 

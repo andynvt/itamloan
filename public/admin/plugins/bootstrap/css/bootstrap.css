@@ -6120,9 +6120,9 @@ a.label:focus {
 .badge {
     display: inline-block;
     min-width: 10px;
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: bold;
+    padding: 5px 5px;
+    font-size: 14px;
+    /*    font-weight: bold;*/
     line-height: 1;
     color: #fff;
     text-align: center;
