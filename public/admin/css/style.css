@@ -10507,7 +10507,7 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-    background-color: #00BCD4;
+    background-color: #5C6BC0;
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;
@@ -10523,7 +10523,7 @@ fieldset[disabled] .form-control {
 .login-page .login-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #00BCD4;
+    color: #3F51B5;
 }
 
 .login-page .login-box .logo {
@@ -10548,7 +10548,7 @@ fieldset[disabled] .form-control {
 
 /* Sign Up Page ================================ */
 .signup-page {
-    background-color: #00BCD4;
+    background-color: #5C6BC0;
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;
@@ -10564,7 +10564,7 @@ fieldset[disabled] .form-control {
 .signup-page .signup-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #00BCD4;
+    color: #3F51B5;
 }
 
 .signup-page .signup-box .logo {
@@ -10589,7 +10589,7 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-    background-color: #00BCD4;
+    background-color: #5C6BC0;
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;
@@ -10605,7 +10605,7 @@ fieldset[disabled] .form-control {
 .fp-page .fp-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #00BCD4;
+    color: #3F51B5;
 }
 
 .fp-page .fp-box .logo {
