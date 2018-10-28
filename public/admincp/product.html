@@ -1,0 +1,1285 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>SẢN PHẨM | ITL</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+
+    <!-- Colorpicker Css -->
+    <link href="plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="plugins/dropzone/dropzone.css" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="plugins/multi-select/css/multi-select.css" rel="stylesheet">
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+</head>
+
+<body class="theme-indigo">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="Nhập nội dung tìm kiếm...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="home.html">ADMIN - ITAMLOAN</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <!-- #END# Call Search -->
+                    <!-- Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">notifications</i>
+                            <span class="label-count">7</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">THÔNG BÁO</li>
+                            <li class="body">
+                                <ul class="menu">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">person_add</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>12 new members joined</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 14 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-cyan">
+                                                <i class="material-icons">add_shopping_cart</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>4 sales made</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 22 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-red">
+                                                <i class="material-icons">delete_forever</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>Nancy Doe</b> deleted account</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 3 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-orange">
+                                                <i class="material-icons">mode_edit</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>Nancy</b> changed name</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 2 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-blue-grey">
+                                                <i class="material-icons">comment</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>John</b> commented your post</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 4 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">cached</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>John</b> updated status</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 3 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-purple">
+                                                <i class="material-icons">settings</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>Settings updated</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> Yesterday
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="javascript:void(0);">View All Notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="images/admin.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+                    <div class="email">admin@itamloan.vn</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <a href="home.html">
+                            <i class="material-icons">pie_chart</i>
+                            <span>THỐNG KÊ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="promotion.html">
+                            <i class="material-icons">monetization_on</i>
+                            <span>KHUYẾN MÃI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product_type.html">
+                            <i class="material-icons">dashboard</i>
+                            <span>LOẠI SẢN PHẨM</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="catalog.html">
+                            <i class="material-icons">layers</i>
+                            <span>DÒNG SẢN PHẨM</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="product.html">
+                            <i class="material-icons">shop</i>
+                            <span>SẢN PHẨM</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bill.html">
+                            <i class="material-icons">view_list</i>
+                            <span>ĐƠN HÀNG</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="customer.html">
+                            <i class="material-icons">people</i>
+                            <span>KHÁCH HÀNG</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="feedback.html">
+                            <i class="material-icons">feedback</i>
+                            <span>ĐÁNH GIÁ</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- #Menu -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+            </ul>
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>SẢN PHẨM</h2>
+                <div class="m-t-10"></div>
+                <button type="button" class="btn bg-deep-purple waves-effect" data-toggle="modal" data-target="#them_sp">
+                    <i class="material-icons">add</i>
+                    <span>THÊM MỚI</span>
+                </button>
+            </div>
+
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>DANH SÁCH SẢN PHẨM</h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="sp_table">
+                                    <thead class="bg-blue-grey">
+                                        <tr>
+                                            <th class="align-center">#</th>
+                                            <th class="align-center">ẢNH</th>
+                                            <th class="align-center">TÊN SẢN PHẨM</th>
+                                            <th class="align-center">LOẠI</th>
+                                            <th class="align-center">DÒNG</th>
+                                            <th class="align-center">GIÁ</th>
+                                            <th class="align-center">KHO</th>
+                                            <th class="align-center">THAO TÁC</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot class="bg-blue-grey">
+                                        <tr>
+                                            <th class="align-center">#</th>
+                                            <th class="align-center">ẢNH</th>
+                                            <th class="align-center">TÊN SẢN PHẨM</th>
+                                            <th class="align-center">LOẠI</th>
+                                            <th class="align-center">DÒNG</th>
+                                            <th class="align-center">GIÁ</th>
+                                            <th class="align-center">KHO</th>
+                                            <th class="align-center">THAO TÁC</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+
+                                            <th scope="row">1</th>
+
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="" id="imageid">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>Airi Satou</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td class="align-center pd-5">
+                                                <span data-toggle="modal" data-target="#xem_sp">
+                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                                        <i class="material-icons">visibility</i>
+                                                    </a>
+                                                </span>
+                                                <span data-toggle="modal" data-target="#sua_sp">
+                                                    <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
+                                                        <i class="material-icons">build</i>
+                                                    </a>
+                                                </span>
+                                                <a href="javascript:void(0);" class=" btn btn-danger btn-circle waves-effect waves-circle waves-float delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Xoá" data-type="cancel">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="">
+                                            </td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>Tiger Nixon</td>
+                                            <td>61</td>
+                                            <td>61</td>
+                                            <td class="align-center pd-5">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">build</i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>Garrett Winters</td>
+                                            <td>63</td>
+                                            <td>63</td>
+                                            <td class="align-center pd-5">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">build</i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>Garrett Winters</td>
+                                            <td>63</td>
+                                            <td>63</td>
+                                            <td class="align-center pd-5">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">build</i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>Garrett Winters</td>
+                                            <td>63</td>
+                                            <td>63</td>
+                                            <td class="align-center pd-5">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">build</i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-center">3</td>
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>Garrett Winters</td>
+                                            <td>63</td>
+                                            <td>63</td>
+                                            <td class="align-center pd-5">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">build</i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-center">3</td>
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>Garrett Winters</td>
+                                            <td>63</td>
+                                            <td>63</td>
+                                            <td class="align-center pd-5">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">build</i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="align-center">3</td>
+                                            <td class="align-center img-inside">
+                                                <img src="images/iphonex.png" alt="">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>Garrett Winters</td>
+                                            <td>63</td>
+                                            <td>63</td>
+                                            <td class="align-center pd-5">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">build</i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+
+            <!-- Modal thêm sp mới -->
+            <div class="modal fade in" id="them_sp" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">THÊM SẢN PHẨM</h4>
+                            <hr>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="demo-masked-input">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Tên sản phẩm </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="name" class="form-control " placeholder="VD: iPhone XS MAX">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Dung lượng </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="storage" class="form-control " placeholder="VD: 512GB">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Màu </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="name" class="form-control " placeholder="VD: Gold">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-b-20">
+                                            <b>Thuộc loại </b>
+                                            <select class="form-control show-tick" name="type">
+                                                <option value="">-- Chọn loại --</option>
+                                                <option value="10">iPhone</option>
+                                                <option value="20">iPad</option>
+                                                <option value="30">Mac</option>
+                                                <option value="40">Apple Watch</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-b-20">
+                                            <b>Thuộc dòng </b>
+                                            <select class="form-control show-tick" name="catalog">
+                                                <option value="">-- Chọn dòng --</option>
+                                                <option value="10">iPhone X</option>
+                                                <option value="20">iPad X</option>
+                                                <option value="30">Mac</option>
+                                                <option value="40">Apple Watch</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-xs-12 m-b-20">
+                                            <b>Khuyến mãi </b>
+                                            <select class="form-control show-tick" name="promo">
+                                                <option value="">-- Chọn khuyến mãi --</option>
+                                                <option value="10">Chào mừng XSMAX - Giảm 5%</option>
+                                                <option value="10">Chào mừng XSMAX - Giảm 5%</option>
+                                                <option value="10">Chào mừng XSMAX - Giảm 5%</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Giá gốc (₫)</b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="price" class="form-control vn-dong">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Số lượng </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="number" name="inventory" class="form-control " placeholder="Số lượng kho">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Bảo hành </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="warranty" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h4 class="m-t--5">Cấu hình</h4>
+                                            <hr>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Thuộc tính 1 </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Thuộc tính 1 </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Thuộc tính 1 </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Thuộc tính 1 </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h4>Mô tả </h4>
+                                            <textarea id="tinymce"></textarea>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20" id="herre">
+                                            <h4>Video</h4>
+                                            <span>(ID video: https://www.youtube.com/watch?v=<b class="font-bold col-pink">SYYNCvIyg60</b>)</span>
+                                            <hr>
+                                            <div class="m-t-0">
+                                                <button type="button" onclick="clickMore();" class="btn bg-blue-grey btn-xs waves-effect m-b-20"><i class="material-icons">add</i> <span>THÊM VIDEO</span></button>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_name[]" class="form-control " placeholder="Tên video 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_link[]" class="form-control " placeholder="ID 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h4>Hình ảnh</h4>
+                                            <span>(PNG, JPG, JPEG - Tối đa 2MB - Chọn nhiều ảnh)</span>
+                                            <button class="btn dehinh bg-blue-grey waves-effect m-t-10 m-b-10" style="cursor: pointer; width: 100%; height: 50px;">
+                                                <i class="material-icons">touch_app</i>
+                                                <input type="file" id="gallery-photo-add" name="images[]" accept="image/png, image/jpg, image/jpeg" multiple required>
+                                            </button>
+                                            <div class="gallery-multi"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-indigo waves-effect">
+                                        <i data-brackets-id="14157" class="material-icons">check</i>
+                                        <span>THÊM</span>
+                                    </button>
+
+                                    <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
+                                        <i data-brackets-id="14157" class="material-icons">close</i>
+                                        <span>HUỶ</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal xem sp -->
+            <div class="modal fade in" id="xem_sp" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">THÔNG TIN: iPhone X</h4>
+                            <hr>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="demo-masked-input">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>Tên sản phẩm </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="iPhone XS MAX 512GB Gold" class="form-control " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-b-20">
+                                            <b>Thuộc loại </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="iPhone" class="form-control " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-b-20">
+                                            <b>Thuộc dòng </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="iPhone XS MAX" class="form-control " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-xs-12 m-b-20">
+                                            <b>Khuyến mãi </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="Chào mừng XSMAX" class="form-control " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Giá gốc (₫)</b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="30000000" class="form-control vn-dong" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Số lượng </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="300" class="form-control " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Bảo hành </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" value="1 Năm" class="form-control " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h4 class="m-t--5">Cấu hình</h4>
+                                            <hr>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" value="6.5'' Oled" class="form-control " readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" value="6.5'' Oled" class="form-control " readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" value="6.5'' Oled" class="form-control " readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" value="6.5'' Oled" class="form-control " readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>Mô tả </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <textarea rows="2" class="form-control no-resize" readonly>Nội dung</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <b>Video</b>
+                                            <div class="m-t-10">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <b>Tên video 1</b>
+
+                                                    <iframe width="400" height="230" src="https://www.youtube.com/embed/SYYNCvIyg60" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <b>Tên video 1</b>
+
+                                                    <iframe width="400" height="230" src="https://www.youtube.com/embed/SYYNCvIyg60" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img align-left" id="herre">
+                                            <div style="text-align: left" class="m-t-20 m-b-10"><b>Hình ảnh</b></div>
+                                            <div>
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-indigo waves-effect">
+                                        <i data-brackets-id="14157" class="material-icons">check</i>
+                                        <span>THÊM</span>
+                                    </button>
+
+                                    <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
+                                        <i data-brackets-id="14157" class="material-icons">close</i>
+                                        <span>HUỶ</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal sửa sp -->
+            <div class="modal fade in" id="sua_sp" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">SỬA SẢN PHẨM: iPhone XS MAX 256GB Gold</h4>
+                            <hr>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="demo-masked-input">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <b>Tên sản phẩm </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="name" value="iPhone XS MAX 256GB Gold" class="form-control " placeholder="VD: iPhone XS MAX 256GB Gold">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <b>Màu </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="name" value="Gold" class="form-control " placeholder="VD: Gold">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-b-20">
+                                            <b>Thuộc loại </b>
+                                            <select class="form-control show-tick" name="type">
+                                                <option value="">-- Chọn loại --</option>
+                                                <option selected value="10">iPhone</option>
+                                                <option value="20">iPad</option>
+                                                <option value="30">Mac</option>
+                                                <option value="40">Apple Watch</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-b-20">
+                                            <b>Thuộc dòng </b>
+                                            <select class="form-control show-tick" name="catalog">
+                                                <option value="">-- Chọn dòng --</option>
+                                                <option selected value="10">iPhone X</option>
+                                                <option value="20">iPad X</option>
+                                                <option value="30">Mac</option>
+                                                <option value="40">Apple Watch</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-xs-12 m-b-20">
+                                            <b>Khuyến mãi </b>
+                                            <select class="form-control show-tick" name="promo">
+                                                <option value="">-- Chọn khuyến mãi --</option>
+                                                <option value="10">Chào mừng XSMAX - Giảm 5%</option>
+                                                <option selected value="10">Chào mừng XSMAX - Giảm 5%</option>
+                                                <option value="10">Chào mừng XSMAX - Giảm 5%</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Giá gốc (₫)</b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="price" value="30000000" class="form-control vn-dong">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Số lượng </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="number" name="inventory" value="300" class="form-control " placeholder="Số lượng kho">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <b>Bảo hành </b>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="warranty" value="1 năm chính hãng Apple" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h4 class="m-t--5">Cấu hình</h4>
+                                            <hr>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" value="6.5 Oled" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" value="6.5 Oled" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" value="6.5 Oled" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <b>Màn hình </b>
+                                                <div class="input-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="specs[]" value="6.5 Oled" class="form-control " placeholder="VD: 1 năm chính hãng Apple">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h4>Mô tả </h4>
+                                            <textarea id="tinymce">Nội dung mô tả có sẵn</textarea>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20" id="herre">
+                                            <h4>Video</h4>
+                                            <span>(ID video: https://www.youtube.com/watch?v=<b class="font-bold col-pink">SYYNCvIyg60</b>)</span>
+                                            <hr>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_name[]" class="form-control " placeholder="Tên video 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_link[]" class="form-control " placeholder="ID 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_name[]" class="form-control " placeholder="Tên video 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="v_link[]" class="form-control " placeholder="ID 1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img align-left" id="herre">
+                                            <div style="text-align: left" class="m-t-20 m-b-10"><b>Ảnh hiện tại</b></div>
+                                            <div>
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                                <img src="images/iphonex.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20">
+                                            <b>Ảnh mới</b>
+                                            <span class="m-l-10">(PNG, JPG, JPEG - Tối đa 2MB - Chọn nhiều ảnh)</span>
+                                            <button class="btn dehinh bg-blue-grey waves-effect m-t-10 m-b-10" style="cursor: pointer; width: 100%; height: 50px;">
+                                                <i class="material-icons">touch_app</i>
+                                                <input type="file" id="gallery-photo-edit" name="images[]" accept="image/png, image/jpg, image/jpeg" multiple required>
+                                            </button>
+                                            <div class="gallery-multi-edit"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-indigo waves-effect">
+                                        <i data-brackets-id="14157" class="material-icons">check</i>
+                                        <span>CẬP NHẬT</span>
+                                    </button>
+
+                                    <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
+                                        <i data-brackets-id="14157" class="material-icons">close</i>
+                                        <span>HUỶ</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="plugins/dropzone/dropzone.js"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="plugins/multi-select/js/jquery.multi-select.js"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+    <!-- Wait Me Plugin Js -->
+    <script src="plugins/waitme/waitMe.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/pages/cards/colored.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+    <script src="js/pages/tables/jquery-datatable.js"></script>
+
+
+    <!-- Custom Js -->
+    <script src="js/pages/cards/colored.js"></script>
+
+    <script src="js/pages/forms/advanced-form-elements.js"></script>
+
+    <!-- Autosize Plugin Js -->
+    <script src="plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="js/pages/forms/basic-form-elements.js"></script>
+
+
+    <!-- Demo Js -->
+    <script src="js/demo.js"></script>
+    <script src="js/pages/ui/tooltips-popovers.js"></script>
+    <script src="plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="js/pages/ui/dialogs.js"></script>
+
+    <!-- TinyMCE -->
+    <script src="../../plugins/tinymce/tinymce.js"></script>
+    <script>
+        var value = 1;
+
+        function clickMore() {
+            value += 1;
+            var html = '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="input-group"><div class="form-line"><input type="text" name="v_name[]" class="form-control " placeholder="Tên video ' + value + '"></div></div></div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="input-group"><div class="form-line"><input type="text" name="v_link[]" class="form-control " placeholder="ID ' + value + '"></div></div></div></div>';
+            $('#herre').append(html);
+        };
+    </script>
+    <script>
+        $(function() {
+            $('.delete-btn').on('click', function() {
+                var type = $(this).data('type');
+                if (type === 'cancel') {
+                    showCancelMessage();
+                }
+            });
+        });
+
+        function showCancelMessage() {
+            swal({
+                title: "Bạn có chắn chắn?",
+                text: "Bạn sẽ không thể khôi phục được sản phẩm này!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3F51B5",
+                confirmButtonText: "XOÁ",
+                cancelButtonText: "HUỶ",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    swal("Đã xoá!", "Sản phẩm đã được xoá", "success");
+                } else {
+                    swal("Đã huỷ", "Sản phẩm vẫn còn", "error");
+                }
+            });
+        }
+    </script>
+
+    <script>
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreview = function(input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function() {
+                $('.gallery-multi').empty();
+                imagesPreview(this, 'div.gallery-multi');
+            });
+        });
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreviewEdit = function(input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#gallery-photo-edit').on('change', function() {
+                $('.gallery-multi-edit').empty();
+                imagesPreviewEdit(this, 'div.gallery-multi-edit');
+            });
+        });
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: "textarea#tinymce",
+            theme: "modern",
+            height: 200,
+            plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools'
+            ],
+            toolbar1: 'styleselect fontselect fontsizeselect | bold italic underline | forecolor backcolor',
+            toolbar2: 'insertfile undo redo | bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | link image media emoticons | print preview code',
+            image_advtab: true
+        });
+        tinymce.suffix = ".min";
+        tinyMCE.baseURL = '../../plugins/tinymce';
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,589 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>ĐÁNH GIÁ | ITL</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+
+    <!-- Custom Css -->
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body class="theme-indigo">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="Nhập nội dung tìm kiếm...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="home.html">ADMIN - ITAMLOAN</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <!-- #END# Call Search -->
+                    <!-- Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">notifications</i>
+                            <span class="label-count">7</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">THÔNG BÁO</li>
+                            <li class="body">
+                                <ul class="menu">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">person_add</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>12 new members joined</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 14 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-cyan">
+                                                <i class="material-icons">add_shopping_cart</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>4 sales made</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 22 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-red">
+                                                <i class="material-icons">delete_forever</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>Nancy Doe</b> deleted account</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 3 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-orange">
+                                                <i class="material-icons">mode_edit</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>Nancy</b> changed name</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 2 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-blue-grey">
+                                                <i class="material-icons">comment</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>John</b> commented your post</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 4 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">cached</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>John</b> updated status</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 3 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-purple">
+                                                <i class="material-icons">settings</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>Settings updated</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> Yesterday
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="javascript:void(0);">View All Notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="images/admin.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+                    <div class="email">admin@itamloan.vn</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <a href="home.html">
+                            <i class="material-icons">pie_chart</i>
+                            <span>THỐNG KÊ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="promotion.html">
+                            <i class="material-icons">monetization_on</i>
+                            <span>KHUYẾN MÃI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product_type.html">
+                            <i class="material-icons">dashboard</i>
+                            <span>LOẠI SẢN PHẨM</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="catalog.html">
+                            <i class="material-icons">layers</i>
+                            <span>DÒNG SẢN PHẨM</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product.html">
+                            <i class="material-icons">shop</i>
+                            <span>SẢN PHẨM</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bill.html">
+                            <i class="material-icons">view_list</i>
+                            <span>ĐƠN HÀNG</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="customer.html">
+                            <i class="material-icons">people</i>
+                            <span>KHÁCH HÀNG</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="feedback.html">
+                            <i class="material-icons">feedback</i>
+                            <span>ĐÁNH GIÁ</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- #Menu -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
+                <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+            </ul>
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>ĐÁNH GIÁ</h2>
+            </div>
+
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>DANH SÁCH ĐÁNH GIÁ</h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="sp_table">
+                                    <thead class="bg-blue-grey">
+                                        <tr>
+                                            <th class="align-center">#</th>
+                                            <th class="align-center">ẢNH</th>
+                                            <th class="align-center">TÊN SẢN PHẨM</th>
+                                            <th class="align-center">ĐÁNH GIÁ</th>
+                                            <th class="align-center">TRUNG BÌNH</th>
+                                            <th class="align-center">THAO TÁC</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot class="bg-blue-grey">
+                                        <tr>
+                                            <th class="align-center">#</th>
+                                            <th class="align-center">ẢNH</th>
+                                            <th class="align-center">TÊN SẢN PHẨM</th>
+                                            <th class="align-center">ĐÁNH GIÁ</th>
+                                            <th class="align-center">TRUNG BÌNH</th>
+                                            <th class="align-center">THAO TÁC</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside-bill">
+                                                <img src="images/iphonex.png" alt="" id="imageid">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td class="align-center">10</td>
+                                            <td class="align-center">4,5</td>
+                                            <td class="align-center pd-5">
+                                                <span data-toggle="modal" data-target="#xem_dg">
+                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                                        <i class="material-icons">visibility</i>
+                                                    </a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside-bill">
+                                                <img src="images/iphonex.png" alt="" id="imageid">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td class="align-center">10</td>
+                                            <td class="align-center">4,5</td>
+                                            <td class="align-center pd-5">
+                                                <span data-toggle="modal" data-target="#xem_dg">
+                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                                        <i class="material-icons">visibility</i>
+                                                    </a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside-bill">
+                                                <img src="images/iphonex.png" alt="" id="imageid">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td class="align-center">10</td>
+                                            <td class="align-center">4,5</td>
+                                            <td class="align-center pd-5">
+                                                <span data-toggle="modal" data-target="#xem_dg">
+                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                                        <i class="material-icons">visibility</i>
+                                                    </a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td class="align-center img-inside-bill">
+                                                <img src="images/iphonex.png" alt="" id="imageid">
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td class="align-center">10</td>
+                                            <td class="align-center">4,5</td>
+                                            <td class="align-center pd-5">
+                                                <span data-toggle="modal" data-target="#xem_dg">
+                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                                        <i class="material-icons">visibility</i>
+                                                    </a>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+
+            <!--            Modal xem thông tin khách hàng-->
+            <!-- Modal xem don hang -->
+            <div class="modal fade in" id="xem_dg" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">SẢN PHẨM: <a href="">iPhone X</a></h4>
+                            <hr>
+                        </div>
+                        <div class="modal-body">
+                            <div class="demo-masked-input">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="herre">
+                                        <div class="body table-responsive">
+                                            <table class="table table-striped table-bordered table-hover dataTable js-exportable">
+                                                <thead class="bg-blue-grey">
+                                                    <tr>
+                                                        <th class="align-center">#</th>
+                                                        <th class="align-center">KHÁCH HÀNG</th>
+                                                        <th class="align-center">ĐÁNH GIÁ</th>
+                                                        <th class="align-center">NỘI DUNG</th>
+                                                        <th class="align-center">THỜI GIAN</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Nguyễn Văn Tài</td>
+                                                        <td class="align-center">
+                                                            5 <span class="col-deep-orange">★</span>
+                                                        </td>
+                                                        <td class="align-center">Supported neglected met she therefore unwilling discovery remainder.</td>
+                                                        <td class="align-center">22/10/2018</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn bg-indigo waves-effect">
+                                    <i data-brackets-id="14157" class="material-icons">check</i>
+                                    <span>ĐÃ GỬI HÀNG</span>
+                                </button>
+                                <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
+                                    <i data-brackets-id="14157" class="material-icons">close</i>
+                                    <span>HUỶ</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+    <!-- Wait Me Plugin Js -->
+    <script src="plugins/waitme/waitMe.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/pages/cards/colored.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/pages/tables/jquery-datatable.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../../js/demo.js"></script>
+    <script src="js/pages/ui/tooltips-popovers.js"></script>
+    <script src="plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="js/pages/ui/dialogs.js"></script>
+
+    <script>
+        var value = 1;
+
+        function clickMore() {
+            value += 1;
+            var html = '<div class="input-group"><div class="form-line"><input type="text" name="type_detail[]" class="form-control" placeholder="Thuộc tính ' + value + '"></div></div>';
+            $('#herre').append(html);
+        };
+    </script>
+    <script>
+        $(function() {
+            $('.delete-btn').on('click', function() {
+                var type = $(this).data('type');
+                if (type === 'cancel') {
+                    showCancelMessage();
+                } else if (type === 'confirm') {
+                    showConfirmMessage();
+                } else if (type === 'done') {
+                    showDoneMessage();
+                }
+            });
+        });
+
+        function showCancelMessage() {
+            swal({
+                title: "Xác nhận huỷ khách hàng?",
+                text: "Bạn sẽ không thể khôi phục được trạng thái khách hàng này!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3F51B5",
+                confirmButtonText: "HUỶ khách hàng",
+                cancelButtonText: "KHÔNG",
+                closeOnConfirm: false,
+            }, function(isConfirm) {
+                swal("Đã huỷ!", "khách hàng đã bị huỷ", "success");
+            });
+        }
+
+        function showConfirmMessage() {
+            swal({
+                title: "Xác nhận khách hàng?",
+                text: "Bạn đã gửi hàng và xác nhận gửi",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3F51B5",
+                confirmButtonText: "ĐÃ GỬI",
+                cancelButtonText: "ĐÓNG",
+                closeOnConfirm: false
+            }, function() {
+                swal("Đã gửi hàng!", "Vẫn còn một bước xác nhận hoàn tất.", "success");
+            });
+        }
+
+        function showDoneMessage() {
+            swal({
+                title: "Hoàn tất khách hàng?",
+                text: "Khách hàng đã nhận hàng và thanh toán đủ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3F51B5",
+                confirmButtonText: "HOÀN TẤT",
+                cancelButtonText: "ĐÓNG",
+                closeOnConfirm: false
+            }, function() {
+                swal("Thành công!", "khách hàng đã hoàn tất.", "success");
+            });
+        }
+    </script>
+</body>
+
+</html>

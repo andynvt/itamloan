@@ -146,10 +146,22 @@ Route::get('yeu-thich',[
 ]);
 
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+Route::group(['prefix' => 'admincp', 'middleware' => 'auth:admincp'], function () {
 
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/admin/login',[
+    'as' => 'postadminlogin',
+    'uses' => 'AdminLogin@login'
+]);
+Route::get('admin/login',[
+    'as' =>'adminlogin',
+    'uses' => 'AdminLogin@showLoginForm'
+]);
+Route::get('admin',[
+    'as' =>'redirectadmin',
+    'uses' => 'AdminLogin@redirectAdmin'
+]);

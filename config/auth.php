@@ -45,6 +45,23 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'admincp' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'admincp-api' => [
+            'driver' => 'token',
+            'provider' => 'admins',
+        ],
+
+        'doctor' => [
+            'driver' => 'session',
+            'provider' => 'doctors',
+        ],
+        'doctor-api' => [
+            'driver' => 'token',
+            'provider' => 'doctors',
+        ],
     ],
 
     /*
