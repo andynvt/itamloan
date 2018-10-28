@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('index',[
+// Customer Page
+
+Route::get('/',[
     'as' => 'index',
     'uses' => 'CustomerController@getIndex'
 ]);
@@ -144,22 +146,15 @@ Route::get('yeu-thich',[
     'as' => 'wishlist',
     'uses' => 'CustomerController@getWishlist'
 ]);
-//
+
+//Admin CP
+
 Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], function () {
     Route::get('thong-ke',[
         'as' => 'adminthongke',
         'uses' => 'AdminController@AdminThongke'
     ]);
 });
-//Route::group(['prefix' => 'admin'], function () {
-//    Route::get('/',[
-//        'as' => 'adminthongke',
-//        'uses' => 'AdminController@AdminThongke'
-//    ]);
-//})->middleware('AdminLogin');
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
 Route::post('dang-nhap-admin',[
     'as' => 'postadminlogin',
     'uses' => 'AdminLogin@login'
