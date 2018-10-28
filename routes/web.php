@@ -140,8 +140,12 @@ Route::get('xoa-danh-gia/{id}',[
     'uses' => 'CustomerController@postDelfb'
 ]);
 
-
 Route::get('yeu-thich',[
     'as' => 'wishlist',
     'uses' => 'CustomerController@getWishlist'
 ]);
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+
+});
