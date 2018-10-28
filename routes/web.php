@@ -100,7 +100,7 @@ Route::get('dang-nhap',[
     'uses' => 'CustomerController@getLogin'
 ]);
 
-Route::post('login',[
+Route::post('postlogin',[
     'as' => 'postlogin',
     'uses' => 'CustomerController@postLogin'
 ]);
@@ -144,16 +144,23 @@ Route::get('yeu-thich',[
     'as' => 'wishlist',
     'uses' => 'CustomerController@getWishlist'
 ]);
-
-
-Route::group(['prefix' => 'admincp', 'middleware' => 'auth:admincp'], function () {
-
+//
+Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], function () {
+    Route::get('thong-ke',[
+        'as' => 'adminthongke',
+        'uses' => 'AdminController@AdminThongke'
+    ]);
 });
+//Route::group(['prefix' => 'admin'], function () {
+//    Route::get('/',[
+//        'as' => 'adminthongke',
+//        'uses' => 'AdminController@AdminThongke'
+//    ]);
+//})->middleware('AdminLogin');
+//Auth::routes();
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/admin/login',[
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::post('dang-nhap-admin',[
     'as' => 'postadminlogin',
     'uses' => 'AdminLogin@login'
 ]);

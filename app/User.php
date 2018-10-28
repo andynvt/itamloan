@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -36,6 +37,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 class User extends Authenticatable
 {
 //    use Authenticatable;
+    use AuthenticableTrait;
     protected $table = "users";
 
     public function customers(){
