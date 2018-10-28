@@ -154,12 +154,34 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'as' => 'adminthongke',
         'uses' => 'AdminController@AdminThongke'
     ]);
+
+    Route::get('khuyen-mai',[
+        'as' => 'adminkhuyenmai',
+        'uses' => 'AdminController@AdminKhuyenMai'
+    ]);
+
+    Route::get('loai-san-pham',[
+        'as' => 'adminlsp',
+        'uses' => 'AdminController@AdminLSP'
+    ]);
+
+    Route::get('dong-san-pham',[
+        'as' => 'admindsp',
+        'uses' => 'AdminController@AdminDSP'
+    ]);
+
+    Route::get('san-pham',[
+        'as' => 'adminsp',
+        'uses' => 'AdminController@AdminSP'
+    ]);
 });
+
+//Confirm Admin Login
 Route::post('dang-nhap-admin',[
     'as' => 'postadminlogin',
     'uses' => 'AdminLogin@login'
 ]);
-Route::get('admin/login',[
+Route::get('admin/dang-nhap',[
     'as' =>'adminlogin',
     'uses' => 'AdminLogin@showLoginForm'
 ]);
