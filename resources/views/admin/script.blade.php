@@ -67,3 +67,6 @@
 <script src="./admincp/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 <script src="./admincp/js/pages/forms/basic-form-elements.js"></script>
 
+<script src="./admincp/plugins/tinymce/tinymce.js"></script>
+
+

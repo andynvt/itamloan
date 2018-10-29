@@ -49,7 +49,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="" id="imageid">
+                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -74,7 +74,7 @@
                                     <tr>
                                         <td>Tiger Nixon</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>System Architect</td>
                                         <td>Edinburgh</td>
@@ -94,7 +94,7 @@
                                     <tr>
                                         <td>Garrett Winters</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -114,7 +114,7 @@
                                     <tr>
                                         <td>Ashton Cox</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Junior Technical Author</td>
                                         <td>San Francisco</td>
@@ -134,7 +134,7 @@
                                     <tr>
                                         <td>Cedric Kelly</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Senior Javascript Developer</td>
                                         <td>Edinburgh</td>
@@ -155,7 +155,7 @@
                                     <tr>
                                         <td>Brielle Williamson</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Integration Specialist</td>
                                         <td>New York</td>
@@ -175,7 +175,7 @@
                                     <tr>
                                         <td>Herrod Chandler</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Sales Assistant</td>
                                         <td>San Francisco</td>
@@ -195,7 +195,7 @@
                                     <tr>
                                         <td>Rhona Davidson</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Integration Specialist</td>
                                         <td>Tokyo</td>
@@ -215,7 +215,7 @@
                                     <tr>
                                         <td>Colleen Hurst</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Javascript Developer</td>
                                         <td>San Francisco</td>
@@ -235,7 +235,7 @@
                                     <tr>
                                         <td>Sonya Frost</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Software Engineer</td>
                                         <td>Edinburgh</td>
@@ -255,7 +255,7 @@
                                     <tr>
                                         <td>Jena Gaines</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Office Manager</td>
                                         <td>London</td>
@@ -401,7 +401,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img" id="herre">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -456,7 +456,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b-10">
                                             <b>Ảnh hiện tại</b>
                                             <div class="old-gallery m-t-10">
-                                                <img src="images/animation-bg.jpg" alt="">
+                                                <img src="admincp/images/animation-bg.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

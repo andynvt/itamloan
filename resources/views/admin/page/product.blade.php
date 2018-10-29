@@ -54,7 +54,7 @@
                                         <th scope="row">1</th>
 
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="" id="imageid">
+                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -81,7 +81,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>System Architect</td>
                                         <td>Edinburgh</td>
@@ -103,7 +103,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -125,7 +125,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -147,7 +147,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -169,7 +169,7 @@
                                     <tr>
                                         <td class="align-center">3</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -191,7 +191,7 @@
                                     <tr>
                                         <td class="align-center">3</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -214,7 +214,7 @@
                                     <tr>
                                         <td class="align-center">3</td>
                                         <td class="align-center img-inside">
-                                            <img src="images/iphonex.png" alt="">
+                                            <img src="admincp/images/iphonex.png" alt="">
                                         </td>
                                         <td>Accountant</td>
                                         <td>Tokyo</td>
@@ -559,11 +559,11 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img align-left" id="herre">
                                             <div style="text-align: left" class="m-t-20 m-b-10"><b>Hình ảnh</b></div>
                                             <div>
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
                                             </div>
                                         </div>
 
@@ -750,11 +750,11 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-img align-left" id="herre">
                                             <div style="text-align: left" class="m-t-20 m-b-10"><b>Ảnh hiện tại</b></div>
                                             <div>
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
-                                                <img src="images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
+                                                <img src="admincp/images/iphonex.png" alt="">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20">
@@ -884,7 +884,7 @@
             image_advtab: true
         });
         tinymce.suffix = ".min";
-        tinyMCE.baseURL = '../../plugins/tinymce';
+        tinyMCE.baseURL = '/itamloan/public/admincp/plugins/tinymce';
     </script>
 @endsection
     </body>

@@ -312,7 +312,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b-10">
                                     <b>Ảnh hiện tại</b>
                                     <div class="old-gallery m-t-10">
-                                        <img src="images/animation-bg.jpg" alt="">
+                                        <img src="admincp/images/animation-bg.jpg" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

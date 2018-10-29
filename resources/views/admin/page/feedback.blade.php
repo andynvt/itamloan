@@ -45,7 +45,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside-bill">
-                                            <img src="images/iphonex.png" alt="" id="imageid">
+                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                         </td>
                                         <td>Accountant</td>
                                         <td class="align-center">10</td>
@@ -61,7 +61,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside-bill">
-                                            <img src="images/iphonex.png" alt="" id="imageid">
+                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                         </td>
                                         <td>Accountant</td>
                                         <td class="align-center">10</td>
@@ -77,7 +77,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside-bill">
-                                            <img src="images/iphonex.png" alt="" id="imageid">
+                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                         </td>
                                         <td>Accountant</td>
                                         <td class="align-center">10</td>
@@ -93,7 +93,7 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td class="align-center img-inside-bill">
-                                            <img src="images/iphonex.png" alt="" id="imageid">
+                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                         </td>
                                         <td>Accountant</td>
                                         <td class="align-center">10</td>

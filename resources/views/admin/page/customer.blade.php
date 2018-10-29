@@ -211,7 +211,7 @@
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td class="align-center img-inside-bill">
-                                                        <img src="images/iphonex.png" alt="" id="imageid">
+                                                        <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                                     </td>
                                                     <td>iPhone XS MAX 512GB Gold</td>
                                                     <td class="align-center">
@@ -223,7 +223,7 @@
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td class="align-center img-inside-bill">
-                                                        <img src="images/iphonex.png" alt="" id="imageid">
+                                                        <img src="admincp/images/iphonex.png" alt="" id="imageid">
                                                     </td>
                                                     <td>iPhone XS MAX 512GB Gold</td>
                                                     <td class="align-center">
