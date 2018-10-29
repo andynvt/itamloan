@@ -828,7 +828,6 @@
             });
         }
     </script>
-
     <script>
         $(function() {
             // Multiple images preview in browser
@@ -869,7 +868,6 @@
             });
         });
     </script>
-
     <script>
         tinymce.init({
             selector: "textarea#tinymce",

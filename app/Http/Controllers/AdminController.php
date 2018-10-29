@@ -25,4 +25,16 @@ class AdminController extends Controller
     public function AdminSP(){
         return view('admin.page.product');
     }
+
+    public function AdminDonHang(){
+        return view('admin.page.bill');
+    }
+
+    public function AdminKhachHang(){
+        return view('admin.page.customer');
+    }
+
+    public function AdminDanhGia(){
+        return view('admin.page.feedback');
+    }
 }

@@ -174,6 +174,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'as' => 'adminsp',
         'uses' => 'AdminController@AdminSP'
     ]);
+
+    Route::get('don-hang',[
+        'as' => 'admindonhang',
+        'uses' => 'AdminController@AdminDonHang'
+    ]);
+
+    Route::get('khach-hang',[
+        'as' => 'adminkhachhang',
+        'uses' => 'AdminController@AdminKhachHang'
+    ]);
+
+    Route::get('danh-gia',[
+        'as' => 'admindanhgia',
+        'uses' => 'AdminController@AdminDanhGia'
+    ]);
 });
 
 //Confirm Admin Login
