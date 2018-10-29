@@ -17,5 +17,7 @@
 
 @include('admin.script')
 @yield('script')
+
+
 </body>
 </html>

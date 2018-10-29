@@ -165,6 +165,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'uses' => 'AdminController@AdminLSP'
     ]);
 
+    Route::post('them-loai',[
+        'as' => 'themloai',
+        'uses' => 'AdminController@ThemLoai'
+    ]);
+
+    Route::post('sua-loai/{id}',[
+        'as' => 'sualoai',
+        'uses' => 'AdminController@SuaLoai'
+    ]);
+
     Route::get('dong-san-pham',[
         'as' => 'admindsp',
         'uses' => 'AdminController@AdminDSP'

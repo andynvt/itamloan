@@ -68,5 +68,67 @@
 <script src="./admincp/js/pages/forms/basic-form-elements.js"></script>
 
 <script src="./admincp/plugins/tinymce/tinymce.js"></script>
+<!-- Bootstrap Notify Plugin Js -->
+<script src="./admincp/plugins/bootstrap-notify/bootstrap-notify.js"></script>
+{{--<script src="./admincp/js/pages/ui/notifications.js"></script>--}}
 
 
+<script>
+    function showNotification(colorName, text) {
+
+        if (colorName === 'danger') {
+            colorName = 'alert-danger';
+            iconStyle = '<img src="https://png.icons8.com/material/18/ffffff/delete-sign.png">';
+        }else if(colorName === 'success'){
+            colorName = 'alert-success';
+            iconStyle = '<img src="https://png.icons8.com/material/24/ffffff/checkmark.png">';
+        }else if(colorName === 'warning'){
+            colorName = 'alert-warning';
+            iconStyle = '<img src="https://png.icons8.com/material/24/ffffff/circled-i.png">';
+        }else if(colorName === 'info'){
+            colorName = 'alert-info';
+            iconStyle = '<img src="https://png.icons8.com/material-outlined/24/ffffff/info-popup.png">';
+        }
+
+        if (text === null || text === '') {
+            text = 'Thông báo mặc định';
+        }
+
+        var animateEnter = 'animated zoomInRight';
+        var animateExit = 'animated zoomOutRight';
+        var allowDismiss = true;
+
+        $.notify({
+                message: text
+            },
+            {
+                type: colorName,
+                allow_dismiss: allowDismiss,
+                newest_on_top: true,
+                timer: 1000,
+                placement: {
+                    from: 'bottom',
+                    align: 'right'
+                },
+                animate: {
+                    enter: animateEnter,
+                    exit: animateExit
+                },
+                template: '<div data-notify="container" class="bootstrap-notify-container alert alert-dismissible {0} ' + (allowDismiss ? "p-r-35" : "") + '" role="alert">' +
+                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                    '<span data-notify="icon">'+iconStyle +' </span> ' +
+                    '<span data-notify="title">{1}</span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    '</div>'
+            });
+    }
+    @if(Session::has('flag'))
+    $(document).ready(function() {
+        showNotification( '{{Session::get('flag')}}' , '{{Session::get('message')}}' );
+    });
+    @endif
+</script>
