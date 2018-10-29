@@ -33,9 +33,17 @@ class AdminLogin extends Controller
             // if successful, then redirect to their intended location
             return redirect()->route('adminthongke');
         }
+        else{
+            return redirect()->back();
+        }
         // if unsuccessful, then redirect back to the login with the form data
 //        return redirect()->back();
     }
+
+    public function quenMK(){
+        return view('admin.page.forgot_password');
+    }
+
 
     public function logout()
     {

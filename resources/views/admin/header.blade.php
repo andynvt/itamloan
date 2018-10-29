@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <p>Please wait...</p>
+        <p>Vui lòng đợi...</p>
     </div>
 </div>
 <!-- #END# Page Loader -->
@@ -196,49 +196,49 @@
         <div class="menu">
             <ul class="list">
                 <li class=" {{Request::is('admin/thong-ke') ? 'active' : null}}">
-                    <a href="home.html">
+                    <a href="{{route('adminthongke')}}">
                         <i class="material-icons">pie_chart</i>
                         <span>THỐNG KÊ</span>
                     </a>
                 </li>
                 <li class=" {{Request::is('admin/khuyen-mai') ? 'active' : null}}">
-                    <a href="promotion.html">
+                    <a href="{{route('adminkhuyenmai')}}">
                         <i class="material-icons">monetization_on</i>
                         <span>KHUYẾN MÃI</span>
                     </a>
                 </li>
                 <li class=" {{Request::is('admin/loai-san-pham') ? 'active' : null}}">
-                    <a href="product_type.html">
+                    <a href="{{route('adminlsp')}}">
                         <i class="material-icons">dashboard</i>
                         <span>LOẠI SẢN PHẨM</span>
                     </a>
                 </li>
                 <li class=" {{Request::is('admin/dong-san-pham') ? 'active' : null}}">
-                    <a href="catalog.html">
+                    <a href="{{route('admindsp')}}">
                         <i class="material-icons">layers</i>
                         <span>DÒNG SẢN PHẨM</span>
                     </a>
                 </li>
                 <li class=" {{Request::is('admin/san-pham') ? 'active' : null}}">
-                    <a href="product.html">
+                    <a href="{{route('adminsp')}}">
                         <i class="material-icons">shop</i>
                         <span>SẢN PHẨM</span>
                     </a>
                 </li>
                 <li class=" {{Request::is('admin/don-hang') ? 'active' : null}}">
-                    <a href="bill.html">
+                    <a href="{{route('admindonhang')}}">
                         <i class="material-icons">view_list</i>
                         <span>ĐƠN HÀNG</span>
                     </a>
                 </li>
                 <li class=" {{Request::is('admin/khach-hang') ? 'active' : null}}">
-                    <a href="customer.html">
+                    <a href="{{route('adminkhachhang')}}">
                         <i class="material-icons">people</i>
                         <span>KHÁCH HÀNG</span>
                     </a>
                 </li>
                 <li class=" {{Request::is('admin/danh-gia') ? 'active' : null}}">
-                    <a href="feedback.html">
+                    <a href="{{route('admindanhgia')}}">
                         <i class="material-icons">feedback</i>
                         <span>ĐÁNH GIÁ</span>
                     </a>
