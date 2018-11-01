@@ -72,6 +72,20 @@
 <script src="./admincp/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 {{--<script src="./admincp/js/pages/ui/notifications.js"></script>--}}
 
+<!-- Jquery DataTable Plugin Js -->
+<script src="./admincp/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="./admincp/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="./admincp/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="./admincp/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+<script src="./admincp/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+<script src="./admincp/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+<script src="./admincp/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+<script src="./admincp/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+<script src="./admincp/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+<script src="./admincp/js/pages/tables/jquery-datatable.js"></script>
+
+
 
 <script>
     function showNotification(colorName, text) {

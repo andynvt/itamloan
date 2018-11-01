@@ -70,7 +70,12 @@
                                                class=" btn btn-danger btn-circle waves-effect waves-circle waves-float delete-btn"
                                                data-toggle="tooltip" data-placement="top" data-original-title="Xoá"
                                                data-type="cancel">
-                                                <i class="material-icons">delete</i>
+                                                <form action="{{route('xoaloai')}}" method="get" class="delform">
+                                                    <input type="hidden" name="_token" content="{{ csrf_token() }}">
+                                                    <input type="hidden" name="id" value="{{$value->id}}">
+                                                    <input type="hidden" name="token" value="{{$value->id}}">
+                                                    <i class="material-icons">delete</i>
+                                                </form>
                                             </a>
                                         </td>
                                     </tr>
@@ -101,7 +106,7 @@
                                             <b>Tên loại </b>
                                             <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="type" class="form-control " placeholder="Tên loại sản phẩm">
+                                                    <input type="text" name="type" class="form-control " placeholder="Tên loại sản phẩm" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,7 +119,7 @@
 
                                             <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="type_detail[]" class="form-control m-t-20" placeholder="Thuộc tính 1">
+                                                    <input type="text" required name="type_detail[]" class="form-control m-t-20" placeholder="Thuộc tính 1">
                                                 </div>
                                             </div>
                                         </div>
@@ -178,9 +183,7 @@
                     </div>
                 </div>
             </div>
-        @endforeach
 
-        @foreach($lsp as $index => $value)
             <!-- Modal sửa lsp -->
             <div class="modal fade in" id="sua_lsp_{{$value->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -206,7 +209,7 @@
                                             <b>Tên loại </b>
                                             <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="type" value="{{$value->type}}" class="form-control " placeholder="Tên loại sản phẩm">
+                                                    <input type="text" name="type" value="{{$value->type}}" class="form-control " placeholder="Tên loại sản phẩm" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -220,7 +223,7 @@
                                             @foreach($td[$value->id] as $index => $t)
                                             <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="type_detail[]" value="{{$t}}" class="form-control m-t-20" placeholder="Thuộc tính 1">
+                                                    <input type="text" required name="type_detail[]" value="{{$t}}" class="form-control m-t-20" placeholder="Thuộc tính 1">
                                                 </div>
                                             </div>
                                                 @endforeach
@@ -244,8 +247,9 @@
                     </div>
                 </div>
             </div>
-        </div>
         @endforeach
+
+        </div>
 
     </section>
 @section('script')
@@ -267,13 +271,17 @@
         $(function() {
             $('.delete-btn').on('click', function() {
                 var type = $(this).data('type');
+                var id = $(this).parent().find('input').val();
+                var formnow = $(this).parent().find('.delform');
+                var token = $(this).parent().find('input[name="_token"]').val();
+                // alert(formnow);
                 if (type === 'cancel') {
-                    showCancelMessage();
+                    showCancelMessage(id,token,formnow);
                 }
             });
         });
 
-        function showCancelMessage() {
+        function showCancelMessage(id,token,formnow) {
             swal({
                 title: "Bạn có chắn chắn?",
                 text: "Bạn sẽ không thể khôi phục được loại sản phẩm này!",
@@ -286,7 +294,21 @@
                 closeOnCancel: false
             }, function(isConfirm) {
                 if (isConfirm) {
-                    swal("Đã xoá!", "Loại sản phẩm đã được xoá", "success");
+                    formnow.submit();
+                    //     $.ajax({
+                    //         url: 'admin/xoaloai',
+                    //         type: 'GET',
+                    //         // dataType: "json",
+                    //         data: { id: id, token: token},
+                    //         success: function(data, id, token){
+                    //             // formnow.submit();
+                    //
+                    //             // location.reload();
+                    //             // console.log(data, id);
+                    //             swal("Đã xoá!", "Loại sản phẩm đã được xoá", "success");
+                    //         }
+                    //     });
+
                 } else {
                     swal("Đã huỷ", "Loại sản phẩm vẫn còn", "error");
                 }

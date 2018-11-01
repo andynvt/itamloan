@@ -175,9 +175,31 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'uses' => 'AdminController@SuaLoai'
     ]);
 
+    Route::get('xoaloai',[
+        'as' => 'xoaloai',
+        'uses' => 'AdminController@XoaLoai'
+    ]);
+
+//    Route::post('xoaloai', 'AdminController@AjaxXoaLoai');
+
     Route::get('dong-san-pham',[
         'as' => 'admindsp',
         'uses' => 'AdminController@AdminDSP'
+    ]);
+
+    Route::post('them-dong',[
+        'as' => 'themdong',
+        'uses' => 'AdminController@ThemDong'
+    ]);
+
+    Route::post('sua-dong/{id}',[
+        'as' => 'suadong',
+        'uses' => 'AdminController@SuaDong'
+    ]);
+
+    Route::get('xoadong',[
+        'as' => 'xoadong',
+        'uses' => 'AdminController@XoaDong'
     ]);
 
     Route::get('san-pham',[
@@ -200,6 +222,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'uses' => 'AdminController@AdminDanhGia'
     ]);
 });
+
+
 
 //Confirm Admin Login
 Route::post('dang-nhap-admin',[

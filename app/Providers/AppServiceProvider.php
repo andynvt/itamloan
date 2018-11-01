@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 ->groupBy('ctl.id')
                 ->get();
             $full_type = $arr_ctl->groupBy('type');
+//            dd($full_type);
             $view->with(
                 'full_type',$full_type
             );
