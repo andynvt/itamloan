@@ -71,3 +71,5 @@
 <script src="./admincp/plugins/chartjs/Chart.bundle.js"></script>
 <!-- JQuery DataTable Css -->
 <link href="./admincp/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+<!-- Jquery Core Js -->
+<script src="./admincp/plugins/jquery/jquery.min.js"></script>

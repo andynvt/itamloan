@@ -207,6 +207,30 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'uses' => 'AdminController@AdminSP'
     ]);
 
+    Route::get('loadcatalog','AdminController@LoadCatalog');
+    Route::get('loadspec','AdminController@LoadSpec');
+    Route::get('loadvid','AdminController@LoadVid');
+    Route::get('loadimg','AdminController@LoadImg');
+
+    Route::get('loadcatalogedit','AdminController@LoadCatalogEdit');
+    Route::get('delimg','AdminController@DelImg');
+
+
+    Route::post('them-san-pham',[
+        'as' => 'themsp',
+        'uses' => 'AdminController@ThemSP'
+    ]);
+
+    Route::post('sua-san-pham/{id}',[
+        'as' => 'suasp',
+        'uses' => 'AdminController@SuaSP'
+    ]);
+
+    Route::get('xoasp',[
+        'as' => 'xoasp',
+        'uses' => 'AdminController@XoaSP'
+    ]);
+
     Route::get('don-hang',[
         'as' => 'admindonhang',
         'uses' => 'AdminController@AdminDonHang'

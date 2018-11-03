@@ -63,6 +63,7 @@ $(function () {
         digitsOptional: !1,
         clearMaskOnLostFocus: !1,
         rightAlign: false,
+        removeMaskOnSubmit: true,
     });
 
     //IP Address

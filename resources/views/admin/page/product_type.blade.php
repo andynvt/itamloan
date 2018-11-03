@@ -269,7 +269,7 @@
     </script>
     <script>
         $(function() {
-            $('.delete-btn').on('click', function() {
+            $("#lsp_table").on("click", ".delete-btn", function() {
                 var type = $(this).data('type');
                 var id = $(this).parent().find('input').val();
                 var formnow = $(this).parent().find('.delform');

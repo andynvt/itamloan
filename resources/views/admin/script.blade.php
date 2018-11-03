@@ -1,6 +1,6 @@
 
-<!-- Jquery Core Js -->
-<script src="./admincp/plugins/jquery/jquery.min.js"></script>
+{{--<!-- Jquery Core Js -->--}}
+{{--<script src="./admincp/plugins/jquery/jquery.min.js"></script>--}}
 
 <!-- Bootstrap Core Js -->
 <script src="./admincp/plugins/bootstrap/js/bootstrap.js"></script>
@@ -88,6 +88,7 @@
 
 
 <script>
+
     function showNotification(colorName, text) {
 
         if (colorName === 'danger') {

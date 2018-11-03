@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Catalog;
 use App\Product;
+use App\ProductColor;
+use App\ProductImage;
 use App\ProductType;
+use App\ProductVideo;
+use App\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -84,7 +88,6 @@ class AdminController extends Controller
             $name = date('Y-m-d-H-i-s') . "-" . $img->getClientOriginalName();
             $img->move('storage/product', $name);
             $ctl->catalog_image = $name;
-
         }
         $ctl->id_type = $req->type;
         $ctl->catalog = $req->catalog;
@@ -123,20 +126,200 @@ class AdminController extends Controller
         return redirect()->back()->with(['flag' => 'success', 'message' => 'Xoá '.$ctlname.' thành công!']);
     }
 
+    public static function getStringColor($name){
+        $text = mb_substr($name, 0, 100);
+        $i = mb_strrpos($text, ' ');
+        if ($i !== false)
+            $text = mb_substr($text, 0, $i);
+        return $text;
+    }
+
     public function AdminSP(){
         $sp = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_type as pt','pt.id','=','ctl.id_type')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
-            ->select('products.*','promo.percent','ctl.catalog','pt.type','pc.color','pi.image')
+            ->select('products.*','promo.percent','promo.id as promoid','ctl.catalog','pt.type','pc.color','pi.image','pt.id as ptid','ctl.id as ctlid')
             ->groupBy('products.id')
             ->get();
-//        $grsp = $sp->groupBy('products.id');
-//dd($sp);
-        return view('admin.page.product',compact('sp'));
+        $pt = ProductType::pluck('type','id');
+        $ctl = Catalog::pluck('catalog','id');
+        $promo = Promotion::all();
+        $type_detail = ProductType::pluck('type_detail','id');
+
+        $td = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_type as pt','pt.id','=','ctl.id_type')
+            ->select('products.id','type_detail','specs')->get();
+        foreach ($td as $t){
+            $t->type_detail = explode(',', $t->type_detail);
+            $t->specs = explode(',', $t->specs);
+        }
+        return view('admin.page.product',compact('sp','pt','promo','td','ctl'));
     }
 
+    public function LoadCatalog(Request $req){
+        $ctl = Catalog::where('id_type',$req->id)->get();
+        $td = ProductType::where('id',$req->id)->value('type_detail');
+        $extd = explode(',', $td);
+        return json_encode([$ctl,$extd]);
+    }
+    public function LoadCatalogEdit(Request $req){
+        $id_ctl = Product::where('id',$req->id)->value('id_catalog');
+        $id_type = Catalog::where('id',$id_ctl)->value('id_type');
+
+        $ctl = Catalog::where('id_type',$id_type)->get();
+        return json_encode([$ctl,$id_ctl]);
+    }
+    public function LoadSpec(Request $req){
+        $spec = Product::where('id',$req->id)->value('specs');
+        $type_detail = ProductType::leftjoin('catalogs as ctl','ctl.id_type','=','product_type.id')
+            ->leftjoin('products as p','p.id_catalog','=','ctl.id')
+            ->where('p.id',$req->id)
+            ->select('type_detail')->get();
+        foreach ($type_detail as $t){
+            $td =$t->type_detail;
+        }
+        $exspecs = explode(',', $spec);
+        $extd = explode(',', $td);
+        return json_encode([$extd,$exspecs]);
+    }
+    public function LoadVid(Request $req){
+        $video = ProductVideo::where('id_product',$req->id)->select('v_name','v_link')->get();
+        return json_encode($video);
+    }
+    public function LoadImg(Request $req){
+        $id_color = ProductColor::where('id_product',$req->id)->value('id');
+        $img = ProductImage::where('id_color',$id_color)->select('id','image')->get();
+        return json_encode($img);
+    }
+
+    public function ThemSP(Request $req){
+        $spec = "";
+        foreach ($req->specs as $t){
+            if($t != null){
+                $spec = $spec.", ".$t;
+            }
+        }
+        $kq = substr($spec,2);
+
+        $p = new Product();
+        if($req->hasfile('images')) {
+            $p->id_catalog = $req->catalog;
+            $p->id_promo = $req->promo;
+            $p->name = $req->name.' '.$req->storage.' '.$req->color;
+            $p->price = $req->price;
+            $p->specs = $kq;
+            $p->warranty = $req->warranty;
+            $p->inventory = $req->inventory;
+            $p->description = $req->description;
+            $p->save();
+
+            if($req->v_name != null){
+                foreach ($req->v_name as $i => $v){
+                    $pv = new ProductVideo();
+                    $pv->id_product = $p->id;
+                    $pv->v_name = $req->v_name[$i];
+                    $pv->v_link = $req->v_link[$i];
+                    $pv->save();
+                }
+            }
+
+            $pc = new ProductColor();
+            $pc->id_product = $p->id;
+            $pc->color = $req->color;
+            $pc->save();
+
+            foreach($req->file('images') as $image){
+                $namee=date('Y-m-d-H-i-s')."-".$image->getClientOriginalName();
+                $image->move('storage/product', $namee);
+                $img[] = $namee;
+            }
+            foreach($img as $i){
+                $pi = new ProductImage();
+                $pi->id_color = $pc->id;
+                $pi->image = $i;
+                $pi->save();
+            }
+        }
+
+        return redirect()->back()->with(['flag' => 'success', 'message' => 'Thêm '.$req->name.' thành công!']);
+    }
+
+    public function SuaSP(Request $req, $id){
+        $spec = "";
+        foreach ($req->specs as $t){
+            if($t != null){
+                $spec = $spec.", ".$t;
+            }
+        }
+        $kq = substr($spec,2);
+
+        $p = Product::find($id);
+        $p->id_catalog = $req->catalog;
+        $p->id_promo = $req->promo;
+        $p->name = $req->name." ".$req->color;
+        $p->price = $req->price;
+        $p->inventory = $req->inventory;
+        $p->specs = $kq;
+        $p->warranty = $req->warranty;
+        $p->description = $req->description;
+        $p->save();
+
+        ProductVideo::where('id_product',$id)->delete();
+        if($req->v_name != null){
+            foreach ($req->v_name as $i => $v){
+                $pv = new ProductVideo();
+                $pv->id_product = $p->id;
+                $pv->v_name = $req->v_name[$i];
+                $pv->v_link = $req->v_link[$i];
+                $pv->save();
+            }
+        }
+
+        $pc = ProductColor::where('id_product',$id)->first();
+        $pc->color = $req->color;
+        $pc->save();
+
+        if($req->hasfile('images')){
+            foreach($req->file('images') as $image){
+                $namee=date('Y-m-d-H-i-s')."-".$image->getClientOriginalName();
+                $image->move('storage/product', $namee);
+                $img[] = $namee;
+            }
+            foreach($img as $i){
+                $pi = new ProductImage();
+                $pi->id_color = $pc->id;
+                $pi->image = $i;
+                $pi->save();
+            }
+        }
+        return redirect()->back()->with(['flag' => 'success', 'message' => 'Sửa '.$req->name.' thành công!']);
+    }
+
+    public function DelImg(Request $req){
+        $idimg = ProductImage::find($req->iid);
+        ProductImage::find($idimg->id)->delete();
+        Storage::delete('app/public/product/'.$idimg->image);
+        unlink(storage_path('app/public/product/'.$idimg->image));
+        return json_encode($idimg);
+    }
+
+    public function XoaSP(Request $req){
+        $id = $req->id;
+        $id_color = ProductColor::where('id_product',$id)->value('id');
+        $p = Product::find($id);
+
+        $idimg = ProductImage::where('id_color',$id_color)->get();
+        foreach ($idimg as $i){
+            ProductImage::find($i->id)->delete();
+            Storage::delete('app/public/product/'.$i->image);
+            unlink(storage_path('app/public/product/'.$i->image));
+        }
+        $pname = Product::where('id',$req->id)->value('name');
+        $p->delete();
+        return redirect()->back()->with(['flag' => 'success', 'message' => 'Xoá '.$pname.' thành công!']);
+    }
     public function AdminDonHang(){
         return view('admin.page.bill');
     }

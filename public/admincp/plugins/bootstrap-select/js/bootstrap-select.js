@@ -1724,10 +1724,10 @@
   // SELECTPICKER DATA-API
   // =====================
   $(window).on('load.bs.select.data-api', function () {
-    $('.selectpicker').each(function () {
-      var $selectpicker = $(this);
-      Plugin.call($selectpicker, $selectpicker.data());
-    })
+    // $('.selectpicker').each(function () {
+    //   var $selectpicker = $(this);
+    //   Plugin.call($selectpicker, $selectpicker.data());
+    // })
   });
 })(jQuery);
 

@@ -26,7 +26,7 @@
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable"
-                                       id="lsp_table">
+                                       id="dsp_table">
                                     <thead class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
@@ -314,7 +314,7 @@
 @section('script')
     <script>
         $(function() {
-            $('.delete-btn').on('click', function() {
+            $("#dsp_table").on("click", ".delete-btn", function() {
                 var type = $(this).data('type');
                 var id = $(this).parent().find('input').val();
                 var formnow = $(this).parent().find('.delform');
