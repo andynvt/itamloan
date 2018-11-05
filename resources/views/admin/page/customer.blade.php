@@ -23,6 +23,7 @@
                                     <thead class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
+                                        <th class="align-center">AVATAR</th>
                                         <th class="align-center">KHÁCH HÀNG</th>
                                         <th class="align-center">LIÊN HỆ</th>
                                         <th class="align-center">TRẠNG THÁI</th>
@@ -32,6 +33,7 @@
                                     <tfoot class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
+                                        <th class="align-center">AVATAR</th>
                                         <th class="align-center">KHÁCH HÀNG</th>
                                         <th class="align-center">LIÊN HỆ</th>
                                         <th class="align-center">TRẠNG THÁI</th>
@@ -39,69 +41,43 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Accountant</td>
-                                        <td class="align-center">
-                                            <a href="tel:0366988779">0366988779</a>
-                                            <br>
-                                            <a href="mailto:me.ngvantai@gmail.com">me.ngvantai@gmail.com</a>
-                                        </td>
-                                        <td class="align-center"><span class="label bg-purple">MUA HÀNG</span></td>
-                                        <td class="align-center pd-5">
-                                                <span data-toggle="modal" data-target="#xem_kh">
-                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                    @foreach($kh as $index => $value)
+                                        <tr>
+                                            <th scope="row">{{$index+1}}</th>
+                                            <td class="align-center img-inside">
+                                                <img src="storage/user/{{$value->avatar}}" alt="{{$value->c_name}}"
+                                                     id="imageid">
+                                            </td>
+                                            <td>{{$value->c_name}}</td>
+                                            <td class="align-center">
+                                                <a href="tel:{{$value->phone}}">{{$value->phone}}</a>
+                                                <br>
+                                                <a href="mailto:{{$value->email}}">{{$value->email}}</a>
+                                            </td>
+                                            <td class="align-center">
+                                                @if(\App\Http\Controllers\AdminController::checkCustomer($value->id) == "svip")
+                                                    <span class="label bg-pink">SUPER VIP</span>
+                                                @elseif(\App\Http\Controllers\AdminController::checkCustomer($value->id) == "vip")
+                                                    <span class="label bg-red">VIP</span>
+                                                @elseif(\App\Http\Controllers\AdminController::checkCustomer($value->id) == "buy")
+                                                    <span class="label bg-purple">MUA HÀNG</span>
+                                                @elseif(\App\Http\Controllers\AdminController::checkCustomer($value->id) == "fb")
+                                                    <span class="label bg-green">ĐÁNH GIÁ</span>
+                                                @elseif(\App\Http\Controllers\AdminController::checkCustomer($value->id) == "new")
+                                                    <span class="label bg-light-blue">MỚI</span>
+                                                @endif
+                                            </td>
+                                            <td class="align-center pd-5">
+                                                <span data-toggle="modal" data-target="#xem_kh_{{$value->id}}">
+                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float xemkh"
+                                                       data-toggle="tooltip" data-placement="top"
+                                                       data-original-title="Xem chi tiết" data-kh="{{$value->id}}">
                                                         <i class="material-icons">visibility</i>
                                                     </a>
                                                 </span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td class="align-center"><span class="label bg-green">ĐÁNH GIÁ</span></td>
-
-                                        <td class="align-center pd-5">
-                                            <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
-                                                <i class="material-icons">visibility</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td class="align-center pd-5">
-                                            <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
-                                                <i class="material-icons">visibility</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td class="align-center"><span class="label bg-light-blue">MỚI</span></td>
-                                        <td class="align-center pd-5">
-                                            <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
-                                                <i class="material-icons">visibility</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bradley Greer</td>
-                                        <td>Software Engineer</td>
-                                        <td>London</td>
-                                        <td class="align-center"><span class="label bg-pink">V.I.P</span></td>
-                                        <td class="align-center pd-5">
-                                            <a class="btn btn-info btn-circle waves-effect waves-circle waves-float">
-                                                <i class="material-icons">visibility</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -112,12 +88,12 @@
             <!-- #END# Exportable Table -->
 
             <!--            Modal xem thông tin khách hàng-->
-            <!-- Modal xem don hang -->
-            <div class="modal fade in" id="xem_kh" tabindex="-1" role="dialog">
+            @foreach($kh as $index => $value)
+            <div class="modal fade in" id="xem_kh_{{$value->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">KHÁCH HÀNG: Nguyễn Văn Tài</h4>
+                            <h4 class="modal-title" id="defaultModalLabel">KHÁCH HÀNG: {{$value->c_name}}</h4>
                             <hr>
                         </div>
                         <div class="modal-body">
@@ -126,42 +102,14 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <h4>ĐƠN HÀNG</h4>
                                         <div class="body table-responsive">
-                                            <table class="table table-striped table-bordered table-hover">
+                                            <table class="table table-striped table-bordered table-hover tbl-xem">
                                                 <tr>
-                                                    <th>#</th>
                                                     <th>ID</th>
                                                     <th>Sản phẩm</th>
                                                     <th>Tổng tiền</th>
                                                     <th>Trạng thái</th>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>1</td>
-                                                    <td>10</td>
-                                                    <td>30.000.000 ₫</td>
-                                                    <td class="col-green">Hoàn tất</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>1</td>
-                                                    <td>10</td>
-                                                    <td>30.000.000 ₫</td>
-                                                    <td class="col-red">Thất bại</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>1</td>
-                                                    <td>10</td>
-                                                    <td>30.000.000 ₫</td>
-                                                    <td>Hoàn tất</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>1</td>
-                                                    <td>10</td>
-                                                    <td>30.000.000 ₫</td>
-                                                    <td>Hoàn tất</td>
-                                                </tr>
+
                                             </table>
                                         </div>
                                     </div>
@@ -171,23 +119,23 @@
                                             <table class="table table-striped table-bordered table-hover">
                                                 <tr>
                                                     <th>Họ tên</th>
-                                                    <td>Nguyễn Văn Tài</td>
+                                                    <td>{{$value->c_name}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Số điện thoại</th>
-                                                    <td>0366988779</td>
+                                                    <td>{{$value->phone}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Email</th>
-                                                    <td>me.ngvantai@gmail.com</td>
+                                                    <td>{{$value->email}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Địa chỉ nhà</th>
-                                                    <td>132 3 Tháng 2 - Ninh kiều cần thơ</td>
+                                                    <td>{{$value->address}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Địa chỉ giao hàng</th>
-                                                    <td class="col-pink">2/121C, Mậu Thân, Ninh Kiều, Cần Thơ</td>
+                                                    <td class="col-pink">{{$value->shipping_address}}</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -208,31 +156,22 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td class="align-center img-inside-bill">
-                                                        <img src="admincp/images/iphonex.png" alt="" id="imageid">
-                                                    </td>
-                                                    <td>iPhone XS MAX 512GB Gold</td>
-                                                    <td class="align-center">
-                                                        5 <span class="col-deep-orange">★</span>
-                                                    </td>
-                                                    <td class="align-center">Supported neglected met she therefore unwilling discovery remainder.</td>
-                                                    <td class="align-center">22/10/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td class="align-center img-inside-bill">
-                                                        <img src="admincp/images/iphonex.png" alt="" id="imageid">
-                                                    </td>
-                                                    <td>iPhone XS MAX 512GB Gold</td>
-                                                    <td class="align-center">
-                                                        4 <span class="col-deep-orange">★</span>
-                                                    </td>
-                                                    <td class="align-center">Supported neglected met she therefore unwilling discovery remainder.</td>
-                                                    <td class="align-center">22/10/2018</td>
-                                                </tr>
-
+                                                @foreach($fb as $i => $v)
+                                                    @if($v->cid == $value->id)
+                                                        <tr>
+                                                            <th scope="row">{{$i+1}}</th>
+                                                            <td class="align-center img-inside-bill">
+                                                                <img src="storage/product/{{$v->image}}" alt="{{$v->name}}" id="imageid">
+                                                            </td>
+                                                            <td style="width: 20%">{{$v->name}}</td>
+                                                            <td class="align-center">
+                                                                {{$v->stars}} <span class="col-deep-orange">★</span>
+                                                            </td>
+                                                            <td class="align-center" style="width: 40%">{{$v->review}}</td>
+                                                            <td class="align-center">{{ date('H:i - d/m/Y', strtotime($v->created_at) )}}</td>
+                                                        </tr>
+                                                @endif
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -254,20 +193,36 @@
                     </div>
                 </div>
             </div>
-
-
+            @endforeach
         </div>
     </section>
 
 @section('script')
     <script>
-        var value = 1;
+        // Load đơn hàng theo khách hàng
+        $('.xemkh').on('click',function () {
+            var id = $(this).attr("data-kh");
+            var tbl = $('#xem_kh_'+id+' .tbl-xem');
 
-        function clickMore() {
-            value += 1;
-            var html = '<div class="input-group"><div class="form-line"><input type="text" name="type_detail[]" class="form-control" placeholder="Thuộc tính ' + value + '"></div></div>';
-            $('#herre').append(html);
-        };
+            $.ajax({
+                url: 'admin/loadbill',
+                dataType: 'json',
+                type: 'GET',
+                data: {id: id},
+                success: function (data) {
+                    console.log(data);
+                    // tbl.empty();
+                    for ($i = 0; $i < data.length; $i++) {
+                        tbl.append('<tr>\n' +
+                            '                                                    <td>'+ data[$i]["id"] +'</td>\n' +
+                            '                                                    <td>'+ data[$i]["total_product"] +'</td>\n' +
+                            '                                                    <td>'+ data[$i]["total_price"] +' ₫</td>\n' +
+                            '                                                    <td class="col-pink">'+ data[$i]["status"] +'</td>\n' +
+                            '                                                </tr>');
+                    }
+                }
+            });
+        });
     </script>
     <script>
         $(function() {

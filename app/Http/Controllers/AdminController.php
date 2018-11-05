@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Bill;
 use App\Catalog;
+use App\Customer;
+use App\Feedback;
 use App\Product;
 use App\ProductColor;
 use App\ProductImage;
@@ -458,7 +461,51 @@ class AdminController extends Controller
 
     public function AdminKhachHang()
     {
-        return view('admin.page.customer');
+        $kh = Customer::leftjoin('users as u','u.id','=','customers.id_user')
+            ->select('customers.*','u.email')
+            ->get();
+        $fb = Feedback::leftjoin('customers as c', 'c.id', '=', 'feedbacks.id_customer')
+            ->leftjoin('products as p','p.id','=','feedbacks.id_product')
+            ->leftjoin('product_color as pc', 'pc.id_product', '=', 'p.id')
+            ->leftjoin('product_image as pi', 'pi.id_color', '=', 'pc.id')
+            ->select('feedbacks.*','p.name','image','c.id as cid')
+            ->get();
+//        dd($fb);
+        return view('admin.page.customer',compact('kh','fb'));
+    }
+
+    public static function checkCustomer($id){
+        $medal = "new";
+        $fb = Feedback::where('id_customer',$id)->get();
+        $bill = Bill::where('id_customer',$id)->get();
+        $ckvip = Bill::where('id_customer',$id)->select('total_price')->get();
+        $total = 0;
+        foreach ($ckvip as $i){
+            $total += $i->total_price;
+        }
+        if($total > 100000000){
+            $medal = "svip";
+        }elseif($total >50000000){
+            $medal = "vip";
+        }else{
+            if($fb != null){
+                $medal = "fb";
+            }
+            if($bill != null){
+                $medal = "buy";
+            }
+        }
+        return $medal;
+
+    }
+
+    public function LoadBill(Request $req)
+    {
+        $b = Bill::leftjoin('bill_status as bs','bs.id','=','bills.id_status')
+            ->leftjoin('customers as c','c.id','=','bills.id_customer')
+            ->select('bills.*','bs.status')
+            ->where('c.id',$req->id)->get();
+        return json_encode($b);
     }
 
     public function AdminDanhGia()
