@@ -24,6 +24,7 @@
                                     <thead class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
+                                        <th class="align-center">ID</th>
                                         <th class="align-center">ẢNH</th>
                                         <th class="align-center">TÊN SẢN PHẨM</th>
                                         <th class="align-center">ĐÁNH GIÁ</th>
@@ -34,6 +35,7 @@
                                     <tfoot class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
+                                        <th class="align-center">ID</th>
                                         <th class="align-center">ẢNH</th>
                                         <th class="align-center">TÊN SẢN PHẨM</th>
                                         <th class="align-center">ĐÁNH GIÁ</th>
@@ -42,72 +44,25 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
+                                    @foreach($sp as $index => $value)
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row">{{$index+1}}</th>
+                                        <td class="align-center">{{$value->id}}</td>
                                         <td class="align-center img-inside-bill">
-                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
+                                            <img src="storage/product/{{$value->image}}" alt="{{$value->name}}" id="imageid">
                                         </td>
-                                        <td>Accountant</td>
-                                        <td class="align-center">10</td>
-                                        <td class="align-center">4,5</td>
+                                        <td>{{$value->name}}</td>
+                                        <td class="align-center">{{$value->no_fb}}</td>
+                                        <td class="align-center">{{sprintf('%01.1f', $value->avg)}} <span class="col-deep-orange">★</span></td>
                                         <td class="align-center pd-5">
-                                                <span data-toggle="modal" data-target="#xem_dg">
+                                                <span data-toggle="modal" data-target="#xem_dg_{{$value->id}}">
                                                     <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
                                                         <i class="material-icons">visibility</i>
                                                     </a>
                                                 </span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td class="align-center img-inside-bill">
-                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
-                                        </td>
-                                        <td>Accountant</td>
-                                        <td class="align-center">10</td>
-                                        <td class="align-center">4,5</td>
-                                        <td class="align-center pd-5">
-                                                <span data-toggle="modal" data-target="#xem_dg">
-                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
-                                                        <i class="material-icons">visibility</i>
-                                                    </a>
-                                                </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td class="align-center img-inside-bill">
-                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
-                                        </td>
-                                        <td>Accountant</td>
-                                        <td class="align-center">10</td>
-                                        <td class="align-center">4,5</td>
-                                        <td class="align-center pd-5">
-                                                <span data-toggle="modal" data-target="#xem_dg">
-                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
-                                                        <i class="material-icons">visibility</i>
-                                                    </a>
-                                                </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td class="align-center img-inside-bill">
-                                            <img src="admincp/images/iphonex.png" alt="" id="imageid">
-                                        </td>
-                                        <td>Accountant</td>
-                                        <td class="align-center">10</td>
-                                        <td class="align-center">4,5</td>
-                                        <td class="align-center pd-5">
-                                                <span data-toggle="modal" data-target="#xem_dg">
-                                                    <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
-                                                        <i class="material-icons">visibility</i>
-                                                    </a>
-                                                </span>
-                                        </td>
-                                    </tr>
-
-
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -117,13 +72,13 @@
             </div>
             <!-- #END# Exportable Table -->
 
-            <!--            Modal xem thông tin khách hàng-->
-            <!-- Modal xem don hang -->
-            <div class="modal fade in" id="xem_dg" tabindex="-1" role="dialog">
+            <!-- Modal xem đánh giá -->
+            @foreach($sp as $index => $value)
+            <div class="modal fade in" id="xem_dg_{{$value->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">SẢN PHẨM: <a href="">iPhone X</a></h4>
+                            <h4 class="modal-title" id="defaultModalLabel">SẢN PHẨM: {{$value->name}}</h4>
                             <hr>
                         </div>
                         <div class="modal-body">
@@ -135,23 +90,41 @@
                                                 <thead class="bg-blue-grey">
                                                 <tr>
                                                     <th class="align-center">#</th>
+                                                    <th class="align-center">AVATAR</th>
                                                     <th class="align-center">KHÁCH HÀNG</th>
                                                     <th class="align-center">ĐÁNH GIÁ</th>
                                                     <th class="align-center">NỘI DUNG</th>
                                                     <th class="align-center">THỜI GIAN</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tfoot class="bg-blue-grey">
                                                 <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Nguyễn Văn Tài</td>
-                                                    <td class="align-center">
-                                                        5 <span class="col-deep-orange">★</span>
-                                                    </td>
-                                                    <td class="align-center">Supported neglected met she therefore unwilling discovery remainder.</td>
-                                                    <td class="align-center">22/10/2018</td>
+                                                    <th class="align-center">#</th>
+                                                    <th class="align-center">AVATAR</th>
+                                                    <th class="align-center">KHÁCH HÀNG</th>
+                                                    <th class="align-center">ĐÁNH GIÁ</th>
+                                                    <th class="align-center">NỘI DUNG</th>
+                                                    <th class="align-center">THỜI GIAN</th>
                                                 </tr>
-
+                                                </tfoot>
+                                                <tbody>
+                                                @foreach($fb as $i => $v)
+                                                    @if($v->pid == $value->id)
+                                                        <tr>
+                                                            <th scope="row">{{$i+1}}</th>
+                                                            <td class="align-center img-inside-bill">
+                                                                <img src="storage/user/{{$v->avatar}}"
+                                                                     alt="{{$v->c_name}}" id="imageid">
+                                                            </td>
+                                                            <td>{{$v->c_name}}</td>
+                                                            <td class="align-center">
+                                                                {{$v->stars}} <span class="col-deep-orange">★</span>
+                                                            </td>
+                                                            <td style="width: 40%;">{{$v->review}}</td>
+                                                            <td class="align-center">{{ date('H:i - d/m/Y', strtotime($v->created_at) )}}</td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -173,7 +146,7 @@
                     </div>
                 </div>
             </div>
-
+            @endforeach
         </div>
     </section>
 

@@ -14,6 +14,7 @@ use App\ProductVideo;
 use App\Promotion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -510,6 +511,16 @@ class AdminController extends Controller
 
     public function AdminDanhGia()
     {
-        return view('admin.page.feedback');
+        $sp = Product::leftjoin('product_color as pc', 'pc.id_product', '=', 'products.id')
+            ->leftjoin('product_image as pi', 'pi.id_color', '=', 'pc.id')
+            ->leftjoin('feedbacks as f','f.id_product','=','products.id')
+            ->groupBy('products.id')
+            ->select(DB::raw('count(f.id) as no_fb, avg(f.stars) as avg, products.*, pi.image'))
+            ->where('f.id','<>',null)->orderBy('f.created_at')->get();
+        $fb = Feedback::leftjoin('customers as c','c.id','=','feedbacks.id_customer')
+            ->leftjoin('products as p','p.id','=','feedbacks.id_product')
+            ->select('feedbacks.*','c.c_name','c.avatar','p.id as pid')->get();
+//dd($sp);
+        return view('admin.page.feedback',compact('sp','fb'));
     }
 }
