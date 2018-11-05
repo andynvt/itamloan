@@ -160,6 +160,31 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'uses' => 'AdminController@AdminKhuyenMai'
     ]);
 
+    Route::post('them-khuyen-mai',[
+        'as' => 'themkm',
+        'uses' => 'AdminController@ThemKM'
+    ]);
+
+    Route::post('sua-khuyen-mai/{id}',[
+        'as' => 'suakm',
+        'uses' => 'AdminController@SuaKM'
+    ]);
+
+    Route::post('sua-spkm/{id_promo}',[
+        'as' => 'suaspkm',
+        'uses' => 'AdminController@SuaSPKM'
+    ]);
+
+    Route::get('xoaspkm',[
+        'as' => 'xoaspkm',
+        'uses' => 'AdminController@XoaSPKM'
+    ]);
+
+    Route::get('xoakm',[
+        'as' => 'xoakm',
+        'uses' => 'AdminController@XoaKM'
+    ]);
+
     Route::get('loai-san-pham',[
         'as' => 'adminlsp',
         'uses' => 'AdminController@AdminLSP'
@@ -214,7 +239,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
 
     Route::get('loadcatalogedit','AdminController@LoadCatalogEdit');
     Route::get('delimg','AdminController@DelImg');
-
 
     Route::post('them-san-pham',[
         'as' => 'themsp',

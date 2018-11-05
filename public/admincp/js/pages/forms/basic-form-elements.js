@@ -4,8 +4,10 @@ $(function () {
 
     //Datetimepicker plugin
     $('.datetimepicker').bootstrapMaterialDatePicker({
-        format: 'dddd DD MMMM YYYY - HH:mm',
+        // format: 'dddd DD MMMM YYYY - HH:mm',
+        format: 'YYYY-MM-DD HH:mm:ss',
         clearButton: true,
+        showTodayButton: true,
         weekStart: 1
     });
 

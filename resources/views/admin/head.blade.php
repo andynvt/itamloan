@@ -47,6 +47,7 @@
 
 <!-- Custom Css -->
 <link href="./admincp/css/style.css" rel="stylesheet">
+<link href="./admincp/css/materialize.css" rel="stylesheet">
 
 <!-- AdminBSB Themes. You can choose a theme from ./admincp/css/themes instead of get all themes -->
 <link href="./admincp/css/themes/all-themes.css" rel="stylesheet" />

@@ -50,7 +50,7 @@
                                         <th scope="row">{{$index+1}}</th>
                                         <td>{{$value->id}}</td>
                                         <td>{{$value->type}}</td>
-                                        <td>{{$value->type_detail}}</td>
+                                        <td style="width: 60%">{{$value->type_detail}}</td>
                                         <td class="align-center pd-5">
                                                 <span data-toggle="modal" data-target="#xem_lsp_{{$value->id}}">
                                                     <a class="btn btn-info btn-circle waves-effect waves-circle waves-float"
@@ -213,11 +213,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="here">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="here-{{$value->id}}">
                                             <b>Thuộc tính</b>
                                             <span class="m-l-20">(VD: Màn hình, CPU,...)</span>
                                             <div class="m-t-0">
-                                                <button type="button" onclick="clickMoreEdit();" class="btn bg-blue-grey btn-xs waves-effect m-t-20"><i class="material-icons">add</i> <span>THÊM THUỘC TÍNH</span></button>
+                                                <button type="button" onclick="clickMoreEdit('{{$value->id}}');" class="btn bg-blue-grey btn-xs waves-effect m-t-20"><i class="material-icons">add</i> <span>THÊM THUỘC TÍNH</span></button>
                                             </div>
 
                                             @foreach($td[$value->id] as $index => $t)
@@ -261,10 +261,10 @@
             var html = '<div class="input-group"><div class="form-line"><input type="text" name="type_detail[]" class="form-control" placeholder="Thuộc tính ' + value + '"></div></div>';
             $('#herre').append(html);
         };
-        function clickMoreEdit() {
+        function clickMoreEdit(id) {
             value += 1;
             var html = '<div class="input-group"><div class="form-line"><input type="text" name="type_detail[]" class="form-control"></div></div>';
-            $('#here').append(html);
+            $('#here-'+id).append(html);
         };
     </script>
     <script>

@@ -50,8 +50,17 @@ $(function () {
     $demoMaskedInput.find('.money-euro').inputmask('99,99 €', {
         placeholder: '__,__ €'
     });
-    $demoMaskedInput.find('.percent').inputmask('99 %', {
-        placeholder: '__  %'
+    $demoMaskedInput.find('.percent').inputmask({
+        suffix: " %",
+        // groupSeparator: ".",
+        alias: "numeric",
+        placeholder: "0",
+        autoGroup: !0,
+        digits: 0,
+        digitsOptional: !1,
+        clearMaskOnLostFocus: !1,
+        rightAlign: false,
+        removeMaskOnSubmit: true,
     });
     $demoMaskedInput.find('.vn-dong').inputmask({
         suffix: " ₫",
