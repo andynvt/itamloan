@@ -230,7 +230,7 @@
                     data: {
                         labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                         datasets: [{
-                            label: "chưa mua hàng",
+                            label: "Chưa mua hàng",
                             data: [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55],
                             borderColor: 'rgba(0, 188, 212, 0.75)',
                             backgroundColor: 'rgba(0, 188, 212, 0.3)',

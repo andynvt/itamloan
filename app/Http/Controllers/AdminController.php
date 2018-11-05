@@ -457,6 +457,7 @@ class AdminController extends Controller
 
     public function AdminDonHang()
     {
+
         return view('admin.page.bill');
     }
 
@@ -471,7 +472,6 @@ class AdminController extends Controller
             ->leftjoin('product_image as pi', 'pi.id_color', '=', 'pc.id')
             ->select('feedbacks.*','p.name','image','c.id as cid')
             ->get();
-//        dd($fb);
         return view('admin.page.customer',compact('kh','fb'));
     }
 
@@ -520,7 +520,6 @@ class AdminController extends Controller
         $fb = Feedback::leftjoin('customers as c','c.id','=','feedbacks.id_customer')
             ->leftjoin('products as p','p.id','=','feedbacks.id_product')
             ->select('feedbacks.*','c.c_name','c.avatar','p.id as pid')->get();
-//dd($sp);
         return view('admin.page.feedback',compact('sp','fb'));
     }
 }

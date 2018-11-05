@@ -9,6 +9,118 @@
             <div class="block-header">
                 <h2>KHÁCH HÀNG</h2>
             </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>THÀNH VIÊN</h2>
+                        </div>
+                        <div class="body">
+                            <canvas id="customer_chart" height="160"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    var ctx = document.getElementById("customer_chart");
+                    var OrderChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+                            datasets: [{
+                                label: "Chưa mua hàng",
+                                data: [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55],
+                                borderColor: 'rgba(0, 188, 212, 0.75)',
+                                backgroundColor: 'rgba(0, 188, 212, 0.3)',
+                                pointBorderColor: 'rgba(0, 188, 212, 0)',
+                                pointBackgroundColor: 'rgba(0, 188, 212, 0.9)',
+                                pointBorderWidth: 1
+                            }, {
+                                label: "Đã mua hàng",
+                                data: [28, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27, 90],
+                                borderColor: 'rgba(233, 30, 99, 0.75)',
+                                backgroundColor: 'rgba(233, 30, 99, 0.3)',
+                                pointBorderColor: 'rgba(233, 30, 99, 0)',
+                                pointBackgroundColor: 'rgba(233, 30, 99, 0.9)',
+                                pointBorderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            },
+                            scales: {
+                                xAxes: [{
+                                    stacked: true,
+                                }],
+                                yAxes: [{
+                                    stacked: true
+                                }]
+                            }
+                        }
+                    });
+                </script>
+                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>CHÚ THÍCH</h2>
+                        </div>
+                        <div class="body" style="padding: 10px;">
+                            <div class="body table-responsive" style="padding: 0;">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tr>
+                                        <th class="align-center">TRẠNG THÁI</th>
+                                        <th class="align-center">Ý NGHĨA</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center">
+                                            <span class="label bg-light-blue">MỚI</span>
+                                        </td>
+                                        <td class="align-center">
+                                            Mới đăng ký tài khoản
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center">
+                                            <span class="label bg-green">ĐÁNH GIÁ</span>
+                                        </td>
+                                        <td class="align-center">
+                                            Có viết đánh giá sản phẩm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center">
+                                            <span class="label bg-purple">MUA HÀNG</span>
+                                        </td>
+                                        <td class="align-center">
+                                            Có mua hàng
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center">
+                                            <span class="label bg-red">VIP</span>
+                                        </td>
+                                        <td class="align-center">
+                                            Đã mua hàng với tổng số tiền > 50 triệu
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center">
+                                            <span class="label bg-pink">SUPER VIP</span>
+                                        </td>
+                                        <td class="align-center">
+                                            Đã mua hàng với tổng số tiền > 100 triệu
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
             <!-- Exportable Table -->
             <div class="row clearfix">
@@ -17,6 +129,7 @@
                         <div class="header">
                             <h2>DANH SÁCH KHÁCH HÀNG</h2>
                         </div>
+
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="lsp_table">
