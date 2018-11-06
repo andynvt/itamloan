@@ -14,6 +14,7 @@ use App\ProductImage;
 use App\ProductType;
 use App\ProductVideo;
 use App\Promotion;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -495,12 +496,15 @@ class AdminController extends Controller
             ->leftjoin('bills as b','b.id','=','bd.id_bill')
             ->select('name','quantity','percent','price')
             ->where('b.id',$req->id)->get();
+        $email = User::leftjoin('customers as c','c.id_user','=','users.id')
+            ->leftjoin('bills as b','b.id_customer','=','c.id')
+            ->where('b.id',$req->id)->value('email');
 
-        $data = ['bill' => $info, 'product' => $product];
+        $data = ['bill' => $info, 'product' => $product, 'email' => $email];
         if($req->confirm == 'gui'){
-            Mail::send('admin.mail.dagui',$data,function ($msg){
+            Mail::send('admin.mail.dagui',$data,function ($msg) use ($email){
                 $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
-                $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('Đơn hàng đã được gửi đi');
+                $msg->to($email,'Khách hàng')->subject('🍎🍎 Đơn hàng đã được gửi đi ✅');
             });
             if (Mail::failures()) {}
             $b->id_status = 3;
@@ -510,7 +514,7 @@ class AdminController extends Controller
         if($req->confirm == 'ht'){
             Mail::send('admin.mail.hoantat',$data,function ($msg){
                 $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
-                $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('Đơn hàng đã hoàn tất');
+                $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('🍎🍎 Đơn hàng đã hoàn tất 🎉️');
             });
             if (Mail::failures()) {}
             $b->id_status = 4;
@@ -521,6 +525,10 @@ class AdminController extends Controller
 
     public function HuyDon (Request $req){
         $b = Bill::find($req->id);
+
+        $email = User::leftjoin('customers as c','c.id_user','=','users.id')
+            ->leftjoin('bills as b','b.id_customer','=','c.id')
+            ->where('b.id',$req->id)->value('email');
 
         $info = Bill::leftjoin('customers as c','c.id','=','bills.id_customer')
             ->leftjoin('users as u','u.id','=','c.id_user')
@@ -535,11 +543,11 @@ class AdminController extends Controller
             ->leftjoin('bills as b','b.id','=','bd.id_bill')
             ->select('name','quantity','percent','price')
             ->where('b.id',$req->id)->get();
-        $data = ['bill' => $info, 'product' => $product, 'lydo' => $req->lydo];
+        $data = ['bill' => $info, 'product' => $product, 'lydo' => $req->lydo, 'email' => $email];
 
-        Mail::send('admin.mail.bihuy',$data,function ($msg){
+        Mail::send('admin.mail.bihuy',$data,function ($msg) use ($email){
             $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
-            $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('Đơn hàng đã bị huỷ');
+            $msg->to($email,'Khách hàng')->subject('🍎🍎 Đơn hàng đã bị huỷ ❌');
         });
         if (Mail::failures()) {}
 

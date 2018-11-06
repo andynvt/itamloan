@@ -405,7 +405,7 @@
                     setTimeout(function () {
                         location.reload();
                     }, 1000);
-                }, 5000);
+                }, 1000);
             });
         }
 

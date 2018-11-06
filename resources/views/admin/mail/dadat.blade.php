@@ -2,8 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>A simple, clean, and responsive HTML invoice template</title>
-
     <style>
         a {
             text-underline: none;
@@ -114,11 +112,10 @@
                             <img src="http://www.itamloan.vn/image/catalog/nmkhoi/logo/logo%20AAR%20.png"
                                  style="width:100%; max-width:280px;">
                         </td>
-
                         <td>
-                            Hoá đơn số : #123<br>
-                            Ngày tạo: January 1, 2015<br>
-                            Trạng thái: Đặt hàng thành công
+                            Hoá đơn số : #{{$bill['id']}}<br>
+                            Ngày tạo: {{ date('H:i - d/m/Y', strtotime($bill['created_at']) )}}<br>
+                            Trạng thái: <b>Đã gửi hàng</b>
                         </td>
                     </tr>
                 </table>
@@ -126,11 +123,11 @@
         </tr>
         <tr>
             <td colspan="2">
-                <h2>Đặt hàng thành công !</h2>
-                <p>Cảm ơn quý khách đã đặt hàng tại itamloan.vn. Đơn hàng của quý khách đã được tiếp nhận và đang trong quá trình xử lý. itamloan sẽ thông báo
+                <h2>🎉 Đặt hàng thành công 🎉️</h2>
+                <p><b>Đặt hàng</b> ✅ ➡️ Xác nhận và gửi hàng ➡️ Nhận hàng</p>
+                <p>Cảm ơn quý khách đã đặt hàng tại 🍎 itamloan.vn. Đơn hàng của quý khách đã được tiếp nhận và đang trong quá trình xử lý. 🍎 itamloan sẽ thông báo
                     đến quý khách ngay khi hàng chuẩn bị được giao.
                 </p>
-
             </td>
         </tr>
         <tr>
@@ -143,13 +140,13 @@
                 <table>
                     <tr>
                         <td style="padding: 0">
-                            Nguyễn Văn Tài<br>
-                            46-48 Trần Văn Khéo - Cái Khế - Ninh Kiều - Cần Thơ
+                            {{$bill['c_name']}}<br>
+                            {{$bill['shipping_address']}}
                         </td>
 
                         <td style="padding: 0">
-                            1900 6459<br>
-                            cskh@itamloan.vn
+                            {{$bill['phone']}}<br>
+                            {{$bill['email']}}
                         </td>
                     </tr>
                 </table>
@@ -160,32 +157,7 @@
                 <h3>THÔNG TIN ĐƠN HÀNG</h3>
             </td>
         </tr>
-        <tr class="heading">
-            <td>
-                Hình thức thanh toán
-            </td>
 
-            <td>
-                Paypal
-            </td>
-        </tr>
-
-        <tr class="item">
-            <td>
-                Paypal
-            </td>
-            <td>
-                2.000.000
-            </td>
-        </tr>
-        <tr class="details">
-            <td>
-                Phí vận chuyển
-            </td>
-            <td>
-                50.000
-            </td>
-        </tr>
         <tr class="heading">
             <td>
                 Sản phẩm
@@ -194,40 +166,52 @@
                 Đơn giá
             </td>
         </tr>
+        @foreach($product as $p)
+            <tr class="item">
+                <td>
+                    {{$p['name']}} x {{$p['quantity']}}
+                </td>
+
+                <td>
+                    @if($p['percent'] == null)
+                        {{number_format($p['price'])}} ₫
+                    @else
+                        {{ number_format( $p['price'] - ($p['price']*$p['percent'] / 100 )) }} ₫
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+        <tr><td></td><td></td></tr>
+        <tr class="heading">
+            <td>
+                Hình thức thanh toán
+            </td>
+
+            <td>
+                {{$bill['payment']}}
+            </td>
+        </tr>
 
         <tr class="item">
             <td>
-                iPhone XS MAX 512GB Gold x 2
+                {{$bill['payment']}}
             </td>
-
             <td>
-                20.000.000
+                {{number_format($bill['total_price'])}} ₫
             </td>
         </tr>
-        <tr class="item">
-            <td>
-                iPhone XS MAX 512GB Gold x 2
-            </td>
-
-            <td>
-                20.000.000
-            </td>
-        </tr>
-
         <tr class="item last">
             <td>
-                iPhone XS MAX 512GB x 1
+                Phí vận chuyển
             </td>
-
             <td>
-                20.000.000
+                {{number_format($bill['tax'])}} ₫
             </td>
         </tr>
-
         <tr class="total">
-            <td></td>
+            <td><b>TỔNG</b></td>
             <td>
-                TỔNG: 100.000.000
+                <b>{{number_format( $bill['total_price'] + $bill['tax'])}} ₫</b>
             </td>
         </tr>
         <tr>
@@ -239,17 +223,17 @@
                 <table>
                     <tr>
                         <td style="padding: 0">
-                            <b>Thông tin:</b><br>
-                            itamloan.vn<br>
-                            46-48 Trần Văn Khéo<br>
+                            <b>Thông tin cửa hàng:</b><br>
+                            🍎 itamloan.vn<br>
+                            💓 46-48 Trần Văn Khéo<br>
                             Cái Khế - Ninh Kiều - Cần Thơ
                         </td>
 
                         <td style="padding: 0">
-                            <b>Liên hệ:</b><br>
-                            <a href="tel:19006459">1900 6459</a><br>
-                            <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
-                            <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
+                            <b>Liên hệ - hỗ trợ:</b><br>
+                            📞 <a href="tel:19006459">1900 6459</a><br>
+                            💌️ <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
+                            💌 <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
                         </td>
                     </tr>
                 </table>

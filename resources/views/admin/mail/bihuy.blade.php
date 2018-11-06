@@ -123,9 +123,10 @@
         </tr>
         <tr>
             <td colspan="2">
-                <h2>Đơn hàng đã bị huỷ</h2>
-                <p>Đơn hàng của bạn đã bị huỷ vì lý do: <b>{{$lydo}}</b>. <br>itamloan rất tiếc vì điều này. Nếu quý khách có nhu cầu
-                    mua sắm các sản phẩm đến từ Apple. Hãy đến ngay với itamloan.vn. Chúng tôi luôn chào đón quý khách.
+                <h2>⛔️️ Đơn hàng đã bị huỷ ⛔</h2>
+                <p>Đặt hàng ➡️ Xác nhận và gửi hàng ➡️ Bị huỷ ❌</p>
+                <p>Đơn hàng của bạn đã bị huỷ vì lý do: <b>{{$lydo}}</b>. <br>🍎 itamloan rất tiếc vì điều này. Nếu quý khách có nhu cầu
+                    mua sắm các sản phẩm đến từ Apple. Hãy đến ngay với 🍎 itamloan.vn. Chúng tôi luôn chào đón quý khách.
                 </p>
             </td>
         </tr>
@@ -204,16 +205,16 @@
                     <tr>
                         <td style="padding: 0">
                             <b>Thông tin cửa hàng:</b><br>
-                            itamloan.vn<br>
-                            46-48 Trần Văn Khéo<br>
+                            🍎 itamloan.vn<br>
+                            💓 46-48 Trần Văn Khéo<br>
                             Cái Khế - Ninh Kiều - Cần Thơ
                         </td>
 
                         <td style="padding: 0">
                             <b>Liên hệ - hỗ trợ:</b><br>
-                            <a href="tel:19006459">1900 6459</a><br>
-                            <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
-                            <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
+                            📞 <a href="tel:19006459">1900 6459</a><br>
+                            💌️ <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
+                            💌 <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
                         </td>
                     </tr>
                 </table>

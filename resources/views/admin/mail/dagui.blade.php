@@ -123,9 +123,10 @@
         </tr>
         <tr>
             <td colspan="2">
-                <h2>Đơn hàng của quý khách đã được gửi đi</h2>
-                <p>itamloan.vn rất vui thông báo đơn hàng của quý khách đã được xác nhận và đang trong quá trình gửi
-                    hàng đi. itamloan sẽ thông báo đến quý khách ngay khi đơn hàng được hoàn tất.</p>
+                <h2>🎉 Đơn hàng của quý khách đã được gửi đi 🎉️</h2>
+                <p>Đặt hàng ➡️ <b>Xác nhận và gửi hàng</b>️  ✅ ➡️ Nhận hàng</p>
+                <p>🍎 itamloan.vn rất vui thông báo đơn hàng của quý khách đã được xác nhận và đang trong quá trình gửi
+                    hàng đi. 🍎 itamloan sẽ thông báo đến quý khách ngay khi đơn hàng được hoàn tất.</p>
             </td>
         </tr>
         <tr>
@@ -222,16 +223,16 @@
                     <tr>
                         <td style="padding: 0">
                             <b>Thông tin cửa hàng:</b><br>
-                            itamloan.vn<br>
-                            46-48 Trần Văn Khéo<br>
+                            🍎 itamloan.vn<br>
+                            💓 46-48 Trần Văn Khéo<br>
                             Cái Khế - Ninh Kiều - Cần Thơ
                         </td>
 
                         <td style="padding: 0">
                             <b>Liên hệ - hỗ trợ:</b><br>
-                            <a href="tel:19006459">1900 6459</a><br>
-                            <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
-                            <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
+                            📞 <a href="tel:19006459">1900 6459</a><br>
+                            💌️ <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
+                            💌 <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
                         </td>
                     </tr>
                 </table>

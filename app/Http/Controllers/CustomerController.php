@@ -20,6 +20,7 @@ use Faker\Provider\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use function PHPSTORM_META\elementType;
 
@@ -474,6 +475,7 @@ class CustomerController extends Controller
             $b->note = $note;
             $b->tax = $cart->tax;
             $b->save();
+            $email = Auth::user()->email;
         } else {
             //thanh toán chưa đăng nhập
             $u = new User();
@@ -497,6 +499,8 @@ class CustomerController extends Controller
             $b->note = $note;
             $b->tax = $cart->tax;
             $b->save();
+            $email = $u->email;
+
         }
         foreach ($cart->items as $i => $value) {
             //i: id  - value: từng item
@@ -510,6 +514,28 @@ class CustomerController extends Controller
             $p = Product::find($i);
             $p->inventory -= $value['qty'];
         }
+
+        $info = Bill::leftjoin('customers as c','c.id','=','bills.id_customer')
+            ->leftjoin('users as u','u.id','=','c.id_user')
+            ->leftjoin('bill_status as bs','bs.id','=','bills.id_status')
+            ->leftjoin('payments as pm','pm.id','=','bills.id_payment')
+            ->leftjoin('bill_detail as bd','bd.id_bill','=','bills.id')
+            ->select('bills.*','payment','status','c_name','phone','address','shipping_address','email')
+            ->where('bills.id',$b->id)->groupBy('bd.id_product')->first();
+
+        $product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('bill_detail as bd','bd.id_product','=','products.id')
+            ->leftjoin('bills as b','b.id','=','bd.id_bill')
+            ->select('name','quantity','percent','price')
+            ->where('b.id',$b->id)->get();
+
+        $data = ['bill' => $info, 'product' => $product, 'email' => $email];
+        Mail::send('admin.mail.dadat',$data,function ($msg) use ($email){
+            $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+            $msg->to($email,'Khách hàng')->subject('🍎🍎 Đặt hàng thàng công ✅');
+        });
+        if (Mail::failures()) {}
+
         Session::forget('cart');
         return redirect()->route('login')->with(['flag' => 'success', 'title' => 'Thông báo', 'message' => 'Đặt hàng thành công']);
     }
