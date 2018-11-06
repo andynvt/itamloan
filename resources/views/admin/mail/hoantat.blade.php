@@ -115,7 +115,7 @@
                         <td>
                             Hoá đơn số : #{{$bill['id']}}<br>
                             Ngày tạo: {{ date('H:i - d/m/Y', strtotime($bill['created_at']) )}}<br>
-                            Trạng thái: <b>Đã gửi hàng</b>
+                            Trạng thái: <b>Hoàn tất</b>
                         </td>
                     </tr>
                 </table>
@@ -123,9 +123,10 @@
         </tr>
         <tr>
             <td colspan="2">
-                <h2>Đơn hàng của quý khách đã được gửi đi</h2>
-                <p>itamloan.vn rất vui thông báo đơn hàng của quý khách đã được xác nhận và đang trong quá trình gửi
-                    hàng đi. itamloan sẽ thông báo đến quý khách ngay khi đơn hàng được hoàn tất.</p>
+                <h2>Đơn hàng đã hoàn tất</h2>
+                <p>itamloan.vn rất vui thông báo đơn hàng xx của quý khách đã giao dịch thành công.
+                    Cảm ơn quý khách đã tin tưởng lựa chọn itamloan.
+                </p>
             </td>
         </tr>
         <tr>
@@ -165,21 +166,24 @@
             </td>
         </tr>
         @foreach($product as $p)
-        <tr class="item">
-            <td>
-                {{$p['name']}} x {{$p['quantity']}}
-            </td>
+            <tr class="item">
+                <td>
+                    {{$p['name']}} x {{$p['quantity']}}
+                </td>
 
-            <td>
-                @if($p['percent'] == null)
-                    {{number_format($p['price'])}} ₫
-                @else
-                {{ number_format( $p['price'] - ($p['price']*$p['percent'] / 100 )) }} ₫
-                @endif
-            </td>
-        </tr>
+                <td>
+                    @if($p['percent'] == null)
+                        {{number_format($p['price'])}} ₫
+                    @else
+                        {{ number_format( $p['price'] - ($p['price']*$p['percent'] / 100 )) }} ₫
+                    @endif
+                </td>
+            </tr>
         @endforeach
-        <tr><td></td><td></td></tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="heading">
             <td>
                 Hình thức thanh toán

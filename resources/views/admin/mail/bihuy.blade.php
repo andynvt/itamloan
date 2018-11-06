@@ -115,7 +115,7 @@
                         <td>
                             Hoá đơn số : #{{$bill['id']}}<br>
                             Ngày tạo: {{ date('H:i - d/m/Y', strtotime($bill['created_at']) )}}<br>
-                            Trạng thái: <b>Đã gửi hàng</b>
+                            Trạng thái: <b>Đã bị huỷ</b>
                         </td>
                     </tr>
                 </table>
@@ -123,36 +123,15 @@
         </tr>
         <tr>
             <td colspan="2">
-                <h2>Đơn hàng của quý khách đã được gửi đi</h2>
-                <p>itamloan.vn rất vui thông báo đơn hàng của quý khách đã được xác nhận và đang trong quá trình gửi
-                    hàng đi. itamloan sẽ thông báo đến quý khách ngay khi đơn hàng được hoàn tất.</p>
+                <h2>Đơn hàng đã bị huỷ</h2>
+                <p>Đơn hàng của bạn đã bị huỷ vì lý do: <b>{{$lydo}}</b>. <br>itamloan rất tiếc vì điều này. Nếu quý khách có nhu cầu
+                    mua sắm các sản phẩm đến từ Apple. Hãy đến ngay với itamloan.vn. Chúng tôi luôn chào đón quý khách.
+                </p>
             </td>
         </tr>
         <tr>
             <td>
-                <h3>THÔNG TIN VẬN CHUYỂN</h3>
-            </td>
-        </tr>
-        <tr class="information">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td style="padding: 0">
-                            {{$bill['c_name']}}<br>
-                            {{$bill['shipping_address']}}
-                        </td>
-
-                        <td style="padding: 0">
-                            {{$bill['phone']}}<br>
-                            {{$bill['email']}}
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h3>THÔNG TIN ĐƠN HÀNG</h3>
+                <h3>THÔNG TIN ĐƠN HÀNG ĐÃ BỊ HUỶ</h3>
             </td>
         </tr>
 
@@ -165,21 +144,24 @@
             </td>
         </tr>
         @foreach($product as $p)
-        <tr class="item">
-            <td>
-                {{$p['name']}} x {{$p['quantity']}}
-            </td>
+            <tr class="item">
+                <td>
+                    {{$p['name']}} x {{$p['quantity']}}
+                </td>
 
-            <td>
-                @if($p['percent'] == null)
-                    {{number_format($p['price'])}} ₫
-                @else
-                {{ number_format( $p['price'] - ($p['price']*$p['percent'] / 100 )) }} ₫
-                @endif
-            </td>
-        </tr>
+                <td>
+                    @if($p['percent'] == null)
+                        {{number_format($p['price'])}} ₫
+                    @else
+                        {{ number_format( $p['price'] - ($p['price']*$p['percent'] / 100 )) }} ₫
+                    @endif
+                </td>
+            </tr>
         @endforeach
-        <tr><td></td><td></td></tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="heading">
             <td>
                 Hình thức thanh toán

@@ -122,7 +122,7 @@
                 newest_on_top: true,
                 timer: 1000,
                 placement: {
-                    from: 'bottom',
+                    from: 'top',
                     align: 'right'
                 },
                 animate: {

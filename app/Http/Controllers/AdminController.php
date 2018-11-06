@@ -489,8 +489,14 @@ class AdminController extends Controller
             ->leftjoin('bill_detail as bd','bd.id_bill','=','bills.id')
             ->select('bills.*','payment','status','c_name','phone','address','shipping_address','email')
             ->where('bills.id',$req->id)->groupBy('bd.id_product')->first();
-//dd($info);
-        $data = ['bill' => $info];
+
+        $product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('bill_detail as bd','bd.id_product','=','products.id')
+            ->leftjoin('bills as b','b.id','=','bd.id_bill')
+            ->select('name','quantity','percent','price')
+            ->where('b.id',$req->id)->get();
+
+        $data = ['bill' => $info, 'product' => $product];
         if($req->confirm == 'gui'){
             Mail::send('admin.mail.dagui',$data,function ($msg){
                 $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
@@ -502,6 +508,11 @@ class AdminController extends Controller
         }
 
         if($req->confirm == 'ht'){
+            Mail::send('admin.mail.hoantat',$data,function ($msg){
+                $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+                $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('Đơn hàng đã hoàn tất');
+            });
+            if (Mail::failures()) {}
             $b->id_status = 4;
             $b->save();
         }
@@ -510,6 +521,28 @@ class AdminController extends Controller
 
     public function HuyDon (Request $req){
         $b = Bill::find($req->id);
+
+        $info = Bill::leftjoin('customers as c','c.id','=','bills.id_customer')
+            ->leftjoin('users as u','u.id','=','c.id_user')
+            ->leftjoin('bill_status as bs','bs.id','=','bills.id_status')
+            ->leftjoin('payments as pm','pm.id','=','bills.id_payment')
+            ->leftjoin('bill_detail as bd','bd.id_bill','=','bills.id')
+            ->select('bills.*','payment','status','c_name','phone','address','shipping_address','email')
+            ->where('bills.id',$req->id)->groupBy('bd.id_product')->first();
+
+        $product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('bill_detail as bd','bd.id_product','=','products.id')
+            ->leftjoin('bills as b','b.id','=','bd.id_bill')
+            ->select('name','quantity','percent','price')
+            ->where('b.id',$req->id)->get();
+        $data = ['bill' => $info, 'product' => $product, 'lydo' => $req->lydo];
+
+        Mail::send('admin.mail.bihuy',$data,function ($msg){
+            $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+            $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('Đơn hàng đã bị huỷ');
+        });
+        if (Mail::failures()) {}
+
         $b->id_status = 5;
         $b->admin_note = $req->lydo;
         $b->save();

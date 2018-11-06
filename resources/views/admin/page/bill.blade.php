@@ -359,7 +359,7 @@
                             }, 1000);
                         }
                     });
-                    swal("Chúc mừng!", "Đã gửi hàng thành công!", "success");
+                    swal("Thành công!", "Xác nhận thành công!", "success");
                     setTimeout(function () {
                         // location.reload();
                     }, 1000);
@@ -385,21 +385,27 @@
                 cancelButtonText: "ĐÓNG",
                 inputPlaceholder: "Nhập lý do huỷ đơn hàng"
             }, function (inputValue) {
-                if (inputValue === false) return false;
-                swal("Đã huỷ!", "Lý do: " + inputValue, "success");
+                setTimeout(function () {
+                    if (inputValue === false) return false;
+                    swal("Đã huỷ!", "Lý do: " + inputValue, "success");
 
-                $.ajax({
-                    url: 'admin/huydon',
-                    dataType: 'json',
-                    type: 'GET',
-                    data: {id: id, lydo: inputValue},
-                    success: function (data) {
-                        console.log(data);
-                        setTimeout(function(){
-                            location.reload();
-                        }, 1000);
-                    }
-                });
+                    $.ajax({
+                        url: 'admin/huydon',
+                        dataType: 'json',
+                        type: 'GET',
+                        data: {id: id, lydo: inputValue},
+                        success: function (data) {
+                            console.log(data);
+                            setTimeout(function () {
+                                // location.reload();
+                            }, 1000);
+                        }
+                    });
+
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
+                }, 5000);
             });
         }
 
