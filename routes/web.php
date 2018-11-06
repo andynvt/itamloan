@@ -260,6 +260,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'uses' => 'AdminController@AdminDonHang'
     ]);
 
+    Route::get('loadkh','AdminController@LoadKH');
+
+    Route::get('checkbill','AdminController@CheckBill');
+    Route::get('huydon','AdminController@HuyDon');
+
+    Route::get('dagui',[
+        'as' => 'dagui',
+        'uses' => 'AdminController@DaGui'
+    ]);
+
     Route::get('khach-hang',[
         'as' => 'adminkhachhang',
         'uses' => 'AdminController@AdminKhachHang'

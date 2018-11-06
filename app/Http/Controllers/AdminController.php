@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Bill;
+use App\BillDetail;
+use App\BillStatus;
 use App\Catalog;
 use App\Customer;
 use App\Feedback;
@@ -15,6 +17,7 @@ use App\Promotion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -457,8 +460,73 @@ class AdminController extends Controller
 
     public function AdminDonHang()
     {
+        $dh = Bill::leftjoin('customers as c','c.id','=','bills.id_customer')
+            ->leftjoin('bill_status as bs','bs.id','=','bills.id_status')
+            ->leftjoin('payments as pm','pm.id','=','bills.id_payment')
+            ->select('bills.*','status','bs.id as bsid','c_name','phone','payment')
+            ->orderBy('bills.created_at','desc')->get();
 
-        return view('admin.page.bill');
+        $bd = BillDetail::leftjoin('products as p','p.id','=','bill_detail.id_product')
+            ->leftjoin('bills as b','b.id','=','bill_detail.id_bill')
+            ->leftjoin('product_color as pc', 'pc.id_product', '=', 'p.id')
+            ->leftjoin('product_image as pi', 'pi.id_color', '=', 'pc.id')
+            ->leftjoin('promotions as promo', 'promo.id', '=', 'p.id_promo')
+            ->select('b.id as bid','image','name','quantity','p.price','percent')
+            ->groupBy('bill_detail.id')
+            ->orderBy('quantity','desc')
+            ->get();
+//dd($bd);
+        return view('admin.page.bill',compact('dh','bd'));
+    }
+
+    public function CheckBill(Request $req){
+        $b = Bill::find($req->id);
+
+        $info = Bill::leftjoin('customers as c','c.id','=','bills.id_customer')
+            ->leftjoin('users as u','u.id','=','c.id_user')
+            ->leftjoin('bill_status as bs','bs.id','=','bills.id_status')
+            ->leftjoin('payments as pm','pm.id','=','bills.id_payment')
+            ->leftjoin('bill_detail as bd','bd.id_bill','=','bills.id')
+            ->select('bills.*','payment','status','c_name','phone','address','shipping_address','email')
+            ->where('bills.id',$req->id)->groupBy('bd.id_product')->first();
+//dd($info);
+        $data = ['bill' => $info];
+        if($req->confirm == 'gui'){
+            Mail::send('admin.mail.dagui',$data,function ($msg){
+                $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+                $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('Đơn hàng đã được gửi đi');
+            });
+            if (Mail::failures()) {}
+            $b->id_status = 3;
+            $b->save();
+        }
+
+        if($req->confirm == 'ht'){
+            $b->id_status = 4;
+            $b->save();
+        }
+        return json_encode($data);
+    }
+
+    public function HuyDon (Request $req){
+        $b = Bill::find($req->id);
+        $b->id_status = 5;
+        $b->admin_note = $req->lydo;
+        $b->save();
+        return json_encode($b);
+    }
+
+    public function DaGui(){
+        return view('admin.mail.dagui');
+    }
+
+    public function LoadKH(Request $req)
+    {
+        $kh = Customer::leftjoin('bills as b','b.id_customer','=','customers.id')
+            ->leftjoin('users as u','u.id','=','customers.id_user')
+            ->select('customers.*','email')
+            ->where('b.id',$req->id)->get();
+        return json_encode($kh);
     }
 
     public function AdminKhachHang()

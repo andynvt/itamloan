@@ -213,20 +213,6 @@
                             <div class="demo-masked-input">
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <h4>ĐƠN HÀNG</h4>
-                                        <div class="body table-responsive">
-                                            <table class="table table-striped table-bordered table-hover tbl-xem">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Sản phẩm</th>
-                                                    <th>Tổng tiền</th>
-                                                    <th>Trạng thái</th>
-                                                </tr>
-
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <h4>THÔNG TIN</h4>
                                         <div class="body table-responsive">
                                             <table class="table table-striped table-bordered table-hover">
@@ -250,6 +236,23 @@
                                                     <th>Địa chỉ giao hàng</th>
                                                     <td class="col-pink">{{$value->shipping_address}}</td>
                                                 </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <h4>ĐƠN HÀNG</h4>
+                                        <div class="body table-responsive">
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <th>ID</th>
+                                                    <th>Sản phẩm</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th>Trạng thái</th>
+                                                </thead>
+                                                <tbody class="tbl-xem">
+
+                                                </tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -293,13 +296,9 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn bg-indigo waves-effect">
-                                    <i data-brackets-id="14157" class="material-icons">check</i>
-                                    <span>ĐÃ GỬI HÀNG</span>
-                                </button>
                                 <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
                                     <i data-brackets-id="14157" class="material-icons">close</i>
-                                    <span>HUỶ</span>
+                                    <span>ĐÓNG</span>
                                 </button>
                             </div>
                         </div>
@@ -323,8 +322,8 @@
                 type: 'GET',
                 data: {id: id},
                 success: function (data) {
-                    console.log(data);
-                    // tbl.empty();
+                    // console.log(data);
+                    tbl.empty();
                     for ($i = 0; $i < data.length; $i++) {
                         tbl.append('<tr>\n' +
                             '                                                    <td>'+ data[$i]["id"] +'</td>\n' +
