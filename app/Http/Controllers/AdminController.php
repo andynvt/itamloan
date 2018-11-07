@@ -476,6 +476,8 @@ class AdminController extends Controller
             ->groupBy('bill_detail.id')
             ->orderBy('quantity','desc')
             ->get();
+        $today = Carbon::today()->toDateString();
+//        dd($today);
 //dd($bd);
         return view('admin.page.bill',compact('dh','bd'));
     }

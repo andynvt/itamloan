@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box bg-deep-purple hover-expand-effect">
+                <div class="info-box bg-red hover-expand-effect">
                     <div class="icon">
                         <i class="material-icons">person</i>
                     </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box bg-deep-orange hover-expand-effect">
+                <div class="info-box bg-deep-purple hover-expand-effect">
                     <div class="icon">
                         <i class="material-icons">forum</i>
                     </div>

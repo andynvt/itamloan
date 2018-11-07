@@ -10,6 +10,52 @@
             </div>
 
             <!-- Exportable Table -->
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-deep-orange hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">shopping_basket</i>
+                        </div>
+                        <div class="content">
+                            <div class="number count-to" data-from="0" data-to="12225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">ĐƠN HÀNG HÔM NAY</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-light-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">attach_money</i>
+                        </div>
+                        <div class="content">
+                            <div class="number">122 M</div>
+                            <div class="text">DOANH THU HÔM NAY</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">shopping_cart</i>
+                        </div>
+                        <div class="content">
+                            <div class="number count-to" data-from="0" data-to="12225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">ĐƠN HÀNG THÁNG</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">monetization_on</i>
+                        </div>
+                        <div class="content">
+                            <div class="number count-to" data-from="0" data-to="122205000" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">DOANH THU THÁNG</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -28,6 +74,7 @@
                                         <th class="align-center">THANH TOÁN</th>
                                         <th class="align-center">SẢN PHẨM</th>
                                         <th class="align-center">TỔNG TIỀN</th>
+                                        <th class="align-center">NGÀY</th>
                                         <th class="align-center">THAO TÁC</th>
                                     </tr>
                                     </thead>
@@ -40,6 +87,7 @@
                                         <th class="align-center">THANH TOÁN</th>
                                         <th class="align-center">SẢN PHẨM</th>
                                         <th class="align-center">TỔNG TIỀN</th>
+                                        <th class="align-center">NGÀY</th>
                                         <th class="align-center">THAO TÁC</th>
                                     </tr>
                                     </tfoot>
@@ -65,6 +113,7 @@
                                         <td>{{$value->payment}}</td>
                                         <td class="align-center" style="width: 3%">{{$value->total_product}}</td>
                                         <td class="align-center">{{number_format($value->total_price)}} ₫</td>
+                                        <td class="align-center">{{ date('d/m/Y', strtotime($value->created_at) )}}</td>
                                         <td class="align-center" STYLE="width: 15%">
                                             @if($value->bsid == 1)
                                                 <span data-toggle="modal" data-target="#xem_dh_{{$value->id}}">
@@ -170,6 +219,10 @@
                                                     <tr>
                                                         <th>Tổng tiền</th>
                                                         <td>{{number_format($value->total_price)}} ₫</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Ngày đặt</th>
+                                                        <td>{{ date('H:i - d/m/Y', strtotime($value->created_at) )}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Thanh toán</th>
