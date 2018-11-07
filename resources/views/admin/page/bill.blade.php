@@ -17,8 +17,8 @@
                             <i class="material-icons">shopping_basket</i>
                         </div>
                         <div class="content">
-                            <div class="number count-to" data-from="0" data-to="12225" data-speed="1000" data-fresh-interval="20"></div>
                             <div class="text">ĐƠN HÀNG HÔM NAY</div>
+                            <div class="number count-to" data-from="0" data-to="{{$tk_today['cnt']}}" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -28,8 +28,9 @@
                             <i class="material-icons">attach_money</i>
                         </div>
                         <div class="content">
-                            <div class="number">122 M</div>
                             <div class="text">DOANH THU HÔM NAY</div>
+
+                            <div class="number">{{\App\Http\Controllers\AdminController::convertMoney($tk_today['sum'])}}</div>
                         </div>
                     </div>
                 </div>
@@ -39,8 +40,8 @@
                             <i class="material-icons">shopping_cart</i>
                         </div>
                         <div class="content">
-                            <div class="number count-to" data-from="0" data-to="12225" data-speed="1000" data-fresh-interval="20"></div>
-                            <div class="text">ĐƠN HÀNG THÁNG</div>
+                            <div class="text">ĐƠN HÀNG THÁNG {{$thang}}</div>
+                            <div class="number count-to" data-from="0" data-to="{{$tk_month['cnt']}}" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -50,8 +51,8 @@
                             <i class="material-icons">monetization_on</i>
                         </div>
                         <div class="content">
-                            <div class="number count-to" data-from="0" data-to="122205000" data-speed="1000" data-fresh-interval="20"></div>
-                            <div class="text">DOANH THU THÁNG</div>
+                            <div class="text">DOANH THU THÁNG {{$thang}}</div>
+                            <div class="number">{{\App\Http\Controllers\AdminController::convertMoney($tk_month['sum'])}}</div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +113,7 @@
                                         </td>
                                         <td>{{$value->payment}}</td>
                                         <td class="align-center" style="width: 3%">{{$value->total_product}}</td>
-                                        <td class="align-center">{{number_format($value->total_price)}} ₫</td>
+                                        <td class="align-center">{{\App\Http\Controllers\AdminController::convertMoney($value->total_price)}}</td>
                                         <td class="align-center">{{ date('d/m/Y', strtotime($value->created_at) )}}</td>
                                         <td class="align-center" STYLE="width: 15%">
                                             @if($value->bsid == 1)

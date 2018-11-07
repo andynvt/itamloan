@@ -25,7 +25,94 @@ class AdminController extends Controller
 {
     public function AdminThongke()
     {
-        return view('admin.page.dashboard');
+
+        $material_color = array('#F44336','#3F51B5','#009688','#FFEB3B','#795548','#E91E63','#2196F3','#4CAF50','#FFC107','#9E9E9E',
+            '#9C27B0','#03A9F4','#8BC34A','#FF9800','#607D8B','#673AB7','#00BCD4','#CDDC39','#FF5722','#000000');
+
+        function random_color() {
+            $material_color = array('#F44336','#E91E63','#9C27B0','#673AB7','#3F51B5','#2196F3','#03A9F4','#00BCD4','#009688','#4CAF50',
+                '#8BC34A','#CDDC39','#FFEB3B','#FFC107','#FF9800','#FF5722','#795548','#9E9E9E','#607D8B','#000000');
+            shuffle( $material_color );
+            return array_shift( $material_color );
+        }
+//                function random_color() {
+//            return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+//        }
+
+        //Thống kê chung
+        $thang = Carbon::now()->month;
+        $nam = Carbon::now()->year;
+
+        $dh = Bill::select(DB::raw('count(*) as cnt'))->value('cnt');
+        $sp = Product::select(DB::raw('count(*) as cnt'))->value('cnt');
+        $kh = Customer::select(DB::raw('count(*) as cnt'))->value('cnt');
+        $dg = Feedback::select(DB::raw('count(*) as cnt'))->value('cnt');
+
+        $dt_hn = Bill::select(DB::raw('sum(total_price) as sum'))
+            ->whereDate('created_at', Carbon::today())->value('sum');
+        $dt_t = Bill::select(DB::raw('sum(total_price) as sum'))
+            ->whereMonth('created_at', Carbon::now()->month)->value('sum');
+        $dt_n = Bill::select(DB::raw('sum(total_price) as sum'))
+            ->whereYear('created_at', Carbon::now()->year)->value('sum');
+        $t_dt = Bill::select(DB::raw('sum(total_price) as sum'))->value('sum');
+
+        //Đơn hàng
+
+
+        //Trạng thái đơn hàng
+        $status = BillStatus::all()->toArray();
+        foreach ($status as $i => $value){
+            $status[$i]['sl'] = Bill::select(DB::raw('count(*) as cnt'))->where('id_status',$value['id'])->value('cnt');
+            $status[$i]['color'] = $material_color[$i];
+        }
+
+        //Loại sản phẩm
+        $pt = ProductType::select('id','type')->get()->toArray();
+        foreach ($pt as $i => $value){
+            $qr1 = BillDetail::select(DB::raw('sum(quantity) as sum'))
+                ->leftjoin('products as p','p.id','=','bill_detail.id_product')
+                ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
+                ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
+                ->where('pt.id',$value['id'])->value('sum');
+            $pt[$i]['daban'] = ($qr1 == null) ? 0 : $qr1;
+            $qr2 = Product::select(DB::raw('sum(inventory) as sum'))
+                ->leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+                ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
+                ->where('pt.id',$value['id'])->value('sum');
+            $pt[$i]['tonkho'] = ($qr2 == null) ? 0 : $qr2;
+        }
+
+        //Đánh giá
+        $fb = array();
+        for ($i=5; $i>0; $i--){
+            $fb[$i]['stars'] = $i." Sao";
+            $fb[$i]['sl'] = Feedback::select(DB::raw('count(*) as cnt'))->where('stars',$i)->value('cnt');
+            $fb[$i]['color'] = $material_color[$i+1];
+        }
+
+        //4 loại
+        $type = ProductType::select('id','type')->get()->toArray();
+        foreach ($type as $index => $value){
+//            $type['type'] = $value['type'];
+            $ip[$index] = Catalog::where('id_type',$value['id'])->select('id','catalog')->groupBy('catalog')->orderBy('id')->get()->toArray();
+            foreach ($ip[$index] as $i => $v){
+//                $ip[$index][$i]['catalog'] = str_replace($value['type']." ","",$ip[$index][$i]['catalog']);
+                $qr1 = BillDetail::select(DB::raw('sum(quantity) as sum'))
+                    ->leftjoin('products as p','p.id','=','bill_detail.id_product')
+                    ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
+                    ->where('ctl.id',$v['id'])
+                    ->value('sum');
+                $ip[$index][$i]['daban'] = ($qr1 == null) ? 0 : $qr1;
+                $qr2 = Product::select(DB::raw('sum(inventory) as sum'))
+                    ->leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+                    ->where('ctl.id',$v['id'])->value('sum');
+                $ip[$index][$i]['tonkho'] = ($qr2 == null) ? 0 : $qr2;
+            }
+            $type[$index]['data'] = $ip[$index];
+        }
+
+        return view('admin.page.dashboard',compact('dh','sp','kh','dg','thang','nam','dt_hn','dt_t','dt_n',
+            't_dt','status','fb','pt','type'));
     }
 
     public function AdminKhuyenMai()
@@ -476,10 +563,46 @@ class AdminController extends Controller
             ->groupBy('bill_detail.id')
             ->orderBy('quantity','desc')
             ->get();
-        $today = Carbon::today()->toDateString();
-//        dd($today);
-//dd($bd);
-        return view('admin.page.bill',compact('dh','bd'));
+
+        $tk_today = Bill::select(DB::raw('count(*) as cnt, sum(total_price) as sum'))
+            ->whereDate('created_at', Carbon::today())->first();
+        $tk_month = Bill::select(DB::raw('count(*) as cnt, sum(total_price) as sum'))
+            ->whereMonth('created_at', Carbon::now()->month)->first();
+
+        $thang = Carbon::now()->month;
+        return view('admin.page.bill',compact('dh','bd','tk_today','tk_month','thang'));
+    }
+
+    public static function convertMoney($n,$precision = 1)
+    {
+        if ($n < 900) {
+            // 0 - 900
+            $n_format = number_format($n, $precision);
+            $suffix = '';
+        } else if ($n < 900000) {
+            // 0.9k-850k
+            $n_format = number_format($n / 1000, $precision);
+            $suffix = ' Nghìn';
+        } else if ($n < 900000000) {
+            // 0.9m-850m
+            $n_format = number_format($n / 1000000, $precision);
+            $suffix = ' Triệu';
+        } else if ($n < 900000000000) {
+            // 0.9b-850b
+            $n_format = number_format($n / 1000000000, $precision);
+            $suffix = ' Tỷ';
+        } else {
+            // 0.9t+
+            $n_format = number_format($n / 1000000000000, $precision);
+            $suffix = ' Nghìn Tỷ';
+        }
+        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+        // Intentionally does not affect partials, eg "1.50" -> "1.50"
+        if ( $precision > 0 ) {
+            $dotzero = '.' . str_repeat( '0', $precision );
+            $n_format = str_replace( $dotzero, '', $n_format );
+        }
+        return $n_format . $suffix;
     }
 
     public function CheckBill(Request $req){
