@@ -25,8 +25,7 @@ class AppServiceProvider extends ServiceProvider
             $arr_ctl = ProductType::leftjoin('catalogs as ctl','ctl.id_type','=','product_type.id')
                 ->leftjoin('products as p','p.id_catalog','=','ctl.id')
                 ->leftjoin('product_color as pc','pc.id_product','=','p.id')
-                ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
-                ->select('ctl.id','type','catalog','image')
+                ->select('ctl.id','type','catalog','catalog_image','product_type.id as ptid')
                 ->groupBy('ctl.id')
                 ->get();
             $full_type = $arr_ctl->groupBy('type');

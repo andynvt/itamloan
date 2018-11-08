@@ -349,6 +349,7 @@
                                         </div>
                                     </div>
                                     {!! csrf_field() !!}
+                                    <input type="hidden" name="id_product" value="{{$pd[0]->id}}">
                                     <input type="text" value="{{$cus[0]->c_name}}" placeholder="Tên" onfocus="this.placeholder=''"
                                            onblur="this.placeholder = 'Tên'" required class="common-input">
                                     <input type="email" value="{{$cus[0]->email}}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
@@ -359,9 +360,14 @@
                                     <textarea placeholder="Nội dung đánh giá" name="review" onfocus="this.placeholder=''"
                                               onblur="this.placeholder = 'Nội dung đánh giá'" required
                                               class="common-textarea"></textarea>
-                                    <button type="submit" class="view-btn color-2"><span>Gửi</span></button>
+                                    <button type="submit" disabled="disabled" id="sm_dg" class="view-btn color-2"><span>Gửi</span></button>
 
                             @endif
+                                    <script>
+                                        $('input[type="radio"]').click(function () {
+                                            $('#sm_dg').removeAttr('disabled');
+                                        });
+                                    </script>
 
                             </form>
                         </div>

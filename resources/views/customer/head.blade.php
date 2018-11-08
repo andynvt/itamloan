@@ -36,9 +36,17 @@ CSS
 <link rel="stylesheet" href="source/css/custom/flashy.min.css">
 
 <link rel="stylesheet" href="source/css/custom/iziToast.min.css">
+<!-- Bootstrap Select Css -->
+<link href="source/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
 
 {{--<script src="source/js/vendor/jquery-2.2.4.min.js"></script>--}}
 <script src="source/js/vendor/jquery-2.2.4.min.js"></script>
 
 <script src="source/js/jquery.flashy.min.js"></script>
+
+<!-- Select Plugin Js -->
+<script src="source/bootstrap-select/js/bootstrap-select.js"></script>
+
+
 

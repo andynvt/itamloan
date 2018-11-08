@@ -88,6 +88,8 @@ class AdminController extends Controller
             $medal = "svip";
         }elseif($total >50000000){
             $medal = "vip";
+        }elseif($total >20000000){
+            $medal = "tn";
         }else{
             if($fb != null){
                 $medal = "fb";

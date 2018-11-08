@@ -110,12 +110,12 @@
                             <a class="dropdown-toggle" href="#" id="dr_iphone" data-toggle="dropdown">
                                 {{$f}}
                             </a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu" style="    padding: 20px;">
                                 <div class="row">
                                     @foreach($value as $v)
                                         <div class="col-lg-3 col-md-3 col-6">
                                             <a class="dropdown-item text-center" href="{{route('catalog',$v->id)}}">
-                                                <img src="storage/product/{{$v->image}}">
+                                                <img src="storage/product/{{$v->catalog_image}}">
                                                 <div class="p-1"></div>
                                                 <h6 class="text-center">{{$v->catalog}}</h6>
                                             </a>

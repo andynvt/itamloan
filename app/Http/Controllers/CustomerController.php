@@ -6,6 +6,7 @@ use App\Bill;
 use App\BillDetail;
 use App\Cart;
 use App\Catalog;
+use App\City;
 use App\Customer;
 use App\Feedback;
 use App\Product;
@@ -229,6 +230,7 @@ class CustomerController extends Controller
     }
 
     public function postFeedback(Request $req){
+//        dd($req->ra)
         $id_customer = Customer::where('id_user',Auth::user()->id)->value('id');
 
         $fb = new Feedback();
@@ -545,6 +547,8 @@ class CustomerController extends Controller
     }
 
     public  function getLogin(){
+        $city = City::all();
+        dd($city);
         return view('customer.page.login');
     }
 

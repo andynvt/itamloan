@@ -34,6 +34,7 @@
 
 
 <script>
+
     // search form
     $(function() {
         $('a[href="#home-search-form"]').on('click', function(event) {
@@ -80,7 +81,6 @@
             });
         }
     </script>
-
 @endif  
 </body>
 </html>
