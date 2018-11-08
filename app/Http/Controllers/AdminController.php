@@ -23,6 +23,83 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public static function checkTimePromo($time)
+    {
+        $cktime = Carbon::parse($time);
+        $now = Carbon::now();
+        if ($cktime->lt($now)) {
+            //het han
+            return true;
+        }
+        return false;
+    }
+
+    public static function getStringColor($name)
+    {
+        $text = mb_substr($name, 0, 100);
+        $i = mb_strrpos($text, ' ');
+        if ($i !== false)
+            $text = mb_substr($text, 0, $i);
+        return $text;
+    }
+
+    public static function convertMoney($n,$precision = 1)
+    {
+        if ($n < 900) {
+            // 0 - 900
+            $n_format = number_format($n, $precision);
+            $suffix = '';
+        } else if ($n < 900000) {
+            // 0.9k-850k
+            $n_format = number_format($n / 1000, $precision);
+            $suffix = ' Nghìn';
+        } else if ($n < 900000000) {
+            // 0.9m-850m
+            $n_format = number_format($n / 1000000, $precision);
+            $suffix = ' Triệu';
+        } else if ($n < 900000000000) {
+            // 0.9b-850b
+            $n_format = number_format($n / 1000000000, $precision);
+            $suffix = ' Tỷ';
+        } else {
+            // 0.9t+
+            $n_format = number_format($n / 1000000000000, $precision);
+            $suffix = ' Nghìn Tỷ';
+        }
+        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+        // Intentionally does not affect partials, eg "1.50" -> "1.50"
+        if ( $precision > 0 ) {
+            $dotzero = '.' . str_repeat( '0', $precision );
+            $n_format = str_replace( $dotzero, '', $n_format );
+        }
+        return $n_format . $suffix;
+    }
+
+    public static function checkCustomer($id){
+        $medal = "new";
+        $fb = Feedback::where('id_customer',$id)->get();
+        $bill = Bill::where('id_customer',$id)->get();
+        $ckvip = Bill::where('id_customer',$id)->select('total_price')->get();
+        $total = 0;
+        foreach ($ckvip as $i){
+            $total += $i->total_price;
+        }
+        if($total > 100000000){
+            $medal = "svip";
+        }elseif($total >50000000){
+            $medal = "vip";
+        }else{
+            if($fb != null){
+                $medal = "fb";
+            }
+            if($bill != null){
+                $medal = "buy";
+            }
+        }
+        return $medal;
+
+    }
+
     public function AdminThongke()
     {
 
@@ -34,6 +111,43 @@ class AdminController extends Controller
                 '#8BC34A','#CDDC39','#FFEB3B','#FFC107','#FF9800','#FF5722','#795548','#9E9E9E','#607D8B','#000000');
             shuffle( $material_color );
             return array_shift( $material_color );
+        }
+        function hex2rgba($color, $opacity = false) {
+
+            $default = 'rgb(0,0,0)';
+
+            //Return default if no color provided
+            if(empty($color))
+                return $default;
+
+            //Sanitize $color if "#" is provided
+            if ($color[0] == '#' ) {
+                $color = substr( $color, 1 );
+            }
+
+            //Check if color has 6 or 3 characters and get values
+            if (strlen($color) == 6) {
+                $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+            } elseif ( strlen( $color ) == 3 ) {
+                $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+            } else {
+                return $default;
+            }
+
+            //Convert hexadec to rgb
+            $rgb =  array_map('hexdec', $hex);
+
+            //Check if opacity is set(rgba or rgb)
+            if($opacity){
+                if(abs($opacity) > 1)
+                    $opacity = 1.0;
+                $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+            } else {
+                $output = 'rgb('.implode(",",$rgb).')';
+            }
+
+            //Return rgb(a) color string
+            return $output;
         }
 //                function random_color() {
 //            return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
@@ -51,13 +165,56 @@ class AdminController extends Controller
         $dt_hn = Bill::select(DB::raw('sum(total_price) as sum'))
             ->whereDate('created_at', Carbon::today())->value('sum');
         $dt_t = Bill::select(DB::raw('sum(total_price) as sum'))
-            ->whereMonth('created_at', Carbon::now()->month)->value('sum');
+            ->whereMonth('created_at', $thang)->value('sum');
         $dt_n = Bill::select(DB::raw('sum(total_price) as sum'))
-            ->whereYear('created_at', Carbon::now()->year)->value('sum');
+            ->whereYear('created_at', $nam)->value('sum');
         $t_dt = Bill::select(DB::raw('sum(total_price) as sum'))->value('sum');
 
-        //Đơn hàng
+        //Doanh thu
+        $rev = ProductType::select('id','type')->get()->toArray();
+        foreach ($rev as $index => $value){
+            $rev[$index]['color'] = $material_color[$index];
+            $rev[$index]['bgcolor'] = hex2rgba($material_color[$index],0.2);
+            for ($i=1; $i<13; $i++){
+                $ip[$index][$i]['thang'] = $i;
+                $qr = Bill::select(DB::raw('sum(total_price) as sum'))
+                    ->leftjoin('bill_detail as bd','bd.id_bill','=','bills.id')
+                    ->leftjoin('products as p','p.id','=','bd.id_product')
+                    ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
+                    ->where('ctl.id_type',$value['id'])
+                    ->whereMonth('bd.created_at', $i)->whereYear('bd.created_at', $nam)
+                    ->value('sum');
+                $ip[$index][$i]['dt'] = ($qr == null) ? 0 : $qr;
+            }
+            $rev[$index]['data'] = $ip[$index];
+        }
 
+        //Số lượng sp bán ra
+        $slsp = ProductType::select('id','type')->get()->toArray();
+        foreach ($slsp as $index => $value){
+            $slsp[$index]['color'] = $material_color[$index];
+            for ($i=1; $i<13; $i++){
+                $ip[$index][$i]['thang'] = $i;
+                $qr = BillDetail::select(DB::raw('sum(quantity) as sum'))
+                    ->leftjoin('products as p','p.id','=','bill_detail.id_product')
+                    ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
+                    ->where('ctl.id_type',$value['id'])
+                    ->whereMonth('bill_detail.created_at', $i)->whereYear('bill_detail.created_at', $nam)
+                    ->value('sum');
+                $ip[$index][$i]['sl'] = ($qr == null) ? 0 : $qr;
+            }
+            $slsp[$index]['data'] = $ip[$index];
+        }
+
+        //Đơn hàng
+        $bill = array();
+        for ($i=1; $i<13; $i++){
+           $bill[$i]['thang'] = $i;
+           $bill[$i]['tc'] = Bill::select(DB::raw('count(*) as cnt'))
+               ->where('id_status',4)->whereMonth('created_at', $i)->whereYear('created_at', $nam)->value('cnt');
+           $bill[$i]['tb'] = Bill::select(DB::raw('count(*) as cnt'))
+               ->where('id_status',5)->whereMonth('created_at', $i)->whereYear('created_at', $nam)->value('cnt');
+        }
 
         //Trạng thái đơn hàng
         $status = BillStatus::all()->toArray();
@@ -112,7 +269,7 @@ class AdminController extends Controller
         }
 
         return view('admin.page.dashboard',compact('dh','sp','kh','dg','thang','nam','dt_hn','dt_t','dt_n',
-            't_dt','status','fb','pt','type'));
+            't_dt','status','fb','pt','type','bill','slsp','rev'));
     }
 
     public function AdminKhuyenMai()
@@ -137,17 +294,6 @@ class AdminController extends Controller
 //        dd($spkm);
 //        dd($km[0]->start_date);
         return view('admin.page.promotion', compact('km','p','spkm'));
-    }
-
-    public static function checkTimePromo($time)
-    {
-        $cktime = Carbon::parse($time);
-        $now = Carbon::now();
-        if ($cktime->lt($now)) {
-            //het han
-            return true;
-        }
-        return false;
     }
 
     public function ThemKM(Request $req)
@@ -334,15 +480,6 @@ class AdminController extends Controller
         $ctlname = Catalog::where('id', $req->id)->value('catalog');
         $ctl->delete();
         return redirect()->back()->with(['flag' => 'success', 'message' => 'Xoá ' . $ctlname . ' thành công!']);
-    }
-
-    public static function getStringColor($name)
-    {
-        $text = mb_substr($name, 0, 100);
-        $i = mb_strrpos($text, ' ');
-        if ($i !== false)
-            $text = mb_substr($text, 0, $i);
-        return $text;
     }
 
     public function AdminSP()
@@ -573,38 +710,6 @@ class AdminController extends Controller
         return view('admin.page.bill',compact('dh','bd','tk_today','tk_month','thang'));
     }
 
-    public static function convertMoney($n,$precision = 1)
-    {
-        if ($n < 900) {
-            // 0 - 900
-            $n_format = number_format($n, $precision);
-            $suffix = '';
-        } else if ($n < 900000) {
-            // 0.9k-850k
-            $n_format = number_format($n / 1000, $precision);
-            $suffix = ' Nghìn';
-        } else if ($n < 900000000) {
-            // 0.9m-850m
-            $n_format = number_format($n / 1000000, $precision);
-            $suffix = ' Triệu';
-        } else if ($n < 900000000000) {
-            // 0.9b-850b
-            $n_format = number_format($n / 1000000000, $precision);
-            $suffix = ' Tỷ';
-        } else {
-            // 0.9t+
-            $n_format = number_format($n / 1000000000000, $precision);
-            $suffix = ' Nghìn Tỷ';
-        }
-        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
-        // Intentionally does not affect partials, eg "1.50" -> "1.50"
-        if ( $precision > 0 ) {
-            $dotzero = '.' . str_repeat( '0', $precision );
-            $n_format = str_replace( $dotzero, '', $n_format );
-        }
-        return $n_format . $suffix;
-    }
-
     public function CheckBill(Request $req){
         $b = Bill::find($req->id);
 
@@ -707,31 +812,6 @@ class AdminController extends Controller
             ->select('feedbacks.*','p.name','image','c.id as cid')
             ->get();
         return view('admin.page.customer',compact('kh','fb'));
-    }
-
-    public static function checkCustomer($id){
-        $medal = "new";
-        $fb = Feedback::where('id_customer',$id)->get();
-        $bill = Bill::where('id_customer',$id)->get();
-        $ckvip = Bill::where('id_customer',$id)->select('total_price')->get();
-        $total = 0;
-        foreach ($ckvip as $i){
-            $total += $i->total_price;
-        }
-        if($total > 100000000){
-            $medal = "svip";
-        }elseif($total >50000000){
-            $medal = "vip";
-        }else{
-            if($fb != null){
-                $medal = "fb";
-            }
-            if($bill != null){
-                $medal = "buy";
-            }
-        }
-        return $medal;
-
     }
 
     public function LoadBill(Request $req)

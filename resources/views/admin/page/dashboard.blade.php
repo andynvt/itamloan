@@ -107,45 +107,122 @@
         <!-- #END# Widgets -->
 
         <div class="row clearfix">
-
             <!-- Thống kê doanh thu -->
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <a href="bill.html">
-                            <h2>DOANH THU</h2>
+                        <a href="{{route('admindonhang')}}">
+                            <h2>DOANH THU NĂM {{$nam}}</h2>
                         </a>
                     </div>
                     <div class="body">
-                        <canvas id="revenue_chart" height="150"></canvas>
+                        <canvas id="revenue_chart" height="100"></canvas>
                     </div>
                 </div>
             </div>
             <script>
                 var ctx = document.getElementById("revenue_chart");
+                var A='0.5';
+                var OrderChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+                        datasets: [
+                                @foreach($rev as $index => $value)
+                            {
+                            label: "{{$value['type']}}",
+                            data: [
+                                @foreach($value['data'] as $i => $v)
+                                {{$v['dt']}},
+                                @endforeach
+                            ],
+                                backgroundColor: "{{$value['bgcolor']}}",
+                                borderColor: '{{$value['color']}}',
+                        },
+                            @endforeach
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        scales: {
+                            xAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        if (parseInt(value) >= 1000) {
+                                            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        } else {
+                                            return value;
+                                        }
+                                    }
+                                }
+                            }],
+                            yAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        if (parseInt(value) >= 1000) {
+                                            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        } else {
+                                            return value;
+                                        }
+                                    }
+                                }
+                            }]
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+                                    var num =  Number(tooltipItem.yLabel).toFixed(0).replace(/./g, function(c, i, a) {
+                                        return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
+                                    });
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    return label + ""+num;
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+            <!-- #END# Thống kê doanh thu -->
+            <!-- Thống kê sl sp bán ra -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <a href="{{route('admindonhang')}}">
+                            <h2>SỐ LƯỢNG SẢN PHẨM BÁN RA NĂM {{$nam}}</h2>
+                        </a>
+                    </div>
+                    <div class="body">
+                        <canvas id="slsp_chart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var ctx = document.getElementById("slsp_chart");
                 var OrderChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                        datasets: [{
-                            label: "iPhone",
-                            data: [65, 59, 80, 81, 56, 55, 40],
-                            backgroundColor: "#EF5350"
-                        }, {
-                            label: "iPad",
-                            data: [28, 48, 40, 19, 86, 27, 90],
-                            backgroundColor: "#5C6BC0"
+                        datasets: [
+                            @foreach($slsp as $index => $value)
+                        {
+                            label: "{{$value['type']}}",
+                            data: [
+                                @foreach($value['data'] as $i => $v)
+                                    {{$v['sl']}},
+                                @endforeach
+                            ],
+                            backgroundColor: "{{$value['color']}}"
                         },
-                            {
-                                label: "Mac",
-                                data: [8, 26, 70, 19, 66, 87, 40],
-                                backgroundColor: "#26A69A"
-                            },
-                            {
-                                label: "Apple Watch",
-                                data: [25, 40, 6, 9, 50, 47, 30],
-                                backgroundColor: "#FFEE58"
-                            }
+                            @endforeach
                         ]
                     },
                     options: {
@@ -165,66 +242,13 @@
                     }
                 });
             </script>
-            <!-- #END# Thống kê doanh thu -->
-            <!-- Khách hàng -->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>THÀNH VIÊN</h2>
-                    </div>
-                    <div class="body">
-                        <canvas id="customer_chart" height="330"></canvas>
-                    </div>
-                </div>
-            </div>
-            <script>
-                var ctx = document.getElementById("customer_chart");
-                var OrderChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                        datasets: [{
-                            label: "Chưa mua hàng",
-                            data: [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55],
-                            borderColor: 'rgba(0, 188, 212, 0.75)',
-                            backgroundColor: 'rgba(0, 188, 212, 0.3)',
-                            pointBorderColor: 'rgba(0, 188, 212, 0)',
-                            pointBackgroundColor: 'rgba(0, 188, 212, 0.9)',
-                            pointBorderWidth: 1
-                        }, {
-                            label: "Đã mua hàng",
-                            data: [28, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27, 90],
-                            borderColor: 'rgba(233, 30, 99, 0.75)',
-                            backgroundColor: 'rgba(233, 30, 99, 0.3)',
-                            pointBorderColor: 'rgba(233, 30, 99, 0)',
-                            pointBackgroundColor: 'rgba(233, 30, 99, 0.9)',
-                            pointBorderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        },
-                        scales: {
-                            xAxes: [{
-                                stacked: true,
-                            }],
-                            yAxes: [{
-                                stacked: true
-                            }]
-                        }
-                    }
-                });
-            </script>
-            <!-- #END# Khách hàng -->
+            <!-- #END# Thống kê sl sp bán ra -->
             <!-- Thống kê đơn hàng -->
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <a href="bill.html">
-                            <h2>ĐƠN HÀNG</h2>
+                        <a href="{{route('admindonhang')}}">
+                            <h2>ĐƠN HÀNG NĂM {{$nam}}</h2>
                         </a>
                     </div>
                     <div class="body">
@@ -240,11 +264,19 @@
                         labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                         datasets: [{
                             label: "Thành công",
-                            data: [65, 59, 80, 81, 56, 55, 40],
+                            data: [
+                                @foreach($bill as $i => $value)
+                                {{$value['tc']}},
+                                @endforeach
+                            ],
                             backgroundColor: "#F06292"
                         }, {
                             label: "Thất bại",
-                            data: [28, 48, 40, 19, 86, 27, 90],
+                            data: [
+                                @foreach($bill as $i => $value)
+                                {{$value['tb']}},
+                                @endforeach
+                            ],
                             backgroundColor: "#BDBDBD"
                         }]
                     },
