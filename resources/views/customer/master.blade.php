@@ -12,7 +12,9 @@
 <!-- start footer Area -->
 @include('customer.footer')
 <!-- End footer Area -->
+<script>
 
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="source/js/vendor/bootstrap.min.js"></script>
 <script src="source/js/jquery.ajaxchimp.min.js"></script>
@@ -30,8 +32,6 @@
 <script src="source/js/main.js"></script>
 
 <script src="https://js.stripe.com/v3/"></script>
-
-
 
 <script>
 
@@ -82,5 +82,6 @@
         }
     </script>
 @endif  
+
 </body>
 </html>

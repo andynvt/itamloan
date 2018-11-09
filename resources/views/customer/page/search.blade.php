@@ -189,46 +189,17 @@
             <h3>ĐANG KHUYẾN MÃI</h3>
         </div>
         <div class="row mt-30">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r9.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Pixelstore fresh Strawberry</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r10.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Prixma MG2 Light Inkjet</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r11.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Pixelstore fresh Cherry</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00
-                            <del>$340.00</del>
+            @foreach($promo_product as $p)
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-search-product d-flex">
+                        <a href="{{route('single',$p->id)}}"><img src="storage/product/{{$p->image}}" alt="{{$p->name}}"></a>
+                        <div class="desc">
+                            <a href="{{route('single',$p->id)}}" class="text-km">{{$p->name}}</a>
+                            <div class="price gia-ban" style="font-size: 15px;"><span class="lnr lnr-tag"></span>{{ number_format( $p->price - $p->price * $p->percent / 100 )  }} ₫</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-search-product d-flex">
-                    <a href="#"><img src="source/img/r12.jpg" alt=""></a>
-                    <div class="desc">
-                        <a href="#" class="">Pixelstore fresh Beans</a>
-                        <div class="price"><span class="lnr lnr-tag"></span> $240.00
-                            <del>$340.00</del>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

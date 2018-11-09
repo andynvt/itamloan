@@ -29,10 +29,10 @@ class CustomerController extends Controller
 {
     public  function getIndex(){
         $ls_type = ProductType::all();
-        $ls_ip = Catalog::where('id_type',1)->get();
-        $ls_ipad = Catalog::where('id_type',2)->get();
-        $ls_mac = Catalog::where('id_type',3)->get();
-        $ls_watch = Catalog::where('id_type',4)->get();
+        $ls_ip = Catalog::where('id_type',1)->take(8)->get();
+        $ls_ipad = Catalog::where('id_type',2)->take(8)->get();
+        $ls_mac = Catalog::where('id_type',3)->take(8)->get();
+        $ls_watch = Catalog::where('id_type',4)->take(8)->get();
         return view('customer.page.home', compact('ls_type','ls_ip','ls_ipad','ls_mac','ls_watch'));
     }
 
@@ -59,7 +59,8 @@ class CustomerController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.*','pi.image','promo.percent')
-            ->where('id_promo','<>','null')->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
 
         return view('customer.page.ptype',compact('tenloai','gr_lssp','color','product','promo_product'));
     }
@@ -90,7 +91,8 @@ class CustomerController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.*','pi.image','promo.percent')
-            ->where('id_promo','<>','null')->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
 //dd($tenloai);
 
         return view('customer.page.catalog',compact('tenloai','gr_lssp','color','promo_product','product'));
@@ -119,8 +121,8 @@ class CustomerController extends Controller
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.*','pi.image','promo.percent','pc.id_product','pc.id as idcl')
             ->where('id_promo','<>','null')
-            ->groupBy('products.id')
-            ->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
 
         $arr_id_type = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
@@ -160,8 +162,8 @@ class CustomerController extends Controller
                 ['pt.id',$id_type],
                 ['products.id','<>',$id]
             ])
-            ->groupBy('products.id')
-            ->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
 
         $img = Product::leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
@@ -251,7 +253,8 @@ class CustomerController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.*','pi.image','promo.percent')
-            ->where('id_promo','<>','null')->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
 
         if (Session('wl')) {
             $oldwl = Session::get('wl');
@@ -308,7 +311,8 @@ class CustomerController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.*','pi.image','promo.percent')
-            ->where('id_promo','<>','null')->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
         if (Session('cart')) {
             $oldCart = Session::get('cart');
             $cart = new Cart($oldCart);
@@ -409,7 +413,8 @@ class CustomerController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.*','pi.image','promo.percent')
-            ->where('id_promo','<>','null')->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
 
         if (Session('cart')) {
             $oldCart = Session::get('cart');
@@ -547,9 +552,8 @@ class CustomerController extends Controller
     }
 
     public  function getLogin(){
-        $city = City::all();
-        dd($city);
-        return view('customer.page.login');
+
+        return view('customer.page.login',compact('city'));
     }
 
     public function postLogin(Request $req){
@@ -577,9 +581,19 @@ class CustomerController extends Controller
         $cus->id_user = $user->id;
         $cus->c_name = $req->name;
         $cus->address = $req->address.', '.$req->town;
-        $cus->shipping_address = $req->town. ', '.$req->address;
+        $cus->shipping_address = $req->address.', '.$req->town;
         $cus->phone = $req->phone;
         $cus->save();
+
+        $email = $req->email;
+        $name = $req->name;
+
+        $data = ['name' => $name, 'email' => $email];
+        Mail::send('admin.mail.dangky',$data,function ($msg) use ($email){
+            $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+            $msg->to($email,'Khách hàng')->subject('🍎🍎 Đăng ký tài khoản thành công ✅');
+        });
+        if (Mail::failures()) {}
 
         return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
     }
@@ -611,7 +625,8 @@ class CustomerController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.*','pi.image','promo.percent')
-            ->where('id_promo','<>','null')->get();
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
 
         return view('customer.page.search',compact('ls_sp','gr_lssp','color','promo_product','product','key'));
     }
@@ -672,8 +687,30 @@ class CustomerController extends Controller
     }
 
     public function postChangePass(Request $req){
+        $id = Auth::user()->id;
+        $realpass = Auth::user()->password;
 
-        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đổi mật khẩu thành công']);
+        if(Hash::check($req->oldpass, $realpass)) {
+            $u = User::find($id);
+            $u->password = Hash::make($req->password);
+            $u->save();
+
+            $name = Customer::where('id_user',$id)->value('c_name');
+            $email = Auth::user()->email;
+
+            $data = ['name' => $name, 'email' => $email];
+            Mail::send('admin.mail.doimk',$data,function ($msg) use ($email){
+                $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+                $msg->to($email,'Khách hàng')->subject('🍎🍎 Mật khẩu đã thay đổi ⛔');
+            });
+            if (Mail::failures()) {}
+            return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đổi mật khẩu thành công']);
+        }
+        else{
+            return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Sai mật khẩu cũ']);
+        }
+
+
     }
 
     public function postDelfb($id,Request $req){

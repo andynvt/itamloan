@@ -172,9 +172,10 @@
                 <div class="col-lg-3 col-md-3 col-sm-1 col-1"></div>
                 <div class="col-lg-6 col-md-6 col-sm-10 col-10">
                     <div class="mt-10">
-                        <form action="#">
+                        <form action="{{route('changpass')}}" method="post">
+                            {{ csrf_field() }}
                             <div class="mt-10">
-                                <input type="password" name="oldpass"
+                                <input type="password" name="oldpass" id="oldpass"
                                        placeholder="Mật khẩu cũ"
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'Mật khẩu cũ'" required
@@ -182,7 +183,7 @@
                                        autofocus>
                             </div>
                             <div class="mt-10">
-                                <input type="password" name="password"
+                                <input type="password" name="password" id="password"
                                        placeholder="Mật khẩu mới"
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'Mật khẩu mới'" required
@@ -190,26 +191,19 @@
 
                             </div>
                             <div class="mt-10">
-                                <input type="password" name="re-password"
+                                <input type="password" name="re-password" id="re-password"
                                        placeholder="Nhập lại Mật khẩu mới"
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'Nhập lại Mật khẩu mới'"
                                        required
                                        class="single-input" minlength="6" maxlength="16">
-
                             </div>
-
-
                             <button type="submit" class="view-btn color-2 mt-20 w-100 mb-20"><span>Thay đổi</span></button>
-
                         </form>
-
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-1 col-1"></div>
             </div>
-
         </div>
         <div class="tab-pane fade " id="review" role="tabpanel">
             <div class="tab-pane fade show active" id="bill" role="tabpanel">
@@ -259,5 +253,19 @@
     </div>
 </div>
 </div>
+<script>
+    var password = document.getElementById("password");
+    var confirm_password = document.getElementById("re-password");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Nhập lại mật khẩu không đúng");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 <!-- End Cart Area -->
 @endsection

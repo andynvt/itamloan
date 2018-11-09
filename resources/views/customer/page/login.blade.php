@@ -66,8 +66,11 @@
                                class="common-input mt-20">
                         {{--<input type="date" name="dob" placeholder="Ngày sinh" onfocus="this.placeholder = ''"--}}
                                {{--onblur="this.placeholder = 'Ngày sinh'" required class="common-input mt-20">--}}
-                        <select class="form-control show-tick thanhpho" name="city" id="tinh-thanhpho" data-live-search="true" required>
+                        <select class="common-input mt-20 mt-20 nice-select thanhpho" name="city" id="tinh-thanhpho" data-live-search="true" required>
                             <option value="">Tỉnh / Thành Phố</option>
+                            {{--@foreach($city as $index => $value)--}}
+                                {{--<option value="{{$value->id}}">{{$value->city}}</option>--}}
+                            {{--@endforeach--}}
                         </select>
 
                         <select class="common-input mt-20 mt-20 quan_huyen nice-select" name="district" id="quan-huyen" required>
@@ -88,29 +91,8 @@
     <div class="mb-10"></div>
 
     <!-- End My Account -->
+
     <script>
-        $('select[name="city"]').on('change',function () {
-            var id = $(this).val();
-            // alert(id);
-            $.ajax({
-                url: 'admin/load',
-                dataType: 'json',
-                type: 'GET',
-                data: {id: id},
-                success: function (data) {
-                    // console.log(data);
-                    $('select[name="catalog"]').empty();
-                    for ($i = 0; $i < data[0].length; $i++) {
-                        $('select[name="catalog"]').append('<option value="' + data[0][$i]['id'] + '">' + data[0][$i]['catalog'] + '</option>');
-                    }
-                    $('select[name="catalog"]').selectpicker('refresh');
-
-                }
-            });
-        });
-
-
-        // $('#tinh-thanhpho').selectpicker('refresh');
         var password = document.getElementById("password");
         var confirm_password = document.getElementById("re-password");
 
