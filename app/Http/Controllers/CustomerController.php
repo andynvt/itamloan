@@ -27,7 +27,31 @@ use function PHPSTORM_META\elementType;
 
 class CustomerController extends Controller
 {
-    public  function getIndex(){
+    public static function getGB($words){
+        $words = explode(' ', $words);
+        foreach($words as $word) {
+            if(substr($word, -strlen('GB')) === 'GB') {
+                return $word;
+            }
+        }
+    }
+    public static function noToText($no){
+        $text = "";
+        if($no == 5){
+            $text = "five";
+        }else if($no == 4){
+            $text = "four";
+        }else if($no == 3){
+            $text = "three";
+        }else if($no == 2){
+            $text = "two";
+        }else if($no == 1){
+            $text = "one";
+        }
+        return $text;
+    }
+
+    public function getIndex(){
         $ls_type = ProductType::all();
         $ls_ip = Catalog::where('id_type',1)->take(8)->get();
         $ls_ipad = Catalog::where('id_type',2)->take(8)->get();
@@ -36,14 +60,20 @@ class CustomerController extends Controller
         return view('customer.page.home', compact('ls_type','ls_ip','ls_ipad','ls_mac','ls_watch'));
     }
 
-    public  function getType($type){
+    public function getType($type){
         $tenloai = ProductType::where('id', $type)->get();
-        $ls_sp = ProductType::join('catalogs','catalogs.id_type','=','product_type.id')
-            ->select('product_type.*','catalogs.id as ctlid','catalogs.catalog')
-            ->get();
-        $gr_lssp = $ls_sp->groupBy('type');
+        $dsp = Catalog::where('id_type',$type)->pluck('catalog','id');
 
-        $color = ProductColor::all()->unique('color');
+        $color = ProductColor::select('product_color.id','color')
+            ->leftjoin('products as p','p.id','=','product_color.id_product')
+            ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
+            ->where('id_type',$type)
+            ->groupBy('color')->orderBy('product_color.id')->get();
+
+        foreach ($color as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+        }
+        $dl = array(16,32,64,128,256,512,1024);
 
         $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
@@ -55,6 +85,11 @@ class CustomerController extends Controller
             ->groupBy('products.id')
             ->get();
 
+        foreach ($product as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+            $value->dl = self::getGB($value->name);
+        }
+
         $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
@@ -62,7 +97,7 @@ class CustomerController extends Controller
             ->groupBy('products.id')->orderBy('percent')
             ->where('id_promo','<>','null')->take(8)->get();
 
-        return view('customer.page.ptype',compact('tenloai','gr_lssp','color','product','promo_product'));
+        return view('customer.page.ptype',compact('tenloai','dsp','color','dl','product','promo_product'));
     }
 
     public function getCatalog($catalog){
@@ -70,22 +105,29 @@ class CustomerController extends Controller
             ->select('pt.id as ptid','pt.type','catalogs.*')
             ->where('catalogs.id', $catalog)->get();
 
-        $ls_sp = ProductType::join('catalogs','catalogs.id_type','=','product_type.id')
-            ->select('product_type.*','catalogs.id as ctlid','catalogs.catalog')
-            ->get();
-        $gr_lssp = $ls_sp->groupBy('type');
-
-        $color = ProductColor::all()->unique('color');
+        $color = ProductColor::select('product_color.id','color')
+            ->leftjoin('products as p','p.id','=','product_color.id_product')
+            ->where('id_catalog',$catalog)
+            ->groupBy('color')->orderBy('product_color.id')->get();
+        foreach ($color as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+        }
+        $dl = array(16,32,64,128,256,512,1024);
 
         $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
-            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent')
+            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
             ->where('ctl.id',$catalog)
             ->groupBy('products.id')
             ->get();
+
+        foreach ($product as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+            $value->dl = self::getGB($value->name);
+        }
 
         $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
@@ -93,15 +135,10 @@ class CustomerController extends Controller
             ->select('products.*','pi.image','promo.percent')
             ->groupBy('products.id')->orderBy('percent')
             ->where('id_promo','<>','null')->take(8)->get();
-//dd($tenloai);
 
-        return view('customer.page.catalog',compact('tenloai','gr_lssp','color','promo_product','product'));
+        return view('customer.page.catalog',compact('tenloai','dl','color','promo_product','product'));
     }
 
-    /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public  function getSingle($id){
 
         $pd = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
@@ -140,10 +177,13 @@ class CustomerController extends Controller
 
         $arr_color = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
-            ->select('pc.id','pc.color')
+            ->select('pc.id','id_product','pc.color','name')
             ->where('ctl.id',$id_catalog)
+//            ->groupBy('color')
             ->get();
-
+        foreach ($arr_color as $value){
+            $value->dl = self::getGB($value->name);
+        }
 //        dd($arr_color);
         $arr_img = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
@@ -214,21 +254,6 @@ class CustomerController extends Controller
         return view('customer.page.single', compact('pd', 'product_video', 'spec', 'value',
             'promo_product', 'same_product', 'img', 'arr_color', 'arr_img','no_of_fb','avg_fb','feedback','fb_1','fb_2',
             'fb_3','fb_4','fb_5','cus'));
-    }
-    public static function noToText($no){
-        $text = "";
-        if($no == 5){
-            $text = "five";
-        }else if($no == 4){
-            $text = "four";
-        }else if($no == 3){
-            $text = "three";
-        }else if($no == 2){
-            $text = "two";
-        }else if($no == 1){
-            $text = "one";
-        }
-        return $text;
     }
 
     public function postFeedback(Request $req){
@@ -356,9 +381,9 @@ class CustomerController extends Controller
     }
 
     public function postAddCartQty(Request $req){
-        $id_color = $req->color;
+        $id_product = $req->idsp;
+        $id_color = ProductColor::where('id_product',$id_product)->value('id');
         $sl = $req->soluong;
-        $id_product = ProductColor::where('id',$id_color)->value('id_product');
         $product = Product::find($id_product);
         $promo = Promotion::where('id',$product->id_promo)->get();
         $color = ProductColor::where('id_product',$product->id)->value('color');
@@ -544,7 +569,7 @@ class CustomerController extends Controller
         if (Mail::failures()) {}
 
         Session::forget('cart');
-        return redirect()->route('login')->with(['flag' => 'success', 'title' => 'Thông báo', 'message' => 'Đặt hàng thành công']);
+        return redirect()->route('index')->with(['flag' => 'success', 'title' => 'Thông báo', 'message' => 'Đặt hàng thành công']);
     }
 
     public  function getFaq(){
@@ -610,6 +635,11 @@ class CustomerController extends Controller
             ->get();
         $gr_lssp = $ls_sp->groupBy('type');
         $color = ProductColor::all()->unique('color');
+        foreach ($color as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+        }
+        $dl = array(16,32,64,128,256,512,1024);
+
 
         $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
@@ -620,6 +650,10 @@ class CustomerController extends Controller
             ->where('products.name','like','%'.$key.'%')
             ->groupBy('products.id')
             ->get();
+        foreach ($product as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+            $value->dl = self::getGB($value->name);
+        }
 
         $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
@@ -628,7 +662,7 @@ class CustomerController extends Controller
             ->groupBy('products.id')->orderBy('percent')
             ->where('id_promo','<>','null')->take(8)->get();
 
-        return view('customer.page.search',compact('ls_sp','gr_lssp','color','promo_product','product','key'));
+        return view('customer.page.search',compact('ls_sp','gr_lssp','color','promo_product','product','key','dl'));
     }
 
     public  function getUser(){

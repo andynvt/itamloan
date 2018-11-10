@@ -84,28 +84,30 @@
                     </div>
                     @endif
                     <div>
-                        <form action="{{route('addcartqty')}}" method="post">
+                        <form action="{{route('addcartqty')}}" method="post" >
                             {{ csrf_field() }}
                             <div class=" d-flex align-items-center mt-15">
-                                Chọn màu: &nbsp;&nbsp;
+                                Dung lượng + Màu: &nbsp;&nbsp;
                                 <div class="default-select " id="default-select">
-                                    <select class="nice-select" name="color">
+                                    <select class="nice-select" name="color" onchange="location = this.value;">
                                         @foreach($arr_color as $c => $value)
-                                        <option value="{{$value->id}}">{{$value->color}}</option>
+                                        <option value="{{route('single',$value->id_product)}}" {{ ( $value->id_product == $pd[0]->id) ? 'selected' : '' }}
+                                        >{{$value->dl}} {{$value->color}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="quantity-container d-flex align-items-center mt-15">
                                 Số lượng:
-                                <input type="number" name="soluong" id="quantity-amount" class="quantity-amount ml-15" min="1" max="{{$pd[0]->inventory}}" value="1" />
+                                <input type="hidden" name="idsp" value="{{$pd[0]->id}}" />
+                                <input type="number" name="soluong" id="quantity-amount" class="quantity-amount ml-15" min="1" value="1" />
                                 <div class="arrow-btn d-inline-flex flex-column">
                                     <button class="increase arrow" type="button" title="Increase Quantity">
                                         <span class="lnr lnr-chevron-up"></span></button>
                                     <button class="decrease arrow" type="button" title="Decrease Quantity">
                                         <span class="lnr lnr-chevron-down"></span></button>
                                 </div>
-                                <span class="pl-3">{{$pd[0]->inventory}} sản phẩm có sẵn</span>
+                                <span class="pl-3" id="slsp">{{$pd[0]->inventory}} sản phẩm có sẵn</span>
                             </div>
                             <div class="d-flex mt-20">
                                 <button type="submit" onclick="validateQuantity()" class="view-btn color-2"><span>Thêm vào giỏ</span></button>
@@ -120,7 +122,6 @@
                             function validateQuantity(){
                                 var qty = document.getElementById("quantity-amount");
                                 var maxqty = "{{$pd[0]->inventory}}";
-
                                 if(qty.value > maxqty) {
                                     qty.setCustomValidity('Kho chỉ còn '+maxqty+' sản phẩm');
                                 } else {

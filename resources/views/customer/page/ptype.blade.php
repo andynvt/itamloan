@@ -44,39 +44,80 @@
                     {{--</ul>--}}
                 </div>
                 <div class="sidebar-filter mt-0">
-                    <div class="top-filter-head">Lọc sản phẩm</div>
-                    <div class="common-filter">
-                        <div class="head">Loại</div>
-                            <ul class="">
-                                @foreach($gr_lssp as $gr => $value)
-                                    <li class="main-nav-list li-text-loai">
-                                        <a data-toggle="collapse" class="text-loai" href="#dong-{{$value[0]->id}}"
-                                           aria-expanded="false"
-                                           aria-controls="{{$gr}}"><span class="lnr lnr-arrow-right"></span> {{$gr}}</a>
-                                        <ul class="collapse filters" id="dong-{{$value[0]->id}}" data-toggle="collapse"
-                                            aria-expanded="false"
-                                            aria-controls="{{$gr}}">
-                                            @foreach($value as $v)
-                                                <li class="filter-list">
-                                                    <input class="pixel-radio" type="radio" value=".ctl-{{$v->ctlid}}" id="{{$v->ctlid}}" name="type">
-                                                    <label for="{{$v->ctlid}}">{{$v->catalog}}
-                                                    </label>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                    <div class="top-filter-head">LỌC SẢN PHẨM</div>
+                    <div class="">
+                        <ul class="">
+                            <li class="main-nav-list common-filter">
+                                <a data-toggle="collapse" class="text-loai head" href="#loc_dong" aria-expanded="false"
+                                   aria-controls="loc_dong">DÒNG</a>
+                                <ul class="collapse filters" id="loc_dong" data-toggle="collapse" aria-expanded="false"
+                                    aria-controls="loc_dong">
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" value="*" id="all_catalog"
+                                               name="catalog">
+                                        <label for="all_catalog">Tất cả</label>
                                     </li>
-                                @endforeach
-                            </ul>
+                                    @foreach($dsp as $index => $value)
+                                        <li class="filter-list">
+                                            <input class="pixel-radio" type="radio" value=".ctl-{{$index}}"
+                                                   id="ctl_{{$index}}" name="catalog">
+                                            <label for="ctl_{{$index}}">{{$value}}
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li class="main-nav-list common-filter">
+                                <a data-toggle="collapse" class="text-loai head" href="#loc_mau" aria-expanded="false"
+                                   aria-controls="loc_mau">MÀU</a>
+                                <ul class="collapse filters" id="loc_mau" data-toggle="collapse" aria-expanded="false"
+                                    aria-controls="loc_mau">
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" value="*" id="all_color"
+                                               name="color">
+                                        <label for="all_color">Tất cả</label>
+                                    </li>
+                                    @foreach($color as $index => $value)
+                                        <li class="filter-list">
+                                            <input class="pixel-radio" type="radio" value=".cl-{{$value->colorid}}"
+                                                   id="cl_{{$value->colorid}}" name="color">
+                                            <label for="cl_{{$value->colorid}}">{{$value->color}}
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li class="main-nav-list common-filter">
+                                <a data-toggle="collapse" class="text-loai head" href="#loc_dl" aria-expanded="false"
+                                   aria-controls="loc_dl">DUNG LƯỢNG</a>
+                                <ul class="collapse filters" id="loc_dl" data-toggle="collapse" aria-expanded="false"
+                                    aria-controls="loc_dl">
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" value="*" id="all_dl"
+                                               name="dl">
+                                        <label for="all_dl">Tất cả</label>
+                                    </li>
+                                    @foreach($dl as $index => $value)
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" value=".dl-{{$value}}GB"
+                                               id="dl_{{$value}}" name="dl">
+                                        <label for="dl_{{$value}}">{{$value}} GB
+                                        </label>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="common-filter">
-                        <div class="head">Màu</div>
-                            <ul class="filters">
-                                <li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-color" name="filter"><label for="all-color">Tất cả</label></li>
-                            @foreach($color as $cl)
-                                    <li class="filter-list"><input class="pixel-radio"  value=".{{$cl->color}}" type="radio" id="{{$cl->color}}" name="filter"><label for="{{$cl->color}}">{{$cl->color}}</label></li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    {{--<div class="common-filter">--}}
+                        {{--<div class="head">Màu</div>--}}
+                            {{--<ul class="filters">--}}
+                                {{--<li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-color" name="filter"><label for="all-color">Tất cả</label></li>--}}
+                            {{--@foreach($color as $cl)--}}
+                                    {{--<li class="filter-list"><input class="pixel-radio"  value=".{{$cl->color}}" type="radio" id="{{$cl->color}}" name="filter"><label for="{{$cl->color}}">{{$cl->color}}</label></li>--}}
+                                {{--@endforeach--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
                     <div class="common-filter">
                         <div class="head">Giá</div>
                         <div class="price-range-area">
@@ -129,7 +170,7 @@
                     <div class="">
                         <div class="grid">
                             @foreach($product as $p)
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item {{$p->color}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item dl-{{$p->dl}} cl-{{$p->colorid}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
                                     <div class="single-product">
                                         <div class="content item-cart-ct">
                                             <a href="{{route('single',$p->id)}}">

@@ -147,6 +147,7 @@ Route::get('yeu-thich',[
     'uses' => 'CustomerController@getWishlist'
 ]);
 
+
 //Admin CP
 
 Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], function () {
@@ -302,3 +303,5 @@ Route::post('quen-mat-khau',[
     'as' => 'adminquenmk',
     'uses' => 'AdminLogin@quenMK'
 ]);
+
+

@@ -56,11 +56,8 @@
         </div>
         <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
 
-            <p class="footer-text m-0">Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-                All rights reserved | Template by Colorlib</a></p>
+            <p class="footer-text m-0">Copyright &copy; 2018
+                All rights reserved | Template by Colorlib</p>
         </div>
     </div>
 </footer>

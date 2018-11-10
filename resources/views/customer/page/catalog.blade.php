@@ -24,55 +24,62 @@
     <div class="row">
         <div class="col-xl-3 col-lg-3 col-md-4">
             <div class="sidebar-filter mt-0">
-                <div class="top-filter-head head">Lọc sản phẩm</div>
-                <div class="common-filter">
-                    <div class="head">Loại</div>
-                    <form action="#">
-                        <ul>
-                            @foreach($gr_lssp as $gr => $value)
-                                <li class="main-nav-list li-text-loai">
-                                    <a data-toggle="collapse" class="text-loai" href="#dong-{{$value[0]->id}}"
-                                                             aria-expanded="false"
-                                                             aria-controls="{{$gr}}"><span
-                                                class="lnr lnr-arrow-right "></span>{{$gr}}</a>
-                                    <ul class="collapse " id="dong-{{$value[0]->id}}" data-toggle="collapse"
-                                        aria-expanded="false"
-                                        aria-controls="{{$value[0]->type}}">
-                                        @foreach($value as $v)
-                                            <li class="filter-list">
-                                                <input class="pixel-radio" type="radio"
-                                                                           id="{{$v->ctlid}}" name="type">
-                                                <label for="{{$v->ctlid}}">{{$v->catalog}}
-                                                </label>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                <div class="top-filter-head">LỌC SẢN PHẨM</div>
+                <div class="">
+                    <ul class="">
+                        <li class="main-nav-list common-filter">
+                            <a data-toggle="collapse" class="text-loai head" href="#loc_mau" aria-expanded="false"
+                               aria-controls="loc_mau">MÀU</a>
+                            <ul class="collapse filters" id="loc_mau" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="loc_mau">
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="radio" value="*" id="all_color"
+                                           name="color">
+                                    <label for="all_color">Tất cả</label>
                                 </li>
-                            @endforeach
-                        </ul>
-                    </form>
+                                @foreach($color as $index => $value)
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" value=".cl-{{$value->colorid}}"
+                                               id="cl_{{$value->colorid}}" name="color">
+                                        <label for="cl_{{$value->colorid}}">{{$value->color}}
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="main-nav-list common-filter">
+                            <a data-toggle="collapse" class="text-loai head" href="#loc_dl" aria-expanded="false"
+                               aria-controls="loc_dl">DUNG LƯỢNG</a>
+                            <ul class="collapse filters" id="loc_dl" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="loc_dl">
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="radio" value="*" id="all_dl"
+                                           name="dl">
+                                    <label for="all_dl">Tất cả</label>
+                                </li>
+                                @foreach($dl as $index => $value)
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" value=".dl-{{$value}}GB"
+                                               id="dl_{{$value}}" name="dl">
+                                        <label for="dl_{{$value}}">{{$value}} GB
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
                 <div class="common-filter">
-                    <div class="head">Màu</div>
-                    <form action="#">
-                        <ul>
-                            @foreach($color as $cl)
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="{{$cl->color}}" name="color"><label for="{{$cl->color}}">{{$cl->color}}</label></li>
-                            @endforeach
-                            </ul>
-                    </form>
+                    <div class="head">Giá</div>
+                    <div class="price-range-area">
+                        <div id="price-range"></div>
+                        <div class="value-wrapper d-flex" style="color: black">
+                            <div id="lower-value"></div>
+                            <div class="to">-</div>
+                            <div id="upper-value"></div>
+                        </div>
+                    </div>
                 </div>
-                {{--<div class="common-filter">--}}
-                    {{--<div class="head">Giá</div>--}}
-                    {{--<div class="price-range-area">--}}
-                        {{--<div id="price-range"></div>--}}
-                        {{--<div class="value-wrapper d-flex" style="color: black">--}}
-                            {{--<div id="lower-value"></div>--}}
-                            {{--<div class="to">-</div>--}}
-                            {{--<div id="upper-value"></div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
                 <div class="text-center">
                     <div class="p-2"></div>
                     <a href="#" class="view-btn color-2"><span>LỌC</span> <span class="lnr lnr-arrow-right"></span></a>
@@ -111,43 +118,64 @@
 
             <!-- Start Best Seller -->
             <section class="lattest-product-area pb-40 category-list">
-                <div class="row">
-                    @foreach($product as $p)
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 single-product">
+                <div class="">
+                    <div class="grid">
+                        @foreach($product as $p)
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item dl-{{$p->dl}} cl-{{$p->colorid}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
+                                <div class="single-product">
+                                    <div class="content item-cart-ct">
+                                        <a href="{{route('single',$p->id)}}">
+                                            <div class="content-overlay"></div>
+                                        </a>
+                                        @if($p->percent != null)
+                                            <span class="sp-discount">-{{$p->percent}}%</span>
+                                        @endif
+                                        <img class="content-image img-fluid d-block mx-auto img-cart"
+                                             src="storage/product/{{$p->image}}" alt="{{$p->name}}">
+                                        <div class="content-details fadeIn-bottom">
+                                            <div class="bottom d-flex align-items-center justify-content-center">
+                                                <a href="{{route('addwl',$p->id)}}"><span
+                                                            class="lnr lnr-heart"></span></a>
+                                                <a href="{{route('addcart',$p->id)}}" class="add-to-cart"><span
+                                                            class="lnr lnr-cart"></span></a>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u={{route('single',$p->id)}}" target="_blank">
+                                                    <span class="fa fa-facebook" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
 
-                        <div class="content" >
-                            <a href="{{route('single',$p->id)}}">
-                            <div class="content-overlay"></div>
-                            </a>
-                            @if($p->percent != null)
-                            <span class="sp-discount">-{{$p->percent}}%</span>
-                            @endif
-                            <img class="content-image img-fluid d-block mx-auto" src="storage/product/{{$p->image}}" alt="{{$p->name}}">
-                            <div class="content-details fadeIn-bottom">
-                                <div class="bottom d-flex align-items-center justify-content-center">
-                                    <a href="{{route('addwl',$p->id)}}"><span class="lnr lnr-heart"></span></a>
-                                    <a href="{{route('addcart',$p->id)}}"><span class="lnr lnr-cart"></span></a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{route('single',$p->id)}}" target="_blank">
-                                        <span class="fa fa-facebook" aria-hidden="true"></span>
-                                    </a>
+                                        </div>
+                                    </div>
+                                    <div ></div>
+                                    <script>
+                                        (function(d, s, id) {
+                                            var js, fjs = d.getElementsByTagName(s)[0];
+                                            if (d.getElementById(id)) return;
+                                            js = d.createElement(s); js.id = id;
+                                            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1&appId=1687905644786313&autoLogAppEvents=1';
+                                            fjs.parentNode.insertBefore(js, fjs);
+                                        }(document, 'script', 'facebook-jssdk'));
+                                    </script>
+
+                                    <div class="price text-center">
+                                        <a href="{{route('single',$p->id)}}">
+                                            <div class="p-1"></div>
+                                            <h5>{{$p->name}}</h5>
+                                            @if($p->percent != null)
+                                                <span class="de-text">{{number_format($p->price)}} ₫</span>
+                                            @endif
+                                            <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}}
+                                                ₫</h3>
+                                        </a>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="price text-center">
-                            <a href="{{route('single',$p->id)}}">
-                                <div class="p-1"></div>
-                                <h5>{{$p->name}}</h5>
-                                @if($p->percent != null)
-                                    <span class="de-text">{{number_format($p->price)}} ₫</span>
-                                @endif
-                                <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}} ₫</h3>
-                            </a>
-                        </div>
 
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </section>
+
             <!-- End Best Seller -->
 
             <!-- Start Filter Bar -->

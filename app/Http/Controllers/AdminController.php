@@ -744,9 +744,9 @@ class AdminController extends Controller
         }
 
         if($req->confirm == 'ht'){
-            Mail::send('admin.mail.hoantat',$data,function ($msg){
+            Mail::send('admin.mail.hoantat',$data,function ($msg) use ($email){
                 $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
-                $msg->to('andy.nvt.vn@gmail.com','Khách hàng')->subject('🍎🍎 Đơn hàng đã hoàn tất 🎉️');
+                $msg->to($email,'Khách hàng')->subject('🍎🍎 Đơn hàng đã hoàn tất 🎉️');
             });
             if (Mail::failures()) {}
             $b->id_status = 4;

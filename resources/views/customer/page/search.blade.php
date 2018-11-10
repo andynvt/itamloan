@@ -53,7 +53,18 @@
                     <ul class="filters">
                         <li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-color" name="filter"><label for="all-color">Tất cả</label></li>
                         @foreach($color as $cl)
-                            <li class="filter-list"><input class="pixel-radio"  value=".{{$cl->color}}" type="radio" id="{{$cl->color}}" name="filter"><label for="{{$cl->color}}">{{$cl->color}}</label></li>
+                            <li class="filter-list"><input class="pixel-radio"  value=".{{$cl->colorid}}" type="radio" id="{{$cl->colorid}}" name="filter"><label for="{{$cl->colorid}}">{{$cl->color}}</label></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="common-filter">
+                    <div class="head">DUNG LƯỢNG</div>
+                    <ul class="filters">
+                        <li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-dl" name="dl"><label for="all-dl">Tất cả</label></li>
+                        @foreach($dl as $index => $value)
+                            <li class="filter-list"><input class="pixel-radio"  value=".dl-{{$value}}GB" type="radio" id="dl_{{$value}}}" name="dl">
+                                <label for="dl_{{$value}}">{{$value}} GB</label>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -108,7 +119,7 @@
             <section class="lattest-product-area pb-40 category-list">
                 <div class="grid">
                     @foreach($product as $p)
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item {{$p->color}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item dl-{{$p->dl}} cl-{{$p->color}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
                             <div class="single-product">
                                 <div class="content item-cart-ct">
                                     <a href="{{route('single',$p->id)}}">
