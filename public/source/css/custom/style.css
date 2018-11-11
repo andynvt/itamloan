@@ -663,6 +663,12 @@ label {
     color: #FFED85;
 }
 
+.single-product{
+    height: 350px !important;
+}
+.single-product .content-image{
+    max-height: 245px;
+}
 
 
 /* Media query for mobile viewport */
@@ -695,6 +701,9 @@ label {
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
+    .single-product{
+        height: 300px !important;
+    }
     .nav-item-ct {
         display: none;
     }
@@ -721,11 +730,18 @@ label {
     .quick-view-content {
         padding: 0;
     }
-
-
+    .gia-ban{
+        font-size: 22px !important;
+    }
 }
 
 @media (max-width: 767px) and (min-width: 425px) {
+    .single-product{
+        height: 280px !important;
+    }
+    .gia-ban{
+        font-size: 20px !important;
+    }
     .ct-top {
         display: none;
     }
@@ -775,6 +791,12 @@ label {
 }
 
 @media (max-width: 424px) {
+    .single-product{
+        height: 250px !important;
+    }
+    .gia-ban{
+        font-size: 20px !important;
+    }
     .ct-top {
         display: none;
     }

@@ -10,7 +10,7 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
             <div class="col-first">
-                <h1>{{$pd[0]->name}}</h1>
+                <h2 class="text-white">{{$pd[0]->name}}</h2>
                 <nav class="d-flex align-items-center justify-content-start">
                     <a href="{{route('index')}}">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
                     <a href="{{route('loai',$pd[0]->ptid)}}">{{$pd[0]->type}}<i class="fa fa-caret-right" aria-hidden="true"></i></a>
@@ -186,7 +186,7 @@
                     @for($i=0; $i<count($spec); $i++)
                     <tr>
                         <td width="20%">{{$spec[$i]}}</td>
-                        <td>{{$value[$i]}}</td>
+                        <td>{{$value_spec[$i]}}</td>
                     </tr>
                     @endfor
                     </tbody>

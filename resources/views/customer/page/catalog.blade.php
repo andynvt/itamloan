@@ -9,7 +9,7 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
             <div class="col-first">
-                <h1>{{$tenloai[0]->catalog}}</h1>
+                <h2 class="text-white">{{$tenloai[0]->catalog}}</h2>
                 <nav class="d-flex align-items-center justify-content-start">
                     <a href="{{route('index')}}">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
                     <a href="{{route('loai',$tenloai[0]->ptid)}}">{{$tenloai[0]->type}}<i class="fa fa-caret-right" aria-hidden="true"></i></a>
@@ -26,14 +26,14 @@
             <div class="sidebar-filter mt-0">
                 <div class="top-filter-head">LỌC SẢN PHẨM</div>
                 <div class="">
-                    <ul class="">
+                    <ul class="filters">
                         <li class="main-nav-list common-filter">
                             <a data-toggle="collapse" class="text-loai head" href="#loc_mau" aria-expanded="false"
                                aria-controls="loc_mau">MÀU</a>
-                            <ul class="collapse filters" id="loc_mau" data-toggle="collapse" aria-expanded="false"
-                                aria-controls="loc_mau">
+                            <ul class="collapse filters button-group" id="loc_mau" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="loc_mau" data-filter-group="color">
                                 <li class="filter-list">
-                                    <input class="pixel-radio" type="radio" value="*" id="all_color"
+                                    <input class="pixel-radio is-checked" type="radio" value="*" id="all_color"
                                            name="color">
                                     <label for="all_color">Tất cả</label>
                                 </li>
@@ -50,10 +50,10 @@
                         <li class="main-nav-list common-filter">
                             <a data-toggle="collapse" class="text-loai head" href="#loc_dl" aria-expanded="false"
                                aria-controls="loc_dl">DUNG LƯỢNG</a>
-                            <ul class="collapse filters" id="loc_dl" data-toggle="collapse" aria-expanded="false"
-                                aria-controls="loc_dl">
+                            <ul class="collapse filters button-group" id="loc_dl" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="loc_dl" data-filter-group="dl">
                                 <li class="filter-list">
-                                    <input class="pixel-radio" type="radio" value="*" id="all_dl"
+                                    <input class="pixel-radio is-checked" type="radio" value="*" id="all_dl"
                                            name="dl">
                                     <label for="all_dl">Tất cả</label>
                                 </li>
@@ -80,37 +80,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <div class="p-2"></div>
-                    <a href="#" class="view-btn color-2"><span>LỌC</span> <span class="lnr lnr-arrow-right"></span></a>
-                </div>
             </div>
         </div>
         <div class="col-xl-9 col-lg-9 col-md-8">
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting">
+                <div class="sorting div-sorts-btn-grp">
                     <select class="nice-select">
-                        <option value="1">Sắp xếp</option>
-                        <option value="1">Giá tăng dần</option>
-                        <option value="1">Giá giảm dần</option>
+                        <option value="">Sắp xếp</option>
+                        <option value="tangdan">Giá tăng dần</option>
+                        <option value="giamdan">Giá giảm dần</option>
                     </select>
-                </div>
-                <div class="sorting mr-auto">
-                    <select class="nice-select">
-                        <option value="1">Hiển thị</option>
-                        <option value="1">12</option>
-                        <option value="1">24</option>
-                    </select>
-                </div>
-                <div class="pagination">
-                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
-                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
             <!-- End Filter Bar -->
@@ -122,6 +102,11 @@
                     <div class="grid">
                         @foreach($product as $p)
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item dl-{{$p->dl}} cl-{{$p->colorid}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
+                                @if($p->percent == null)
+                                    <span style="display: none" class="product-price">{{$p->price}}</span>
+                                @else
+                                    <span style="display: none" class="product-price">{{$p->price - ($p->price * $p->percent / 100)}}</span>
+                                @endif
                                 <div class="single-product">
                                     <div class="content item-cart-ct">
                                         <a href="{{route('single',$p->id)}}">
@@ -162,9 +147,10 @@
                                             <h5>{{$p->name}}</h5>
                                             @if($p->percent != null)
                                                 <span class="de-text">{{number_format($p->price)}} ₫</span>
+                                                <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}}₫</h3>
+                                            @else
+                                                <h3 class="gia-ban">{{number_format( $p->price )}}₫</h3>
                                             @endif
-                                            <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}}
-                                                ₫</h3>
                                         </a>
                                     </div>
 
@@ -177,34 +163,6 @@
             </section>
 
             <!-- End Best Seller -->
-
-            <!-- Start Filter Bar -->
-            <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting">
-                    <select class="nice-select">
-                        <option value="1">Sắp xếp</option>
-                        <option value="1">Giá tăng dần</option>
-                        <option value="1">Giá giảm dần</option>
-                    </select>
-                </div>
-                <div class="sorting mr-auto">
-                    <select class="nice-select">
-                        <option value="1">Hiển thị</option>
-                        <option value="1">12</option>
-                        <option value="1">24</option>
-                    </select>
-                </div>
-                <div class="pagination">
-                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
-                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <!-- End Filter Bar -->
         </div>
 
 

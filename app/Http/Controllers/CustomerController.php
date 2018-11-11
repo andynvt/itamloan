@@ -73,7 +73,7 @@ class CustomerController extends Controller
         foreach ($color as $value){
             $value->colorid = str_replace(' ', '', $value->color);
         }
-        $dl = array(16,32,64,128,256,512,1024);
+        $dl = array(16,32,64,128,256,512);
 
         $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
@@ -112,7 +112,7 @@ class CustomerController extends Controller
         foreach ($color as $value){
             $value->colorid = str_replace(' ', '', $value->color);
         }
-        $dl = array(16,32,64,128,256,512,1024);
+        $dl = array(16,32,64,128,256,512);
 
         $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
             ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
@@ -137,6 +137,43 @@ class CustomerController extends Controller
             ->where('id_promo','<>','null')->take(8)->get();
 
         return view('customer.page.catalog',compact('tenloai','dl','color','promo_product','product'));
+    }
+
+    public  function getSearch(Request $req){
+        $key = $req->key;
+        $ls_sp = ProductType::join('catalogs','catalogs.id_type','=','product_type.id')
+            ->select('product_type.*','catalogs.id as ctlid','catalogs.catalog')
+            ->get();
+        $gr_lssp = $ls_sp->groupBy('type');
+        $color = ProductColor::all()->unique('color');
+        foreach ($color as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+        }
+        $dl = array(16,32,64,128,256,512);
+
+
+        $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
+            ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
+            ->where('products.name','like','%'.$key.'%')
+            ->groupBy('products.id')
+            ->get();
+        foreach ($product as $value){
+            $value->colorid = str_replace(' ', '', $value->color);
+            $value->dl = self::getGB($value->name);
+        }
+
+        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
+            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
+            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
+            ->select('products.*','pi.image','promo.percent')
+            ->groupBy('products.id')->orderBy('percent')
+            ->where('id_promo','<>','null')->take(8)->get();
+
+        return view('customer.page.search',compact('ls_sp','gr_lssp','color','promo_product','product','key','dl'));
     }
 
     public  function getSingle($id){
@@ -215,7 +252,8 @@ class CustomerController extends Controller
         $str_value = Product::where('id',$id)->value('specs');
 
         $spec = explode(',', $str_spec);
-        $value = explode(',', $str_value);
+        $value_spec = explode(',', $str_value);
+//        dd($spec);
 
         $no_of_fb = Feedback::where('id_product', $id)->count();
         $avg_of_fb = Feedback::where('id_product', $id)->avg('stars');
@@ -251,7 +289,7 @@ class CustomerController extends Controller
 //            dd($cus);
         }
 
-        return view('customer.page.single', compact('pd', 'product_video', 'spec', 'value',
+        return view('customer.page.single', compact('pd', 'product_video', 'spec', 'value_spec',
             'promo_product', 'same_product', 'img', 'arr_color', 'arr_img','no_of_fb','avg_fb','feedback','fb_1','fb_2',
             'fb_3','fb_4','fb_5','cus'));
     }
@@ -626,43 +664,6 @@ class CustomerController extends Controller
     public function postLogout(){
         Auth::logout();
         return redirect()->route('index')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng xuất thành công']);
-    }
-
-    public  function getSearch(Request $req){
-        $key = $req->key;
-        $ls_sp = ProductType::join('catalogs','catalogs.id_type','=','product_type.id')
-            ->select('product_type.*','catalogs.id as ctlid','catalogs.catalog')
-            ->get();
-        $gr_lssp = $ls_sp->groupBy('type');
-        $color = ProductColor::all()->unique('color');
-        foreach ($color as $value){
-            $value->colorid = str_replace(' ', '', $value->color);
-        }
-        $dl = array(16,32,64,128,256,512,1024);
-
-
-        $product = Product::leftjoin('catalogs as ctl','ctl.id','=','products.id_catalog')
-            ->leftjoin('product_type as pt', 'pt.id','=','ctl.id_type')
-            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
-            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
-            ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
-            ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
-            ->where('products.name','like','%'.$key.'%')
-            ->groupBy('products.id')
-            ->get();
-        foreach ($product as $value){
-            $value->colorid = str_replace(' ', '', $value->color);
-            $value->dl = self::getGB($value->name);
-        }
-
-        $promo_product = Product::leftjoin('promotions as promo','promo.id','=','products.id_promo')
-            ->leftjoin('product_color as pc','pc.id_product','=','products.id')
-            ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
-            ->select('products.*','pi.image','promo.percent')
-            ->groupBy('products.id')->orderBy('percent')
-            ->where('id_promo','<>','null')->take(8)->get();
-
-        return view('customer.page.search',compact('ls_sp','gr_lssp','color','promo_product','product','key','dl'));
     }
 
     public  function getUser(){

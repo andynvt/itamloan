@@ -27,18 +27,22 @@
                 <div class="top-filter-head">Lọc sản phẩm</div>
                 <div class="common-filter">
                     <div class="head">Loại</div>
-                    <ul class="">
+                    <ul class="filters">
                         @foreach($gr_lssp as $gr => $value)
                             <li class="main-nav-list li-text-loai">
                                 <a data-toggle="collapse" class="text-loai" href="#dong-{{$value[0]->id}}"
                                    aria-expanded="false"
                                    aria-controls="{{$gr}}"><span class="lnr lnr-arrow-right"></span> {{$gr}}</a>
-                                <ul class="collapse filters" id="dong-{{$value[0]->id}}" data-toggle="collapse"
-                                    aria-expanded="false"
-                                    aria-controls="{{$gr}}">
+                                <ul class="collapse filters button-group" id="dong-{{$value[0]->id}}" data-toggle="collapse"
+                                    aria-expanded="false" aria-controls="{{$gr}}" data-filter-group="catalog">
+                                    <li class="filter-list">
+                                        <input class="pixel-radio is-checked" type="radio" value="*" id="all_catalog"
+                                               name="catalog">
+                                        <label for="all_catalog">Tất cả</label>
+                                    </li>
                                     @foreach($value as $v)
                                         <li class="filter-list">
-                                            <input class="pixel-radio" type="radio" value=".ctl-{{$v->ctlid}}" id="{{$v->ctlid}}" name="type">
+                                            <input class="pixel-radio" type="radio" value=".ctl-{{$v->ctlid}}" id="{{$v->ctlid}}" name="catalog">
                                             <label for="{{$v->ctlid}}">{{$v->catalog}}
                                             </label>
                                         </li>
@@ -50,17 +54,17 @@
                 </div>
                 <div class="common-filter">
                     <div class="head">Màu</div>
-                    <ul class="filters">
-                        <li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-color" name="filter"><label for="all-color">Tất cả</label></li>
+                    <ul class="filters button-group" data-filter-group="color">
+                        <li class="filter-list"><input class="pixel-radio is-checked"  value="*" type="radio" id="all-color" name="color"><label for="all-color">Tất cả</label></li>
                         @foreach($color as $cl)
-                            <li class="filter-list"><input class="pixel-radio"  value=".{{$cl->colorid}}" type="radio" id="{{$cl->colorid}}" name="filter"><label for="{{$cl->colorid}}">{{$cl->color}}</label></li>
+                            <li class="filter-list"><input class="pixel-radio"  value=".cl-{{$cl->colorid}}" type="radio" id="{{$cl->colorid}}" name="color"><label for="{{$cl->colorid}}">{{$cl->color}}</label></li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="common-filter">
                     <div class="head">DUNG LƯỢNG</div>
-                    <ul class="filters">
-                        <li class="filter-list"><input class="pixel-radio"  value="*" type="radio" id="all-dl" name="dl"><label for="all-dl">Tất cả</label></li>
+                    <ul class="filters button-group" data-filter-group="dl">
+                        <li class="filter-list"><input class="pixel-radio is-checked"  value="*" type="radio" id="all-dl" name="dl"><label for="all-dl">Tất cả</label></li>
                         @foreach($dl as $index => $value)
                             <li class="filter-list"><input class="pixel-radio"  value=".dl-{{$value}}GB" type="radio" id="dl_{{$value}}}" name="dl">
                                 <label for="dl_{{$value}}">{{$value}} GB</label>
@@ -79,37 +83,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <div class="p-2"></div>
-                    <a href="#" class="view-btn color-2"><span>LỌC</span> <span class="lnr lnr-arrow-right"></span></a>
-                </div>
             </div>
         </div>
         <div class="col-xl-9 col-lg-9 col-md-8">
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting">
+                <div class="sorting div-sorts-btn-grp">
                     <select class="nice-select">
-                        <option value="1">Sắp xếp</option>
-                        <option value="1">Giá tăng dần</option>
-                        <option value="1">Giá giảm dần</option>
+                        <option value="">Sắp xếp</option>
+                        <option value="tangdan">Giá tăng dần</option>
+                        <option value="giamdan">Giá giảm dần</option>
                     </select>
-                </div>
-                <div class="sorting mr-auto">
-                    <select class="nice-select">
-                        <option value="1">Hiển thị</option>
-                        <option value="1">12</option>
-                        <option value="1">24</option>
-                    </select>
-                </div>
-                <div class="pagination">
-                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
-                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
             <!-- End Filter Bar -->
@@ -120,6 +104,11 @@
                 <div class="grid">
                     @foreach($product as $p)
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item dl-{{$p->dl}} cl-{{$p->color}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
+                            @if($p->percent == null)
+                                <span style="display: none" class="product-price">{{$p->price}}</span>
+                            @else
+                                <span style="display: none" class="product-price">{{$p->price - ($p->price * $p->percent / 100)}}</span>
+                            @endif
                             <div class="single-product">
                                 <div class="content item-cart-ct">
                                     <a href="{{route('single',$p->id)}}">
@@ -146,9 +135,10 @@
                                         <h5>{{$p->name}}</h5>
                                         @if($p->percent != null)
                                             <span class="de-text">{{number_format($p->price)}} ₫</span>
+                                            <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}}₫</h3>
+                                        @else
+                                            <h3 class="gia-ban">{{number_format( $p->price )}}₫</h3>
                                         @endif
-                                        <h3 class="gia-ban">{{number_format( $p->price - $p->price * $p->percent / 100 )}}
-                                            ₫</h3>
                                     </a>
                                 </div>
 
@@ -159,37 +149,7 @@
                 </div>
             </section>
             <!-- End Best Seller -->
-
-            <!-- Start Filter Bar -->
-            <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting">
-                    <select class="nice-select">
-                        <option value="1">Sắp xếp</option>
-                        <option value="1">Giá tăng dần</option>
-                        <option value="1">Giá giảm dần</option>
-                    </select>
-                </div>
-                <div class="sorting mr-auto">
-                    <select class="nice-select">
-                        <option value="1">Hiển thị</option>
-                        <option value="1">12</option>
-                        <option value="1">24</option>
-                    </select>
-                </div>
-                <div class="pagination">
-                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
-                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <!-- End Filter Bar -->
         </div>
-
-
     </div>
 </div>
 
