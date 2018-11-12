@@ -282,6 +282,7 @@ class AdminController extends Controller
             ->leftjoin('product_color as pc','pc.id_product','=','products.id')
             ->leftjoin('product_image as pi','pi.id_color','=','pc.id')
             ->select('products.id','products.name','image','catalog','type','price')
+            ->groupBy('products.id')
             ->where('id_promo',null)
             ->get();
 

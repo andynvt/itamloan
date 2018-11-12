@@ -57,7 +57,10 @@ class CustomerController extends Controller
         $ls_ipad = Catalog::where('id_type',2)->take(8)->get();
         $ls_mac = Catalog::where('id_type',3)->take(8)->get();
         $ls_watch = Catalog::where('id_type',4)->take(8)->get();
-        return view('customer.page.home', compact('ls_type','ls_ip','ls_ipad','ls_mac','ls_watch'));
+
+        $promo = Promotion::orderBy('end_date')->first();
+//        dd($promo);
+        return view('customer.page.home', compact('ls_type','ls_ip','ls_ipad','ls_mac','ls_watch','promo'));
     }
 
     public function getType($type){
@@ -308,7 +311,8 @@ class CustomerController extends Controller
     }
 
     public  function getAd(){
-        return view('customer.page.ad');
+        $promo = Promotion::orderBy('end_date')->get();
+        return view('customer.page.ad',compact('promo'));
     }
 
     public function getWishlist(){

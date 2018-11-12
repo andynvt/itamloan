@@ -6,6 +6,8 @@ use App\Cart;
 use App\Product;
 use App\ProductColor;
 use App\ProductType;
+use App\Promotion;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
@@ -29,27 +31,24 @@ class AppServiceProvider extends ServiceProvider
                 ->groupBy('ctl.id')
                 ->get();
             $full_type = $arr_ctl->groupBy('type');
-//            dd($full_type);
             $view->with(
                 'full_type',$full_type
             );
         });
+        view()->composer('customer.master',function($view){
 
-//        view()->composer('customer.page.cart',function($view){
-//            if(Session('cart')){
-//                $oldCart = Session::get('cart');
-//                $cart = new Cart($oldCart);
-//                $color = ProductColor::all();
-////                 dd($cart);
-//                $view->with([
-//                    'cart'=>Session::get('cart'),
-//                    'product_cart'=>$cart->items,
-//                    'totalPrice'=>$cart->totalPrice,
-//                    'totalQty'=>$cart->totalQty,
-//                    'color'=>$color,
-//                ]);
-//            }
-//        });
+            $promo = Promotion::all();
+            $now = Carbon::now();
+            foreach ($promo as $pr){
+                if($pr->end_date->lt($now)){
+                    $product = Product::where('id_promo',$pr->id)->get();
+                    foreach ($product as $p){
+                        $p->id_promo = null;
+                        $p->save();
+                    }
+                }
+            }
+        });
 
     }
 

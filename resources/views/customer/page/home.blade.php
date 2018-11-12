@@ -177,13 +177,14 @@
 <!-- End banner Area -->
 <div class="p-5"></div>
 <!-- Start Count Down Area -->
-<div class="countdown-area ection-gap section-gap" id="home">
+<div class="countdown-area section-gap section-gap" id="home">
     <div class="container">
         <div class="countdown-content">
             <div class="title text-center">
-                <h1 class="mb-10">iPhone XS / XS MAX Giá cạnh tranh</h1>
+                <h1 class="mb-10">{{$promo->promo_name}}</h1>
+                <p>Khuyến mãi sắp hết hạn</p>
+
                 <div class="p-3"></div>
-                {{--<p>Tổng hợp khuyến mãi</p>--}}
             </div>
         </div>
         <div class="row">
@@ -197,7 +198,6 @@
 
                         <div class="countdown-label" id="day-countdown">Ngày</div>
                     </div>
-
                     <div class="countdown-item">
                         <div class="countdown-timer js-countdown-hours" aria-labelledby="hour-countdown">
 
@@ -205,7 +205,6 @@
 
                         <div class="countdown-label" id="hour-countdown">Giờ</div>
                     </div>
-
                     <div class="countdown-item">
                         <div class="countdown-timer js-countdown-minutes" aria-labelledby="minute-countdown">
 
@@ -213,21 +212,69 @@
 
                         <div class="countdown-label" id="minute-countdown">Phút</div>
                     </div>
-
                     <div class="countdown-item">
                         <div class="countdown-timer js-countdown-seconds" aria-labelledby="second-countdown">
-
                         </div>
-
                         <div class="countdown-label text" id="second-countdown">Giây</div>
                     </div>
                     <a href="{{route('ad')}}" class="view-btn primary-btn2"><span>Xem chi tiết</span></a>
-                    <img src="source/img/cd.png" class="img-fluid cd-img" alt="">
+                    <img src="storage/promo/{{$promo->promo_image}}" class="img-fluid cd-img">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+{{--dem nguoc khuyen mai--}}
+<script>
+    if (document.getElementById("js-countdown")) {
+
+        var countdown = new Date("{{$promo->end_date}}");
+
+        function getRemainingTime(endtime) {
+            var milliseconds = Date.parse(endtime) - Date.parse(new Date());
+            var seconds = Math.floor(milliseconds / 1000 % 60);
+            var minutes = Math.floor(milliseconds / 1000 / 60 % 60);
+            var hours = Math.floor(milliseconds / (1000 * 60 * 60) % 24);
+            var days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
+
+            return {
+                'total': milliseconds,
+                'seconds': seconds,
+                'minutes': minutes,
+                'hours': hours,
+                'days': days
+            };
+        }
+
+        function initClock(id, endtime) {
+            var counter = document.getElementById(id);
+            var daysItem = counter.querySelector('.js-countdown-days');
+            var hoursItem = counter.querySelector('.js-countdown-hours');
+            var minutesItem = counter.querySelector('.js-countdown-minutes');
+            var secondsItem = counter.querySelector('.js-countdown-seconds');
+
+            function updateClock() {
+                var time = getRemainingTime(endtime);
+
+                daysItem.innerHTML = time.days;
+                hoursItem.innerHTML = ('0' + time.hours).slice(-2);
+                minutesItem.innerHTML = ('0' + time.minutes).slice(-2);
+                secondsItem.innerHTML = ('0' + time.seconds).slice(-2);
+
+                if (time.total <= 0) {
+                    clearInterval(timeinterval);
+                }
+            }
+
+            updateClock();
+            var timeinterval = setInterval(updateClock, 1000);
+        }
+
+        initClock('js-countdown', countdown);
+    };
+</script>
 <!-- End Count Down Area -->
 
 <!-- Start category Area -->
@@ -417,55 +464,6 @@
     // end search form
 </script>
 
-{{--dem nguoc khuyen mai--}}
-<script>
-    if (document.getElementById("js-countdown")) {
-
-        var countdown = new Date("October 22 2018");
-
-        function getRemainingTime(endtime) {
-            var milliseconds = Date.parse(endtime) - Date.parse(new Date());
-            var seconds = Math.floor(milliseconds / 1000 % 60);
-            var minutes = Math.floor(milliseconds / 1000 / 60 % 60);
-            var hours = Math.floor(milliseconds / (1000 * 60 * 60) % 24);
-            var days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
-
-            return {
-                'total': milliseconds,
-                'seconds': seconds,
-                'minutes': minutes,
-                'hours': hours,
-                'days': days
-            };
-        }
-
-        function initClock(id, endtime) {
-            var counter = document.getElementById(id);
-            var daysItem = counter.querySelector('.js-countdown-days');
-            var hoursItem = counter.querySelector('.js-countdown-hours');
-            var minutesItem = counter.querySelector('.js-countdown-minutes');
-            var secondsItem = counter.querySelector('.js-countdown-seconds');
-
-            function updateClock() {
-                var time = getRemainingTime(endtime);
-
-                daysItem.innerHTML = time.days;
-                hoursItem.innerHTML = ('0' + time.hours).slice(-2);
-                minutesItem.innerHTML = ('0' + time.minutes).slice(-2);
-                secondsItem.innerHTML = ('0' + time.seconds).slice(-2);
-
-                if (time.total <= 0) {
-                    clearInterval(timeinterval);
-                }
-            }
-
-            updateClock();
-            var timeinterval = setInterval(updateClock, 1000);
-        }
-
-        initClock('js-countdown', countdown);
-    };
-</script>
 
 </body>
 
