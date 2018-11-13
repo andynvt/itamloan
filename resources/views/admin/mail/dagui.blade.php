@@ -124,7 +124,7 @@
         <tr>
             <td colspan="2">
                 <h2>🎉 Đơn hàng của quý khách đã được gửi đi 🎉️</h2>
-                <p>Đặt hàng ➡️ <b>Xác nhận và gửi hàng</b>️  ✅ ➡️ Nhận hàng</p>
+                <p>Đặt hàng ➡️ <b> Xác nhận và gửi hàng </b>️  ✅ ➡️ Nhận hàng</p>
                 <p>🍎 itamloan.vn rất vui thông báo đơn hàng của quý khách đã được xác nhận và đang trong quá trình gửi
                     hàng đi. 🍎 itamloan sẽ thông báo đến quý khách ngay khi đơn hàng được hoàn tất.</p>
             </td>

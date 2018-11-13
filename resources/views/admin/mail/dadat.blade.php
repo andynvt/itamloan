@@ -115,7 +115,7 @@
                         <td>
                             Hoá đơn số : #{{$bill['id']}}<br>
                             Ngày tạo: {{ date('H:i - d/m/Y', strtotime($bill['created_at']) )}}<br>
-                            Trạng thái: <b>Đã gửi hàng</b>
+                            Trạng thái: <b>Chờ xác nhận</b>
                         </td>
                     </tr>
                 </table>

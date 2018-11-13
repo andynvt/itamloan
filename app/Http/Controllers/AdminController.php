@@ -77,8 +77,9 @@ class AdminController extends Controller
 
     public static function checkCustomer($id){
         $medal = "new";
-        $fb = Feedback::where('id_customer',$id)->get();
-        $bill = Bill::where('id_customer',$id)->get();
+        $fb = Feedback::where('id_customer',$id)->first();
+        $bill = Bill::where('id_customer',$id)->first();
+//        print_r($fb);
         $ckvip = Bill::where('id_customer',$id)->select('total_price')->get();
         $total = 0;
         foreach ($ckvip as $i){
@@ -86,15 +87,15 @@ class AdminController extends Controller
         }
         if($total > 100000000){
             $medal = "svip";
-        }elseif($total >50000000){
+        }elseif($total > 50000000){
             $medal = "vip";
-        }elseif($total >20000000){
+        }elseif($total > 20000000){
             $medal = "tn";
         }else{
-            if($fb != null){
+            if($fb){
                 $medal = "fb";
             }
-            if($bill != null){
+            if($bill){
                 $medal = "buy";
             }
         }
@@ -160,7 +161,7 @@ class AdminController extends Controller
         $nam = Carbon::now()->year;
 
         $dh = Bill::select(DB::raw('count(*) as cnt'))->value('cnt');
-        $sp = Product::select(DB::raw('count(*) as cnt'))->value('cnt');
+        $sp = Product::select(DB::raw('sum(inventory) as cnt'))->value('cnt');
         $kh = Customer::select(DB::raw('count(*) as cnt'))->value('cnt');
         $dg = Feedback::select(DB::raw('count(*) as cnt'))->value('cnt');
 
@@ -813,6 +814,7 @@ class AdminController extends Controller
             ->leftjoin('product_color as pc', 'pc.id_product', '=', 'p.id')
             ->leftjoin('product_image as pi', 'pi.id_color', '=', 'pc.id')
             ->select('feedbacks.*','p.name','image','c.id as cid')
+            ->groupBy('p.id')
             ->get();
         return view('admin.page.customer',compact('kh','fb'));
     }

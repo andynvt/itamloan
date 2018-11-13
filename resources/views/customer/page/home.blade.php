@@ -193,9 +193,7 @@
                 <div class="countdown d-flex justify-content-center justify-content-md-end" id="js-countdown">
                     <div class="countdown-item">
                         <div class="countdown-timer js-countdown-days time" aria-labelledby="day-countdown">
-
                         </div>
-
                         <div class="countdown-label" id="day-countdown">Ngày</div>
                     </div>
                     <div class="countdown-item">
@@ -217,7 +215,7 @@
                         </div>
                         <div class="countdown-label text" id="second-countdown">Giây</div>
                     </div>
-                    <a href="{{route('ad')}}" class="view-btn primary-btn2"><span>Xem chi tiết</span></a>
+                    <a href="{{route('ad')}}" class="view-btn primary-btn2"><span>Xem tất cả</span></a>
                     <img src="storage/promo/{{$promo->promo_image}}" class="img-fluid cd-img">
                 </div>
             </div>

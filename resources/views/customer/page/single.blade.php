@@ -77,9 +77,7 @@
                     <div class="middle">
                         <div class="p-1"></div>
                         <h4>Khuyến mãi:</h4>
-                        <a href="#khuyenmai">
-                            <h5 class="pt-3">Giảm {{$pd[0]->percent}}% - {{$pd[0]->promo_name}}</h5>
-                        </a>
+                        <h5 class="pt-3">Giảm {{$pd[0]->percent}}% - {{$pd[0]->promo_name}}</h5>
                         <p class="content">{{$pd[0]->promo_info}}</p>
                     </div>
                     @endif

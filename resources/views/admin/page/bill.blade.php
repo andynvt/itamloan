@@ -415,7 +415,7 @@
                     });
                     swal("Thành công!", "Xác nhận thành công!", "success");
                     setTimeout(function () {
-                        // location.reload();
+                        location.reload();
                     }, 1000);
                 }, 5000);
 
