@@ -40,9 +40,9 @@
                         <input type="password" name="password" placeholder="Mật khẩu " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Mật khẩu '" required class="common-input mt-20">
                         <button type="submit" class="view-btn color-2 mt-20 w-100"><span>Đăng nhập</span></button>
-                        {{--<div class="mt-20 d-flex align-items-center justify-content-between">--}}
-                        {{--<a href="#">Quên mật khẩu?</a>--}}
-                        {{--</div>--}}
+                        <div class="mt-20 d-flex align-items-center justify-content-between">
+                        <a href="#">Quên mật khẩu?</a>
+                        </div>
                         {{ csrf_field() }}
                     </form>
                 </div>

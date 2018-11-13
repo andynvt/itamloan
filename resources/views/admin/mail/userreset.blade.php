@@ -118,14 +118,14 @@
         </tr>
         <tr>
             <td colspan="2">
-                <h2>⛔️️ Đặt lại mật khẩu Admin ⛔️️</h2>
-                <p>Xin chào Admin,<br><br>
+                <h2>⛔️️ Đặt lại mật khẩu ⛔️️</h2>
+                <p>Xin chào {{$name}},<br><br>
 
                     Mật khẩu của bạn đã được đặt lại ✅<br><br>
 
                     💌️ Email: {{$email}} <br>
                     🔒 Mật khẩu: {{$password}} <br>
-                    ➡️ Đăng nhập vào admin để thay đổi mật khẩu: itamloan.vn/public/admin <br>
+                    ➡️ Đăng nhập vào trang cá nhân để thay đổi mật khẩu: itamloan.vn/public/ca-nhan <br>
                 </p>
 
             </td>

@@ -625,7 +625,8 @@ class CustomerController extends Controller
 
     public function postLogin(Request $req){
         $cre = array('email'=>$req->email,'password'=>$req->password);
-        if(Auth::attempt($cre)){
+        if(Auth::attempt(['email' => $req->email,
+            'password' => $req->password, 'role' => 'customer'])){
             if($req->page == "loginpage"){
                 return redirect()->route('user')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
             }
@@ -633,36 +634,47 @@ class CustomerController extends Controller
                 return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
             }
         }
+        if (Auth::attempt(['email' => $req->email,
+            'password' => $req->password, 'role' => 'admin'])) {
+            return redirect()->route('adminthongke')->with(['flag'=>'success' ,'message'=>'Đăng nhập thành công']);
+        }
         else{
             return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Đăng nhập thất bại']);
         }
     }
 
     public  function postReg(Request $req){
-        $user = new User();
-        $user->email = $req->email;
-        $user->password = Hash::make($req->password);
-        $user->save();
+        $ckemail = User::where('email',$req->email)->first();
+        if($ckemail){
+            $user = new User();
+            $user->email = $req->email;
+            $user->password = Hash::make($req->password);
+            $user->save();
 
-        $cus = new Customer();
-        $cus->id_user = $user->id;
-        $cus->c_name = $req->name;
-        $cus->address = $req->address.', '.$req->town;
-        $cus->shipping_address = $req->address.', '.$req->town;
-        $cus->phone = $req->phone;
-        $cus->save();
+            $cus = new Customer();
+            $cus->id_user = $user->id;
+            $cus->c_name = $req->name;
+            $cus->address = $req->address.', '.$req->town;
+            $cus->shipping_address = $req->address.', '.$req->town;
+            $cus->phone = $req->phone;
+            $cus->save();
 
-        $email = $req->email;
-        $name = $req->name;
+            $email = $req->email;
+            $name = $req->name;
 
-        $data = ['name' => $name, 'email' => $email];
-        Mail::send('admin.mail.dangky',$data,function ($msg) use ($email){
-            $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
-            $msg->to($email,'Khách hàng')->subject('🍎🍎 Đăng ký tài khoản thành công ✅');
-        });
-        if (Mail::failures()) {}
+            $data = ['name' => $name, 'email' => $email];
+            Mail::send('admin.mail.dangky',$data,function ($msg) use ($email){
+                $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+                $msg->to($email,'Khách hàng')->subject('🍎🍎 Đăng ký tài khoản thành công ✅');
+            });
+            if (Mail::failures()) {}
 
-        return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
+            return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
+        }
+        else{
+            return redirect()->back()->with(['flag'=>'danger','title'=>'Thông báo' ,'message'=>'Email đã tồn tại']);
+        }
+
     }
 
     public function postLogout(){
@@ -748,13 +760,49 @@ class CustomerController extends Controller
         else{
             return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Sai mật khẩu cũ']);
         }
-
-
     }
 
     public function postDelfb($id,Request $req){
         Feedback::find($id)->delete();
         return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Xoá đánh giá thành công']);
+    }
+    public function forgetPass(){
+        return view('customer.page.forgot_password');
+    }
+
+    public function postforgetPass(Request $req)
+    {
+        $email = $req->email;
+        $user = User::where('email', $email)->first();
+        $name = User::where('email', $email)
+            ->leftjoin('customers as c', 'c.id_user', '=', 'users.id')
+            ->value('c_name');
+        if ($user) {
+            $newpass = $this->randomPassword();
+            $user->password = Hash::make($newpass);
+            $user->save();
+
+            $data = ['name' => $name, 'password' => $newpass, 'email' => $email];
+            Mail::send('admin.mail.userreset', $data, function ($msg) use ($email) {
+                $msg->from('ngvantai.n8@gmail.com', 'itamloan.vn');
+                $msg->to($email, 'Khách hàng')->subject('🍎🍎 Khôi phục mật khẩu thành công ✅');
+            });
+            if (Mail::failures()) {}
+            return redirect()->route('login')->with(['flag' => 'success', 'title' => 'Thông báo', 'message' => 'Đổi mật khẩu thành công. Mời bạn kiểm tra email để đăng nhập']);
+
+        } else {
+            return redirect()->back()->with(['flag' => 'danger', 'message' => 'Không tồn tại email này trên hệ thống']);
+        }
+    }
+    public function randomPassword() {
+        $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
     }
 
 

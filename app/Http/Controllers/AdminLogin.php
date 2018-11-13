@@ -69,7 +69,7 @@ class AdminLogin extends Controller
                 $data = ['password' => $newpass, 'email' => $email];
                 Mail::send('admin.mail.adminreset',$data,function ($msg) use ($email){
                     $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
-                    $msg->to($email,'Admin i Tâm Loan')->subject('🍎🍎 Thay đổi mật khẩu thành công ✅');
+                    $msg->to($email,'Admin i Tâm Loan')->subject('🍎🍎 Khôi phục mật khẩu thành công ✅');
                 });
                 if (Mail::failures()) {}
                 return redirect()->route('adminlogin')->with(['flag' => 'success', 'message' => 'Đổi mật khẩu thành công. Mời bạn kiểm tra email để đăng nhập']);
@@ -85,7 +85,12 @@ class AdminLogin extends Controller
 
     public function logout()
     {
-        Auth()->logout();
-        return redirect()->route('adminlogin')->with(['flag' => 'success', 'message' => 'Đăng xuất thành công']);
+        if(Auth()->user()->role == 'admin'){
+            Auth()->logout();
+            return redirect()->route('adminlogin')->with(['flag' => 'success', 'message' => 'Đăng xuất thành công']);
+        }else{
+            Auth()->logout();
+            return redirect()->route('index');
+        }
     }
 }

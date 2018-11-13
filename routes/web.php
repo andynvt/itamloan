@@ -147,6 +147,15 @@ Route::get('yeu-thich',[
     'uses' => 'CustomerController@getWishlist'
 ]);
 
+Route::get('quen-mat-khau',[
+    'as' => 'forgetpass',
+    'uses' => 'CustomerController@forgetPass'
+]);
+
+Route::post('dat-lai-mk',[
+    'as' => 'postforgetpass',
+    'uses' => 'CustomerController@postforgetPass'
+]);
 
 //Admin CP
 
@@ -205,8 +214,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'as' => 'xoaloai',
         'uses' => 'AdminController@XoaLoai'
     ]);
-
-//    Route::post('xoaloai', 'AdminController@AjaxXoaLoai');
 
     Route::get('dong-san-pham',[
         'as' => 'admindsp',
@@ -307,7 +314,7 @@ Route::get('admin',[
     'as' =>'redirectadmin',
     'uses' => 'AdminLogin@redirectAdmin'
 ]);
-Route::get('quen-mat-khau',[
+Route::get('admin-quen-mat-khau',[
     'as' => 'quenmk',
     'uses' => 'AdminLogin@quenMK'
 ]);
