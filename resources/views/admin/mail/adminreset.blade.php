@@ -118,12 +118,15 @@
         </tr>
         <tr>
             <td colspan="2">
-                <h2>⛔️️ Mật khẩu của bạn đã thay đổi ⛔️️</h2>
-                <p>Xin chào {{$name}},<br><br>
+                <h2>⛔️️ Đặt lại mật khẩu Admin ⛔️️</h2>
+                <p>Xin chào Admin,<br><br>
 
-                    Mật khẩu cho tài khoản của bạn {{$email}} tại itamloan.vn đã được thay đổi. ✅<br><br>
-                    🍎 Thông tin cá nhân: itamloan.vn/public/ca-nhan <br>
-                    🍎 Mua hàng: itamloan.vn <br>
+                    Mật khẩu của bạn đã được đặt lại ✅<br><br>
+
+                    💌️ Email: {{$email}} <br>
+                    🔒 Mật khẩu: {{$password}} <br>
+                    ➡️ Đăng nhập vào admin để thay đổi mật khẩu: itamloan.vn/public/admin <br>
+
                 </p>
 
             </td>
@@ -134,17 +137,17 @@
                 <table>
                     <tr>
                         <td style="padding: 0">
-                            <b>Thông tin:</b><br>
-                            itamloan.vn<br>
-                            46-48 Trần Văn Khéo<br>
+                            <b>Thông tin cửa hàng:</b><br>
+                            🍎 itamloan.vn<br>
+                            💓 46-48 Trần Văn Khéo<br>
                             Cái Khế - Ninh Kiều - Cần Thơ
                         </td>
 
                         <td style="padding: 0">
-                            <b>Liên hệ:</b><br>
-                            <a href="tel:19006459">1900 6459</a><br>
-                            <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
-                            <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
+                            <b>Liên hệ - hỗ trợ:</b><br>
+                            📞 <a href="tel:19006459">1900 6459</a><br>
+                            💌️ <a href="mailto:support@itamloan.vn ">support@itamloan.vn</a><br>
+                            💌 <a href="mailto:cskh@itamloan.vn">cskh@itamloan.vn</a>
                         </td>
                     </tr>
                 </table>

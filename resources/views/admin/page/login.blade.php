@@ -79,10 +79,68 @@
 
 <!-- Validation Plugin Js -->
 <script src="../admincp/plugins/jquery-validation/jquery.validate.js"></script>
-
+<!-- Bootstrap Notify Plugin Js -->
+<script src="../admincp/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 <!-- Custom Js -->
 <script src="../admincp/js/admin.js"></script>
 <script src="../admincp/js/pages/examples/sign-in.js"></script>
+<script src="../admincp/js/pages/examples/forgot-password.js"></script>
+
+
+<script>
+    function showNotification(colorName, text) {
+
+        if (colorName === 'danger') {
+            colorName = 'alert-danger';
+        }else if(colorName === 'success'){
+            colorName = 'alert-success';
+        }else if(colorName === 'warning'){
+            colorName = 'alert-warning';
+        }else if(colorName === 'info'){
+            colorName = 'alert-info';
+        }
+
+        if (text === null || text === '') {
+            text = 'Thông báo mặc định';
+        }
+
+        var animateEnter = 'animated zoomInRight';
+        var animateExit = 'animated zoomOutRight';
+        var allowDismiss = true;
+
+        $.notify({
+                message: text
+            },
+            {
+                type: colorName,
+                allow_dismiss: allowDismiss,
+                newest_on_top: true,
+                timer: 1000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                },
+                animate: {
+                    enter: animateEnter,
+                    exit: animateExit
+                },
+                template: '<div data-notify="container" class="bootstrap-notify-container alert alert-dismissible {0} ' + (allowDismiss ? "p-r-35" : "") + '" role="alert">' +
+                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                    '<span data-notify="title">{1}</span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    '</div>'
+            });
+    }
+    @if(Session::has('flag'))
+    $(document).ready(function() {
+        showNotification( '{{Session::get('flag')}}' , '{{Session::get('message')}}' );
+    });
+    @endif
+</script>
 </body>
 
 </html>

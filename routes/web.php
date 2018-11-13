@@ -299,9 +299,13 @@ Route::get('admin',[
     'as' =>'redirectadmin',
     'uses' => 'AdminLogin@redirectAdmin'
 ]);
-Route::post('quen-mat-khau',[
-    'as' => 'adminquenmk',
+Route::get('quen-mat-khau',[
+    'as' => 'quenmk',
     'uses' => 'AdminLogin@quenMK'
+]);
+Route::post('dat-mk',[
+    'as' => 'postquenmk',
+    'uses' => 'AdminLogin@postQuenMK'
 ]);
 
 

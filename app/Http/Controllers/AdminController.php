@@ -100,7 +100,6 @@ class AdminController extends Controller
             }
         }
         return $medal;
-
     }
 
     public function AdminThongke()
