@@ -82,7 +82,7 @@
                         <input type="text" name="address" placeholder="Địa chỉ " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Địa chỉ '" required minlength="6" maxlength="100" class="common-input mt-20">
                         {{ csrf_field() }}
-                        <button id="smbtn" type="submit"  class="view-btn color-2 mt-20 w-100"><span>Đăng ký</span></button>
+                        <button id="smbtn" type="submit" onclick="validatePassword()"  class="view-btn color-2 mt-20 w-100"><span>Đăng ký</span></button>
                     </form>
                 </div>
             </div>

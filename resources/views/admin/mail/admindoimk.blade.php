@@ -119,10 +119,10 @@
         <tr>
             <td colspan="2">
                 <h2>⛔️️ Mật khẩu của bạn đã thay đổi ⛔️️</h2>
-                <p>Xin chào {{$name}},<br><br>
+                <p>Xin chào Admin,<br><br>
 
-                    Mật khẩu cho tài khoản của bạn {{$email}} tại itamloan.vn đã được thay đổi. ✅<br><br>
-                    🍎 Thông tin cá nhân: itamloan.vn/public/ca-nhan <br>
+                    Mật khẩu của bạn đã được thay đổi. ✅<br><br>
+                    🍎 Đăng nhập lại: itamloan.vn/public/admin <br>
                     🍎 Mua hàng: itamloan.vn <br>
                 </p>
 

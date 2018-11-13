@@ -158,12 +158,10 @@
                         <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                        <li><a href="{{route('admindoimk')}}"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                        <li><a href="{{route('logout')}}" onclick="return confirm('Bạn có muốn đăng xuất?')"><i class="material-icons">input</i>Đăng xuất</a></li>
                         </li>
-
                     </ul>
         </div>
     </div>
@@ -183,10 +181,9 @@
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Cá nhân</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
+                        <li><a href="{{route('admindoimk')}}"><i class="material-icons">vpn_key</i>Đổi mật khẩu</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                        <li><a href="{{route('logout')}}" onclick="return confirm('Bạn có muốn đăng xuất?')"><i class="material-icons">input</i>Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>

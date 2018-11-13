@@ -17,7 +17,9 @@ use App\Promotion;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -839,5 +841,24 @@ class AdminController extends Controller
             ->leftjoin('products as p','p.id','=','feedbacks.id_product')
             ->select('feedbacks.*','c.c_name','c.avatar','p.id as pid')->get();
         return view('admin.page.feedback',compact('sp','fb'));
+    }
+
+    public function AdminDoiMK(){
+        $email = Auth()->user()->email;
+        return view('admin.page.changepass',compact('email'));
+    }
+    public function PostAdminDoiMK(Request $req){
+        $email = Auth()->user()->email;
+        $user = User::where('email',$email)->first();
+        $user->password = Hash::make($req->password);
+        $user->save();
+
+        $data = ['email' => $email];
+        Mail::send('admin.mail.admindoimk',$data,function ($msg) use ($email){
+            $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+            $msg->to($email,'Admin i Tâm Loan')->subject('🍎🍎 Mật khẩu đã thay đổi ⛔');
+        });
+        if (Mail::failures()) {}
+        return redirect()->route('adminlogin')->with(['flag'=>'success' ,'message'=>'Đổi mật khẩu thành công. Mời bạn đăng nhập lại']);
     }
 }

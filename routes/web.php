@@ -282,6 +282,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminLoginMiddleWare'], func
         'as' => 'admindanhgia',
         'uses' => 'AdminController@AdminDanhGia'
     ]);
+    Route::get('doi-mat-khau',[
+        'as' => 'admindoimk',
+        'uses' => 'AdminController@AdminDoiMK'
+    ]);
+    Route::post('doi-mk',[
+        'as' => 'postadmindoimk',
+        'uses' => 'AdminController@PostAdminDoiMK'
+    ]);
 });
 
 
@@ -306,6 +314,10 @@ Route::get('quen-mat-khau',[
 Route::post('dat-mk',[
     'as' => 'postquenmk',
     'uses' => 'AdminLogin@postQuenMK'
+]);
+Route::get('dang-xuat',[
+    'as' => 'logout',
+    'uses' => 'AdminLogin@logout'
 ]);
 
 

@@ -41,12 +41,15 @@ class AdminLogin extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email,
-            'password' => $request->password])) {
-            // if successful, then redirect to their intended location
-            return redirect()->route('adminthongke');
+            'password' => $request->password, 'role' => 'admin'])) {
+            return redirect()->route('adminthongke')->with(['flag' => 'success', 'message' => 'Đăng nhập thành công']);
+        }
+        if (Auth::attempt(['email' => $request->email,
+            'password' => $request->password, 'role' => 'customer'])) {
+            return redirect()->route('index');
         }
         else{
-            return redirect()->back();
+            return redirect()->back()->with(['flag' => 'danger', 'message' => 'Đăng nhập thất bại']);
         }
     }
 
@@ -57,8 +60,6 @@ class AdminLogin extends Controller
     public function postQuenMK(Request $req){
         $email = $req->email;
         $user = User::where('email',$email)->first();
-
-//        dd($user);
         if($user){
             if($user->role == 'admin'){
                 $newpass = $this->randomPassword();
@@ -68,7 +69,7 @@ class AdminLogin extends Controller
                 $data = ['password' => $newpass, 'email' => $email];
                 Mail::send('admin.mail.adminreset',$data,function ($msg) use ($email){
                     $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
-                    $msg->to($email,'Admin')->subject('🍎🍎 Thay đổi mật khẩu thành công ✅');
+                    $msg->to($email,'Admin i Tâm Loan')->subject('🍎🍎 Thay đổi mật khẩu thành công ✅');
                 });
                 if (Mail::failures()) {}
                 return redirect()->route('adminlogin')->with(['flag' => 'success', 'message' => 'Đổi mật khẩu thành công. Mời bạn kiểm tra email để đăng nhập']);
@@ -84,7 +85,7 @@ class AdminLogin extends Controller
 
     public function logout()
     {
-//        Auth::guard('admin')->logout();
-//        return redirect('/admin');
+        Auth()->logout();
+        return redirect()->route('adminlogin')->with(['flag' => 'success', 'message' => 'Đăng xuất thành công']);
     }
 }
