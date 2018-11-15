@@ -23,6 +23,12 @@
                         <div class="header">
                             <h2>DANH SÁCH DÒNG SẢN PHẨM</h2>
                         </div>
+                        <a class="toggle-vis" data-column="0">#</a>
+                        <a class="toggle-vis" data-column="1">ID</a>
+                        <a class="toggle-vis" data-column="2">Ảnh</a>
+                        <a class="toggle-vis" data-column="3">Dòng</a>
+                        <a class="toggle-vis" data-column="4">Loại</a>
+                        <a class="toggle-vis" data-column="5">TT</a>
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable"
@@ -31,20 +37,20 @@
                                     <tr>
                                         <th class="align-center">#</th>
                                         <th class="align-center">ID</th>
-                                        <th class="align-center">ẢNH</th>
+                                        <th class="align-center notexport">ẢNH</th>
                                         <th class="align-center">TÊN DÒNG</th>
                                         <th class="align-center">THUỘC LOẠI</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </thead>
                                     <tfoot class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
                                         <th class="align-center">ID</th>
-                                        <th class="align-center">ẢNH</th>
+                                        <th class="align-center notexport">ẢNH</th>
                                         <th class="align-center">TÊN DÒNG</th>
                                         <th class="align-center">THUỘC LOẠI</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
@@ -386,5 +392,8 @@
         });
     </script>
     @endsection
-    </body>
+<script>
+
+</script>
+</body>
 @endsection

@@ -27,34 +27,34 @@
                                     <thead class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
-                                        <th class="align-center">ẢNH</th>
+                                        <th class="align-center notexport">ẢNH</th>
                                         <th class="align-center">TÊN SẢN PHẨM</th>
                                         <th class="align-center">LOẠI</th>
                                         <th class="align-center">DÒNG</th>
                                         <th class="align-center">GIÁ</th>
                                         <th class="align-center">KHUYỄN MÃI</th>
                                         <th class="align-center">KHO</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </thead>
                                     <tfoot class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
-                                        <th class="align-center">ẢNH</th>
+                                        <th class="align-center notexport">ẢNH</th>
                                         <th class="align-center">TÊN SẢN PHẨM</th>
                                         <th class="align-center">LOẠI</th>
                                         <th class="align-center">DÒNG</th>
                                         <th class="align-center">GIÁ</th>
                                         <th class="align-center">KHUYỄN MÃI</th>
                                         <th class="align-center">KHO</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
                                     @foreach($sp as $index => $value)
                                     <tr>
                                         <th scope="row">{{$index+1}}</th>
-                                        <td class="align-center img-inside">
+                                        <td class="align-center img-inside" style="width: 10%">
                                             <img src="storage/product/{{$value->image}}" alt="{{$value->name}}" id="imageid">
                                         </td>
                                         <td style="width: 20%">{{$value->name}}</td>

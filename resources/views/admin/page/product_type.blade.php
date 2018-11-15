@@ -32,7 +32,7 @@
                                         <th class="align-center">ID</th>
                                         <th class="align-center">TÊN LOẠI</th>
                                         <th class="align-center">THUỘC TÍNH</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </thead>
                                     <tfoot class="bg-blue-grey">
@@ -41,7 +41,7 @@
                                         <th class="align-center">ID</th>
                                         <th class="align-center">TÊN LOẠI</th>
                                         <th class="align-center">THUỘC TÍNH</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>

@@ -25,22 +25,22 @@
                                     <tr>
                                         <th class="align-center">#</th>
                                         <th class="align-center">ID</th>
-                                        <th class="align-center">ẢNH</th>
+                                        <th class="align-center notexport">ẢNH</th>
                                         <th class="align-center">TÊN SẢN PHẨM</th>
                                         <th class="align-center">ĐÁNH GIÁ</th>
                                         <th class="align-center">TRUNG BÌNH</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </thead>
                                     <tfoot class="bg-blue-grey">
                                     <tr>
                                         <th class="align-center">#</th>
                                         <th class="align-center">ID</th>
-                                        <th class="align-center">ẢNH</th>
+                                        <th class="align-center notexport">ẢNH</th>
                                         <th class="align-center">TÊN SẢN PHẨM</th>
                                         <th class="align-center">ĐÁNH GIÁ</th>
                                         <th class="align-center">TRUNG BÌNH</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
@@ -90,7 +90,7 @@
                                                 <thead class="bg-blue-grey">
                                                 <tr>
                                                     <th class="align-center">#</th>
-                                                    <th class="align-center">AVATAR</th>
+                                                    <th class="align-center notexport">AVATAR</th>
                                                     <th class="align-center">KHÁCH HÀNG</th>
                                                     <th class="align-center">ĐÁNH GIÁ</th>
                                                     <th class="align-center">NỘI DUNG</th>
@@ -100,7 +100,7 @@
                                                 <tfoot class="bg-blue-grey">
                                                 <tr>
                                                     <th class="align-center">#</th>
-                                                    <th class="align-center">AVATAR</th>
+                                                    <th class="align-center notexport">AVATAR</th>
                                                     <th class="align-center">KHÁCH HÀNG</th>
                                                     <th class="align-center">ĐÁNH GIÁ</th>
                                                     <th class="align-center">NỘI DUNG</th>

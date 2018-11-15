@@ -157,12 +157,12 @@
                                         <table class="table table-striped table-bordered table-hover dataTable js-exportable" id="km_table">
                                             <thead class="bg-blue-grey">
                                             <tr>
-                                                <th class="align-center">
+                                                <th class="align-center notexport">
                                                     <input type="checkbox" id="checkall" class="filled-in chk-col-pink">
                                                     <label for="checkall" class="chbx"></label>
                                                 </th>
                                                 <th class="align-center">ID</th>
-                                                <th class="align-center">ẢNH</th>
+                                                <th class="align-center notexport">ẢNH</th>
                                                 <th class="align-center">TÊN SẢN PHẨM</th>
                                                 <th class="align-center">LOẠI</th>
                                                 <th class="align-center">DÒNG</th>
@@ -327,9 +327,9 @@
                                         <table class="table table-striped table-bordered table-hover dataTable js-exportable" id="tbl-spkm-{{$value->id}}">
                                             <thead class="bg-blue-grey">
                                             <tr>
-                                                <th class="align-center">XOÁ</th>
+                                                <th class="align-center notexport">XOÁ</th>
                                                 <th class="align-center">ID</th>
-                                                <th class="align-center">ẢNH</th>
+                                                <th class="align-center notexport">ẢNH</th>
                                                 <th class="align-center">TÊN SẢN PHẨM</th>
                                                 <th class="align-center">LOẠI</th>
                                                 <th class="align-center">DÒNG</th>
@@ -371,12 +371,12 @@
                                         <table class="table table-striped table-bordered table-hover dataTable js-exportable" id="km_table">
                                             <thead class="bg-blue-grey">
                                             <tr>
-                                                <th class="align-center">
+                                                <th class="align-center notexport">
                                                     <input type="checkbox" id="scheckall{{$value->id}}" class="filled-in chk-col-pink scheckall">
                                                     <label for="scheckall{{$value->id}}" class="chbx"></label>
                                                 </th>
                                                 <th class="align-center">ID</th>
-                                                <th class="align-center">ẢNH</th>
+                                                <th class="align-center notexport">ẢNH</th>
                                                 <th class="align-center">TÊN SẢN PHẨM</th>
                                                 <th class="align-center">LOẠI</th>
                                                 <th class="align-center">DÒNG</th>

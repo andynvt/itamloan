@@ -76,7 +76,7 @@
                                         <th class="align-center">SẢN PHẨM</th>
                                         <th class="align-center">TỔNG TIỀN</th>
                                         <th class="align-center">NGÀY</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </thead>
                                     <tfoot class="bg-blue-grey">
@@ -89,7 +89,7 @@
                                         <th class="align-center">SẢN PHẨM</th>
                                         <th class="align-center">TỔNG TIỀN</th>
                                         <th class="align-center">NGÀY</th>
-                                        <th class="align-center">THAO TÁC</th>
+                                        <th class="align-center notexport">THAO TÁC</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
@@ -261,7 +261,7 @@
                                                     <thead class="bg-blue-grey">
                                                     <tr>
                                                         <th class="align-center">#</th>
-                                                        <th class="align-center">ẢNH</th>
+                                                        <th class="align-center notexport">ẢNH</th>
                                                         <th class="align-center">TÊN SẢN PHẨM</th>
                                                         <th class="align-center">SỐ LƯỢNG</th>
                                                         <th class="align-center">ĐƠN GIÁ</th>
