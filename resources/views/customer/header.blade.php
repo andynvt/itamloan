@@ -1,8 +1,8 @@
 <!-- form search -->
 <div id="home-search-form" style="display: hide">
     <button type="button" class="close">×</button>
-    <form action="{{route('search')}}" method="post">
-        {{ csrf_field() }}
+    <form action="{{route('search')}}" method="get">
+        {{--{{ csrf_field() }}--}}
         <input type="search" name="key" placeholder="Nhập từ khoá..."/>
         <button type="submit" class="btn-sr view-btn color-2"><span>Tìm kiếm</span> <span
                     class="lnr lnr-arrow-right"></span></button>

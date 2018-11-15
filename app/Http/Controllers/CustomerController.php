@@ -59,7 +59,12 @@ class CustomerController extends Controller
         $ls_watch = Catalog::where('id_type',4)->take(8)->get();
 
         $promo = Promotion::orderBy('end_date')->first();
-//        dd($promo);
+        $date = array();
+        for ($i=0; $i<6; $i++){
+//            $date[$i] = $promo->end_date.format('Y');
+        }
+
+//        dd($date);
         return view('customer.page.home', compact('ls_type','ls_ip','ls_ipad','ls_mac','ls_watch','promo'));
     }
 
@@ -85,8 +90,8 @@ class CustomerController extends Controller
             ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
             ->where('pt.id',$type)
-            ->groupBy('products.id')
-            ->get();
+            ->groupBy('products.id')->paginate(12);
+//            ->get();
 
         foreach ($product as $value){
             $value->colorid = str_replace(' ', '', $value->color);
@@ -124,8 +129,8 @@ class CustomerController extends Controller
             ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
             ->where('ctl.id',$catalog)
-            ->groupBy('products.id')
-            ->get();
+            ->groupBy('products.id')->paginate(12);
+//            ->get();
 
         foreach ($product as $value){
             $value->colorid = str_replace(' ', '', $value->color);
@@ -162,8 +167,8 @@ class CustomerController extends Controller
             ->leftjoin('promotions as promo','promo.id','=','products.id_promo')
             ->select('products.id','products.name','products.price', 'pi.image', 'promo.percent','pc.color','ctl.id as ctlid')
             ->where('products.name','like','%'.$key.'%')
-            ->groupBy('products.id')
-            ->get();
+            ->groupBy('products.id')->paginate(12);
+//            ->get();
         foreach ($product as $value){
             $value->colorid = str_replace(' ', '', $value->color);
             $value->dl = self::getGB($value->name);
@@ -265,8 +270,8 @@ class CustomerController extends Controller
         $feedback = Feedback::leftjoin('customers as c','c.id','=','feedbacks.id_customer')
             ->where('id_product',$id)
             ->orderBy('stars','desc')
-            ->select('feedbacks.*','c.avatar','c.c_name')
-            ->get();
+            ->select('feedbacks.*','c.avatar','c.c_name')->paginate(2);
+//            ->get();
 //dd($feedback);
         $fb_5 = Feedback::where('id_product',$id)
             ->where('stars',5)

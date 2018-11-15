@@ -7269,8 +7269,8 @@ label {
 /* line 1356, /Applications/MAMP/htdocs/1.monthy projects/29.Shop/scss/theme/_common.scss */
 
 .pagination a {
-    width: 40px;
-    line-height: 40px;
+    width: 35px;
+    /*line-height: 40px;*/
     border-right: 1px solid #eee;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -7278,7 +7278,9 @@ label {
     display: inline-block;
     background: #fff;
 }
-
+.page-link{
+    padding: 0.75rem 0.75rem !important;
+}
 /* line 1365, /Applications/MAMP/htdocs/1.monthy projects/29.Shop/scss/theme/_common.scss */
 
 .pagination a.active {

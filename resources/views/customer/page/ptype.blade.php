@@ -126,28 +126,16 @@
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <div class="sorting div-sorts-btn-grp">
-                        <select class="nice-select">
+                        <select class="nice-select mr-auto">
                             <option value="">Sắp xếp</option>
                             <option value="tangdan">Giá tăng dần</option>
                             <option value="giamdan">Giá giảm dần</option>
                         </select>
                     </div>
-                    {{--<div class="sorting mr-auto">--}}
-                        {{--<select class="nice-select">--}}
-                            {{--<option value="1">Hiển thị</option>--}}
-                            {{--<option value="1">12</option>--}}
-                            {{--<option value="1">24</option>--}}
-                        {{--</select>--}}
-                    {{--</div>--}}
-                    {{--<div class="pagination">--}}
-                        {{--<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>--}}
-                        {{--<a href="#" class="active">1</a>--}}
-                        {{--<a href="#">2</a>--}}
-                        {{--<a href="#">3</a>--}}
-                        {{--<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>--}}
-                        {{--<a href="#">6</a>--}}
-                        {{--<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>--}}
-                    {{--</div>--}}
+                    <div class="sorting mr-auto">
+                    </div>
+                    {{$product->links('vendor.pagination.default')}}
+
                 </div>
                 <!-- End Filter Bar -->
 
@@ -155,7 +143,7 @@
                 <!-- Start Best Seller -->
                 <section class="lattest-product-area pb-40 category-list">
                     <div class="">
-                        <div class="grid">
+                        <div class="grid ">
                             @foreach($product as $p)
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 element-item dl-{{$p->dl}} cl-{{$p->colorid}} ctl-{{$p->ctlid}}" data-category="{{$p->color}}">
                                     {{--<span style="display: none" class="product-price">{{$p->price}}</span>--}}
@@ -218,49 +206,21 @@
                         </div>
                     </div>
                 </section>
-            {{--<script>--}}
-            {{--$('.add-to-cart').on('click', function () {--}}
-            {{--var cart = $('.shopping-cart');--}}
-            {{--var imgtodrag = $(this).parents('.item-cart-ct').find("img").eq(0);--}}
-            {{--console.log(imgtodrag);--}}
-            {{--alert(imgtodrag);--}}
-            {{--if (imgtodrag) {--}}
-            {{--var imgclone = imgtodrag.clone()--}}
-            {{--.offset({--}}
-            {{--top: imgtodrag.offset().top,--}}
-            {{--left: imgtodrag.offset().left--}}
-            {{--})--}}
-            {{--.css({--}}
-            {{--'opacity': '0.5',--}}
-            {{--'position': 'absolute',--}}
-            {{--'height': '150px',--}}
-            {{--'width': '150px',--}}
-            {{--'z-index': '100'--}}
-            {{--})--}}
-            {{--.appendTo($('body'))--}}
-            {{--.animate({--}}
-            {{--'top': cart.offset().top + 10,--}}
-            {{--'left': cart.offset().left + 10,--}}
-            {{--'width': 75,--}}
-            {{--'height': 75--}}
-            {{--}, 1000, 'easeInOutExpo');--}}
 
-            {{--setTimeout(function () {--}}
-            {{--cart.effect("shake", {--}}
-            {{--times: 2--}}
-            {{--}, 200);--}}
-            {{--}, 1500);--}}
+                <!-- End Best Seller -->
+                <div class="filter-bar d-flex flex-wrap align-items-center">
+                    <div class="sorting div-sorts-btn-grp">
+                        <select class="nice-select mr-auto">
+                            <option value="">Sắp xếp</option>
+                            <option value="tangdan">Giá tăng dần</option>
+                            <option value="giamdan">Giá giảm dần</option>
+                        </select>
+                    </div>
+                    <div class="sorting mr-auto">
+                    </div>
+                    {{$product->links('vendor.pagination.default')}}
 
-            {{--imgclone.animate({--}}
-            {{--'width': 0,--}}
-            {{--'height': 0--}}
-            {{--}, function () {--}}
-            {{--$(this).detach()--}}
-            {{--});--}}
-            {{--}--}}
-            {{--});--}}
-            {{--</script>--}}
-            <!-- End Best Seller -->
+                </div>
             </div>
         </div>
     </div>

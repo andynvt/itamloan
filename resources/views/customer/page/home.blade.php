@@ -38,8 +38,8 @@
 <!-- form search -->
 <div id="home-search-form" style="display: hide">
     <button type="button" class="close">×</button>
-    <form action="{{route('search')}}" method="post">
-        {{ csrf_field() }}
+    <form action="{{route('search')}}" method="get">
+        {{--{{ csrf_field() }}--}}
         <input type="search" name="key" placeholder="Nhập từ khoá..."/>
         <button type="submit" class="btn-sr view-btn color-2"><span>Tìm kiếm</span> <span
                     class="lnr lnr-arrow-right"></span></button>
@@ -228,7 +228,15 @@
 <script>
     if (document.getElementById("js-countdown")) {
 
-        var countdown = new Date("{{$promo->end_date}}");
+        var year = "{{$promo->end_date->format('Y')}}";
+        var month = "{{$promo->end_date->format('m')}}";
+        var day = "{{$promo->end_date->format('d')}}";
+        var hours = "{{$promo->end_date->format('H')}}";
+        var minutes = "{{$promo->end_date->format('i')}}";
+        var seconds = "{{$promo->end_date->format('s')}}";
+
+        var countdown = new Date(year, month, day, hours, minutes, seconds, 0);
+        // alert(countdown);
 
         function getRemainingTime(endtime) {
             var milliseconds = Date.parse(endtime) - Date.parse(new Date());

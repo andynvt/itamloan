@@ -69,7 +69,14 @@
         <script>
             if (document.getElementById("js-countdown-{{$value->id}}")) {
 
-                var countdown = new Date("{{$value->end_date}}");
+                var year = "{{$value->end_date->format('Y')}}";
+                var month = "{{$value->end_date->format('m')}}";
+                var day = "{{$value->end_date->format('d')}}";
+                var hours = "{{$value->end_date->format('H')}}";
+                var minutes = "{{$value->end_date->format('i')}}";
+                var seconds = "{{$value->end_date->format('s')}}";
+
+                var countdown = new Date(year, month, day, hours, minutes, seconds, 0);
 
                 function getRemainingTime(endtime) {
                     var milliseconds = Date.parse(endtime) - Date.parse(new Date());

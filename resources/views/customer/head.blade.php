@@ -42,6 +42,9 @@ CSS
 
 <script src="source/js/jquery.flashy.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.js"></script>
+
+
 
 
 

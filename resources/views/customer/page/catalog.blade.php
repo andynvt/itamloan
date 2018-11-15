@@ -86,12 +86,16 @@
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
                 <div class="sorting div-sorts-btn-grp">
-                    <select class="nice-select">
+                    <select class="nice-select mr-auto">
                         <option value="">Sắp xếp</option>
                         <option value="tangdan">Giá tăng dần</option>
                         <option value="giamdan">Giá giảm dần</option>
                     </select>
                 </div>
+                <div class="sorting mr-auto">
+                </div>
+                {{$product->links('vendor.pagination.default')}}
+
             </div>
             <!-- End Filter Bar -->
 
@@ -163,6 +167,19 @@
             </section>
 
             <!-- End Best Seller -->
+            <div class="filter-bar d-flex flex-wrap align-items-center">
+                <div class="sorting div-sorts-btn-grp">
+                    <select class="nice-select mr-auto">
+                        <option value="">Sắp xếp</option>
+                        <option value="tangdan">Giá tăng dần</option>
+                        <option value="giamdan">Giá giảm dần</option>
+                    </select>
+                </div>
+                <div class="sorting mr-auto">
+                </div>
+                {{$product->links('vendor.pagination.default')}}
+
+            </div>
         </div>
 
 
