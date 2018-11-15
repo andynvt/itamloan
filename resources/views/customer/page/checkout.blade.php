@@ -408,11 +408,28 @@
                                             email: token.email,
                                             amount:{!! ($totalPriceFinal) !!},
                                         };
-                                        $('#status_stripe').append(myData);
-
-                                        $.post("stripedone/",myData,
+                                        // $('#status_stripe').append(myData);
+                                        //
+                                        alert('h');
+                                        // $.ajax({
+                                        //     url: 'stripedone',
+                                        //     dataType: 'json',
+                                        //     type: 'GET',
+                                        //     data: {mydata: myData},
+                                        //     success: function (data) {
+                                        //         alert('hh');
+                                        //
+                                        //         console.log(data);
+                                        //         $("#status_stripe").html("Thanh toán thành công.");
+                                        //         $('#process-checkout').html('<span>hoàn tất</span>');
+                                        //         $('#cb-confim').removeAttr('disabled');
+                                        //
+                                        //     }
+                                        // });
+                                        $.get("stripedone/"+token.email,
                                             function(data) {
                                                 $("#status_stripe").html("Thanh toán thành công.");
+                                                $("#status_stripe").html(data);
                                                 $('#process-checkout').html('<span>hoàn tất</span>');
                                                 $('#cb-confim').removeAttr('disabled');
 
@@ -432,6 +449,7 @@
                                         amount: {!! ($totalPriceFinal) !!},
                                         currency: "VND"
                                     });
+
                                     e.preventDefault();
                                 });
                                 window.addEventListener('popstate', function() {

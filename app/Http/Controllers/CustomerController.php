@@ -522,10 +522,10 @@ class CustomerController extends Controller
         }
         return view('customer.page.checkout',compact('promo_product'));
     }
-    public function StripeDone(Request $req){
+    public function StripeDone(Request $req, $myData){
 
         var_dump($req->all());
-        dd($req);
+        dd($myData);
 
         return json_encode('done');
     }
