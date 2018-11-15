@@ -237,8 +237,7 @@
                                         <label for="paypal" class="bold-lable">Thanh toán bằng Paypal</label>
                                     </div>
                                 </div>
-                                <p class="payment-info collapse" id="paypal-text">Click vào nút Paypal để thanh
-                                    toán.<br><br>
+                                <div class="payment-info collapse" id="paypal-text">
                                     <span id="paypal-button-container"></span>
                                 <div id="confirm" class="hidden payment-info">
                                     <h6 class="mb-1">Gửi hàng đến:</h6>
@@ -256,7 +255,22 @@
                                 <div id="thanks" class="hidden payment-info">
                                     Thanh toán thành công, cảm ơn <span id="thanksname"></span>!
                                 </div>
-                                </p>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-10">
+                                    <div class="d-flex align-items-center">
+                                        <input class="pixel-radio" type="radio" id="visa" name="payment" value="4"
+                                               data-parent="#check-out-type" data-toggle="collapse"
+                                               data-target="#visa-text">
+                                        <label for="visa" class="bold-lable">Thanh toán bằng thẻ <img src="https://img.icons8.com/color/35/ffffff/visa.png">
+                                            <img src="https://img.icons8.com/color/35/ffffff/mastercard.png"> </label>
+                                    </div>
+                                </div>
+                                <div class="payment-info collapse" id="visa-text">
+                                    <script src="https://checkout.stripe.com/checkout.js"></script>
+                                    <button class="btn btn-facebook btn-lg" style="background: #009cde;" id="customButton">THANH TOÁN</button>
+                                    <div class="mt-1" id="status_stripe"></div>
+                                </div>
                             </div>
                             <div class="mt-20 d-flex align-items-start">
                                 <input type="checkbox" class="hidden" id="cb-paypal">
@@ -266,6 +280,10 @@
                             <button disabled="disabled" type="submit" class="view-btn color-2 w-100 mt-20" id="process-checkout"><span>Thanh toán</span></button>
                             <script>
                                 $('#paypal').click(function () {
+                                    $('#cb-confim').attr('disabled', true);
+                                    $('#process-checkout').attr('disabled', true);
+                                });
+                                $('#visa').click(function () {
                                     $('#cb-confim').attr('disabled', true);
                                     $('#process-checkout').attr('disabled', true);
                                 });
@@ -302,29 +320,18 @@
                                     var amount = ('{{$totalPriceFinal}}' / output).toFixed(2);
                                     // Render the PayPal button
                                     paypal.Button.render({
-
-                                        // Set your environment
-
                                         env: 'sandbox', // sandbox | production
-
-                                        // Specify the style of the button
-
                                         style: {
                                             label: 'paypal',
                                             size: 'medium', // small | medium | large | responsive
-                                            shape: 'pill', // pill | rect
+                                            shape: 'rect', // pill | rect
                                             color: 'blue', // gold | blue | silver | black
                                             tagline: false
                                         },
-
-                                        // PayPal Client IDs - replace with your own
-                                        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
-
                                         client: {
                                             sandbox: 'AYTHuDDrPAMBekfKg3JPKOIcHqdfLxsuGZ2PjyDV4Aw0fg0IfY_HFDJAiY_eASFyqKUYXUaJBBVvV4K3',
                                             // production: '<insert production client id>'
                                         },
-
                                         payment: function(data, actions) {
                                             return actions.payment.create({
                                                 payment: {
@@ -337,12 +344,7 @@
                                             });
                                         },
                                         onAuthorize: function(data, actions) {
-
-                                            // Get the payment details
-
                                             return actions.payment.get().then(function(data) {
-
-                                                // Display the payment details and a confirmation button
 
                                                 var shipping = data.payer.payer_info.shipping_address;
 
@@ -387,22 +389,53 @@
                                                                 $('#process-checkout').attr('disabled', true); //disable input
                                                             }
                                                         });
-
-                                                        // var submit = false;
-                                                        // $("#formcheckout").submit(function(e) {
-                                                        //     setTimeout(function(){
-                                                        //         submit = true;
-                                                        //         $("#cb-confim").check();
-                                                        //         $("#formcheckout").submit(); // if you want
-                                                        //     }, 1000);
-                                                        //     if(!submit)
-                                                        //         e.preventDefault();
-                                                        // });
                                                     });
                                                 });
                                             });
                                         }
                                     }, '#paypal-button-container');
+                                });
+                            </script>
+                            <script>
+                                //thanh toán stripe
+                                var handler = StripeCheckout.configure({
+                                    key: 'pk_test_m1Q5TEAvEAXhTPlpttDUixnx',
+                                    image: 'https://yt3.ggpht.com/a-/AN66SAyL1Fo40yzsJMDjQeAEAnaR8fr-a494s_laAg=s900-mo-c-c0xffffffff-rj-k-no',
+                                    locale: 'auto',
+                                    token: function(token) {
+                                        var myData = {
+                                            token: token.id,
+                                            email: token.email,
+                                            amount:{!! ($totalPriceFinal) !!},
+                                        };
+                                        $('#status_stripe').append(myData);
+
+                                        $.post("stripedone/",myData,
+                                            function(data) {
+                                                $("#status_stripe").html("Thanh toán thành công.");
+                                                $('#process-checkout').html('<span>hoàn tất</span>');
+                                                $('#cb-confim').removeAttr('disabled');
+
+                                            }).fail(function() {
+                                            $("#status_stripe").html("Thanh toán thất bại");
+                                        })
+                                    }
+                                });
+
+                                document.getElementById('customButton').addEventListener('click', function(e) {
+                                    handler.open({
+                                        name: 'itamloan',
+                                        description: 'Thanh toán bằng thẻ',
+                                        @if(Auth::check())
+                                        email: "{{Auth::user()->email}}",
+                                        @endif
+                                        amount: {!! ($totalPriceFinal) !!},
+                                        currency: "VND"
+                                    });
+                                    e.preventDefault();
+                                });
+                                window.addEventListener('popstate', function() {
+                                    handler.close();
                                 });
                             </script>
                         </div>

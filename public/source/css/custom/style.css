@@ -214,7 +214,7 @@ input::-webkit-inner-spin-button {
 }
 
 .quick-view-content .price span,
-.quick-view-content .category span,
+.quick-view-content .category span
     {
     background: #00c6ff;
     background: -webkit-linear-gradient(to left, #0072ff, #00c6ff);
@@ -539,7 +539,7 @@ a.custom:hover {
 }
 /*Danh gia so sao*/
 
-url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+/*url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);*/
 
 fieldset,
 label {

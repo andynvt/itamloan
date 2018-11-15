@@ -522,13 +522,24 @@ class CustomerController extends Controller
         }
         return view('customer.page.checkout',compact('promo_product'));
     }
+    public function StripeDone(Request $req){
+
+        var_dump($req->all());
+        dd($req);
+
+        return json_encode('done');
+    }
 
     public function postCheckout(Request $req)
     {
+        dd($req->all());
         $note = $req->note;
         if ($req->payment == 3) {
             $bill_status = 2;
-        } else {
+        }if ($req->payment == 4) {
+            $bill_status = 6;
+        }
+        else {
             $bill_status = 1;
         }
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
