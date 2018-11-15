@@ -33,6 +33,7 @@
             </div>
             <div class="collapse" id="checkout-login">
                 <div class="checkout-login-collapse d-flex flex-column">
+
                     <form action="{{route('postlogin')}}" method="post" class="d-block">
                         {!! csrf_field() !!}
                         <input type="hidden" value="checkoutpage" name="page">
@@ -49,12 +50,26 @@
                         </div>
                         <div class="d-flex align-items-center flex-wrap">
                             <button type="submit" class="view-btn color-2 mt-20 mr-20"><span>Đăng nhập</span></button>
-                            {{--<div class="mt-20">--}}
-                            {{--<input type="checkbox" class="pixel-checkbox" id="login-1">--}}
-                            {{--<label for="login-1">Remember me</label>--}}
-                            {{--</div>--}}
+                            <div class="mt-20">
+                                <a href="{{route('forgetpass')}}">Quên mật khẩu?</a>
+
+                            </div>
                         </div>
                     </form>
+                    <p class="text-left mt-3 mb-1">Hoặc đăng nhập bằng</p>
+                    <div class=" justify-content-left">
+                        <button onclick="fblogin()" title="Đăng nhập bằng Facebook" class="ml-0 btn btn-facebook btn-lg">Facebook</button>
+                        <button onclick="startApp()" id="ggLogBtn" title="Đăng nhập bằng Google" class="btn btn-facebook btn-lg" style=" background: #CD5542">Google</button>
+                        <span class="text-white mt-1" id="status"></span>
+                        <form action="{{route('fblogin')}}" method="post" id="fbloginform">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="page" value="checkoutpage">
+                        </form>
+                        <form action="{{route('gglogin')}}" method="post" id="ggloginform">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="page" value="checkoutpage">
+                        </form>
+                    </div>
                     {{--<a href="#" class="mt-10">Lost your password?</a>--}}
                 </div>
             </div>

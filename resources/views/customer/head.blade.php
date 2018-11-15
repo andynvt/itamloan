@@ -14,6 +14,9 @@
 <meta name="keywords" content="">
 <!-- meta character set -->
 <meta charset="UTF-8">
+
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="867983489373-t86imj1i7kquij3kbba0vcm1r91i6di1.apps.googleusercontent.com">
 <!-- Site Title -->
 {{--<title>Shop</title>--}}
 

@@ -101,6 +101,23 @@ Route::get('dang-nhap',[
     'as' => 'login',
     'uses' => 'CustomerController@getLogin'
 ]);
+Route::post('dang-ky-fb',[
+    'as' => 'fbreg',
+    'uses' => 'CustomerController@postFBReg'
+]);
+Route::post('dang-nhap-fb',[
+    'as' => 'fblogin',
+    'uses' => 'CustomerController@postFBLogin'
+]);
+
+Route::post('dang-ky-gg',[
+    'as' => 'ggreg',
+    'uses' => 'CustomerController@postGGReg'
+]);
+Route::post('dang-nhap-gg',[
+    'as' => 'gglogin',
+    'uses' => 'CustomerController@postGGLogin'
+]);
 
 Route::post('postlogin',[
     'as' => 'postlogin',

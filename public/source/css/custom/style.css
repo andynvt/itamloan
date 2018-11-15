@@ -427,6 +427,10 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-facebook {
+    cursor: pointer;
+    border-radius: 0px ;
+    font-size: 15px;
+    line-height: 1;
     margin: 5px;
     background: #4968AD;
     color: white;

@@ -629,7 +629,6 @@ class CustomerController extends Controller
     }
 
     public function postLogin(Request $req){
-        $cre = array('email'=>$req->email,'password'=>$req->password);
         if(Auth::attempt(['email' => $req->email,
             'password' => $req->password, 'role' => 'customer'])){
             if($req->page == "loginpage"){
@@ -648,9 +647,119 @@ class CustomerController extends Controller
         }
     }
 
+    public function postFBReg(Request $req){
+//        dd($req);
+        $ckemail = User::where('email',$req->email)->first();
+        if(!$ckemail){
+            $user = new User();
+            $user->email = $req->email;
+            $user->id_social = $req->id;
+            $user->social = 'fb';
+            $user->role = 'customer';
+            $user->save();
+
+            $cus = new Customer();
+            $cus->id_user = $user->id;
+            $cus->c_name = $req->name;
+            $cus->save();
+
+            $email = $req->email;
+            $name = $req->name;
+
+            $data = ['name' => $name, 'email' => $email];
+            Mail::send('admin.mail.dangky',$data,function ($msg) use ($email){
+                $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+                $msg->to($email,'Khách hàng')->subject('🍎🍎 Đăng ký tài khoản thành công ✅');
+            });
+            if (Mail::failures()) {}
+
+            return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
+        }
+        else{
+            return redirect()->back()->with(['flag'=>'danger','title'=>'Thông báo' ,'message'=>'Email đã tồn tại']);
+        }
+    }
+
+    public function postGGReg(Request $req){
+//        dd($req);
+        $ckemail = User::where('email',$req->email)->first();
+        if(!$ckemail){
+            $user = new User();
+            $user->email = $req->email;
+            $user->id_social = $req->id;
+            $user->social = 'gg';
+            $user->role = 'customer';
+            $user->save();
+
+            $cus = new Customer();
+            $cus->id_user = $user->id;
+            $cus->c_name = $req->name;
+            $cus->save();
+
+            $email = $req->email;
+            $name = $req->name;
+
+            $data = ['name' => $name, 'email' => $email];
+            Mail::send('admin.mail.dangky',$data,function ($msg) use ($email){
+                $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+                $msg->to($email,'Khách hàng')->subject('🍎🍎 Đăng ký tài khoản thành công ✅');
+            });
+            if (Mail::failures()) {}
+
+            return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
+        }
+        else{
+            return redirect()->back()->with(['flag'=>'danger','title'=>'Thông báo' ,'message'=>'Email đã tồn tại']);
+        }
+    }
+    public function postFBLogin(Request $req){
+//        dd($req);
+       $ckid = User::where([['id_social',$req->id], ['social',$req->social]])->first();
+       if($ckid){
+           if(Auth::loginUsingId($ckid->id)){
+               if($req->page == "loginpage"){
+                   return redirect()->route('user')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+               }
+               if($req->page == "checkoutpage"){
+                   return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+               }
+           }
+           else{
+               return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Đăng nhập thất bại']);
+           }
+       }
+       else{
+           return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Tài khoản Facebook này chưa đăng ký']);
+       }
+
+    }
+    public function postGGLogin(Request $req){
+//        dd($req);
+        $ckid = User::where([['id_social',$req->id], ['social',$req->social]])->first();
+        if($ckid){
+            if(Auth::loginUsingId($ckid->id)){
+                if($req->page == "loginpage"){
+                    return redirect()->route('user')->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+                }
+                if($req->page == "checkoutpage"){
+                    return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng nhập thành công']);
+                }
+            }
+            else{
+                return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Đăng nhập thất bại']);
+            }
+        }
+        else{
+            return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Tài khoản Google này chưa đăng ký']);
+
+        }
+
+    }
+
+
     public  function postReg(Request $req){
         $ckemail = User::where('email',$req->email)->first();
-        if($ckemail){
+        if(!$ckemail){
             $user = new User();
             $user->email = $req->email;
             $user->password = Hash::make($req->password);

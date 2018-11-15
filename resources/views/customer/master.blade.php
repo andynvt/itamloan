@@ -30,9 +30,10 @@
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 
 <script src="source/js/main.js"></script>
+<script src="source/js/loginsocial.js"></script>
 
 <script src="https://js.stripe.com/v3/"></script>
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
 
     // search form

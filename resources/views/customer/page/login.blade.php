@@ -25,14 +25,22 @@
             <div class="col-md-6">
                 <div class="login-form" style="height: auto;">
                     <h3 class="billing-title text-center">Đăng nhập</h3>
-                    <p class="text-center mt-3 mb-3">Liên kết với mạng xã hội</p>
+                    <p class="text-center mt-3 mb-1">Liên kết với mạng xã hội</p>
                     <div class="row justify-content-center">
-                        <button onclick="login()" title="Facebook" class="btn btn-facebook btn-lg" style="border-radius: 5px; ">Facebook</button>
-                        <button onclick="login()" title="Google" class="btn btn-facebook btn-lg" style="border-radius: 5px; background: #CD5542">Google</button>
+                        <button onclick="fblogin()" title="Đăng nhập bằng Facebook" class="btn btn-facebook btn-lg" style=" ">Facebook</button>
+                        <button onclick="startApp()" id="ggLogBtn" title="Đăng nhập bằng Google" class="btn btn-facebook btn-lg" style=" ; background: #CD5542">Google</button>
+                        {{--<span class="text-black mt-1" id="fblogin-status"></span>--}}
                     </div>
+                    <form action="{{route('fblogin')}}" method="post" id="fbloginform">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="page" value="loginpage">
+                    </form>
+                    <form action="{{route('gglogin')}}" method="post" id="ggloginform">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="page" value="loginpage">
+                    </form>
 
-                    <!--<div id="status">-->
-                    <!--</div>-->
+
                     <form action="{{route('postlogin')}}" method="post">
                         <input type="hidden" value="loginpage" name="page">
                         <input type="email" name="email" placeholder="Email " onfocus="this.placeholder=''"
@@ -41,7 +49,7 @@
                                onblur="this.placeholder = 'Mật khẩu '" required class="common-input mt-20">
                         <button type="submit" class="view-btn color-2 mt-20 w-100"><span>Đăng nhập</span></button>
                         <div class="mt-20 d-flex align-items-center justify-content-between">
-                        <a href="#">Quên mật khẩu?</a>
+                        <a href="{{route('forgetpass')}}">Quên mật khẩu?</a>
                         </div>
                         {{ csrf_field() }}
                     </form>
@@ -50,7 +58,24 @@
             <div class="col-md-6">
                 <div class="register-form" id="reg" style="padding: 30px;">
                     <h3 class="billing-title text-center">Đăng ký</h3>
-                    <p class="text-center mt-15 mb-20">Tạo tài khoản mới </p>
+                    <p class="text-center mt-3 mb-1">Liên kết với mạng xã hội</p>
+                    <div class="row justify-content-center">
+                        <button onclick="fbreg()" title="Đăng ký bằng Facebook" class="btn btn-facebook btn-lg" style="">Facebook</button>
+                        <button onclick="startApp()" id="ggRegBtn" title="Đăng ký bằng Google" class="btn btn-facebook btn-lg" style=" ; background: #CD5542">Google</button>
+                        {{--<span class="text-white mt-1" id="status"></span>--}}
+                        {{--<span class="text-white mt-1" id="name"></span>--}}
+
+                    </div>
+
+                    <form action="{{route('fbreg')}}" method="post" id="fbform">
+                        {{ csrf_field() }}
+                    </form>
+                    <form action="{{route('ggreg')}}" method="post" id="ggform">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="page" value="loginpage">
+                    </form>
+                    <div class="billing-title"></div>
+                    <p class="text-center mt-15 mb-20">Hoặc tạo tài khoản mới </p>
                     <form action="{{route('reg')}}" method="post" class="validatedForm">
                         <input type="text" name="name" placeholder="Họ và tên " onfocus="this.placeholder=''"
                                onblur="this.placeholder = 'Họ và tên'" required class="common-input mt-20">
@@ -93,6 +118,10 @@
     <!-- End My Account -->
 
     <script>
+
+
+
+        //confirm password
         var password = document.getElementById("password");
         var confirm_password = document.getElementById("re-password");
 
