@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use function PHPSTORM_META\elementType;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 class CustomerController extends Controller
 {
@@ -522,17 +524,31 @@ class CustomerController extends Controller
         }
         return view('customer.page.checkout',compact('promo_product'));
     }
-    public function StripeDone(Request $req, $myData){
+    public function StripeDone($email, $amount, $token){
 
-        var_dump($req->all());
-        dd($myData);
+        try {
+            Stripe::setApiKey('sk_test_tAYcSTl6Q9Pd4wXIDDa7bBmU');
 
-        return json_encode('done');
+            $customer = \Stripe\Customer::create(array(
+                'email' => $email,
+                'source' => $token
+            ));
+
+            $charge = Charge::create(array(
+                'customer' => $customer->id,
+                'amount' => $amount,
+                'currency' => 'vnd'
+            ));
+//            return 'Charge successful, you get the course!';
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+        return json_encode([$email,$amount, $token]);
     }
 
     public function postCheckout(Request $req)
     {
-        dd($req->all());
+//        dd($req->all());
         $note = $req->note;
         if ($req->payment == 3) {
             $bill_status = 2;

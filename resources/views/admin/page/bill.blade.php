@@ -102,13 +102,15 @@
                                             @if($value->bsid == 1)
                                                 <span class="label bg-pink">CHỜ XÁC NHẬN</span>
                                             @elseif($value->bsid == 2)
-                                                <span class="label bg-teal">THANH TOÁN ONLINE</span>
+                                                <span class="label bg-teal">ĐÃ TT ONLINE</span>
                                             @elseif($value->bsid == 3)
                                                 <span class="label bg-blue">ĐANG GỬI</span>
                                             @elseif($value->bsid == 4)
                                                 <span class="label bg-green">HOÀN TẤT</span>
                                             @elseif($value->bsid == 5)
                                                 <span class="label bg-red">THẤT BẠI</span>
+                                            @elseif($value->bsid == 6)
+                                                <span class="label bg-teal">ĐÃ TT ONLINE</span>
                                             @endif
                                         </td>
                                         <td>{{$value->payment}}</td>
@@ -137,6 +139,29 @@
                                                     <i class="material-icons">sync_disabled</i>
                                                 </a>
                                             @elseif($value->bsid == 2)
+                                                <span data-toggle="modal" data-target="#xem_dh_{{$value->id}}">
+                                                <a class="btn btn-info btn-circle waves-effect waves-circle waves-float xemdh "
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   data-original-title="Xem chi tiết" data-dh="{{$value->id}}">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                </span>
+
+                                                <a href="javascript:void(0);"
+                                                   class="btn bg-blue btn-circle waves-effect waves-circle waves-float delete-btn guihang"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   data-original-title="Đã gửi hàng" data-confirm="gui" data-dh="{{$value->id}}">
+                                                    <i class="material-icons">send</i>
+                                                </a>
+
+                                                <a href="javascript:void(0);"
+                                                   class=" btn btn-danger btn-circle waves-effect waves-circle waves-float delete-btn huydon"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   data-original-title="Huỷ đơn hàng" data-dh="{{$value->id}}">
+                                                    <i class="material-icons">sync_disabled</i>
+                                                </a>
+                                                </a>
+                                            @elseif($value->bsid == 6)
                                                 <span data-toggle="modal" data-target="#xem_dh_{{$value->id}}">
                                                 <a class="btn btn-info btn-circle waves-effect waves-circle waves-float xemdh "
                                                    data-toggle="tooltip" data-placement="top"

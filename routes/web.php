@@ -344,5 +344,5 @@ Route::get('dang-xuat',[
     'uses' => 'AdminLogin@logout'
 ]);
 
-Route::get('stripedone/{myData}','CustomerController@StripeDone');
+Route::get('stripedone/{email}/{amount}/{token}','CustomerController@StripeDone');
 

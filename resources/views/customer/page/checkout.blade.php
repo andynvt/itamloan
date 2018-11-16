@@ -274,7 +274,7 @@
                             </div>
                             <div class="mt-20 d-flex align-items-start">
                                 <input type="checkbox" class="hidden" id="cb-paypal">
-                                <input type="checkbox" class="pixel-checkbox" id="cb-confim">
+                                <input type="checkbox" class="pixel-checkbox" id="cb-confim" disabled="disabled">
                                 <label for="login-4">Tôi đã đọc rõ và chấp nhận <a href="#" class="terms-link">Điều khoản & điều kiện</a></label>
                             </div>
                             <button disabled="disabled" type="submit" class="view-btn color-2 w-100 mt-20" id="process-checkout"><span>Thanh toán</span></button>
@@ -288,6 +288,7 @@
                                     $('#process-checkout').attr('disabled', true);
                                 });
                                 $('input[type="radio"]').click(function () {
+                                    $('#cb-confim').removeAttr('disabled');
                                     var cked = $(this).attr('id');
                                     $('#cb-confim').click(function () {
                                         if (cked != 'paypal'){
@@ -345,6 +346,8 @@
                                         },
                                         onAuthorize: function(data, actions) {
                                             return actions.payment.get().then(function(data) {
+                                                alert('here');
+
 
                                                 var shipping = data.payer.payer_info.shipping_address;
 
@@ -355,7 +358,7 @@
                                                 document.querySelector('#zip').innerText       = shipping.postal_code;
                                                 document.querySelector('#country').innerText   = shipping.country_code;
 
-                                                document.querySelector('#paypal-text').style.display = 'none';
+                                                // document.querySelector('#paypal-text').style.display = 'none';
                                                 document.querySelector('#paypal-button-container').style.display = 'none';
                                                 document.querySelector('#confirm').style.display = 'block';
 
@@ -408,28 +411,11 @@
                                             email: token.email,
                                             amount:{!! ($totalPriceFinal) !!},
                                         };
-                                        // $('#status_stripe').append(myData);
-                                        //
-                                        alert('h');
-                                        // $.ajax({
-                                        //     url: 'stripedone',
-                                        //     dataType: 'json',
-                                        //     type: 'GET',
-                                        //     data: {mydata: myData},
-                                        //     success: function (data) {
-                                        //         alert('hh');
-                                        //
-                                        //         console.log(data);
-                                        //         $("#status_stripe").html("Thanh toán thành công.");
-                                        //         $('#process-checkout').html('<span>hoàn tất</span>');
-                                        //         $('#cb-confim').removeAttr('disabled');
-                                        //
-                                        //     }
-                                        // });
-                                        $.get("stripedone/"+token.email,
+                                        $.get("stripedone/"+myData.email+"/"+myData.amount+"/"+myData.token,
                                             function(data) {
+                                            console.log(data);
                                                 $("#status_stripe").html("Thanh toán thành công.");
-                                                $("#status_stripe").html(data);
+                                                // $("#status_stripe").html(data);
                                                 $('#process-checkout').html('<span>hoàn tất</span>');
                                                 $('#cb-confim').removeAttr('disabled');
 
@@ -449,7 +435,6 @@
                                         amount: {!! ($totalPriceFinal) !!},
                                         currency: "VND"
                                     });
-
                                     e.preventDefault();
                                 });
                                 window.addEventListener('popstate', function() {

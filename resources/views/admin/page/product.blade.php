@@ -61,7 +61,7 @@
                                         <td>{{$value->type}}</td>
                                         <td>{{$value->catalog}}</td>
                                         <td class="align-center">{{number_format($value->price)}} ₫</td>
-                                        <td class="align-center">
+                                        <td class="align-center" style="width: 10%">
                                             @if($value->percent == 0)
                                                 0
                                                 @else
@@ -69,7 +69,7 @@
                                             @endif
                                         </td>
                                         <td class="align-center">{{$value->inventory}}</td>
-                                        <td class="align-center pd-5">
+                                        <td class="align-center pd-5" style="width: 15%">
                                                 <span data-toggle="modal" data-target="#xem_sp_{{$value->id}}">
                                                     <a class="btn btn-info btn-circle waves-effect waves-circle waves-float xemsp" data-xem="{{$value->id}}" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
                                                         <i class="material-icons">visibility</i>

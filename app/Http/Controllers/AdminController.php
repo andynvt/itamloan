@@ -178,7 +178,7 @@ class AdminController extends Controller
         $rev = ProductType::select('id','type')->get()->toArray();
         foreach ($rev as $index => $value){
             $rev[$index]['color'] = $material_color[$index];
-            $rev[$index]['bgcolor'] = hex2rgba($material_color[$index],0.2);
+            $rev[$index]['bgcolor'] = hex2rgba($material_color[$index],0.5);
             for ($i=1; $i<13; $i++){
                 $ip[$index][$i]['thang'] = $i;
                 $qr = Bill::select(DB::raw('sum(total_price) as sum'))
@@ -186,7 +186,7 @@ class AdminController extends Controller
                     ->leftjoin('products as p','p.id','=','bd.id_product')
                     ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
                     ->where('ctl.id_type',$value['id'])
-                    ->whereMonth('bd.created_at', $i)->whereYear('bd.created_at', $nam)
+                    ->whereMonth('bills.created_at', $i)->whereYear('bills.created_at', $nam)
                     ->value('sum');
                 $ip[$index][$i]['dt'] = ($qr == null) ? 0 : $qr;
             }

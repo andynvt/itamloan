@@ -138,6 +138,7 @@
                             ],
                                 backgroundColor: "{{$value['bgcolor']}}",
                                 borderColor: '{{$value['color']}}',
+                                // fill: false
                         },
                             @endforeach
                         ]
