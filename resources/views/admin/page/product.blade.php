@@ -209,7 +209,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <h4>Mô tả </h4>
-                                            <textarea id="tinymce" name="description"></textarea>
+                                            <textarea id="tinymce" name="description" required></textarea>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20" id="herre">
                                             <b>Video</b>

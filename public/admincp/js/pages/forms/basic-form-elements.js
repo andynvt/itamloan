@@ -7,9 +7,11 @@ $(function () {
         // format: 'dddd DD MMMM YYYY - HH:mm',
         format: 'YYYY-MM-DD HH:mm:ss',
         clearButton: true,
+        minDate : new Date(),
         showTodayButton: true,
         weekStart: 1
     });
+
 
     $('.datepicker').bootstrapMaterialDatePicker({
         format: 'dddd DD MMMM YYYY',
@@ -23,4 +25,5 @@ $(function () {
         clearButton: true,
         date: false
     });
+
 });

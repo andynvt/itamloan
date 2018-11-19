@@ -118,7 +118,7 @@
                                                 <i class="material-icons">date_range</i>
                                             </span>
                                         <div class="form-line">
-                                            <input type="text" name="start_date" class="datetimepicker form-control" placeholder="Chọn ngày giờ bắt đầu..." required>
+                                            <input type="text" name="start_date" id="start_date" class="datetimepicker form-control" placeholder="Chọn ngày giờ bắt đầu..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -129,10 +129,11 @@
                                                 <i class="material-icons">date_range</i>
                                             </span>
                                         <div class="form-line">
-                                            <input type="text" name="end_date" class="datetimepicker form-control" placeholder="Chọn ngày giờ kết thúc..." required>
+                                            <input type="text" name="end_date" id="end_date" class="datetimepicker form-control" placeholder="Chọn ngày giờ kết thúc..." required>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <b>Mô tả chi tiết</b>
                                     <div class="input-group">
@@ -210,7 +211,6 @@
             </div>
         </div>
     </div>
-
     <!--Modal sửa km-->
     @foreach($km as $index => $value)
     <div class="modal fade in" id="sua_km_{{$value->id}}" tabindex="-1" role="dialog">

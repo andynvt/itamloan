@@ -677,7 +677,9 @@ class CustomerController extends Controller
     public function postFBReg(Request $req){
 //        dd($req);
         $ckemail = User::where('email',$req->email)->first();
+//        dd($ckemail);
         if(!$ckemail){
+//            dd('!');
             $user = new User();
             $user->email = $req->email;
             $user->id_social = $req->id;
@@ -703,7 +705,9 @@ class CustomerController extends Controller
             return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
         }
         else{
-            return redirect()->back()->with(['flag'=>'danger','title'=>'Thông báo' ,'message'=>'Email đã tồn tại']);
+//            dd('none');
+
+            return redirect()->route('login')->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Tài khoản Facebook này đã được liên kết trước đó']);
         }
     }
 
@@ -736,7 +740,7 @@ class CustomerController extends Controller
             return redirect()->back()->with(['flag'=>'success','title'=>'Thông báo' ,'message'=>'Đăng ký thành công']);
         }
         else{
-            return redirect()->back()->with(['flag'=>'danger','title'=>'Thông báo' ,'message'=>'Email đã tồn tại']);
+            return redirect()->back()->with(['flag'=>'error','title'=>'Thông báo' ,'message'=>'Tài khoản Google này đã được liên kết trước đó']);
         }
     }
     public function postFBLogin(Request $req){
