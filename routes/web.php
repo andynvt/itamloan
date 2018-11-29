@@ -92,11 +92,6 @@ Route::post('gui-thanh-toan',[
     'uses' => 'CustomerController@postCheckout'
 ]);
 
-Route::get('cau-hoi-thuong-gap',[
-    'as' => 'faq',
-    'uses' => 'CustomerController@getFaq'
-]);
-
 Route::get('dang-nhap',[
     'as' => 'login',
     'uses' => 'CustomerController@getLogin'
@@ -345,4 +340,26 @@ Route::get('dang-xuat',[
 ]);
 
 Route::get('stripedone/{email}/{amount}/{token}','CustomerController@StripeDone');
+
+
+Route::get('cau-hoi-thuong-gap',[
+    'as' => 'faq',
+    'uses' => 'CustomerController@getFaq'
+]);
+Route::get('gioi-thieu',[
+    'as' => 'about',
+    'uses' => 'CustomerController@getAbout'
+]);
+Route::get('huong-dan-mua-hang',[
+    'as' => 'howtobuy',
+    'uses' => 'CustomerController@getHowtobuy'
+]);
+Route::get('chinh-sach-bao-mat',[
+    'as' => 'csbm',
+    'uses' => 'CustomerController@getCsbm'
+]);
+Route::get('tuyen-dung',[
+    'as' => 'td',
+    'uses' => 'CustomerController@getTd'
+]);
 

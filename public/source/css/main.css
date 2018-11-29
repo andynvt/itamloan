@@ -3637,8 +3637,10 @@ h6 {
     padding-top: 100px;
     background-color: #222222;
 }
-
-/* line 652, /Applications/MAMP/htdocs/1.monthy projects/29.Shop/scss/theme/_home.scss */
+.footer-area a{
+    color: white;
+}
+    /* line 652, /Applications/MAMP/htdocs/1.monthy projects/29.Shop/scss/theme/_home.scss */
 
 .footer-area h6 {
     color: #fff;

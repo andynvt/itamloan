@@ -339,6 +339,7 @@ class AdminController extends Controller
             $km->promo_image = $name;
         }
         $km->promo_name = $req->promo_name;
+        $km->promo_info = $req->promo_info;
         $km->percent = $req->percent;
         $km->start_date = $req->start_date;
         $km->end_date = $req->end_date;
@@ -831,16 +832,28 @@ class AdminController extends Controller
 
     public function AdminDanhGia()
     {
-        $sp = Product::leftjoin('product_color as pc', 'pc.id_product', '=', 'products.id')
+        $all_p = Product::leftjoin('product_color as pc', 'pc.id_product', '=', 'products.id')
             ->leftjoin('product_image as pi', 'pi.id_color', '=', 'pc.id')
-            ->leftjoin('feedbacks as f','f.id_product','=','products.id')
             ->groupBy('products.id')
-            ->select(DB::raw('count(f.id) as no_fb, avg(f.stars) as avg, products.*, pi.image'))
-            ->where('f.id','<>',null)->orderBy('f.created_at')->get();
+            ->select('products.id','name','pi.image')
+            ->get()->toArray();
+
+        foreach ($all_p as $i => $value){
+            $no_fb = Feedback::where('id_product',$value['id'])->count();
+            $avg = Feedback::where('id_product',$value['id'])->avg('stars');
+
+            if($no_fb == 0){
+                unset($all_p[$i]);
+            }else{
+                $all_p[$i]['no_fb'] = $no_fb;
+                $all_p[$i]['avg'] = $avg;
+            }
+        }
+//        dd($all_p);
         $fb = Feedback::leftjoin('customers as c','c.id','=','feedbacks.id_customer')
             ->leftjoin('products as p','p.id','=','feedbacks.id_product')
             ->select('feedbacks.*','c.c_name','c.avatar','p.id as pid')->get();
-        return view('admin.page.feedback',compact('sp','fb'));
+        return view('admin.page.feedback',compact('all_p','fb'));
     }
 
     public function AdminDoiMK(){

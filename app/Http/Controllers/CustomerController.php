@@ -646,10 +646,6 @@ class CustomerController extends Controller
         return redirect()->route('index')->with(['flag' => 'success', 'title' => 'Thông báo', 'message' => 'Đặt hàng thành công']);
     }
 
-    public  function getFaq(){
-        return view('customer.page.faq');
-    }
-
     public  function getLogin(){
 
         return view('customer.page.login',compact('city'));
@@ -948,6 +944,22 @@ class CustomerController extends Controller
             $pass[] = $alphabet[$n];
         }
         return implode($pass); //turn the array into a string
+    }
+
+    public  function getFaq(){
+        return view('customer.info.faq');
+    }
+    public  function getAbout(){
+        return view('customer.info.about');
+    }
+    public  function getHowtobuy(){
+        return view('customer.info.howtobuy');
+    }
+    public  function getCsbm(){
+        return view('customer.info.csbm');
+    }
+    public  function getTd(){
+        return view('customer.info.td');
     }
 
 

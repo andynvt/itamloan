@@ -44,18 +44,22 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    @foreach($sp as $index => $value)
-                                    <tr>
-                                        <th scope="row">{{$index+1}}</th>
-                                        <td class="align-center">{{$value->id}}</td>
+                                    <span style="display: none">{{$i=0}}</span>
+                                    @foreach($all_p as $index => $value)
+                                        <span style="display: none">{{$i++}}</span>
+
+                                        <tr>
+
+                                        <th scope="row">{{$i}}</th>
+                                        <td class="align-center">{{$value['id']}}</td>
                                         <td class="align-center img-inside-bill">
-                                            <img src="storage/product/{{$value->image}}" alt="{{$value->name}}" id="imageid">
+                                            <img src="storage/product/{{$value['image']}}" alt="{{$value['name']}}" id="imageid">
                                         </td>
-                                        <td>{{$value->name}}</td>
-                                        <td class="align-center">{{$value->no_fb}}</td>
-                                        <td class="align-center">{{sprintf('%01.1f', $value->avg)}} <span class="col-deep-orange">★</span></td>
+                                        <td>{{$value['name']}}</td>
+                                        <td class="align-center">{{$value['no_fb']}}</td>
+                                        <td class="align-center">{{sprintf('%01.1f', $value['avg'])}} <span class="col-deep-orange">★</span></td>
                                         <td class="align-center pd-5">
-                                                <span data-toggle="modal" data-target="#xem_dg_{{$value->id}}">
+                                                <span data-toggle="modal" data-target="#xem_dg_{{$value['id']}}">
                                                     <a class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
                                                         <i class="material-icons">visibility</i>
                                                     </a>
@@ -73,12 +77,12 @@
             <!-- #END# Exportable Table -->
 
             <!-- Modal xem đánh giá -->
-            @foreach($sp as $index => $value)
-            <div class="modal fade in" id="xem_dg_{{$value->id}}" tabindex="-1" role="dialog">
+            @foreach($all_p as $index => $value)
+            <div class="modal fade in" id="xem_dg_{{$value['id']}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">SẢN PHẨM: {{$value->name}}</h4>
+                            <h4 class="modal-title" id="defaultModalLabel">SẢN PHẨM: {{$value['name']}}</h4>
                             <hr>
                         </div>
                         <div class="modal-body">
@@ -108,10 +112,13 @@
                                                 </tr>
                                                 </tfoot>
                                                 <tbody>
+                                                <span style="display: none">{{$it=0}}</span>
+
                                                 @foreach($fb as $i => $v)
-                                                    @if($v->pid == $value->id)
+                                                    @if($v->pid == $value['id'])
+                                                        <span style="display: none">{{$it++}}</span>
                                                         <tr>
-                                                            <th scope="row">{{$i+1}}</th>
+                                                            <th scope="row">{{$it}}</th>
                                                             <td class="align-center img-inside-bill">
                                                                 <img src="storage/user/{{$v->avatar}}"
                                                                      alt="{{$v->c_name}}" id="imageid">
@@ -133,13 +140,9 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn bg-indigo waves-effect">
-                                    <i data-brackets-id="14157" class="material-icons">check</i>
-                                    <span>ĐÃ GỬI HÀNG</span>
-                                </button>
                                 <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
                                     <i data-brackets-id="14157" class="material-icons">close</i>
-                                    <span>HUỶ</span>
+                                    <span>ĐÓNG</span>
                                 </button>
                             </div>
                         </div>

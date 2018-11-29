@@ -12,8 +12,8 @@
             <div class="col-first">
                 <h1>Câu hỏi thường gặp</h1>
                 <nav class="d-flex align-items-center justify-content-start">
-                    <a href="#">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                    <a href="#">Câu hỏi thường gặp</a>
+                    <a href="{{route('index')}}">Trang chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                    <a href="{{route('faq')}}">Câu hỏi thường gặp</a>
                 </nav>
             </div>
         </div>

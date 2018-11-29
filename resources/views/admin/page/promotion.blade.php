@@ -273,7 +273,7 @@
                                     <b>Mô tả chi tiết</b>
                                     <div class="input-group">
                                         <div class="form-line">
-                                            <textarea rows="4" class="form-control no-resize auto-growth" placeholder="Nhập mô tả chi tiết về CTKM">{{$value->promo_info}}</textarea>
+                                            <textarea rows="4" class="form-control no-resize auto-growth" name="promo_info" placeholder="Nhập mô tả chi tiết về CTKM">{{$value->promo_info}}</textarea>
                                         </div>
                                     </div>
                                 </div>
