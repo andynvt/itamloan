@@ -946,20 +946,36 @@ class CustomerController extends Controller
         return implode($pass); //turn the array into a string
     }
 
-    public  function getFaq(){
+    public function getFaq(){
         return view('customer.info.faq');
     }
-    public  function getAbout(){
+    public function getAbout(){
         return view('customer.info.about');
     }
-    public  function getHowtobuy(){
+    public function getHowtobuy(){
         return view('customer.info.howtobuy');
     }
-    public  function getCsbm(){
+    public function getCsbm(){
         return view('customer.info.csbm');
     }
-    public  function getTd(){
+    public function getTd(){
         return view('customer.info.td');
+    }
+    public function getContact(){
+        return view('customer.info.contact');
+    }
+    public function getPostContact(Request $req){
+        $name = $req->name;
+        $email = $req->email;
+        $ctn = $req->ctn;
+
+        $data = ['email' => $email, 'name' => $name, 'ctn' => $ctn];
+        Mail::send('admin.mail.contact',$data,function ($msg) use ($email){
+            $msg->from('ngvantai.n8@gmail.com','itamloan.vn');
+            $msg->to('ngvantai.n8@gmail.com','Admin i Tâm Loan')->subject('🍎🍎 Khách hàng gửi liên hệ ⛔');
+        });
+        if (Mail::failures()) {}
+        return redirect()->back()->with(['flag' => 'success', 'message' => 'Gửi liên hệ thành công']);
     }
 
 

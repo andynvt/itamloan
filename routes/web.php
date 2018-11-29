@@ -362,4 +362,12 @@ Route::get('tuyen-dung',[
     'as' => 'td',
     'uses' => 'CustomerController@getTd'
 ]);
+Route::get('lien-he',[
+    'as' => 'contact',
+    'uses' => 'CustomerController@getContact'
+]);
+Route::post('gui-lien-he',[
+    'as' => 'postcontact',
+    'uses' => 'CustomerController@getPostContact'
+]);
 

@@ -25,7 +25,7 @@
                         <li>Điều khoản sử dụng</li>
                         <li><a href="{{route('csbm')}}">Chính sách bảo mật</a></li>
                         <li><a href="{{route('td')}}">Tuyển dụng</a></li>
-                        <li>Liên hệ</li>
+                        <li><a href="{{route('contact')}}">Liên hệ</a></li>
                     </ul>
                 </div>
             </div>
