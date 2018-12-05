@@ -341,6 +341,15 @@
                                             <i data-brackets-id="14157" class="material-icons">sync_disabled</i>
                                             <span>HUỶ ĐƠN HÀNG</span>
                                         </button>
+                                    @elseif($value->bsid == 6)
+                                        <button type="button" class="btn bg-blue waves-effect guihang" data-dh="{{$value->id}}" data-confirm="gui">
+                                            <i data-brackets-id="14157" class="material-icons">send</i>
+                                            <span>ĐÃ GỬI HÀNG</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger waves-effect huydon" data-dh="{{$value->id}}">
+                                            <i data-brackets-id="14157" class="material-icons">sync_disabled</i>
+                                            <span>HUỶ ĐƠN HÀNG</span>
+                                        </button>
                                     @elseif($value->bsid == 3)
                                         <button type="button" class="btn bg-green waves-effect guihang" data-dh="{{$value->id}}" data-confirm="ht">
                                             <i data-brackets-id="14157" class="material-icons">check</i>

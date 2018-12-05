@@ -370,4 +370,7 @@ Route::post('gui-lien-he',[
     'as' => 'postcontact',
     'uses' => 'CustomerController@getPostContact'
 ]);
-
+Route::get('chinh-sach-bao-hanh',[
+    'as' => 'bh',
+    'uses' => 'CustomerController@getBH'
+]);

@@ -36,6 +36,8 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+
 
 <script>
 

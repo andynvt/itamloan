@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md-2 col-3 pr-0">
                         <div class="quantity-container d-flex align-items-center">
-                            <input type="number" name="sls[]" id="quantity-amount-{{$p['item']['id']}}" class="quantity-amount" value="{{$p['qty']}}"/>
+                            <input type="number" name="sls[]" id="quantity-amount-{{$p['item']['id']}}" class="quantity-amount" value="{{$p['qty']}}" min="1" max="{{$p['item']['inventory']}}"/>
                             <div class="arrow-btn d-inline-flex flex-column">
                                 <button class="increase arrow" type="button" title="Increase Quantity"><span
                                             class="lnr lnr-chevron-up"></span></button>
@@ -87,10 +87,11 @@
             <script>
                 function validateQuantity{{$p['item']['id']}}(){
                     var qty = document.getElementById("quantity-amount-{{$p['item']['id']}}");
-                    var maxqty = "{{$p['item']['inventory']}}";
+                    var qtyval = document.getElementById("quantity-amount-{{$p['item']['id']}}").value;
+                    var maxqty = qty.attr('max');
 
-                    if(qty.value > maxqty) {
-                        qty.setCustomValidity('Kho chỉ còn '+maxqty+' sản phẩm');
+                    if(qtyval > maxqty) {
+                        // qty.setCustomValidity('Kho chỉ còn '+maxqty+' sản phẩm');
                     } else {
                         qty.setCustomValidity('');
                     }

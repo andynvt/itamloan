@@ -82,7 +82,7 @@
                     </div>
                     @endif
                     <div>
-                        <form action="{{route('addcartqty')}}" method="post" >
+                        <form action="{{route('addcartqty')}}" method="post" id="tvg">
                             {{ csrf_field() }}
                             <div class=" d-flex align-items-center mt-15">
                                 Dung lượng + Màu: &nbsp;&nbsp;
@@ -98,7 +98,7 @@
                             <div class="quantity-container d-flex align-items-center mt-15">
                                 Số lượng:
                                 <input type="hidden" name="idsp" value="{{$pd[0]->id}}" />
-                                <input type="number" name="soluong" id="quantity-amount" class="quantity-amount ml-15" min="1" value="1" />
+                                <input type="number" name="soluong" id="quantity-amount" class="quantity-amount ml-15" min="1" max="{{$pd[0]->inventory}}"  value="1" />
                                 <div class="arrow-btn d-inline-flex flex-column">
                                     <button class="increase arrow" type="button" title="Increase Quantity">
                                         <span class="lnr lnr-chevron-up"></span></button>
@@ -108,7 +108,7 @@
                                 <span class="pl-3" id="slsp">{{$pd[0]->inventory}} sản phẩm có sẵn</span>
                             </div>
                             <div class="d-flex mt-20">
-                                <button type="submit" onclick="validateQuantity()" class="view-btn color-2"><span>Thêm vào giỏ</span></button>
+                                <button id="smtvg" type="submit"  class="view-btn color-2"><span>Thêm vào giỏ</span></button>
                                 <a href="{{route('addwl',$pd[0]->id)}}" class="like-btn"><span class="lnr lnr-heart"></span></a>
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{route('single',$pd[0]->id)}}" class="like-btn" target="_blank">
                                     <span class="fa fa-facebook" aria-hidden="true"></span>
@@ -117,15 +117,20 @@
                         </form>
 
                         <script>
-                            function validateQuantity(){
-                                var qty = document.getElementById("quantity-amount");
-                                var maxqty = "{{$pd[0]->inventory}}";
-                                if(qty.value > maxqty) {
-                                    qty.setCustomValidity('Kho chỉ còn '+maxqty+' sản phẩm');
+                            $('#smtvg').click(function (){
+                                var qty = $("#quantity-amount");
+
+
+                                var qtyval = $("#quantity-amount").val();
+                                var maxqty = qty.attr('max');
+                                // alert(qtyval);
+                                if(qtyval > maxqty) {
+                                    // qty[0].setCustomValidity('Kho chỉ còn '+maxqty+' sản phẩm');
                                 } else {
-                                    qty.setCustomValidity('');
+                                    qty[0].setCustomValidity('');
                                 }
-                            }
+                                // qty[0].setCustomValidity('');
+                            });
                         </script>
                     </div>
                 </div>
