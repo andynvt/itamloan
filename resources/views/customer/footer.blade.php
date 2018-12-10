@@ -22,7 +22,6 @@
                     <ul style="font-family: Helvetica,Arial, sans-serif;">
                         <li><a href="{{route('about')}}">Giới thiệu</a></li>
                         <li><a href="{{route('howtobuy')}}">Hướng dẫn mua hàng</a></li>
-                        <li>Điều khoản sử dụng</li>
                         <li><a href="{{route('csbm')}}">Chính sách bảo mật</a></li>
                         <li><a href="{{route('td')}}">Tuyển dụng</a></li>
                         <li><a href="{{route('contact')}}">Liên hệ</a></li>
@@ -33,10 +32,10 @@
                 <div class="single-footer-widget">
                     <h6>Hỗ Trợ</h6>
                     <ul style="font-family: Helvetica,Arial, sans-serif;">
-                        <li>Chính sách bảo hành</li>
-                        <li>Chính sách đổi trả</li>
-                        <li>Chính sách thu đổi máy</li>
-                        <li>Chính sách vận chuyển</li>
+                        <li><a href="{{route('bh')}}">Chính sách bảo hành</a></li>
+                        <li><a href="{{route('doitra')}}">Chính sách đổi trả</a></li>
+                        <li><a href="{{route('thumay')}}">Chính sách thu đổi máy</a></li>
+                        <li><a href="{{route('vc')}}">Chính sách vận chuyển</a></li>
                         <li><a href="{{route('faq')}}">Câu hỏi thường gặp</a></li>
                     </ul>
 
@@ -46,10 +45,9 @@
                 <div class="single-footer-widget mail-chimp">
                     <h6 class="mb-20">Dịch Vụ</h6>
                     <ul style="font-family: Helvetica,Arial, sans-serif;">
-                        <li>Sửa chữa iPhone, iPad, Macbook</li>
-                        <li>Mở mạng - unlock</li>
-                        <li>Ép kính</li>
-                        <li>Cài đặt iPhone, iPad, Macbook</li>
+                        <li><a href="{{route('suachua')}}">Dịch vụ sửa chữa</a></li>
+                        <li><a href="{{route('caidat')}}">Dịch vụ cài đặt</a></li>
+                        <li><a href="{{route('unlock')}}">Mở mạng - unlock</a></li>
                     </ul>
 
                 </div>

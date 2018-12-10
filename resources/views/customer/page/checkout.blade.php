@@ -346,7 +346,6 @@
                                         },
                                         onAuthorize: function(data, actions) {
                                             return actions.payment.get().then(function(data) {
-                                                alert('here');
 
 
                                                 var shipping = data.payer.payer_info.shipping_address;

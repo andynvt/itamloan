@@ -75,6 +75,7 @@
                 var hours = "{{$value->end_date->format('H')}}";
                 var minutes = "{{$value->end_date->format('i')}}";
                 var seconds = "{{$value->end_date->format('s')}}";
+                month--;
 
                 var countdown = new Date(year, month, day, hours, minutes, seconds, 0);
 

@@ -64,9 +64,9 @@
                     <div class="top">
                         <h3 class="head">{{$pd[0]->name}}</h3>
                         <div class="price d-flex align-items-center">
-                            <span class="lnr lnr-tag"></span>
-                            <span class="ml-7 p1-gradient-color">{{number_format( $pd[0]->price - $pd[0]->price * $pd[0]->percent / 100 )}}
-                                ₫</span>&nbsp;&nbsp;
+                            <h3 class="lnr lnr-tag gia-ban"></h3>
+                            <h3 class="ml-7 p1-gradient-color gia-ban">{{number_format( $pd[0]->price - $pd[0]->price * $pd[0]->percent / 100 )}}
+                                ₫</h3>&nbsp;&nbsp;
                             @if($pd[0]->percent != null)
                             <h5 class="de-text">{{number_format($pd[0]->price)}} ₫</h5>
                             @endif

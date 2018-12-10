@@ -374,3 +374,27 @@ Route::get('chinh-sach-bao-hanh',[
     'as' => 'bh',
     'uses' => 'CustomerController@getBH'
 ]);
+Route::get('chinh-sach-doi-tra',[
+    'as' => 'doitra',
+    'uses' => 'CustomerController@getDoitra'
+]);
+Route::get('chinh-sach-thu-doi-may',[
+    'as' => 'thumay',
+    'uses' => 'CustomerController@getThumay'
+]);
+Route::get('chinh-sach-van-chuyen',[
+    'as' => 'vc',
+    'uses' => 'CustomerController@getVc'
+]);
+Route::get('dich-vu-sua-chua',[
+    'as' => 'suachua',
+    'uses' => 'CustomerController@getSuachua'
+]);
+Route::get('dich-vu-cai-dat',[
+    'as' => 'caidat',
+    'uses' => 'CustomerController@getCaidat'
+]);
+Route::get('dich-vu-mo-mang-unlock',[
+    'as' => 'unlock',
+    'uses' => 'CustomerController@getUnlock'
+]);

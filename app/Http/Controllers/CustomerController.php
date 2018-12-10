@@ -551,8 +551,9 @@ class CustomerController extends Controller
 //        dd($req->all());
         $note = $req->note;
         if ($req->payment == 3) {
-            $bill_status = 2;
-        }if ($req->payment == 4) {
+            $bill_status = 6;
+        }
+        if ($req->payment == 4) {
             $bill_status = 6;
         }
         else {
@@ -789,6 +790,7 @@ class CustomerController extends Controller
         if(!$ckemail){
             $user = new User();
             $user->email = $req->email;
+            $user->role = 'customer';
             $user->password = Hash::make($req->password);
             $user->save();
 
@@ -976,6 +978,27 @@ class CustomerController extends Controller
         });
         if (Mail::failures()) {}
         return redirect()->back()->with(['flag' => 'success', 'message' => 'Gửi liên hệ thành công']);
+    }
+    public function getBH(){
+        return view('customer.info.baohanh');
+    }
+    public function getDoitra(){
+        return view('customer.info.doitra');
+    }
+    public function getThumay(){
+        return view('customer.info.thumay');
+    }
+    public function getVc(){
+        return view('customer.info.vc');
+    }
+    public function getSuachua(){
+        return view('customer.info.suachua');
+    }
+    public function getCaidat(){
+        return view('customer.info.caidat');
+    }
+    public function getUnlock(){
+        return view('customer.info.unlock');
     }
 
 

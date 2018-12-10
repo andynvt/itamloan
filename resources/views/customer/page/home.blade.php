@@ -235,7 +235,11 @@
         var minutes = "{{$promo->end_date->format('i')}}";
         var seconds = "{{$promo->end_date->format('s')}}";
 
+        month--;
+
+
         var countdown = new Date(year, month, day, hours, minutes, seconds, 0);
+        // var countdown = new Date(2018, month, 10, 10, 40, 0, 0);
         // alert(countdown);
 
         function getRemainingTime(endtime) {

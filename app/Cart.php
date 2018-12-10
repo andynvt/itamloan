@@ -53,10 +53,13 @@ class Cart
         $this->items[$id] = $giohang;
         $this->totalQty++;
         $this->totalPrice += $price;
-        if($this->totalPrice < 500000){
+        if($this->totalPrice < 1000000){
             $tax = 100000;
-        }else{
+        }else if($this->totalPrice < 5000000){
             $tax = 50000;
+        }
+        else{
+            $tax = 0;
         }
         $this->tax = $tax;
     }

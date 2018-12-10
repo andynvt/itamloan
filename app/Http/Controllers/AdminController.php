@@ -181,17 +181,24 @@ class AdminController extends Controller
             $rev[$index]['bgcolor'] = hex2rgba($material_color[$index],0.5);
             for ($i=1; $i<13; $i++){
                 $ip[$index][$i]['thang'] = $i;
-                $qr = Bill::select(DB::raw('sum(total_price) as sum'))
+                $qr = Bill::selectRaw('sum(total_price) as sum')
                     ->leftjoin('bill_detail as bd','bd.id_bill','=','bills.id')
                     ->leftjoin('products as p','p.id','=','bd.id_product')
                     ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
                     ->where('ctl.id_type',$value['id'])
                     ->whereMonth('bills.created_at', $i)->whereYear('bills.created_at', $nam)
                     ->value('sum');
+//                $qr = Bill::leftjoin('bill_detail as bd','bd.id_bill','=','bills.id')
+//                    ->leftjoin('products as p','p.id','=','bd.id_product')
+//                    ->leftjoin('catalogs as ctl','ctl.id','=','p.id_catalog')
+//                    ->where('ctl.id_type',$value['id'])
+//                    ->whereMonth('bills.created_at', $i)->whereYear('bills.created_at', $nam)
+//                    ->sum('total_price');
                 $ip[$index][$i]['dt'] = ($qr == null) ? 0 : $qr;
             }
             $rev[$index]['data'] = $ip[$index];
         }
+//        dd($rev);
 
         //Số lượng sp bán ra
         $slsp = ProductType::select('id','type')->get()->toArray();

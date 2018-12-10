@@ -180,7 +180,7 @@
                                             <b>Số lượng </b>
                                             <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="number" name="inventory" class="form-control " placeholder="Số lượng kho" required>
+                                                    <input type="number" name="inventory" class="form-control " min="1q" placeholder="Số lượng kho" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -335,11 +335,6 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bg-indigo waves-effect">
-                                        <i data-brackets-id="14157" class="material-icons">check</i>
-                                        <span>THÊM</span>
-                                    </button>
-
                                     <button type="button" class="btn bg-grey waves-effect" data-dismiss="modal">
                                         <i data-brackets-id="14157" class="material-icons">close</i>
                                         <span>HUỶ</span>
